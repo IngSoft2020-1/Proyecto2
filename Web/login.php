@@ -1,14 +1,14 @@
 <!-- Login -->
 <?php
-  session_start();
-  error_reporting(0);
+      session_start();
+      error_reporting(0);
 
-  if($_SESSION['error'] == '1'){
-    echo "<script>alert('Datos incorrectos.');</script>";
-  }
-  $_SESSION['error'] = '0';
-?>
-
+      if($_SESSION['error'] == '1'){
+        echo "<script>alert('Datos incorrectos.');</script>";
+      }
+      $_SESSION['error'] = '0';
+    ?>
+    
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>

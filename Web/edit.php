@@ -3,10 +3,10 @@
   error_reporting(0);
 
   if($_SESSION['listo'] == '1'){
-    echo "<script>alert('Jalo.');</script>";
+    echo "<script>alert('Cambio registrado exitosamente.');</script>";
   }
   elseif($_SESSION['listo'] == '0'){
-    echo "<script>alert('No jalo.');</script>";
+    echo "<script>alert('Cambio no registrado.');</script>";
   }
   $_SESSION['listo'] = "";
 ?>

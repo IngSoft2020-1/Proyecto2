@@ -13,7 +13,7 @@
     die("Problemas con la conexión");
 
     if(filter_var($correo, FILTER_VALIDATE_EMAIL) && strlen($contrasena) > 7)
-    {
+    {  
         mysqli_query($conexion,"update usuario set 
             Nombre='$nombre',
             Apellidos='$apellido',

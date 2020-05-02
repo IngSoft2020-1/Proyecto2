@@ -24,7 +24,7 @@
             $conexion=mysqli_connect("localhost","root","","derechoscopio") or
               die("Problemas con la conexión");
 
-            $registros = mysqli_query($conexion, "select Nombre, Apellidos, Correo from usuario
+            $registros = mysqli_query($conexion, "select Nombre, Apellidos, Correo, Telefono, Clave from usuario
                                   where ID='$_GET[var]'") or
               die("Problemas en el select:" . mysqli_error($conexion));
             if ($reg = mysqli_fetch_array($registros))
@@ -48,7 +48,12 @@
               <div class="field line">
                 <label for="">Contraseña</label>
                 <img src="img/lock.png" alt="" class="icon">
-                <input type="password" placeholder="Contraseña" class="textbox" name="contrasena1" required autocomplete="off">
+                <input type="password" placeholder="Contraseña" class="textbox" name="contrasena1" value="<?php echo $reg['Clave']?>" required autocomplete="off">
+              </div>
+              <div class="field line">
+                <label for="">Telefono</label>
+                <img src="img/name.png" alt="" class="icon">
+                <input type="text" placeholder="000-000-0000" class="textbox" name="telefono" value="<?php echo $reg['Telefono']?>" required autocomplete="off">
               </div>
               <div class="field" id="field-button">
                 <input type="button" id="btn-cancel" value="Cancelar">

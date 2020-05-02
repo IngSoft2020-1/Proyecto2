@@ -24,7 +24,7 @@
 			header("location:index.php"); /*Te redirecciona a la pagina de admin*/
 		}
 		else{
-			header("location:inicioU.php"); /*Te redirecciona a la pagina de usuario*/
+			header("location:index.php"); /*Te redirecciona a la pagina de Admin*/
 		}
 	}
 	else{ /*Si no se encontro el usuario y la contrasena redirecciona*/

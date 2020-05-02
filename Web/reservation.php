@@ -28,6 +28,7 @@
               </tr>
             </thead>
             <tbody>
+            <!--
               <tr>
                 <td>10 de Julio del 2020</td>
                 <td>3</td>
@@ -50,10 +51,11 @@
                 <td><a href="#" class="button edit">Editar</a></td>
                 <td><a href="#" class="button task-delete delete">Eliminar</a></td>
               </tr>
+              -->
             </tbody>
           </table>
       </div>
     </div>
   </body>
-  <script src="js/app.js"></script> <!--Manda a llamar al json-->
+  <script src="js/app-reservation.js"></script> <!--Manda a llamar al json-->
 </html>
