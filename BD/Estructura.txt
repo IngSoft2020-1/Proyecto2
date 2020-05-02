@@ -66,19 +66,16 @@ Las siguientes sentencias se ejecutaran cuando el usuario da clic al boton "Crea
 
 >>>>>SENTENCIAS SQL PARA LA CONSULTA DE DATOS AL CREAR RESERVACION<<<<<< (Sprint Administrador)
 La primer sentencia es la principal que se ejecutara al entrar a la pantalla de "Reservaciones/Consultar". Ordenada por fecha de creacion de la mas reciente a la mas vieja.
--> select 
-
 --Reservaciones--
 SELECT reservacion.FechaInicio AS 'Fecha de Inicio', reservacion.DiasEstima as 'Dias estimados',estado.Estado AS 'Estado reservacion', tipohabitacion.Tipo as 'Tipo de habitacion' 
 FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.TipoHabita INNER JOIN estado ON estado.ID= reservacion.Estado
-where reservacion.IDReser = valor a agregar
 
 --Personas reservacion--
 SELECT visitante.Nombre as 'Nombre', visitante.Ape_Pat AS 'Apellido paterno', visitante.Ape_Mat as 'Apellido materno', visitante.Telefono as 'Telefono' , 
 visitante.Edad as 'edad' FROM reservacion_visitante INNER JOIN reservacion ON reservacion.IDReser = reservacion_visitante.IDReser INNER join 
-visitante on reservacion_visitante.IDVisi= visitante.IDVisi WHERE reservacion.IDReser= valor a agregar
+visitante on reservacion_visitante.IDVisi= visitante.IDVisi WHERE reservacion.IDReser= [Valor de la reservacion de la busqueda anterior]
 
-Las demas que sentencias seran:
+Las demas sentencias seran:
 - Ordenado por estado de la reservacion, de forma ascendente (Primero en Espera>En Progreso>Finalizado) y descendente (Finalizado>En Progreso> En Espera).
 
 --ASC
