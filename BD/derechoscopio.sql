@@ -1,20 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
--- http://www.phpmyadmin.net
+-- version 4.9.2
+-- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 02-05-2020 a las 01:59:00
--- Versión del servidor: 5.5.24-log
--- Versión de PHP: 5.4.3
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 02-05-2020 a las 08:16:22
+-- Versión del servidor: 10.4.10-MariaDB
+-- Versión de PHP: 7.3.12
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `derechoscopio`
@@ -26,6 +28,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `descripcion_modificacion`
 --
 
+DROP TABLE IF EXISTS `descripcion_modificacion`;
 CREATE TABLE IF NOT EXISTS `descripcion_modificacion` (
   `IDDescripcion` int(11) NOT NULL AUTO_INCREMENT,
   `IDModificacion` int(11) NOT NULL,
@@ -35,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `descripcion_modificacion` (
   `Ahora` varchar(300) NOT NULL,
   PRIMARY KEY (`IDDescripcion`),
   KEY `IDModificacion` (`IDModificacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -43,11 +46,21 @@ CREATE TABLE IF NOT EXISTS `descripcion_modificacion` (
 -- Estructura de tabla para la tabla `estado`
 --
 
+DROP TABLE IF EXISTS `estado`;
 CREATE TABLE IF NOT EXISTS `estado` (
   `ID` char(1) NOT NULL,
   `Estado` varchar(20) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estado`
+--
+
+INSERT INTO `estado` (`ID`, `Estado`) VALUES
+('E', 'En espera'),
+('F', 'Finalizada'),
+('P', 'En progreso');
 
 -- --------------------------------------------------------
 
@@ -55,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `estado` (
 -- Estructura de tabla para la tabla `historial_modificacion`
 --
 
+DROP TABLE IF EXISTS `historial_modificacion`;
 CREATE TABLE IF NOT EXISTS `historial_modificacion` (
   `IDModificacion` int(11) NOT NULL AUTO_INCREMENT,
   `Fecha` date NOT NULL,
@@ -64,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `historial_modificacion` (
   PRIMARY KEY (`IDModificacion`),
   KEY `IDTabla` (`IDTabla`),
   KEY `IDUsuario` (`IDUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -72,11 +86,19 @@ CREATE TABLE IF NOT EXISTS `historial_modificacion` (
 -- Estructura de tabla para la tabla `nacionalidad`
 --
 
+DROP TABLE IF EXISTS `nacionalidad`;
 CREATE TABLE IF NOT EXISTS `nacionalidad` (
   `IDPais` varchar(3) NOT NULL,
   `Pais` varchar(50) NOT NULL,
   PRIMARY KEY (`IDPais`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `nacionalidad`
+--
+
+INSERT INTO `nacionalidad` (`IDPais`, `Pais`) VALUES
+('Mex', 'Mexico');
 
 -- --------------------------------------------------------
 
@@ -84,6 +106,7 @@ CREATE TABLE IF NOT EXISTS `nacionalidad` (
 -- Estructura de tabla para la tabla `reservacion`
 --
 
+DROP TABLE IF EXISTS `reservacion`;
 CREATE TABLE IF NOT EXISTS `reservacion` (
   `IDReser` int(11) NOT NULL AUTO_INCREMENT,
   `Creador` int(11) NOT NULL,
@@ -98,7 +121,20 @@ CREATE TABLE IF NOT EXISTS `reservacion` (
   KEY `Creador` (`Creador`),
   KEY `TipoHabita` (`TipoHabita`),
   KEY `Estado` (`Estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `reservacion`
+--
+
+INSERT INTO `reservacion` (`IDReser`, `Creador`, `FechaInicio`, `FechaFin`, `DiasEstima`, `PersonasEstima`, `FechaCreacion`, `TipoHabita`, `Estado`) VALUES
+(2, 7, '2020-05-06', '2020-05-07', 1, 2, '2020-05-02', 'D', 'E'),
+(3, 4, '2020-05-05', '2020-05-08', 3, 3, '2020-05-01', 'T', 'E'),
+(4, 4, '2020-05-04', '2020-05-07', 3, 1, '2020-05-01', 'I', 'F'),
+(5, 9, '2020-05-05', '2020-05-07', 2, 2, '2020-05-04', 'D', 'F'),
+(6, 4, '2020-05-04', '2020-05-06', 2, 3, '2020-05-02', 'T', 'F'),
+(7, 4, '2020-05-13', '2020-05-14', 1, 2, '2020-05-05', 'D', 'P'),
+(8, 3, '2020-05-04', '2020-05-05', 1, 1, '2020-05-01', 'I', 'P');
 
 -- --------------------------------------------------------
 
@@ -106,6 +142,7 @@ CREATE TABLE IF NOT EXISTS `reservacion` (
 -- Estructura de tabla para la tabla `reservacion_visitante`
 --
 
+DROP TABLE IF EXISTS `reservacion_visitante`;
 CREATE TABLE IF NOT EXISTS `reservacion_visitante` (
   `IDReserVisi` int(11) NOT NULL,
   `IDReser` int(11) NOT NULL,
@@ -115,17 +152,38 @@ CREATE TABLE IF NOT EXISTS `reservacion_visitante` (
   KEY `IDVisi` (`IDVisi`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `reservacion_visitante`
+--
+
+INSERT INTO `reservacion_visitante` (`IDReserVisi`, `IDReser`, `IDVisi`, `Llego`) VALUES
+(1, 2, 2, 1),
+(2, 2, 1, 0),
+(3, 3, 3, 0),
+(4, 3, 4, 0),
+(5, 3, 5, 0),
+(6, 4, 6, 0),
+(7, 5, 1, 0),
+(7, 5, 5, 0),
+(8, 6, 2, 0),
+(9, 6, 3, 1),
+(10, 6, 1, 1),
+(11, 7, 6, 0),
+(12, 7, 5, 0),
+(12, 8, 2, 0);
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tabla`
 --
 
+DROP TABLE IF EXISTS `tabla`;
 CREATE TABLE IF NOT EXISTS `tabla` (
   `IDTabla` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`IDTabla`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -133,11 +191,21 @@ CREATE TABLE IF NOT EXISTS `tabla` (
 -- Estructura de tabla para la tabla `tipohabitacion`
 --
 
+DROP TABLE IF EXISTS `tipohabitacion`;
 CREATE TABLE IF NOT EXISTS `tipohabitacion` (
   `ID` char(1) NOT NULL,
   `Tipo` varchar(20) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipohabitacion`
+--
+
+INSERT INTO `tipohabitacion` (`ID`, `Tipo`) VALUES
+('D', 'Doble'),
+('I', 'Individual'),
+('T', 'Triple');
 
 -- --------------------------------------------------------
 
@@ -145,6 +213,7 @@ CREATE TABLE IF NOT EXISTS `tipohabitacion` (
 -- Estructura de tabla para la tabla `tipousuario`
 --
 
+DROP TABLE IF EXISTS `tipousuario`;
 CREATE TABLE IF NOT EXISTS `tipousuario` (
   `ID` char(1) NOT NULL,
   `Nombre` varchar(20) NOT NULL,
@@ -167,6 +236,7 @@ INSERT INTO `tipousuario` (`ID`, `Nombre`, `NivelPriv`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 
+DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `ID` int(3) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) NOT NULL,
@@ -177,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `TipoUsuario` char(1) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `TipoUsuario` (`TipoUsuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -196,6 +266,7 @@ INSERT INTO `usuario` (`ID`, `Nombre`, `Apellidos`, `Clave`, `Correo`, `Telefono
 -- Estructura de tabla para la tabla `visitante`
 --
 
+DROP TABLE IF EXISTS `visitante`;
 CREATE TABLE IF NOT EXISTS `visitante` (
   `IDVisi` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(50) NOT NULL,
@@ -207,7 +278,19 @@ CREATE TABLE IF NOT EXISTS `visitante` (
   `IDNacion` varchar(3) NOT NULL,
   PRIMARY KEY (`IDVisi`),
   KEY `IDNacion` (`IDNacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `visitante`
+--
+
+INSERT INTO `visitante` (`IDVisi`, `Nombre`, `Ape_Mat`, `Ape_Pat`, `Telefono`, `Fecha_nac`, `Edad`, `IDNacion`) VALUES
+(1, 'Carlos', 'Gerardo', 'Carlon', '33213412', '2017-01-04', 21, 'Mex'),
+(2, 'pepe', 'ralo', 'ola', '3321234', '2020-05-03', 3, 'Mex'),
+(3, 'Jhon', 'Martin', 'Jorge', '3312312', '2019-10-07', 2, 'Mex'),
+(4, 'Diego', 'Comne', 'Cjaol', '31244', '2019-01-08', 5, 'Mex'),
+(5, 'Lomas', 'Juedio', 'James', '23124132', '2019-07-16', 6, 'Mex'),
+(6, 'Daniel', 'Ruano', 'Ruano', '331231', '2019-02-07', 2, 'Mex');
 
 --
 -- Restricciones para tablas volcadas
@@ -252,6 +335,7 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `visitante`
   ADD CONSTRAINT `visitante_ibfk_1` FOREIGN KEY (`IDNacion`) REFERENCES `nacionalidad` (`IDPais`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,4 +1,4 @@
->>>USUARIO<<<
+﻿>>>USUARIO<<<
 ID es autoincrementable.
 
 Nombre corresponde al nickname, maximo 20 caracteres y no
@@ -66,17 +66,59 @@ Las siguientes sentencias se ejecutaran cuando el usuario da clic al boton "Crea
 
 >>>>>SENTENCIAS SQL PARA LA CONSULTA DE DATOS AL CREAR RESERVACION<<<<<< (Sprint Administrador)
 La primer sentencia es la principal que se ejecutara al entrar a la pantalla de "Reservaciones/Consultar". Ordenada por fecha de creacion de la mas reciente a la mas vieja.
--> select 
+--Reservaciones--
+SELECT reservacion.FechaInicio AS 'Fecha de Inicio', reservacion.DiasEstima as 'Dias estimados',estado.Estado AS 'Estado reservacion', tipohabitacion.Tipo as 'Tipo de habitacion' 
+FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.TipoHabita INNER JOIN estado ON estado.ID= reservacion.Estado
 
-Las demas que sentencias seran:
+--Personas reservacion--
+SELECT visitante.Nombre as 'Nombre', visitante.Ape_Pat AS 'Apellido paterno', visitante.Ape_Mat as 'Apellido materno', visitante.Telefono as 'Telefono' , 
+visitante.Edad as 'edad' FROM reservacion_visitante INNER JOIN reservacion ON reservacion.IDReser = reservacion_visitante.IDReser INNER join 
+visitante on reservacion_visitante.IDVisi= visitante.IDVisi WHERE reservacion.IDReser= [Valor de la reservacion de la busqueda anterior]
+
+Las demas sentencias seran:
 - Ordenado por estado de la reservacion, de forma ascendente (Primero en Espera>En Progreso>Finalizado) y descendente (Finalizado>En Progreso> En Espera).
-- Ordenado por fecha de inicio de la reservacion, de forma ascendente y descendente.
-- Ordenado por Nombre de los visitantes, de forma ascendente y descendente.
-- Ordenado por fecha de creacion, de forma ascendente (de la mas reciente a la mas vieja) y de forma descendente (de la mas vieja a la mas reciente).
 
+--ASC
+SELECT reservacion.FechaInicio AS 'Fecha de Inicio', reservacion.DiasEstima as 'Dias estimados',estado.Estado AS 'Estado reservacion', tipohabitacion.Tipo as 'Tipo de habitacion' 
+FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.TipoHabita INNER JOIN estado ON estado.ID= reservacion.Estado order by Estado.Estado ASC 
+--DESC
+SELECT reservacion.FechaInicio AS 'Fecha de Inicio', reservacion.DiasEstima as 'Dias estimados',estado.Estado AS 'Estado reservacion', tipohabitacion.Tipo as 'Tipo de habitacion' 
+FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.TipoHabita INNER JOIN estado ON estado.ID= reservacion.Estado order by Estado.Estado DESC 
+
+- Ordenado por fecha de inicio de la reservacion, de forma ascendente y descendente.
+--ASC
+SELECT reservacion.FechaInicio AS 'Fecha de Inicio', reservacion.DiasEstima as 'Dias estimados',estado.Estado AS 'Estado reservacion', tipohabitacion.Tipo as 'Tipo de habitacion' 
+FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.TipoHabita INNER JOIN estado ON estado.ID= reservacion.Estado order by reservacion.FechaInicio ASC 
+--DESC
+SELECT reservacion.FechaInicio AS 'Fecha de Inicio', reservacion.DiasEstima as 'Dias estimados',estado.Estado AS 'Estado reservacion', tipohabitacion.Tipo as 'Tipo de habitacion' 
+FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.TipoHabita INNER JOIN estado ON estado.ID= reservacion.Estado order by reservacion.FechaInicio DESC 
+
+- Ordenado por Nombre de los visitantes, de forma ascendente y descendente.
+--ASC
+SELECT visitante.Nombre as 'Nombre', visitante.Ape_Pat AS 'Apellido paterno', visitante.Ape_Mat as 'Apellido materno', visitante.Telefono as 'Telefono' , visitante.Edad as 'edad' 
+FROM reservacion_visitante INNER JOIN reservacion ON reservacion.IDReser = reservacion_visitante.IDReser INNER join visitante on reservacion_visitante.IDVisi= visitante.IDVisi 
+WHERE reservacion.IDReser= valor a agregar ORDER BY visitante.Nombre ASC 
+--DESC
+SELECT visitante.Nombre as 'Nombre', visitante.Ape_Pat AS 'Apellido paterno', visitante.Ape_Mat as 'Apellido materno', visitante.Telefono as 'Telefono' , visitante.Edad as 'edad' 
+FROM reservacion_visitante INNER JOIN reservacion ON reservacion.IDReser = reservacion_visitante.IDReser INNER join visitante on reservacion_visitante.IDVisi= visitante.IDVisi 
+WHERE reservacion.IDReser= valor a agregar ORDER BY visitante.Nombre DESC 
+
+- Ordenado por fecha de creacion, de forma ascendente (de la mas reciente a la mas vieja) y de forma descendente (de la mas vieja a la mas reciente).
+--ASC
+SELECT reservacion.FechaInicio AS 'Fecha de Inicio', reservacion.DiasEstima as 'Dias estimados',estado.Estado AS 'Estado reservacion', tipohabitacion.Tipo as 'Tipo de habitacion' 
+FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.TipoHabita INNER JOIN estado ON estado.ID= reservacion.Estado order by reservacion.FechaCreacion ASC 
+--DESC
+SELECT reservacion.FechaInicio AS 'Fecha de Inicio', reservacion.DiasEstima as 'Dias estimados',estado.Estado AS 'Estado reservacion', tipohabitacion.Tipo as 'Tipo de habitacion' 
+FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.TipoHabita INNER JOIN estado ON estado.ID= reservacion.Estado order by reservacion.FechaCreacion DESC 
 
 >>>>>>REGLAS ESPECIFICAS DE LA BD<<<<<<<
 ALTER TABLE usuario ADD CONSTRAINT CK_USUARIO_TipoUsuario CHECK (tipousuario in ('S','A','R'));
 ALTER TABLE usuario ADD CONSTRAINT CK_USUARIOS_Nickname CHECK (nombre not LIKE '% %');
 ALTER TABLE usuario ADD CONSTRAINT CK_USUARIOS_Correo CHECK (correo LIKE '%@%');
 ALTER TABLE usuario ADD CONSTRAINT CK_USUARIOS_NoSymbols CHECK (clave REGEXP '^[A-Za-z0-9]+$');
+
+
+
+
+
+ALTER TABLE visitante ADD CONSTRAINT CK_VisisTel_Num CHECK (telefono like '([0-9][0-9][0-9])[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]') 
