@@ -39,7 +39,7 @@
                 <th style="color: #00FF80;">Fecha Nacimiento</th>
                 <th style="color: #00FF80;">Edad</th>
                 <th style="color: #00FF80;">Nacionalidad</th>
-                <th style="color: #EC6D4A;">Eliminar</th>
+                
               </tr>
             </thead>
             <tbody>
