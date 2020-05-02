@@ -24,12 +24,12 @@
           <img src="img/home-white.png" alt="" class="icon">
           <a class="text" href="">Inicio</a>
         </li>
-        <li class="container-button display">
+        <li class="container-button display" id="click-submenu-user">
           <div class="div-display">
             <img src="img/users.png" alt="" class="icon">
-            <a class="text" href="">Usuarios</a>
+            <a class="text">Usuarios</a>
           </div>
-          <ul>
+          <ul class="ul-submenu" id="ul-user">
             <li class="container-button submenu" id="btn-new">
               <img src="img/new.png" alt="" class="icon">
               <a class="text">Nuevo</a>
@@ -40,19 +40,19 @@
             </li>
           </ul>
         </li>
-        <li class="container-button display" id="btn-reservation">
+        <li class="container-button display" id="click-submenu-res">
           <div class="div-display">
             <img src="img/bed.png" alt="" class="icon">
             <a class="text">Reservación</a>
           </div>
-          <ul>
-            <li class="container-button submenu" id="btn-new-reservation">
+          <ul class="ul-submenu" id="ul-res">
+            <li class="container-button submenu" id="btn-consult-reservation">
               <img src="img/read.png" alt="" class="icon">
               <a class="text">Consultar</a>
             </li>
-            <li class="container-button submenu" id="btn-new-reservation">
+            <li class="container-button submenu" id="btn-new-res">
               <img src="img/new.png" alt="" class="icon">
-              <a class="text">Nuevo</a>
+              <a class="text">Crear</a>
             </li>
           </ul>
         </li>

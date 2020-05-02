@@ -6,6 +6,23 @@ $(document).ready(function() {
     console.log('jQuery esta funcionando');
     obtener();
 
+    // METODO DE BUSQUEDA PARA EDITAR
+    $("#search-edit").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#table-edit tbody tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
+  // METODO DE BUSQUEDA PARA RESERVACION
+  $("#search-res").on("keyup", function() {
+  var value = $(this).val().toLowerCase();
+  $("#table-res tbody tr").filter(function() {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  });
+});
+
+
     /*No implementado*/
     /*En caso de hacer una busqueda de usuario por textbox*/
     $('#buscar').keyup(function(e) {

@@ -4,11 +4,13 @@ $(document).ready(function(){
   var btn_edit = $('#btn-edit');
   var btn_home = $('#btn-home');
   var btn_cancel = $('#btn-cancel');
-  var btn_reservation = $('#btn-reservation');
+  var btn_consult_reservation = $('#btn-consult-reservation');
+
+  var submenu_user = $('#click-submenu-user');
+  var submenu_res = $('#click-submenu-res');
 
   // estos dos son uno solo
   var btn_new_res = $('#btn-new-res');
-  var btn_text = $('#text');
 
   // estos dos son uno solo
   var btn_new_user = $('#btn-new-user');
@@ -17,6 +19,14 @@ $(document).ready(function(){
   var iframe = $('iframe');
   var container_home = $('#container-home');
 
+  // EVENTO PARA EL SUBMENU CLICK AL DE USUARIOS
+  submenu_user.click(function(){
+    $('#ul-user').toggle("slow");
+  });
+
+  submenu_res.click(function(){
+    $('#ul-res').toggle("slow");
+  });
 
   // EVENTO CLICK
   btn_new.click(function(){
@@ -60,7 +70,7 @@ $(document).ready(function(){
     $(location).attr('href', "edit.php");
   });
 
-  btn_reservation.click(function(){
+  btn_consult_reservation.click(function(){
     // VARIABLES
     let newHTML = "reservation.php";
     // OCULTAR ELEMENTOS
@@ -70,19 +80,28 @@ $(document).ready(function(){
       $(iframe).show(); // SE MUESTRA ESE SUBMENU
     }
     else{
+      $(iframe).show(); // SE MUESTRA EL IFRAME CON EL NUEVO CONTENIDO
       // SI EL SUBMENU AUN NO ESTA ABIERTO EL IFRAME TOMA EL VALOR DEL NEW HTML QUE SE DESEA ABRIR
       $(iframe).attr("src", newHTML);
-      $(iframe).show(); // SE MUESTRA EL IFRAME CON EL NUEVO CONTENIDO
+
     }
   });
 
   btn_new_res.click(function(){
-    $(location).attr('href', "_reservation.php");
+    // VARIABLES
+    let newHTML = "_reservation.php";
+    // OCULTAR ELEMENTOS
+    $(container_home).hide();
+    // SI YA ESTA ABIERTO ESE SUBMENU SOLO SE MUESTRA PARA QUE NO SE CREE UNO NUEVO
+    if($(iframe).attr("src") == "_reservation.php"){
+      $(iframe).show(); // SE MUESTRA ESE SUBMENU
+    }
+    else{
+      $(iframe).show(); // SE MUESTRA EL IFRAME CON EL NUEVO CONTENIDO
+      $(iframe).attr("src", newHTML);// SI EL SUBMENU AUN NO ESTA ABIERTO EL IFRAME TOMA EL VALOR DEL NEW HTML QUE SE DESEA ABRIR
+    }
   });
 
-  btn_text.click(function(){
-    $(location).attr('href', "_reservation.php");
-  });
 
   btn_new_user.click(function(){
     $('table tbody').append("<tr>"+

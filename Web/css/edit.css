@@ -149,7 +149,7 @@ label{
 }
 
 /* ESTILOS PARA EL BOTON DE BUSCAR */
-#search{
+#search-edit{
   box-sizing: border-box;
   border: none;
   border-bottom: 2px solid #27333B;
@@ -169,7 +169,7 @@ label{
   margin-left: 2%;
 }
 
-#search:focus{
+#search-edit:focus{
   width: 98%;
   border-radius: 20px 20px 0 0;
 }

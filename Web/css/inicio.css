@@ -94,16 +94,13 @@ aside{
   background: rgba(43, 52, 61,0.4);
 }
 
-.nav li > .ul-submenu{
+/* .nav li > .ul-submenu{
   margin-top: 10px;
-}
-
-.nav li:hover > .ul-submenu{
-  display: block;
-}
+} */
 
 .nav li .ul-submenu{
-  /* display: none; */
+  display: none;
+  /* margin-top: 1000px; */
 }
 
 /*******************************************************************************
