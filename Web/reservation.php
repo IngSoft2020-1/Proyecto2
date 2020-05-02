@@ -53,6 +53,7 @@
               </tr>
               -->
             </tbody>
+            <tbody id="tasksReservacion"></tbody> <!--Donde se hace la magia con json-->
           </table>
       </div>
     </div>

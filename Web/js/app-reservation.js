@@ -70,17 +70,20 @@
                 let templado = '';
                 tasks.forEach(task => {
                     templado += `
-                    <tr task-id="${task.ID}">
-                        <td>${task.Nombre} ${task.Apellidos}</td>
-                        <td>${task.Correo}</td>
+                    <tr task-id="${task.IDReser}">
+                        <td>${task.FechaInicio}</td>
+                        <td>${task.DiasEstima}</td>
+                        <td>${task.Estado}</td>
+                        <td>${task.Nombre} ${task.Ape_Pat} ${task.Ape_Mat}</td>
                         <td>${task.Telefono}</td>
-                        <td>${task.TipoUsuario}</td>
+                        <td>${task.Edad}</td>
+                        <td>${task.IDNacion}</td>
                         <td><a href="_edit.php?var=${task.ID}" class="button edit">Editar</a></td>
                         <td><a href="#" class="button task-delete delete">Eliminar</a></td>
                     </tr>
                     `
                 });
-                $('#tasks').html(templado);
+                $('#tasksReservacion').html(templado);
             }
         });
     }
@@ -89,7 +92,7 @@
     $(document).on('click','.task-delete', function() {
         let element = $(this)[0].parentElement.parentElement;
         let ID = $(element).attr('task-id');
-        $.post('task-delete.php', {ID}, function(response) {
+        $.post('task-delete-reser.php', {IDReser}, function(response) {
             console.log(response);
             obtener();
         })
