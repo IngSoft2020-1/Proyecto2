@@ -20,6 +20,8 @@
               <tr>
                 <th style="color: #00FF80;">Fecha de inicio</th>
                 <th style="color: #EC6D4A;">Fecha de conclusión</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
