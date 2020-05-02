@@ -36,13 +36,19 @@
               <tr>
                 <th style="color: #00FF80;">Nombre</th>
                 <th style="color: #00FF80;">Teléfono</th>
-                <th style="color: #EC6D4A;">Correo</th>
+                <th style="color: #00FF80;">Fecha Nacimiento</th>
+                <th style="color: #00FF80;">Edad</th>
+                <th style="color: #00FF80;">Nacionalidad</th>
+                <th style="color: #EC6D4A;">Eliminar</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><input type='text' name='' value=''></td>
                 <td><input type='tel' name='' value=''></td>
+                <td><input type="text" name="" value=""  id="datepicker"></td>
+                <td><input type='number' name='' value=''></td>
+                <td><input type='text' name='' value=''></td>
                 <td><a class='button task-delete delete'>Eliminar</a></td>
               </tr>
             </tbody> <!-- Aqui ocurre la magia en js -->
