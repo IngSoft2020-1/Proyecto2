@@ -1,0 +1,216 @@
+/* GENERALES   */
+*{
+  font-family: poppins, 'arial';
+}
+.container{
+  width: 100%;
+  height: auto;
+  padding-bottom: 24px;
+  background: #1D262D;
+  border-radius: 20px;
+}
+
+.container-table {
+    padding: 15px;
+}
+
+.container-img{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+}
+
+.icon-title{
+  width: 3%;
+  height: 3%;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+#text{
+  font-size: calc(0.6em + 1.5vw);
+  color: white;
+  margin: 0;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  text-align: left;
+  padding: 40px;
+}
+
+table>tbody>tr:nth-child(odd) {
+    background-color:#27333B;
+}
+
+table>tbody>tr:nth-child(even) {
+    background-color: #1D262D;
+}
+
+table td, table th{
+  padding: 10px;
+}
+
+tbody{
+  font-size: calc(0.7em + 0.5vw);
+}
+
+.button{
+  padding: 5px;
+  color: white;
+  border-radius: 10px;
+}
+
+a{
+  text-decoration: none;
+}
+
+.edit{
+  background: transparent;
+  border: 2px solid #EC6D4A;
+}
+
+.delete{
+  background: #EC6D4A;
+  border: 2px solid #EC6D4A;
+}
+
+.button:hover{
+  background: rgba(241, 141, 113, 0.5);
+}
+
+/* ESTILOS PARA EL _EDIT.PHP */
+form {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.container-form{
+  width: 100%
+}
+
+.field{
+  width: 37%;
+}
+
+.icon{
+  width: 8%;
+}
+
+label{
+  display: flex;
+  color: white;
+  font-size: calc(0.6em + 1.5vw);
+  padding: 10px 0;
+}
+
+.textbox{
+  border: 0;
+  background: transparent;
+  width: 70%;
+  color: white;
+  font-size: calc(0.6em + 0.8vw);
+  outline: none;
+  padding-left: 8px;
+}
+
+::placeholder{
+  font-size: calc(0.6em + 0.8vw);
+  color: #B8B8B8;
+}
+
+.line {
+  border-bottom: 2px solid white;
+}
+
+/* BOTONES */
+#field-button{
+  width: 100%;
+  text-align: right;
+  margin-top: 29px;
+  margin-right: 30px;
+}
+
+.button-save{
+  background: #EC6D4A;
+  color: white;
+  border: 2px solid #EC6D4A;
+  width: calc(5em + 0.6vw);
+  height: calc(3em + 0.4vw);
+}
+
+#btn-cancel{
+  border: 2px solid #EC6D4A;
+  color: white;
+  background: transparent;
+  width: calc(5em + 0.6vw);
+  height: calc(3em + 0.4vw);
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+/* RESERVATION 2 */
+.icon-title-1{
+  width: 40%;
+}
+
+.container-img-1{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.container-1{
+  width: 45%;
+  display: flex;
+  align-items: center;
+}
+
+.container-2{
+  width: 10%;
+  text-align: center;
+}
+
+.container-img-1 p{
+  color: white;
+  font-size: calc(0.7em + 0.9vw);
+}
+
+.text{
+  padding-right: 10px;
+  padding-left: 15px;
+}
+
+#text-1{
+  margin:1px;
+  cursor: pointer;
+}
+
+#btn-new-user{
+  cursor: pointer;
+}
+
+.textbox-1{
+  border: 0;
+  background: transparent;
+  width: 40%;
+  color: white;
+  font-size: calc(0.6em + 0.8vw);
+  outline: none;
+  border-bottom: 2px solid #00FF80;
+}
+
+.button-cancel{
+  border: 2px solid #EC6D4A;
+  background: transparent;
+  color: white;
+  width: calc(5em + 0.6vw);
+  height: calc(3em + 0.4vw);
+}

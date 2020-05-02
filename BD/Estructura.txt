@@ -1,0 +1,82 @@
+>>>USUARIO<<<
+ID es autoincrementable.
+
+Nombre corresponde al nickname, maximo 20 caracteres y no
+permite espacios.
+
+Apellidos de varchar(60).
+
+Clave es la contraseña, minimo 8 caracteres y solo permite
+letras y numeros (no simbolos).
+
+Correo es algun correo, debe corroborar que lleve al menos 
+una arroba.
+
+Telefono, campo de 12 valores tipo varchar
+Valor predeterminado: 664-000-0000
+
+TipoUsuario es el tipo de usuario, este campo solo ingresa
+S,A o R.
+>>>USUARIO<<<
+
+
+>>>TIPOUSUARIO<<<
+ID es S,A o R. Por el momento solo existen 3 campos en este
+tabla:
+-> S	Superusuario	1
+-> A	Administrador	2
+-> R	Recepcionista	3
+>>>TIPOUSUARIO<<<
+
+
+
+Unico superusuario por el momento:
+Nickname: Usuario
+Clave: derechos
+Correo: derechoscopio@gmail.com
+Tipousuario: S
+
+>>>>>SENTENCIAS SQL PARA LA INSERCION DE DATOS AL CREAR RESERVACION<<<<<< (Sprint Administrador)
+Las siguientes sentencias se ejecutaran cuando el usuario da clic al boton "Crear reservacion"
+
+-> insert into reservacion (Creador, FechaInicio, DiasEstima, PersonasEstima, FechaCreacion, TipoHabita, Estado) values (,,,,,,);
+[Creador = Se refiere al usuario que esta creando la reservacion, su valor seria el ID del usuario tipo INT.]
+[FechaInicio = Es la fecha de la reservacion de inicio, el tipo es DATE.]
+[DiasEstimados = Noches del hotel, tipo INT]
+[PersonasEstimadas = El conteo de cuantas personas se registraron en esta reservacion, tipo INT.]
+[FechaCreacion = Es la fecha de creacion de la reservacion, tipo DATE.]
+[TipoHabita = Tipo de habitacion, tipo CHAR.]
+[Estado = Se refiere al estado de la habitacion, tipo CHAR, al crear la reservacion este campo es "E".]
+
+-> insert into visitante (Nombre, Ape_Mat, Ape_Pat, Telefono, Fecha_nac, Edad, IDNacion) values (,,,,,,);
+{ESTA SENTENCIA SE EJECUTA TANTAS VECES VISITANTES ESTEN SIENDO REGISTRADOS EN LA RESERVACION}
+[Nombre = Nombre(s) del hospedado, tipo varchar]
+[Ape_Mat = Apellido materno, tipo varchar]
+[Ape_Pat = Apellido paterno, tipo varchar]
+[Telefono = Telefono del visitante, el formato debe ser (000)000-0000]
+[Fecha_nac = Tipo DATE]
+[Edad = Tipo INT]
+[IDNacion = Es la nacionalidad del visitante, el tipo de dato es varchar de 3 caracteres, el dato ingresado debe ser como NIC, MEX, HON...]
+
+-> insert into reservacion_visitante (IDReser, IDVisi) values (,);
+{ESTA SENTENCIA SE EJECUTA TANTAS VECES COMO VISITANTES SE HAYAN ENLAZADO A LA RESERVACION QUE SE CREO, INTERCALANDO EL ID DEL VISITANTE}
+[IDReserv = Es el ID de la reservacion que acabamos de crear]
+[IDVisi = Es el ID deL visitante que se creo junto con la reservacion recien creada.]
+
+
+>>>>>SENTENCIAS SQL PARA LA CONSULTA DE DATOS AL CREAR RESERVACION<<<<<< (Sprint Administrador)
+La primer sentencia es la principal que se ejecutara al entrar a la pantalla de "Reservaciones/Consultar". Ordenada por fecha de creacion de la mas reciente a la mas vieja.
+-> select 
+
+Las demas que sentencias seran:
+- Ordenado por estado de la reservacion, de forma ascendente (Primero en Espera>En Progreso>Finalizado) y descendente (Finalizado>En Progreso> En Espera).
+- Ordenado por fecha de inicio de la reservacion, de forma ascendente y descendente.
+- Ordenado por Nombre de los visitantes, de forma ascendente y descendente.
+- Ordenado por fecha de creacion, de forma ascendente (de la mas reciente a la mas vieja) y de forma descendente (de la mas vieja a la mas reciente).
+
+
+>>>>>>REGLAS ESPECIFICAS DE LA BD<<<<<<<
+ALTER TABLE usuario ADD CONSTRAINT CK_USUARIO_TipoUsuario CHECK (tipousuario in ('S','A','R'));
+ALTER TABLE usuario ADD CONSTRAINT CK_USUARIOS_Nickname CHECK (nombre not LIKE '% %');
+ALTER TABLE usuario ADD CONSTRAINT CK_USUARIOS_Correo CHECK (correo LIKE '%@%');
+ALTER TABLE usuario ADD CONSTRAINT CK_USUARIOS_NoSymbols CHECK (clave REGEXP '^[A-Za-z0-9]+$');
