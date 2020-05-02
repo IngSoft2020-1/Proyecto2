@@ -105,17 +105,25 @@ $(document).ready(function(){
 
   btn_new_user.click(function(){
     $('table tbody').append("<tr>"+
-      "<td><input type='text' name='' value=''></td>"+
-      "<td><input type='tel' name='' value=''></td>"+
-      "<td><a class='button task-delete delete'>Eliminar</a></td></tr>"
+    "<td><input type='text' name='' value=''></td>"+
+    "<td><input type='tel' name='' value=''></td>"+
+    "<td><input type='text' name='' value='' id='datepicker'></td>"+
+    "<td><input type='number' name='' value=''></td>"+
+    "<td><input type='text' name='' value=''></td>"+
+    "<td><a class='button task-delete delete'>Eliminar</a></td>"+
+      "</tr>"
     );
   });
 
   btn_text_1.click(function(){
     $('table tbody').append("<tr>"+
-      "<td><input type='text' name='' value=''></td>"+
-      "<td><input type='tel' name='' value=''></td>"+
-      "<td><a class='button task-delete delete'>Eliminar</a></td></tr>"
+    "<td><input type='text' name='' value=''></td>"+
+    "<td><input type='tel' name='' value=''></td>"+
+    "<td><input type='text' name='' value='' id='datepicker'></td>"+
+    "<td><input type='number' name='' value=''></td>"+
+    "<td><input type='text' name='' value=''></td>"+
+    "<td><a class='button task-delete delete'>Eliminar</a></td>"+
+      "</tr>"
     );
   });
 
