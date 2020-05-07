@@ -101,82 +101,14 @@ form{
 }
 
 
+/* MENSAJE ERROR */
+#msj{
+  color: #ec6d4a;
+  font-size: calc(0.8em + 0.9vw);
+}
+
+
+
 /******************************************************************************/
 /*********************************** CELULAR   ********************************/
 /******************************************************************************/
-@media only screen and (orientation:portrait){
-    #contenido {
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -o-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        transform: rotate(90deg);
-
-    }
-}
-
-@media (max-width: 800px){ /* ESTO ES PARA TABLESTS*/
-
-  #container-login{
-    background: url(../img/background.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-  }
-
-  .container-white{
-    display: none;
-  }
-
-  .container{
-    width: 100%;
-    margin: inherit !important;
-  }
-
-  .mobile{
-    display: flex !important;
-    height: 100vh;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-
-  .text{
-    font-size: calc(2em + 2vw);
-    color: white;
-    margin: 0;
-    padding: 0;
-    letter-spacing: 7px;
-    text-shadow: 3px 5px 5px black;
-    font-weight: bold;
-    margin: 30px;
-  }
-
-  #logo{
-    width: 30%;
-  }
-
-  form{
-    width: 80%;
-    margin: auto;
-  }
-
-  #container-form {
-    padding-bottom: 14%;
-  }
-
-  #button-start{
-    height: 9vh;
-    font-size: calc(1.7em + 1vw);
-  }
-
-  .icon{
-    margin-bottom: 14px;
-  }
-
-  .line{
-    border-bottom: 2px solid white;
-  }
-
-  .textbox{
-    font-size: calc(1.2em + 1.6vw);
-  }
-}
