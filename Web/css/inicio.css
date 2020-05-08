@@ -27,7 +27,7 @@ li{
 aside{
   background: #1D262D;
   width: 16%;
-  height: 100vh;
+  height: 104vh;
   float: left;
 }
 
@@ -129,6 +129,10 @@ header{
   padding-left: 10px;
 }
 
+#menu-mobile{
+  display: none;
+}
+
 #title{
   margin: 0;
   padding: 0;
@@ -161,17 +165,110 @@ section{
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 84%;
-  height: 94vh;
-  display: flex;
+  height: 104vh;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
+  float: right;
+}
+
+.container-section{
+  display: flex;
+  justify-content: center;
 }
 
 iframe{
-  width: 85%;
-  height: 89vh;
+  width: 75%;
+  height: 92vh;
   display: none;
   padding: 0;
   margin: 0;
   border: 0;
+}
+
+.table-mobile{
+  display: none;
+}
+
+/* PROGRMAMACION PARA CELULARES */
+@media (max-width: 480px){
+  aside{
+    display: none;
+  }
+
+  section{
+    width: 100%;
+    background: linear-gradient(rgba(236, 109, 74, 1), rgba(0, 150, 255, 1));
+  }
+
+  #menu{
+    width: 13%;
+    display: none;
+  }
+
+  #menu-mobile{
+    display: block;
+    width: 13%;
+    padding-left: 10px;
+  }
+
+  #title{
+    display: none;
+  }
+
+  #container-home{
+    width: 97%;
+    margin: auto;
+  }
+
+  #user{
+    width: 17%;
+  }
+
+  .text{
+    font-size: 16px;
+  }
+
+  .icon{
+    width: 11%;
+  }
+
+  .container-button{
+    justify-content: center;
+  }
+
+  .div-display{
+    justify-content: center;
+  }
+
+  /* Estilos para la tabla */
+  .table-mobile{
+    display: inline-table;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 44px;
+    color: white;
+    font-size: 13px;
+  }
+
+  .table-mobile td{
+    padding: 10px;
+  }
+
+  .name{
+    font-size: 16px;
+  }
+
+  .blue, .txtBlue{
+    background: #004F92;
+  }
+
+  .black{
+    background: #1A2127;
+  }
+
+  .gray{
+    background: #27333B;
+  }
+
 }

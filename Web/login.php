@@ -28,11 +28,11 @@
           <form action="check.php" method="post">
             <div class="field line">
               <img src="img/name.png" alt="" class="icon">
-              <input type="text" placeholder="Correo" class="textbox" name="usuario" required id="txt-email">
+              <input type="text" placeholder="Correo" class="textbox" name="usuario" required id="txt-email" autocomplete="off">
             </div>
             <div class="field line">
               <img src="img/lock.png" alt="" class="icon">
-              <input type="password" placeholder="•••••••••" class="textbox" name="clave" required>
+              <input type="password" placeholder="•••••••••" class="textbox" name="clave" required autocomplete="off">
             </div>
             <div class="field">
               <input type="submit" value="Iniciar" id="button-start">
