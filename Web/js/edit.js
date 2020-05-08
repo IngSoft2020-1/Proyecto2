@@ -13,6 +13,7 @@ $(document).ready(function(){
   var btn_save = $("#button-save-2");
   btn_save.click(function(){
     $(".container").css("filter", "blur(0px)");
+    $( ".popup" ).dialog( "destroy" );
   });
 
   var btn_cancel = $("#button-cancel");
