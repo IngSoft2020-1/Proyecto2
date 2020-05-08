@@ -18,6 +18,12 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <!-- JQUERY -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <!-- MASCARA -->
+    <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
+    <!-- MIS SCRIPT -->
+    <script src="js/new-user.js"></script>
     <link rel="stylesheet" href="css/new.css">
     <title></title>
   </head>
@@ -61,11 +67,14 @@
           <div class="field line" style=""> <!-- Telefono -->
             <label for="">Teléfono</label>
             <img src="img/name.png" alt="" class="icon">
-            <input type="text" placeholder="000-000-0000" class="textbox" name="telefono" required autocomplete="off" >
+            <input type="text" class="textbox" name="telefono" id="txt-tel">
           </div>
           <div class="field" id="field-button">
-            <input type="button" class="button-cancel" value="Cancel">
-            <input type="submit" name=""  class="button-save" value="Guardar">
+            <p class="msg">* Datos incorrectos</p>
+            <div class="container-buttons">
+              <input type="button" class="button-cancel" value="Cancel">
+              <input type="submit" name=""  class="button-save" value="Guardar">
+            </div>
           </div>
         </form>
       </div>

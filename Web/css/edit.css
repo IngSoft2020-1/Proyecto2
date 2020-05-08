@@ -80,8 +80,10 @@ a{
 /* ESTILOS PARA EL _EDIT.PHP */
 form {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
 }
 
 .container-form{
@@ -90,6 +92,7 @@ form {
 
 .field{
   width: 37%;
+      padding-top: 19px;
 }
 
 .icon{
@@ -106,7 +109,7 @@ label{
 .textbox{
   border: 0;
   background: transparent;
-  width: 70%;
+  width: 84%;
   color: white;
   font-size: calc(0.6em + 0.8vw);
   outline: none;
@@ -172,4 +175,76 @@ label{
 #search-edit:focus{
   width: 98%;
   border-radius: 20px 20px 0 0;
+}
+
+/* ESTILOS PARA EL BOTON DE CAMBIAR CONTRASEÑA */
+#btn-change {
+    background: #ec6d4a;
+    border: 2px solid #ec6d4a;
+    color: white;
+    width: 100%;
+    cursor: pointer;
+}
+
+.lbl-pass{
+  color: white;
+  font-size: 18px;
+}
+
+.ui-dialog .ui-dialog-content {
+    background: #1D262D !important;
+}
+
+.ui-widget.ui-widget-content {
+    border: 1px solid #EC6D4A !important;
+}
+
+.txt {
+    border: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    padding-bottom: 3px;
+}
+
+#button-cancel {
+    border: 2px solid #EC6D4A;
+    color: white;
+    background: transparent;
+    padding: 7px;
+    margin-top: 13px;
+    cursor: pointer;
+}
+
+#button-save-2{
+    border: 2px solid #EC6D4A;
+    color: white;
+    background: transparent;
+    padding: 7px;
+    margin-top: 13px;
+    cursor: pointer;
+    background: #EC6D4A;
+}
+
+.container-button-save-cancel{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.ui-widget-header {
+    background: #EC6D4A;
+    color: white;
+    font-weight: bold;
+    border-color: #1d262d;
+}
+
+.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable {
+    background: #1d262d;
+}
+
+button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
+    display: none;
 }

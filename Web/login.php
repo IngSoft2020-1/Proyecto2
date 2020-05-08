@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <!-- JQUERY -->
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <!-- MIS SCRIPTS -->
+    <!-- <script type="text/javascript" src="js/login.js"></script> -->
     <!-- MY STYLES -->
     <link rel="stylesheet" href="css/login.css">
     <title>Titulo</title>
@@ -26,7 +28,7 @@
           <form action="check.php" method="post">
             <div class="field line">
               <img src="img/name.png" alt="" class="icon">
-              <input type="text" placeholder="Correo" class="textbox" name="usuario" required>
+              <input type="text" placeholder="Correo" class="textbox" name="usuario" required id="txt-email">
             </div>
             <div class="field line">
               <img src="img/lock.png" alt="" class="icon">
@@ -36,7 +38,7 @@
               <input type="submit" value="Iniciar" id="button-start">
             </div>
           </form>
-          <p id="msj" style="display: none;">* Datos incorrecto</p>
+          <p id="msj" style="display: none;">* Datos incorrectos</p>
         </div>
       </div>
     </div>
