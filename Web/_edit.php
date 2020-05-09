@@ -14,6 +14,8 @@
     <script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
     <!-- NO MOVER,  ES PARA EL POPUP -->
 
+    <!-- MASCARA -->
+    <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
     <!-- MIS SCRIPTS -->
     <script type="text/javascript" src="js/edit.js"></script>
     <link rel="stylesheet" href="css/edit.css">
@@ -66,7 +68,7 @@
               <div class="field line">
                 <label for="">Telefono</label>
                 <img src="img/name.png" alt="" class="icon">
-                <input type="text" placeholder="000-000-0000" class="textbox" name="telefono" value="<?php echo $reg['Telefono']?>" required autocomplete="off">
+                <input type="text" placeholder="000-000-0000" class="textbox"  name="telefono" value="<?php echo $reg['Telefono']?>" required autocomplete="off" id="txt-tel">
               </div>
               <div class="field">
                 <label for="">Contraseña</label>
@@ -74,17 +76,17 @@
               </div>
               <div class="field" id="field-button">
                 <input type="button" id="btn-cancel" value="Cancelar">
-                <input type="submit" name=""  class="button-save" value="Guardar" disabled>
+                <input type="submit" name=""  class="button-save" value="Guardar" id="btn-save"> <!-- disabled -->
               </div>
           <?php
             }
           ?>
         </form>
         <!-- ESTO MANDA A LLAMAR EL POPUP PERO DESDE JS -->
-        <div class="popup" title="Nueva contraseña" style="display: none;">
+        <div class="popup" id="popup-contrasena" title="Nueva contraseña" style="display: none;">
           <form class="form-popup">
-            <label class="lbl-pass">Contraseña actual</label>
-            <input type="text" name="" value="" class="txt">
+            <!--  <label class="lbl-pass">Contraseña actual</label>
+            <input type="text" name="" value="" class="txt"> -->
             <label class="lbl-pass">Nueva contraseña</label>
             <input type="text" name="" value="" class="txt">
             <label class="lbl-pass">Confirmar</label>
@@ -95,6 +97,17 @@
             </div>
           </form>
         </div>
+        <!-- Popup de confirmacion para guardar cambios -->
+        <div class="popup" id="popup-confirmar" title="Confirmar" style="display: none;">
+          <form class="form-popup">
+            <label class="lbl-pass">¿Está seguro que desea guardar los cambios?</label>
+            <div class="container-button-save-cancel">
+              <input type="button" name="" value="Cancelar" id="button-cancel3" class="btn">
+              <input type="button" name="" value="Aceptar" class="btn" id="button-save-3">
+            </div>
+          </form>
+        </div>
+
       </div>
     </div>
   </body>

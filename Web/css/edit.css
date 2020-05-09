@@ -218,7 +218,26 @@ label{
     cursor: pointer;
 }
 
+#button-cancel3 {
+    border: 2px solid #EC6D4A;
+    color: white;
+    background: transparent;
+    padding: 7px;
+    margin-top: 13px;
+    cursor: pointer;
+}
+
 #button-save-2{
+    border: 2px solid #EC6D4A;
+    color: white;
+    background: transparent;
+    padding: 7px;
+    margin-top: 13px;
+    cursor: pointer;
+    background: #EC6D4A;
+}
+
+#button-save-3{
     border: 2px solid #EC6D4A;
     color: white;
     background: transparent;
