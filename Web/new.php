@@ -44,8 +44,7 @@
           <div class="field line">
             <label for="">Nombre</label>
             <img src="img/name.png" alt="" class="icon">
-            <input type="text" placeholder="Nombre" class="textbox" name="usuario" required autocomplete="off">
-
+            <input type="text" placeholder="Nombre" class="textbox" name="nombre" required autocomplete="off">
             <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
             <div class="container-msg">
               <p class="title-msg">Titulo de mensaje 1</p>
@@ -56,7 +55,7 @@
           <div class="field line">
             <label for="">Apellidos</label>
             <img src="img/name.png" alt="" class="icon">
-            <input type="text" placeholder="Apellidos" class="textbox" name="apellido" required autocomplete="off">
+            <input type="text" placeholder="Apellidos" class="textbox" name="apellidos" required autocomplete="off">
 
             <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
             <div class="container-msg">

@@ -3,8 +3,8 @@
 /*Inserta un nuevo usuario en la base de datos*/
     session_start();
     $_SESSION['creado'] = '0';
-    $nombre = $_REQUEST['usuario'];
-    $apellido = $_REQUEST['apellido'];
+    $nombre = $_REQUEST['nombre'];
+    $apellidos = $_REQUEST['apellidos'];
     $correo1 = $_REQUEST['correo1'];
     $correo2 = $_REQUEST['correo2'];
     $contrasena1 = $_REQUEST['contrasena1'];
@@ -34,21 +34,15 @@
                 if(preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $telefono)) //check for a pattern of 91-0123456789
                 {
                     mysqli_query($conexion,"insert into usuario(Nombre,Apellidos,Clave,Correo,Telefono,TipoUsuario) values
-                                ('$nombre','$apellido','$contrasena1','$correo1','$telefono','A')")
+                                ('$nombre','$apellidos','$contrasena1','$correo1','$telefono','A')")
                     or die("Problemas en el select".mysqli_error($conexion));
 
                     $_SESSION['creado'] = '1'; /*Usuario registrado*/
                 }
-                else
-                {}
             }
             mysqli_free_result($registros);
             mysqli_close($conexion);
         }
-        else
-        {}
     }
-    else
-    {}
     header("location:new.php");
 ?>

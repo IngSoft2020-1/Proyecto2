@@ -55,7 +55,7 @@ btn_cancel3.click(function(){
 });
 
 //Codigo para lograr el estilo del telefono
-  $('#txt-tel').mask('000-0000-0000', {placeholder: '000-0000-0000'}); //placeholder
+  $('#txt-tel').mask('000-000-0000', {placeholder: '000-000-0000'}); //placeholder
 });
 
 //$("#popup-confirmar").hasClass("popup")

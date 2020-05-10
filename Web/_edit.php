@@ -63,7 +63,7 @@
                 <!-- ***************** -->
                 <!--  ESTE INPUT ERA DE CONTRASEÑA, AHORA ES DE CONFIRMAR CORREO-->
                 <!-- ***************** -->
-                <input type="text" placeholder="Confirmar" class="textbox" name="contrasena1" value="" required autocomplete="off">
+                <input type="text" placeholder="Confirmar" class="textbox" name="correo2" value="" required autocomplete="off">
               </div>
               <div class="field line">
                 <label for="">Telefono</label>
@@ -76,7 +76,9 @@
               </div>
               <div class="field" id="field-button">
                 <input type="button" id="btn-cancel" value="Cancelar">
-                <input type="submit" name=""  class="button-save" value="Guardar" id="btn-save"> <!-- disabled -->
+                <form>
+                  <input type="submit" name=""  class="button-save" value="Guardar" id="btn-save"> <!-- disabled -->
+                </form>
               </div>
           <?php
             }
