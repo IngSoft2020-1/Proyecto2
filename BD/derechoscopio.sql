@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 02-05-2020 a las 08:16:22
+-- Tiempo de generación: 13-05-2020 a las 02:25:27
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -139,42 +139,6 @@ INSERT INTO `reservacion` (`IDReser`, `Creador`, `FechaInicio`, `FechaFin`, `Dia
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reservacion_visitante`
---
-
-DROP TABLE IF EXISTS `reservacion_visitante`;
-CREATE TABLE IF NOT EXISTS `reservacion_visitante` (
-  `IDReserVisi` int(11) NOT NULL,
-  `IDReser` int(11) NOT NULL,
-  `IDVisi` int(11) NOT NULL,
-  `Llego` tinyint(1) NOT NULL,
-  KEY `IDReser` (`IDReser`),
-  KEY `IDVisi` (`IDVisi`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `reservacion_visitante`
---
-
-INSERT INTO `reservacion_visitante` (`IDReserVisi`, `IDReser`, `IDVisi`, `Llego`) VALUES
-(1, 2, 2, 1),
-(2, 2, 1, 0),
-(3, 3, 3, 0),
-(4, 3, 4, 0),
-(5, 3, 5, 0),
-(6, 4, 6, 0),
-(7, 5, 1, 0),
-(7, 5, 5, 0),
-(8, 6, 2, 0),
-(9, 6, 3, 1),
-(10, 6, 1, 1),
-(11, 7, 6, 0),
-(12, 7, 5, 0),
-(12, 8, 2, 0);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `tabla`
 --
 
@@ -274,8 +238,10 @@ CREATE TABLE IF NOT EXISTS `visitante` (
   `Ape_Pat` varchar(20) NOT NULL,
   `Telefono` varchar(13) NOT NULL,
   `Fecha_nac` date NOT NULL,
-  `Edad` int(11) NOT NULL,
   `IDNacion` varchar(3) NOT NULL,
+  `fecha_llegada` date NOT NULL,
+  `hora_llegada` datetime NOT NULL,
+  `cita_consulado` datetime NOT NULL,
   PRIMARY KEY (`IDVisi`),
   KEY `IDNacion` (`IDNacion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
@@ -284,13 +250,13 @@ CREATE TABLE IF NOT EXISTS `visitante` (
 -- Volcado de datos para la tabla `visitante`
 --
 
-INSERT INTO `visitante` (`IDVisi`, `Nombre`, `Ape_Mat`, `Ape_Pat`, `Telefono`, `Fecha_nac`, `Edad`, `IDNacion`) VALUES
-(1, 'Carlos', 'Gerardo', 'Carlon', '33213412', '2017-01-04', 21, 'Mex'),
-(2, 'pepe', 'ralo', 'ola', '3321234', '2020-05-03', 3, 'Mex'),
-(3, 'Jhon', 'Martin', 'Jorge', '3312312', '2019-10-07', 2, 'Mex'),
-(4, 'Diego', 'Comne', 'Cjaol', '31244', '2019-01-08', 5, 'Mex'),
-(5, 'Lomas', 'Juedio', 'James', '23124132', '2019-07-16', 6, 'Mex'),
-(6, 'Daniel', 'Ruano', 'Ruano', '331231', '2019-02-07', 2, 'Mex');
+INSERT INTO `visitante` (`IDVisi`, `Nombre`, `Ape_Mat`, `Ape_Pat`, `Telefono`, `Fecha_nac`, `IDNacion`, `fecha_llegada`, `hora_llegada`, `cita_consulado`) VALUES
+(1, 'Carlos', 'Gerardo', 'Carlon', '33213412', '2017-01-04', 'Mex', '2019-08-12', '2019-08-12 07:06:06', '2020-05-04 08:30:00'),
+(2, 'pepe', 'ralo', 'ola', '3321234', '2020-05-03', 'Mex', '2019-12-04', '2019-12-04 09:24:00', '2020-06-01 08:30:00'),
+(3, 'Jhon', 'Martin', 'Jorge', '3312312', '2019-10-07', 'Mex', '2020-05-03', '2020-05-03 08:19:00', '2020-05-12 08:29:00'),
+(4, 'Diego', 'Comne', 'Cjaol', '31244', '2019-01-08', 'Mex', '2020-03-19', '2020-03-19 07:17:00', '2020-05-02 09:17:00'),
+(5, 'Lomas', 'Juedio', 'James', '23124132', '2019-07-16', 'Mex', '2020-05-07', '2020-05-07 08:16:00', '2020-05-08 11:30:00'),
+(6, 'Daniel', 'Ruano', 'Ruano', '331231', '2019-02-07', 'Mex', '2020-03-10', '2020-03-10 08:22:00', '2020-05-09 10:22:00');
 
 --
 -- Restricciones para tablas volcadas
@@ -316,13 +282,6 @@ ALTER TABLE `reservacion`
   ADD CONSTRAINT `reservacion_ibfk_1` FOREIGN KEY (`Creador`) REFERENCES `usuario` (`ID`),
   ADD CONSTRAINT `reservacion_ibfk_2` FOREIGN KEY (`TipoHabita`) REFERENCES `tipohabitacion` (`ID`),
   ADD CONSTRAINT `reservacion_ibfk_3` FOREIGN KEY (`Estado`) REFERENCES `estado` (`ID`);
-
---
--- Filtros para la tabla `reservacion_visitante`
---
-ALTER TABLE `reservacion_visitante`
-  ADD CONSTRAINT `reservacion_visitante_ibfk_1` FOREIGN KEY (`IDReser`) REFERENCES `reservacion` (`IDReser`),
-  ADD CONSTRAINT `reservacion_visitante_ibfk_2` FOREIGN KEY (`IDVisi`) REFERENCES `visitante` (`IDVisi`);
 
 --
 -- Filtros para la tabla `usuario`
