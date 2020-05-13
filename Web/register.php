@@ -3,46 +3,102 @@
 /*Inserta un nuevo usuario en la base de datos*/
     session_start();
     $_SESSION['creado'] = '0';
+    $_SESSION['contra'] = '0';
+    $_SESSION['corr'] = '0';
+    $_SESSION['val1'] = '0'; /*Formato nombre*/
+    $_SESSION['val2'] = '0'; /*Formato Apellidos*/
+    $_SESSION['val3'] = '0'; /*Formato correo*/
+    $_SESSION['val4'] = '0'; /*Formato confirmar correo*/
+    $_SESSION['val5'] = '0'; /*Formato contrasena*/
+    $_SESSION['val6'] = '0'; /*Formato confirmar contrasena*/
+    $_SESSION['val7'] = '0'; /*Formato telefono*/
     $nombre = $_REQUEST['nombre'];
     $apellidos = $_REQUEST['apellidos'];
-    $correo1 = $_REQUEST['correo1'];
+    $correo1 = $_REQUEST['correo1'];    
     $correo2 = $_REQUEST['correo2'];
     $contrasena1 = $_REQUEST['contrasena1'];
     $contrasena2 = $_REQUEST['contrasena2'];
     $telefono = $_REQUEST['telefono'];
 
-    if (filter_var($correo1, FILTER_VALIDATE_EMAIL))
+    if($nombre == '')
     {
-        if($correo1 == $correo2 && strlen($contrasena1) > 3 && $contrasena1 == $contrasena2)
+        $_SESSION['val1'] = '1'; /*Formato nombre*/
+    }
+    
+    if($apellidos == '')
+    {
+        $_SESSION['val2'] = '1'; /*Formato Apellidos*/
+    } 
+    
+    if(filter_var($correo1, FILTER_VALIDATE_EMAIL))
+    {}
+    else
+    {
+        $_SESSION['val3'] = '1'; /*Formato correo*/
+    }
+    
+    if(filter_var($correo2, FILTER_VALIDATE_EMAIL))
+    {}
+    else
+    {
+        $_SESSION['val4'] = '1'; /*Formato confirmar correo*/
+    }
+    
+    if($correo1 != $correo2)
+    {
+        $_SESSION['corr'] = '1';
+    }
+    
+    if(strlen($contrasena1) < 4)
+    {
+        $_SESSION['val5'] = '1'; /*Formato contrasena*/
+    }
+    
+    if(strlen($contrasena2) < 4)
+    {
+        $_SESSION['val6'] = '1'; /*Formato confirmar contrasena*/
+    }
+
+    if(strlen($contrasena1 != $contrasena2))
+    {
+        $_SESSION['contra'] = '1';
+    }
+    
+    if(preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $telefono))
+    {}
+    else
+    {
+        $_SESSION['val7'] = '1'; /*Formato telefono*/
+    }  
+    
+    if ($_SESSION['val1'] == '0' && $_SESSION['val2'] == '0' && $_SESSION['val3'] == '0' && $_SESSION['val4'] == '0' && $_SESSION['val5'] == '0'
+    && $_SESSION['val6'] == '0' && $_SESSION['val7'] == '0' && $_SESSION['corr'] == '0' && $_SESSION['contra'] = '0')
+    {
+        $conexion=mysqli_connect("localhost","root","","derechoscopio") or
+        die("Problemas con la conexión");
+
+        $registros=mysqli_query($conexion,"select ID
+                                from usuario where Correo='$correo1'") or
+        die("Problemas en el select:".mysqli_error($conexion));
+        $resultado = mysqli_num_rows($registros);
+
+        if($resultado > 0)
         {
-            $conexion=mysqli_connect("localhost","root","","derechoscopio") or
-            die("Problemas con la conexión");
-
-            $registros=mysqli_query($conexion,"select ID
-                                    from usuario where Correo='$correo1'") or
-            die("Problemas en el select:".mysqli_error($conexion));
-            $resultado = mysqli_num_rows($registros);
-
-            if($resultado > 0)
-            {
-                $_SESSION['creado'] = '2'; /*Usuario ya existe*/
-                mysqli_free_result($registros);
-                mysqli_close($conexion);
-                header("location:new.php");
-            }
-            else{
-                if(preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $telefono)) //check for a pattern of 91-0123456789
-                {
-                    mysqli_query($conexion,"insert into usuario(Nombre,Apellidos,Clave,Correo,Telefono,TipoUsuario) values
-                                ('$nombre','$apellidos','$contrasena1','$correo1','$telefono','A')")
-                    or die("Problemas en el select".mysqli_error($conexion));
-
-                    $_SESSION['creado'] = '1'; /*Usuario registrado*/
-                }
-            }
+            $_SESSION['creado'] = '2'; /*Usuario ya existe*/
             mysqli_free_result($registros);
             mysqli_close($conexion);
+            header("location:new.php");
         }
+        else{
+            mysqli_query($conexion,"insert into usuario(Nombre,Apellidos,Clave,Correo,Telefono,TipoUsuario) values
+                        ('$nombre','$apellidos','$contrasena1','$correo1','$telefono','A')")
+            or die("Problemas en el select".mysqli_error($conexion));
+
+            $_SESSION['creado'] = '1'; /*Usuario registrado*/
+        }
+        mysqli_free_result($registros);
+        mysqli_close($conexion);
     }
+
     header("location:new.php");
 ?>
