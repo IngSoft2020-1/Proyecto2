@@ -56,12 +56,20 @@
             <li class="container-button submenu" id="btn-consult-reservation">
               <img src="img/read.png" alt="" class="icon">
               <a class="text">Consultar</a>
-            </li>          
+            </li>
           </ul>
         </li>
-        <li class="container-button">
-          <img src="img/profile.png" alt="" class="icon">
-          <a class="text" href="">Perfil</a>
+        <li class="container-button display" id="click-submenu-profile">
+          <div class="div-display">
+            <img src="img/profile.png" alt="" class="icon">
+            <a class="text">Perfil</a>
+          </div>
+          <ul class="ul-submenu" id="ul-profile">
+            <li class="container-button submenu" id="btn-profile">
+              <img src="img/edit.png" alt="" class="icon">
+              <a class="text">Editar</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </aside>

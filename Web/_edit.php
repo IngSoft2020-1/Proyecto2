@@ -59,7 +59,7 @@
               </div>
               <div class="field line">
                 <label for="">Confirmar</label>
-                <img src="img/email.png" alt="" class="icon">
+                <img src="img/mail.png" alt="" class="icon">
                 <!-- ***************** -->
                 <!--  ESTE INPUT ERA DE CONTRASEÑA, AHORA ES DE CONFIRMAR CORREO-->
                 <!-- ***************** -->
