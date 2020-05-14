@@ -21,18 +21,23 @@
     <div id="container-login">
       <div class="container-white">
         <div class="container">
-          <img src="img/logo.png" alt="" id="logo">
-        </div>
-        <div class="container">
           <!--Llama a check.php para ver si existe el usuario-->
           <form action="check.php" method="post">
-            <div class="field line">
-              <img src="img/name.png" alt="" class="icon">
-              <input type="text" placeholder="Correo" class="textbox" name="usuario" required id="txt-email" autocomplete="off">
+            <div class="field">
+              <div class="background-black">
+                <img src="img/name.png" alt="" class="icon">
+              </div>
+              <div class="background-gray">
+                <input type="text" placeholder="Correo" class="textbox" name="usuario" required id="txt-email" autocomplete="off">
+              </div>
             </div>
-            <div class="field line">
-              <img src="img/lock.png" alt="" class="icon">
-              <input type="password" placeholder="•••••••••" class="textbox" name="clave" required autocomplete="off">
+            <div class="field">
+              <div class="background-black">
+                <img src="img/lock.png" alt="" class="icon">
+              </div>
+              <div class="background-gray">
+                <input type="password" placeholder="•••••••••" class="textbox" name="clave" required autocomplete="off">
+              </div>
             </div>
             <div class="field">
               <input type="submit" value="Iniciar" id="button-start">

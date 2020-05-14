@@ -3,7 +3,6 @@
   error_reporting(0);
 
   if($_SESSION['creado'] == '0'){
-    echo "<script>alert('Ah ocurrido un error.');</script>";
   }
   else if($_SESSION['creado'] == '1'){
     echo "<script>alert('Usuario registrado.');</script>";
@@ -13,12 +12,10 @@
   }
 
   if($_SESSION['corr'] == '1'){
-    echo "<script>alert('Correos no coinciden.');</script>";
     $_SESSION['val3'] = '1';
   }
 
   if($_SESSION['contra'] == '1'){
-    echo "<script>alert('Contraseñas no coinciden.');</script>";
     $_SESSION['val5'] = '1';
   }
 
@@ -56,16 +53,18 @@
         <form action="register.php" method="post" autocomplete="off">
           <div class="field line">
             <label for="">Nombre</label>
+            <div class="info">
             <img src="img/name.png" alt="" class="icon">
             <input type="text" placeholder="Nombre" class="textbox" name="nombre" autocomplete="off">
+          </div>
             <?php
               if($_SESSION['val1'] == '1')
               {
             ?>
                 <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
                 <div class="container-msg">
-                  <p class="title-msg">Titulo de mensaje 1</p>
-                  <p class="title-content-msg">Mensaje 1</p>
+                  <p class="title-msg">Dato incorrecto</p>
+                  <p class="title-content-msg">No se permiten espacios en blanco</p>
                 </div>
                 <!-- FIN -->
             <?php
@@ -74,17 +73,18 @@
           </div>
           <div class="field line">
             <label for="">Apellidos</label>
-            <img src="img/name.png" alt="" class="icon">
-            <input type="text" placeholder="Apellidos" class="textbox" name="apellidos" autocomplete="off">
-
+            <div class="info">
+              <img src="img/name.png" alt="" class="icon">
+              <input type="text" placeholder="Apellidos" class="textbox" name="apellidos" autocomplete="off">
+            </div>
             <?php
               if($_SESSION['val2'] == '1')
               {
             ?>
                 <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
                 <div class="container-msg">
-                  <p class="title-msg">Titulo de mensaje 1</p>
-                  <p class="title-content-msg">Mensaje 1</p>
+                  <p class="title-msg">Dato incorrecto</p>
+                  <p class="title-content-msg">No se permiten espacios en blanco</p>
                 </div>
                 <!-- FIN -->
             <?php
@@ -93,8 +93,10 @@
           </div>
           <div class="field line">
             <label for="">Correo</label>
+            <div class="info">
             <img src="img/mail.png" alt="" class="icon">
             <input type="text" placeholder="Correo" class="textbox" name="correo1" autocomplete="off">
+          </div>
 
             <?php
               if($_SESSION['val3'] == '1')
@@ -102,8 +104,8 @@
             ?>
                 <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
                 <div class="container-msg">
-                  <p class="title-msg">Titulo de mensaje 1</p>
-                  <p class="title-content-msg">Mensaje 1</p>
+                  <p class="title-msg">Haz coincidir el formato solicitado</p>
+                  <p class="title-content-msg">Correo no valido</p>
                 </div>
                 <!-- FIN -->
             <?php
@@ -112,8 +114,10 @@
           </div>
           <div class="field line">
             <label for="">Confirmar</label>
+            <div class="info">
             <img src="img/mail.png" alt="" class="icon">
             <input type="text" placeholder="Confirmar" class="textbox" name="correo2" autocomplete="off">
+          </div>
 
             <?php
               if($_SESSION['val4'] == '1')
@@ -121,8 +125,8 @@
             ?>
                 <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
                 <div class="container-msg">
-                  <p class="title-msg">Titulo de mensaje 1</p>
-                  <p class="title-content-msg">Mensaje 1</p>
+                  <p class="title-msg">No coinciden</p>
+                  <p class="title-content-msg">Deben coincidir los correos</p>
                 </div>
                 <!-- FIN -->
             <?php
@@ -131,8 +135,10 @@
           </div>
           <div class="field line">
             <label for="">Contraseña</label>
+            <div class="info">
             <img src="img/lock.png" alt="" class="icon">
             <input type="password" placeholder="Contraseña" class="textbox" name="contrasena1" autocomplete="off">
+          </div>
 
             <?php
               if($_SESSION['val5'] == '1')
@@ -140,8 +146,8 @@
             ?>
                 <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
                 <div class="container-msg">
-                  <p class="title-msg">Titulo de mensaje 1</p>
-                  <p class="title-content-msg">Mensaje 1</p>
+                  <p class="title-msg">Haz coincidir el formato solicitado</p>
+                  <p class="title-content-msg">La contraseña debe tener por lo menos 4 digitos</p>
                 </div>
                 <!-- FIN -->
             <?php
@@ -150,8 +156,10 @@
           </div>
           <div class="field line">
             <label for="">Confirmar</label>
+            <div class="info">
             <img src="img/lock.png" alt="" class="icon">
             <input type="password" placeholder="Confirmar" class="textbox" name="contrasena2" autocomplete="off">
+          </div>
 
             <?php
               if($_SESSION['val6'] == '1')
@@ -159,8 +167,8 @@
             ?>
                 <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
                 <div class="container-msg">
-                  <p class="title-msg">Titulo de mensaje 1</p>
-                  <p class="title-content-msg">Mensaje 1</p>
+                  <p class="title-msg">No coinciden</p>
+                  <p class="title-content-msg">Deben coincidir las contraseñas</p>
                 </div>
                 <!-- FIN -->
             <?php
@@ -169,8 +177,10 @@
           </div>
           <div class="field line" style=""> <!-- Telefono -->
             <label for="">Teléfono</label>
+            <div class="info">
             <img src="img/name.png" alt="" class="icon">
             <input type="text" class="textbox" name="telefono" id="txt-tel">
+          </div>
 
             <?php
               if($_SESSION['val7'] == '1')
@@ -178,8 +188,8 @@
             ?>
                 <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
                 <div class="container-msg">
-                  <p class="title-msg">Titulo de mensaje 1</p>
-                  <p class="title-content-msg">Mensaje 1</p>
+                  <p class="title-msg">Haz coincidir el formato solicitado</p>
+                  <p class="title-content-msg">No se permiten espacios vacios</p>
                 </div>
                 <!-- FIN -->
             <?php

@@ -193,9 +193,6 @@ $(document).ready(function(){
         $("#user").animate({
           width: '45%'
         }, 'slow');
-        $("iframe").animate({
-          width: '90%'
-        }, 'slow');
         contador = 1;
       }
       else if(contador == 1){
@@ -219,9 +216,6 @@ $(document).ready(function(){
         }, 'slow');
         $("#user").animate({
           width: '39%'
-        }, 'slow');
-        $("iframe").animate({
-          width: '75%'
         }, 'slow');
         contador = 0;
       }

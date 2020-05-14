@@ -25,7 +25,7 @@
 }
 
 .icon-title{
-  width: 10%;
+  width: 8%;
   margin-top: 16px;
 }
 
@@ -35,6 +35,7 @@ table{
   color: white;
   text-align: left;
   padding: 40px;
+  font-size: calc(0.5em + 0.7vw);
 }
 
 table>tbody>tr:nth-child(odd) {
@@ -47,10 +48,6 @@ table>tbody>tr:nth-child(even) {
 
 table td, table th{
   padding: 10px;
-}
-
-tbody{
-  font-size: calc(0.7em + 0.5vw);
 }
 
 .button{
@@ -96,13 +93,13 @@ form {
 }
 
 .icon{
-  width: 8%;
+  width: 6%;
 }
 
 label{
   display: flex;
   color: white;
-  font-size: calc(0.6em + 1.5vw);
+  font-size: calc(0.6em + 1vw);
   padding: 10px 0;
 }
 
@@ -111,18 +108,23 @@ label{
   background: transparent;
   width: 84%;
   color: white;
-  font-size: calc(0.6em + 0.8vw);
+  font-size: calc(0.5em + 0.7vw);
   outline: none;
   padding-left: 8px;
 }
 
 ::placeholder{
-  font-size: calc(0.6em + 0.8vw);
+  font-size: calc(0.5em + 0.7vw);
   color: #B8B8B8;
 }
 
 .line {
   border-bottom: 2px solid white;
+}
+
+.info {
+  display: flex;
+  align-items: center;
 }
 
 /* BOTONES */
@@ -183,6 +185,7 @@ label{
     color: white;
     width: 100%;
     cursor: pointer;
+    height: 26px;
 }
 
 .lbl-pass{

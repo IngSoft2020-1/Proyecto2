@@ -34,7 +34,6 @@
                 <th style="color: #00FF80;">Nombre</th>
                 <th style="color: #00FF80;">Correo</th>
                 <th style="color: #EC6D4A;">Telefono</th>
-                <th style="color: #EC6D4A;">Tipo de Usuario</th>
                 <th></th>
                 <th></th>
               </tr>
