@@ -21,6 +21,9 @@
     <div id="container-login">
       <div class="container-white">
         <div class="container">
+          <div class="container-logo">
+            <img src="img/logo.jpg" class="logo">
+          </div>
           <!--Llama a check.php para ver si existe el usuario-->
           <form action="check.php" method="post">
             <div class="field">

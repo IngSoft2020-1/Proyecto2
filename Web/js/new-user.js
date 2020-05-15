@@ -16,6 +16,13 @@ $(document).ready(function(){
     else if(i == 1){}
   });
 
-  
+
+
+  $('.button-cancel').click(function(){
+    // ACTUALIZAR VENTANA PADRE DENTRO DE UN IFRAME
+    parent.location.reload();
+  });
+
+
 
 });

@@ -14,7 +14,9 @@
     <title>Inicio</title>
   </head>
   <body>
-
+    <!-- <div class="container-logo">
+      <img src="img/logo.jpg" class="logo">
+    </div> -->
     <!-- CONTENEDOR DE LA BARRA LATERAL -->
     <aside>
       <div class="user">
@@ -82,7 +84,7 @@
           <div class="container">
             <img src="img/menu.png" id="menu" alt="">
             <img src="img/menu.png" id="menu-mobile" alt="">
-            <p id="title">Nombre Organización</p>
+            <p id="title"></p>
           </div>
           <div class="container" id="header-2">
             <a id="title" href="#">Cerrar sesión</a>

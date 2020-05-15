@@ -3,6 +3,7 @@
   error_reporting(0);
 
   if($_SESSION['creado'] == '0'){
+    // echo "<script>alert('Ah ocurrido un error.');</script>";
   }
   else if($_SESSION['creado'] == '1'){
     echo "<script>alert('Usuario registrado.');</script>";

@@ -58,5 +58,11 @@ btn_cancel3.click(function(){
   $('#txt-tel').mask('000-000-0000', {placeholder: '000-000-0000'}); //placeholder
 });
 
+$('#btn-cancel').click(function(){
+    // ACTUALIZAR VENTANA PADRE DENTRO DE UN IFRAME
+    parent.location.reload();
+});
+
+
 //$("#popup-confirmar").hasClass("popup")
 //console.log($("#popup-confirmar").hasClass("popup"));
