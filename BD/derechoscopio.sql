@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 13-05-2020 a las 02:25:27
+-- Tiempo de generación: 15-05-2020 a las 21:39:41
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -233,15 +233,14 @@ INSERT INTO `usuario` (`ID`, `Nombre`, `Apellidos`, `Clave`, `Correo`, `Telefono
 DROP TABLE IF EXISTS `visitante`;
 CREATE TABLE IF NOT EXISTS `visitante` (
   `IDVisi` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(50) NOT NULL,
-  `Ape_Mat` varchar(20) NOT NULL,
-  `Ape_Pat` varchar(20) NOT NULL,
+  `Nombre` varchar(100) DEFAULT NULL,
   `Telefono` varchar(13) NOT NULL,
   `Fecha_nac` date NOT NULL,
   `IDNacion` varchar(3) NOT NULL,
   `fecha_llegada` date NOT NULL,
   `hora_llegada` datetime NOT NULL,
   `cita_consulado` datetime NOT NULL,
+  `fecha_registro` date NOT NULL,
   PRIMARY KEY (`IDVisi`),
   KEY `IDNacion` (`IDNacion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
@@ -250,13 +249,13 @@ CREATE TABLE IF NOT EXISTS `visitante` (
 -- Volcado de datos para la tabla `visitante`
 --
 
-INSERT INTO `visitante` (`IDVisi`, `Nombre`, `Ape_Mat`, `Ape_Pat`, `Telefono`, `Fecha_nac`, `IDNacion`, `fecha_llegada`, `hora_llegada`, `cita_consulado`) VALUES
-(1, 'Carlos', 'Gerardo', 'Carlon', '33213412', '2017-01-04', 'Mex', '2019-08-12', '2019-08-12 07:06:06', '2020-05-04 08:30:00'),
-(2, 'pepe', 'ralo', 'ola', '3321234', '2020-05-03', 'Mex', '2019-12-04', '2019-12-04 09:24:00', '2020-06-01 08:30:00'),
-(3, 'Jhon', 'Martin', 'Jorge', '3312312', '2019-10-07', 'Mex', '2020-05-03', '2020-05-03 08:19:00', '2020-05-12 08:29:00'),
-(4, 'Diego', 'Comne', 'Cjaol', '31244', '2019-01-08', 'Mex', '2020-03-19', '2020-03-19 07:17:00', '2020-05-02 09:17:00'),
-(5, 'Lomas', 'Juedio', 'James', '23124132', '2019-07-16', 'Mex', '2020-05-07', '2020-05-07 08:16:00', '2020-05-08 11:30:00'),
-(6, 'Daniel', 'Ruano', 'Ruano', '331231', '2019-02-07', 'Mex', '2020-03-10', '2020-03-10 08:22:00', '2020-05-09 10:22:00');
+INSERT INTO `visitante` (`IDVisi`, `Nombre`, `Telefono`, `Fecha_nac`, `IDNacion`, `fecha_llegada`, `hora_llegada`, `cita_consulado`, `fecha_registro`) VALUES
+(1, 'Carlos Carlon Gerardo', '33213412', '2017-01-04', 'Mex', '2019-08-12', '2019-08-12 07:06:06', '2020-05-04 08:30:00', '0000-00-00'),
+(2, 'Pepe ralo rola', '3321234', '2020-05-03', 'Mex', '2019-12-04', '2019-12-04 09:24:00', '2020-06-01 08:30:00', '0000-00-00'),
+(3, 'Jhon Martin Jorge', '3312312', '2019-10-07', 'Mex', '2020-05-03', '2020-05-03 08:19:00', '2020-05-12 08:29:00', '0000-00-00'),
+(4, 'Diego Castro Carlon', '31244', '2019-01-08', 'Mex', '2020-03-19', '2020-03-19 07:17:00', '2020-05-02 09:17:00', '0000-00-00'),
+(5, 'Tomas Juvera Jacome', '23124132', '2019-07-16', 'Mex', '2020-05-07', '2020-05-07 08:16:00', '2020-05-08 11:30:00', '0000-00-00'),
+(6, 'Daniel Hernandez Henandez', '331231', '2019-02-07', 'Mex', '2020-03-10', '2020-03-10 08:22:00', '2020-05-09 10:22:00', '0000-00-00');
 
 --
 -- Restricciones para tablas volcadas
