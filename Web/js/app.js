@@ -14,6 +14,14 @@ $(document).ready(function() {
     });
   });
 
+  // METODO DE BUSQUEDA PARA EDITAR
+  $("#search-migrants").on("keyup", function() {
+  var value = $(this).val().toLowerCase();
+  $("#table-migrants tbody tr").filter(function() {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  });
+});
+
   // METODO DE BUSQUEDA PARA RESERVACION
   $("#search-res").on("keyup", function() {
   var value = $(this).val().toLowerCase();

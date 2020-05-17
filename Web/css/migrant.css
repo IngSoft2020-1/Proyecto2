@@ -22,3 +22,41 @@ select{
       border: none;
       height: 28px;
 }
+
+.min-width, td{
+  min-width: 80px;
+}
+
+
+.options {
+    position: absolute;
+    text-align: center;
+    margin-top: 16px;
+    width: 90px;
+    background: rgba(40, 44, 52);
+    margin-left: -57px;
+    display: none;
+}
+
+.text-menu{
+  margin: 0;
+margin-top: 5px;
+padding: 0;
+margin-bottom: 5px;
+cursor: pointer;
+}
+
+.menu {
+    background-image: url(../img/points.png);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    cursor: pointer;
+}
+
+input{
+  background: transparent;
+  border: none;
+  color: white;
+  width: 100%;
+}
