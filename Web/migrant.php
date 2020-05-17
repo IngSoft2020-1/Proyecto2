@@ -1,31 +1,36 @@
-<?php
-  session_start();
-  error_reporting(0);
-
-  if($_SESSION['listo'] == '1'){
-    echo "<script>alert('Cambio registrado exitosamente.');</script>";
-  }
-  elseif($_SESSION['listo'] == '0'){
-    echo "<script>alert('Cambio no registrado.');</script>";
-  }
-  $_SESSION['listo'] = "";
-?>
-
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-
     <!-- JQUERY -->
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 
     <link rel="stylesheet" href="css/edit.css">
+    <link rel="stylesheet" href="css/migrant.css">
     <title>Editar</title>
   </head>
   <body>
     <div class="container">
       <div class="container-img" id="aling-left">
         <input type="text" name="search" placeholder="Search.." id="search-edit" autocomplete="off">
+      </div>
+      <div class="container-select">
+        <div class="select">
+          <label for="order">Ordenar por:</label>
+          <select class="" name="order">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+          </select>
+        </div>
+        <div class="select">
+          <label for="show">Mostrar:</label>
+          <select class="" name="show">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+          </select>
+        </div>
       </div>
       <div class="container-table" style="overflow-x:auto;">
         <table id="table-edit">
@@ -43,13 +48,4 @@
       </div>
     </div>
   </body>
-  <div class="popup-personalizado">
-    <p class="popup-texto">¿Estás seguro que deseas eliminar este perfil?</p>
-    <form class="form-popup">
-      <input type="button" name="" value="Cancelar" class="textbox-popup cancel">
-      <input type="submit" name="" value="Aceptar" class="textbox-popup">
-    </form>
-  </div>
-<script src="js/app.js"></script> <!--Manda a llamar al json-->
-
 </html>

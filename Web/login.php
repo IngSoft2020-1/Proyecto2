@@ -13,6 +13,13 @@
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <!-- MIS SCRIPTS -->
     <!-- <script type="text/javascript" src="js/login.js"></script> -->
+    <!-- ESTA LIBRERIA LA CREO: EDUARDO BLANCO
+        PARA PODER MANDAR A LLAMAR UN MENSAJE
+        DE VALIDACION
+    -->
+    <script src="js/msg-alert.js"></script>
+    <link rel="stylesheet" href="css/msg-alert.css">
+    <!-- FIN DE LA LIBRERIA -->
     <!-- MY STYLES -->
     <link rel="stylesheet" href="css/login.css">
     <title>Titulo</title>
@@ -31,7 +38,7 @@
                 <img src="img/name.png" alt="" class="icon">
               </div>
               <div class="background-gray">
-                <input type="text" placeholder="Correo" class="textbox" name="usuario" required id="txt-email" autocomplete="off">
+                <input type="text" placeholder="Correo" class="textbox" name="usuario" id="txt-email" autocomplete="off">
               </div>
             </div>
             <div class="field">
@@ -39,8 +46,9 @@
                 <img src="img/lock.png" alt="" class="icon">
               </div>
               <div class="background-gray">
-                <input type="password" placeholder="•••••••••" class="textbox" name="clave" required autocomplete="off">
+                <input type="password" placeholder="•••••••••" class="textbox" name="clave" autocomplete="off">
               </div>
+
             </div>
             <div class="field">
               <input type="submit" value="Iniciar" id="button-start">

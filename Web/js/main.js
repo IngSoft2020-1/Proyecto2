@@ -6,10 +6,12 @@ $(document).ready(function(){
   var btn_cancel = $('#btn-cancel');
   var btn_consult_reservation = $('#btn-consult-reservation');
   var btn_edit_profile = $('#btn-profile');
+  var btn_consult_migrant = $('#btn-migrant');
 
   var submenu_user = $('#click-submenu-user');
   var submenu_res = $('#click-submenu-res');
   var submenu_profile = $('#click-submenu-profile');
+  var submenu_migrant = $('#click-submenu-migrant');
 
   // estos dos son uno solo
   var btn_new_res = $('#btn-new-res');
@@ -32,6 +34,10 @@ $(document).ready(function(){
 
   submenu_profile.click(function(){
     $('#ul-profile').toggle("slow");
+  });
+
+  submenu_migrant.click(function(){
+    $('#ul-migrant').toggle("slow");
   });
 
   // EVENTO CLICK
@@ -79,6 +85,22 @@ $(document).ready(function(){
     $(container_home).hide();
     // SI YA ESTA ABIERTO ESE SUBMENU SOLO SE MUESTRA PARA QUE NO SE CREE UNO NUEVO
     if($(iframe).attr("src") == "edit-profile.php"){
+      $(iframe).show(); // SE MUESTRA ESE SUBMENU
+    }
+    else{
+      // SI EL SUBMENU AUN NO ESTA ABIERTO EL IFRAME TOMA EL VALOR DEL NEW HTML QUE SE DESEA ABRIR
+      $(iframe).attr("src", newHTML);
+      $(iframe).show(); // SE MUESTRA EL IFRAME CON EL NUEVO CONTENIDO
+    }
+  });
+
+  btn_consult_migrant.click(function(){
+    // VARIABLES
+    let newHTML = "migrant.php";
+    // OCULTAR ELEMENTOS
+    $(container_home).hide();
+    // SI YA ESTA ABIERTO ESE SUBMENU SOLO SE MUESTRA PARA QUE NO SE CREE UNO NUEVO
+    if($(iframe).attr("src") == "migrant.php"){
       $(iframe).show(); // SE MUESTRA ESE SUBMENU
     }
     else{

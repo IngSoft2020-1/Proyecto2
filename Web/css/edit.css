@@ -269,3 +269,41 @@ label{
 button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
     display: none;
 }
+
+
+/* POPUP PERSONLIZADO */
+.popup-personalizado {
+  background: #1A2127;
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  border: 2px solid #EC6D4A;
+  border-radius: 12px;
+  display: flex;
+text-align: center;
+flex-direction: column;
+}
+
+p.popup-texto {
+    color: white;
+    font-size: 22px;
+}
+
+.textbox-popup{
+  background: #EC6D4A;
+    border: 2px solid #EC6D4A;
+    padding: 13px;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+input.textbox-popup.cancel {
+    background: transparent !important;
+}

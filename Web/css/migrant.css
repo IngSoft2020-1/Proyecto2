@@ -1,0 +1,24 @@
+/* ESTILOS PARA EL SELECT */
+.container-select {
+    display: flex;
+    margin-top: 10px;
+}
+
+.select {
+    display: flex;
+    width: 30%;
+    align-items: center;
+}
+
+label{
+  font-size: calc(0.5em + 0.7vw) !important;
+}
+
+select{
+  width: 50%;
+      margin-left: 5px;
+      background: rgba(72, 87, 97);
+      color: white;
+      border: none;
+      height: 28px;
+}

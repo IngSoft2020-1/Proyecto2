@@ -73,6 +73,18 @@
             </li>
           </ul>
         </li>
+        <li class="container-button display" id="click-submenu-migrant">
+          <div class="div-display">
+            <img src="img/migrant.png" alt="" class="icon">
+            <a class="text">Migrantes</a>
+          </div>
+          <ul class="ul-submenu" id="ul-migrant">
+            <li class="container-button submenu" id="btn-migrant">
+              <img src="img/read.png" alt="" class="icon">
+              <a class="text">Consultar</a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </aside>
 
