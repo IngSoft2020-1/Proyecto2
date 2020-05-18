@@ -129,7 +129,7 @@
                 <label for="">Confirmar</label>
                 <div class="info">
                 <img src="img/mail.png" alt="" class="icon">
-                <input type="text" placeholder="Confirmar" class="textbox" name="correo2" value="" autocomplete="off">
+                <input type="text" placeholder="Confirmar" class="textbox" name="correo2" value="<?php echo $reg['Correo']?>" autocomplete="off">
                 </div>
               <?php
                 if($_SESSION['vall4'] == '1' || $_SESSION['corre'] == '1')
@@ -163,39 +163,56 @@
                     <!-- FIN -->
                 <?php
                   }
-                  $_SESSION['corre'] = '0';
-                  $_SESSION['vall1'] = '0'; /*Formato nombre*/
-                  $_SESSION['vall2'] = '0'; /*Formato Apellidos*/
-                  $_SESSION['vall3'] = '0'; /*Formato correo*/
-                  $_SESSION['vall4'] = '0'; /*Formato confirmar correo*/
-                  $_SESSION['vall5'] = '0'; /*Formato telefono*/
                 ?>
               </div>
               <div class="field line">
                 <label for="">Contraseña</label>
                 <div class="info">
                 <img src="img/lock.png" alt="" class="icon">
-                <input type="password" placeholder="••••••" class="textbox"  name="" value="" autocomplete="off">
+                <input type="password" placeholder="••••••" class="textbox"  name="contra1" value="<?php echo $reg['Clave']?>" autocomplete="off">
                 </div>
-                    <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-                    <div class="container-msg">
-                      <p class="title-msg">No se puede dejar vacio este campo</p>
-                      <p class="title-content-msg">Error en la contraseña</p>
-                    </div>
-                    <!-- FIN -->
+                  <?php
+                    if($_SESSION['vall6'] == '1')
+                    {
+                  ?>
+                      <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
+                      <div class="container-msg">
+                        <p class="title-msg">No se puede dejar vacio este campo</p>
+                        <p class="title-content-msg">Error en la contraseña</p>
+                      </div>
+                      <!-- FIN -->
+                  <?php
+                    }
+                  ?>
               </div>
               <div class="field line">
                 <label for="">Confirmar</label>
                 <div class="info">
                 <img src="img/lock.png" alt="" class="icon">
-                <input type="password" placeholder="••••••" class="textbox"  name="" value="" autocomplete="off">
+                <input type="password" placeholder="••••••" class="textbox"  name="contra2" value="<?php echo $reg['Clave']?>" autocomplete="off">
                 </div>
+                <?php
+                  if($_SESSION['vall7'] == '1' || $_SESSION['contra'] == '1')
+                  {
+                ?>
                     <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
                     <div class="container-msg">
                       <p class="title-msg">No se puede dejar vacio este campo</p>
                       <p class="title-content-msg">Las contraseñas no coinciden</p>
                     </div>
                     <!-- FIN -->
+                <?php
+                  }
+                  $_SESSION['corre'] = '0';
+                  $_SESSION['contra'] = '0';
+                  $_SESSION['vall1'] = '0'; /*Formato nombre*/
+                  $_SESSION['vall2'] = '0'; /*Formato Apellidos*/
+                  $_SESSION['vall3'] = '0'; /*Formato correo*/
+                  $_SESSION['vall4'] = '0'; /*Formato confirmar correo*/
+                  $_SESSION['vall5'] = '0'; /*Formato telefono*/
+                  $_SESSION['vall6'] = '0'; /*Formato contrasena*/
+                  $_SESSION['vall7'] = '0'; /*Formato confirmar contrasena*/
+                ?>
               </div>
               <!-- <div class="field">
                 <label for="">Contraseña</label>
