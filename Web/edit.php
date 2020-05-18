@@ -30,6 +30,7 @@
       </div>
     </div>
   </body>
+  <!--
   <div class="popup-personalizado">
     <p class="popup-texto">¿Estás seguro que deseas eliminar este perfil?</p>
     <form class="form-popup">
@@ -37,6 +38,7 @@
       <input type="submit" name="" value="Aceptar" class="textbox-popup">
     </form>
   </div>
+  -->
 <script src="js/app.js"></script> <!--Manda a llamar al json-->
 
 </html>

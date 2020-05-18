@@ -1,3 +1,16 @@
+<?php
+  session_start();
+  error_reporting(0);
+
+  if($_SESSION['listo'] == '1'){
+    echo "<script>alert('Cambios registrados.');</script>";
+  }
+  else if($_SESSION['listo'] == '0'){
+    echo "<script>alert('Cambios no registrados.');</script>";
+  }
+  $_SESSION['listo'] = '';
+?>
+
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
@@ -173,21 +186,21 @@
           ?>
         </form>
         <!-- ESTO MANDA A LLAMAR EL POPUP PERO DESDE JS -->
-        <div class="popup" id="popup-contrasena" title="Nueva contraseña" style="display: none;">
-          <form class="form-popup">
+        <!-- <div class="popup" id="popup-contrasena" title="Nueva contraseña" style="display: none;">
+          <form class="form-popup"> -->
             <!--  <label class="lbl-pass">Contraseña actual</label>
-            <input type="text" name="" value="" class="txt"> -->
+            <input type="text" name="" value="" class="txt">
             <label class="lbl-pass">Nueva contraseña</label>
-            <input type="text" name="" value="" class="txt">
+            <input type="text" name="contras1" value="" class="txt">
             <label class="lbl-pass">Confirmar</label>
-            <input type="text" name="" value="" class="txt">
+            <input type="text" name="contras2" value="" class="txt">
             <div class="container-button-save-cancel">
               <input type="button" name="" value="Cancelar" id="button-cancel" class="btn">
-              <input type="button" name="" value="Guardar" class="btn" id="button-save-2">
+              <input type="submit" name="" value="Guardar" class="btn" id="button-save-2">
             </div>
           </form>
-        </div>
-        <!-- Popup de confirmacion para guardar cambios -->
+        </div> -->
+        <!-- Popup de confirmacion para guardar cambios
         <div class="popup" id="popup-confirmar" title="Confirmar" style="display: none;">
           <form class="form-popup">
             <label class="lbl-pass">¿Está seguro que desea guardar los cambios?</label>
@@ -196,7 +209,7 @@
               <input type="button" name="" value="Aceptar" class="btn" id="button-save-3">
             </div>
           </form>
-        </div>
+        </div> -->
         <script>
         var txt = $('.textbox');
         var msg = $('.container-msg');
