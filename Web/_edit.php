@@ -171,10 +171,36 @@
                   $_SESSION['vall5'] = '0'; /*Formato telefono*/
                 ?>
               </div>
-              <div class="field">
+              <div class="field line">
+                <label for="">Contraseña</label>
+                <div class="info">
+                <img src="img/lock.png" alt="" class="icon">
+                <input type="password" placeholder="••••••" class="textbox"  name="" value="" autocomplete="off">
+                </div>
+                    <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
+                    <div class="container-msg">
+                      <p class="title-msg">No se puede dejar vacio este campo</p>
+                      <p class="title-content-msg">Error en la contraseña</p>
+                    </div>
+                    <!-- FIN -->
+              </div>
+              <div class="field line">
+                <label for="">Confirmar</label>
+                <div class="info">
+                <img src="img/lock.png" alt="" class="icon">
+                <input type="password" placeholder="••••••" class="textbox"  name="" value="" autocomplete="off">
+                </div>
+                    <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
+                    <div class="container-msg">
+                      <p class="title-msg">No se puede dejar vacio este campo</p>
+                      <p class="title-content-msg">Las contraseñas no coinciden</p>
+                    </div>
+                    <!-- FIN -->
+              </div>
+              <!-- <div class="field">
                 <label for="">Contraseña</label>
                 <button type="button" name="button" id="btn-change">Cambiar</button>
-              </div>
+              </div> -->
               <div class="field" id="field-button">
                 <input type="button" id="btn-cancel" value="Cancelar">
                 <form>
@@ -187,9 +213,7 @@
         </form>
         <!-- ESTO MANDA A LLAMAR EL POPUP PERO DESDE JS -->
         <!-- <div class="popup" id="popup-contrasena" title="Nueva contraseña" style="display: none;">
-          <form class="form-popup"> -->
-            <!--  <label class="lbl-pass">Contraseña actual</label>
-            <input type="text" name="" value="" class="txt">
+          <form class="form-popup">
             <label class="lbl-pass">Nueva contraseña</label>
             <input type="text" name="contras1" value="" class="txt">
             <label class="lbl-pass">Confirmar</label>
@@ -200,8 +224,8 @@
             </div>
           </form>
         </div> -->
-        <!-- Popup de confirmacion para guardar cambios
-        <div class="popup" id="popup-confirmar" title="Confirmar" style="display: none;">
+        <!-- Popup de confirmacion para guardar cambios -->
+        <!-- <div class="popup" id="popup-confirmar" title="Confirmar" style="display: none;">
           <form class="form-popup">
             <label class="lbl-pass">¿Está seguro que desea guardar los cambios?</label>
             <div class="container-button-save-cancel">
