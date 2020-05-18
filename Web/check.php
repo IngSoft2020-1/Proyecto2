@@ -4,7 +4,6 @@
 <?php
 	session_start();
 
-
 	/*Conexion de DB*/
 	$conexion=mysqli_connect("localhost","root","","derechoscopio") or
     die("Problemas con la conexión");
@@ -29,6 +28,7 @@
 		}
 	}
 	else{ /*Si no se encontro el usuario y la contrasena redirecciona*/
+		$_SESSION['corn'] = $_REQUEST['usuario'];
 		$_SESSION['error'] = '1';
 		header("location:login.php"); /*Regresa al login*/
 	}

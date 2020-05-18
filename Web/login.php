@@ -1,6 +1,4 @@
 <!-- Login -->
-
-
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
@@ -37,18 +35,37 @@
               <div class="background-black">
                 <img src="img/name.png" alt="" class="icon">
               </div>
-              <div class="background-gray">
-                <input type="text" placeholder="Correo" class="textbox" name="usuario" id="txt-email" autocomplete="off">
-              </div>
+              <?php
+                session_start();
+                error_reporting(0);
+
+                $_SESSION['corn'];
+
+                if($_SESSION['corn'] == '')
+                {
+              ?>
+                  <div class="background-gray">
+                    <input type="text" placeholder="Correo" class="textbox" name="usuario" id="txt-email" autocomplete="off">
+                  </div>
+              <?php
+                }
+                else
+                {
+              ?>
+                  <div class="background-gray">
+                    <input type="text" placeholder="Correo" class="textbox" name="usuario" value="<?php echo $_SESSION['corn']?>" id="txt-email" autocomplete="off">
+                  </div>
+              <?php
+                }
+              ?>
             </div>
             <div class="field">
               <div class="background-black">
                 <img src="img/lock.png" alt="" class="icon">
               </div>
-              <div class="background-gray">
-                <input type="password" placeholder="•••••••••" class="textbox" name="clave" autocomplete="off">
-              </div>
-
+                <div class="background-gray">
+                  <input type="password" placeholder="•••••••••" class="textbox" name="clave" autocomplete="off">
+                </div>
             </div>
             <div class="field">
               <input type="submit" value="Iniciar" id="button-start">
@@ -62,9 +79,6 @@
 </html>
 
 <?php
-      session_start();
-      error_reporting(0);
-
       if($_SESSION['error'] == '1'){
         // echo "<script>alert('Datos incorrectos.');</script>";
         echo "
