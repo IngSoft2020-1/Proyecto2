@@ -56,6 +56,7 @@
                     <input type="text" placeholder="Correo" class="textbox" name="usuario" value="<?php echo $_SESSION['corn']?>" id="txt-email" autocomplete="off">
                   </div>
               <?php
+                $_SESSION['corn'] = '';
                 }
               ?>
             </div>
