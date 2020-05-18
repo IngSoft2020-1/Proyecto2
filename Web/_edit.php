@@ -36,9 +36,11 @@
       </div>
       <div class="container-form">
         <?php
+          session_start();
+          error_reporting(0);
           $usu = $_GET['var'];
         ?>
-        <form action="edit_usuario.php?var2='<?php echo $usu?>'" method="post">
+        <form action="edit_usuario.php?var2=<?php echo $usu?>" method="post">
           <?php
             /*Consulta para cargar datos actuales a los textbox*/
             $conexion=mysqli_connect("localhost","root","","derechoscopio") or
@@ -55,57 +57,80 @@
                 <div class="info">
                 <img src="img/name.png" alt="" class="icon">
                 <input type="text" placeholder="Nombre" class="textbox" name="usuario" value="<?php echo $reg['Nombre']?>" autocomplete="off">
-
-              </div>
-              <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-              <div class="container-msg">
-                <p class="title-msg">Dato incorrecto</p>
-                <p class="title-content-msg">No se permiten espacios en blanco</p>
-              </div>
-              <!-- FIN -->
+                </div>
+              <?php
+                if($_SESSION['vall1'] == '1')
+                {
+              ?>
+                  <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
+                  <div class="container-msg">
+                    <p class="title-msg">Dato incorrecto</p>
+                    <p class="title-content-msg">No se permiten espacios en blanco</p>
+                  </div>
+                  <!-- FIN -->
+              <?php
+                }
+              ?>
               </div>
               <div class="field line">
                 <label for="">Apellidos</label>
                 <div class="info">
                 <img src="img/name.png" alt="" class="icon">
                 <input type="text" placeholder="Apellidos" class="textbox" name="apellido" value="<?php echo $reg['Apellidos']?>" autocomplete="off">
-
               </div>
-              <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-              <div class="container-msg">
-                <p class="title-msg">Dato incorrecto</p>
-                <p class="title-content-msg">No se permiten espacios en blanco</p>
-              </div>
-              <!-- FIN -->
+              <?php
+                if($_SESSION['vall2'] == '1')
+                {
+              ?>
+                  <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
+                  <div class="container-msg">
+                    <p class="title-msg">Dato incorrecto</p>
+                    <p class="title-content-msg">No se permiten espacios en blanco</p>
+                  </div>
+                  <!-- FIN -->
+              <?php
+                }
+              ?>
               </div>
               <div class="field line">
                 <label for="">Correo</label>
                 <div class="info">
                 <img src="img/mail.png" alt="" class="icon">
                 <input type="text" placeholder="Correo" class="textbox" name="correo1" value="<?php echo $reg['Correo']?>" autocomplete="off">
-
               </div>
-              <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-              <div class="container-msg">
-                <p class="title-msg">Haz coincidir el formato solicitado</p>
-                <p class="title-content-msg">Correo no valido</p>
-              </div>
-              <!-- FIN -->
+              <?php
+                if($_SESSION['vall3'] == '1')
+                {
+              ?>
+                  <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
+                  <div class="container-msg">
+                    <p class="title-msg">Haz coincidir el formato solicitado</p>
+                    <p class="title-content-msg">Correo no valido</p>
+                  </div>
+                  <!-- FIN -->
+              <?php
+                }
+              ?>
               </div>
               <div class="field line">
                 <label for="">Confirmar</label>
                 <div class="info">
                 <img src="img/mail.png" alt="" class="icon">
-
                 <input type="text" placeholder="Confirmar" class="textbox" name="correo2" value="" autocomplete="off">
-
-              </div>
-              <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-              <div class="container-msg">
-                <p class="title-msg">No coinciden</p>
-                <p class="title-content-msg">Deben coincidir los correos</p>
-              </div>
-              <!-- FIN -->
+                </div>
+              <?php
+                if($_SESSION['vall4'] == '1' || $_SESSION['corre'] == '1')
+                {
+              ?>
+                <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
+                <div class="container-msg">
+                  <p class="title-msg">No coinciden</p>
+                  <p class="title-content-msg">Deben coincidir los correos</p>
+                </div>
+                <!-- FIN -->
+              <?php
+                }
+              ?>
               </div>
               <div class="field line">
                 <label for="">Telefono</label>
@@ -113,12 +138,25 @@
                 <img src="img/name.png" alt="" class="icon">
                 <input type="text" placeholder="000-000-0000" class="textbox"  name="telefono" value="<?php echo $reg['Telefono']?>" autocomplete="off" id="txt-tel">
                 </div>
-                <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-                <div class="container-msg">
-                  <p class="title-msg">Haz coincidir el formato solicitado</p>
-                  <p class="title-content-msg">No se permiten espacios vacios</p>
-                </div>
-                <!-- FIN -->
+                <?php
+                  if($_SESSION['vall5'] == '1')
+                  {
+                ?>
+                    <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
+                    <div class="container-msg">
+                      <p class="title-msg">Haz coincidir el formato solicitado</p>
+                      <p class="title-content-msg">No se permiten espacios vacios</p>
+                    </div>
+                    <!-- FIN -->
+                <?php
+                  }
+                  $_SESSION['corre'] = '0';
+                  $_SESSION['vall1'] = '0'; /*Formato nombre*/
+                  $_SESSION['vall2'] = '0'; /*Formato Apellidos*/
+                  $_SESSION['vall3'] = '0'; /*Formato correo*/
+                  $_SESSION['vall4'] = '0'; /*Formato confirmar correo*/
+                  $_SESSION['vall5'] = '0'; /*Formato telefono*/
+                ?>
               </div>
               <div class="field">
                 <label for="">Contraseña</label>

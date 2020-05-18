@@ -1,16 +1,3 @@
-<?php
-  session_start();
-  error_reporting(0);
-
-  if($_SESSION['listo'] == '1'){
-    echo "<script>alert('Cambio registrado exitosamente.');</script>";
-  }
-  elseif($_SESSION['listo'] == '0'){
-    echo "<script>alert('Cambio no registrado.');</script>";
-  }
-  $_SESSION['listo'] = "";
-?>
-
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>

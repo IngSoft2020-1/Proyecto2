@@ -19,6 +19,11 @@
     $contrasena1 = $_REQUEST['contrasena1'];
     $contrasena2 = $_REQUEST['contrasena2'];
     $telefono = $_REQUEST['telefono'];
+    $_SESSION['lucky'] = '';
+    $_SESSION['charms'] = '';
+    $_SESSION['choco'] = '';
+    $_SESSION['krispis'] = '';
+    $_SESSION['sucaritas'] = '';
 
     if($nombre == '')
     {
@@ -64,12 +69,14 @@
         $_SESSION['contra'] = '1';
     }
     
+    
     if(preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $telefono))
     {}
     else
     {
-        $_SESSION['val7'] = '1'; /*Formato telefono*/
-    }  
+        $_SESSION['val7'] = '1';
+    }
+     
     
     if ($_SESSION['val1'] == '0' && $_SESSION['val2'] == '0' && $_SESSION['val3'] == '0' && $_SESSION['val4'] == '0' && $_SESSION['val5'] == '0'
     && $_SESSION['val6'] == '0' && $_SESSION['val7'] == '0' && $_SESSION['corr'] == '0' && $_SESSION['contra'] == '0')
@@ -99,6 +106,15 @@
         mysqli_free_result($registros);
         mysqli_close($conexion);
     }
-
+    else
+    {
+        list($uno,$dos,$tres) = explode("-",$telefono);
+        $edy = $uno.$dos.$tres;
+        $_SESSION['lucky'] = $nombre;
+        $_SESSION['charms'] = $apellidos;
+        $_SESSION['choco'] = $contrasena1;
+        $_SESSION['krispis'] = $correo1;
+        $_SESSION['sucaritas'] = $edy;
+    }
     header("location:new.php");
 ?>

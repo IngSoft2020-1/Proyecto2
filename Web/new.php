@@ -19,10 +19,11 @@
   if($_SESSION['contra'] == '1'){
     $_SESSION['val5'] = '1';
   }
-
-  $_SESSION['creado'] = "";
-  $_SESSION['contra'] = "";
-  $_SESSION['corr'] = "";
+  $_SESSION['lucky'];
+  $_SESSION['charms'];
+  $_SESSION['choco'];
+  $_SESSION['krispis'];
+  $_SESSION['sucaritas'];
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +57,20 @@
             <label for="">Nombre</label>
             <div class="info">
             <img src="img/name.png" alt="" class="icon">
-            <input type="text" placeholder="Nombre" class="textbox" name="nombre" autocomplete="off">
+            <?php
+              if($_SESSION['lucky'] == '')
+              {
+            ?>
+                <input type="text" placeholder="Nombre" class="textbox" name="nombre" autocomplete="off">
+            <?php
+              }
+              else
+              {
+            ?>
+                <input type="text" placeholder="Nombre" class="textbox" name="nombre"  value="<?php echo $_SESSION['lucky']?>" autocomplete="off">
+            <?php
+              }
+            ?>
           </div>
             <?php
               if($_SESSION['val1'] == '1')
@@ -76,8 +90,22 @@
             <label for="">Apellidos</label>
             <div class="info">
               <img src="img/name.png" alt="" class="icon">
-              <input type="text" placeholder="Apellidos" class="textbox" name="apellidos" autocomplete="off">
+              <?php
+              if($_SESSION['charms'] == '')
+                {
+              ?>
+                  <input type="text" placeholder="Apellidos" class="textbox" name="apellidos" autocomplete="off">
+              <?php
+                }
+                else
+                {
+              ?>
+                  <input type="text" placeholder="Apellidos" class="textbox" name="apellidos" value="<?php echo $_SESSION['charms']?>" autocomplete="off">
+              <?php
+                }
+              ?>
             </div>
+        
             <?php
               if($_SESSION['val2'] == '1')
               {
@@ -96,7 +124,20 @@
             <label for="">Correo</label>
             <div class="info">
             <img src="img/mail.png" alt="" class="icon">
-            <input type="text" placeholder="Correo" class="textbox" name="correo1" autocomplete="off">
+            <?php
+              if($_SESSION['krispis'] == '')
+                {
+              ?>
+                  <input type="text" placeholder="Correo" class="textbox" name="correo1" autocomplete="off">
+              <?php
+                }
+                else
+                {
+              ?>
+                  <input type="text" placeholder="Correo" class="textbox" name="correo1" value="<?php echo $_SESSION['krispis']?>" autocomplete="off">
+              <?php
+                }
+              ?>
           </div>
 
             <?php
@@ -121,7 +162,7 @@
           </div>
 
             <?php
-              if($_SESSION['val4'] == '1')
+              if($_SESSION['val4'] == '1' || $_SESSION['corr'] == '1')
               {
             ?>
                 <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
@@ -138,7 +179,20 @@
             <label for="">Contraseña</label>
             <div class="info">
             <img src="img/lock.png" alt="" class="icon">
-            <input type="password" placeholder="Contraseña" class="textbox" name="contrasena1" autocomplete="off">
+            <?php
+              if($_SESSION['choco'] == '')
+              {
+            ?>
+                <input type="password" placeholder="Contraseña" class="textbox" name="contrasena1" autocomplete="off">
+            <?php
+              }
+              else
+              {
+            ?>
+                <input type="password" placeholder="Contraseña" class="textbox" name="contrasena1" value="<?php echo $_SESSION['choco']?>" autocomplete="off">
+            <?php
+              }
+            ?>
           </div>
 
             <?php
@@ -163,7 +217,7 @@
           </div>
 
             <?php
-              if($_SESSION['val6'] == '1')
+              if($_SESSION['val6'] == '1' || $_SESSION['contra'] == '1')
               {
             ?>
                 <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
@@ -180,7 +234,20 @@
             <label for="">Teléfono</label>
             <div class="info">
             <img src="img/name.png" alt="" class="icon">
-            <input type="text" class="textbox" name="telefono" id="txt-tel">
+            <?php
+              if($_SESSION['sucaritas'] == '')
+              {
+            ?>
+                <input type="text" class="textbox" name="telefono" id="txt-tel">
+            <?php
+              }
+              else
+              {
+            ?>
+                <input type="text" class="textbox" name="telefono" value="<?php echo $_SESSION['sucaritas']?>" id="txt-tel">
+            <?php
+              }
+            ?>
           </div>
 
             <?php
@@ -202,6 +269,14 @@
               $_SESSION['val5'] = '0'; /*Formato contrasena*/
               $_SESSION['val6'] = '0'; /*Formato confirmar contrasena*/
               $_SESSION['val7'] = '0'; /*Formato telefono*/
+              $_SESSION['creado'] = "";
+              $_SESSION['contra'] = "";
+              $_SESSION['corr'] = "";
+              $_SESSION['lucky'] = '';
+              $_SESSION['charms'] = '';
+              $_SESSION['choco'] = '';
+              $_SESSION['krispis'] = '';
+              $_SESSION['sucaritas'] = '';
             ?>
           </div>
           <div class="field" id="field-button">
