@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 18-05-2020 a las 05:48:11
+-- Tiempo de generación: 21-05-2020 a las 21:06:41
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `derechoscopio`
 --
-CREATE DATABASE IF NOT EXISTS `derechoscopio` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `derechoscopio`;
 
 -- --------------------------------------------------------
 
@@ -100,7 +98,30 @@ CREATE TABLE IF NOT EXISTS `nacionalidad` (
 --
 
 INSERT INTO `nacionalidad` (`IDPais`, `Pais`) VALUES
-('Mex', 'Mexico');
+('ARG', 'Argentina'),
+('BLM', 'San Bartolome'),
+('BOL', 'Bolivia'),
+('BRA', 'Brasil'),
+('CHL', 'Chile'),
+('COL', 'Colombia'),
+('CRI', 'Costa Rica'),
+('CUB', 'Cuba'),
+('ECU', 'Ecuador'),
+('GLP', 'Guadalupe'),
+('GTM', 'Guatemala'),
+('GUF', 'Guyana Francesa'),
+('Mex', 'Mexico'),
+('MTQ', 'Martinica'),
+('NIC', 'Nicaragua'),
+('PAN', 'Panama'),
+('PER', 'Peru'),
+('PRI', 'Puerto Rico'),
+('PRY', 'Paraguay'),
+('RDO', 'Republica Dominicana'),
+('SLV', 'El Salvador'),
+('SXM', 'San Martin'),
+('URY', 'Uruguay'),
+('VEN', 'Venezuela');
 
 -- --------------------------------------------------------
 
