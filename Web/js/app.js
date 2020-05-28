@@ -14,6 +14,14 @@ $(document).ready(function() {
     });
   });
 
+  // METODO DE BUSQUEDA PARA EDITAR
+  $("#search-migrants").on("keyup", function() {
+  var value = $(this).val().toLowerCase();
+  $("#table-migrants tbody tr").filter(function() {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  });
+});
+
   // METODO DE BUSQUEDA PARA RESERVACION
   $("#search-res").on("keyup", function() {
   var value = $(this).val().toLowerCase();
@@ -74,7 +82,6 @@ $(document).ready(function() {
                         <td>${task.Nombre} ${task.Apellidos}</td>
                         <td>${task.Correo}</td>
                         <td>${task.Telefono}</td>
-                        <td>${task.TipoUsuario}</td>
                         <td><a href="_edit.php?var=${task.ID}" class="button edit">Editar</a></td>
                         <td><a href="#" class="button task-delete delete">Eliminar</a></td>
                     </tr>

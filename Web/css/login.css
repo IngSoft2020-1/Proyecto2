@@ -4,6 +4,8 @@
 body{
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  height: 100%;
 }
 
 *{
@@ -14,7 +16,7 @@ body{
 /********************************** BACKGROUND ********************************/
 /******************************************************************************/
 #container-login{
-  background: linear-gradient(rgba(236, 109, 74, 0.5), rgba(0, 150, 255, 0.5)), url(../img/paisaje.jpg);
+  background: #1D262D;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   height: 100vh;
@@ -26,12 +28,12 @@ body{
 /*************************************** WHITE ********************************/
 /******************************************************************************/
 .container-white{
-  background: #1D262D;
-  width: 25%;
-  height: 75vh;
-  border-radius: 20px;
+  /* background: #1D262D; */
+  width: 334px;
+    height: auto;
+  border-radius: 10px;
   margin: auto;
-  box-shadow: 3px 8px 8px black;
+  /* box-shadow: 3px 8px 8px black; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -41,14 +43,21 @@ body{
 /*********************************** CONTAINER ********************************/
 /******************************************************************************/
 .container{
-  width: 80%;
+  width: 90%;
   margin: auto;
   text-align: center;
 }
 
 /**************************************** LOGO ********************************/
-#logo{
-  width: 35%;
+.logo{
+  width: 100%;
+}
+
+.container-logo {
+    width: 10%;
+    bottom: 2%;
+    position: absolute;
+    right: 2%;
 }
 
 /**************************************** FORM ********************************/
@@ -59,41 +68,62 @@ form{
 
 .field {
   display: flex;
-  justify-content: space-between;
+  margin-bottom: 12px;
 }
 
-.line{
-  border-bottom: 2px solid #EC6D4A;
-  margin-bottom: 18%;
+.background-black {
+    width: 17%;
+    background: #30383F;
+    height: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.background-gray {
+    width: 83%;
+    height: 37px;
+    background: #343F48;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .icon{
-  width: 10%;
+  width: 17px;
+    height: 17px;
   margin-bottom: 2px;
 }
 
 .textbox{
-  width: 88%;
-  font-size: 25px;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: white;
+  width: 100%;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    margin-left: 10px;
 }
 
 ::placeholder{
-  color: white;
+  color: #606468;
 }
 
 #button-start{
   width: 100%;
-  height: 8vh;
+  height: 43px;
   border: none;
   background: #EC6D4A;
   color: #FFF;
-  font-size: 25px;
-  box-shadow: 3px 5px 5px black;
+  font-size: 16px;
   cursor: pointer;
+  border-radius: 3px;
 }
 
 #forget-password{
@@ -101,82 +131,15 @@ form{
 }
 
 
+/* MENSAJE ERROR */
+#msj{
+  color: #ec6d4a;
+  font-size: 18px;
+    margin: 0;
+}
+
+
+
 /******************************************************************************/
 /*********************************** CELULAR   ********************************/
 /******************************************************************************/
-@media only screen and (orientation:portrait){
-    #contenido {
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -o-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        transform: rotate(90deg);
-
-    }
-}
-
-@media (max-width: 800px){ /* ESTO ES PARA TABLESTS*/
-
-  #container-login{
-    background: url(../img/background.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-  }
-
-  .container-white{
-    display: none;
-  }
-
-  .container{
-    width: 100%;
-    margin: inherit !important;
-  }
-
-  .mobile{
-    display: flex !important;
-    height: 100vh;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-
-  .text{
-    font-size: calc(2em + 2vw);
-    color: white;
-    margin: 0;
-    padding: 0;
-    letter-spacing: 7px;
-    text-shadow: 3px 5px 5px black;
-    font-weight: bold;
-    margin: 30px;
-  }
-
-  #logo{
-    width: 30%;
-  }
-
-  form{
-    width: 80%;
-    margin: auto;
-  }
-
-  #container-form {
-    padding-bottom: 14%;
-  }
-
-  #button-start{
-    height: 9vh;
-    font-size: calc(1.7em + 1vw);
-  }
-
-  .icon{
-    margin-bottom: 14px;
-  }
-
-  .line{
-    border-bottom: 2px solid white;
-  }
-
-  .textbox{
-    font-size: calc(1.2em + 1.6vw);
-  }
-}

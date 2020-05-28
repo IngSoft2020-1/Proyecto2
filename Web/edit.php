@@ -1,16 +1,3 @@
-<?php
-  session_start();
-  error_reporting(0);
-
-  if($_SESSION['listo'] == '1'){
-    echo "<script>alert('Cambio registrado exitosamente.');</script>";
-  }
-  elseif($_SESSION['listo'] == '0'){
-    echo "<script>alert('Cambio no registrado.');</script>";
-  }
-  $_SESSION['listo'] = "";
-?>
-
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
@@ -34,7 +21,6 @@
                 <th style="color: #00FF80;">Nombre</th>
                 <th style="color: #00FF80;">Correo</th>
                 <th style="color: #EC6D4A;">Telefono</th>
-                <th style="color: #EC6D4A;">Tipo de Usuario</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -44,6 +30,15 @@
       </div>
     </div>
   </body>
+  <!--
+  <div class="popup-personalizado">
+    <p class="popup-texto">¿Estás seguro que deseas eliminar este perfil?</p>
+    <form class="form-popup">
+      <input type="button" name="" value="Cancelar" class="textbox-popup cancel">
+      <input type="submit" name="" value="Aceptar" class="textbox-popup">
+    </form>
+  </div>
+  -->
 <script src="js/app.js"></script> <!--Manda a llamar al json-->
 
 </html>
