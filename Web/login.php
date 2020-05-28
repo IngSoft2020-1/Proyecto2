@@ -1,4 +1,14 @@
 <!-- Login -->
+<?php
+      session_start();
+      error_reporting(0);
+
+      if($_SESSION['error'] == '1'){
+        echo "<script>alert('Datos incorrectos.');</script>";
+      }
+      $_SESSION['error'] = '0';
+    ?>
+
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
@@ -7,17 +17,6 @@
     <!-- EN CONTENT LOS ESTILOS SE ADAPTAN AL ANCHO DEL DISPOSITVO -->
     <!-- USER SCALABLE EVITA QUE SE HAGA ZOOM -->
     <meta name="viewport" content="width=device-width, user-scalable=no">
-    <!-- JQUERY -->
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-    <!-- MIS SCRIPTS -->
-    <!-- <script type="text/javascript" src="js/login.js"></script> -->
-    <!-- ESTA LIBRERIA LA CREO: EDUARDO BLANCO
-        PARA PODER MANDAR A LLAMAR UN MENSAJE
-        DE VALIDACION
-    -->
-    <script src="js/msg-alert.js"></script>
-    <link rel="stylesheet" href="css/msg-alert.css">
-    <!-- FIN DE LA LIBRERIA -->
     <!-- MY STYLES -->
     <link rel="stylesheet" href="css/login.css">
     <title>Titulo</title>
@@ -26,71 +25,47 @@
     <div id="container-login">
       <div class="container-white">
         <div class="container">
-          <div class="container-logo">
-            <img src="img/logo.jpg" class="logo">
-          </div>
+          <img src="img/logo.png" alt="" id="logo">
+        </div>
+        <div class="container">
           <!--Llama a check.php para ver si existe el usuario-->
           <form action="check.php" method="post">
-            <div class="field">
-              <div class="background-black">
-                <img src="img/name.png" alt="" class="icon">
-              </div>
-              <?php
-                session_start();
-                error_reporting(0);
-
-                $_SESSION['corn'];
-
-                if($_SESSION['corn'] == '')
-                {
-              ?>
-                  <div class="background-gray">
-                    <input type="text" placeholder="Correo" class="textbox" name="usuario" id="txt-email" autocomplete="off">
-                  </div>
-              <?php
-                }
-                else
-                {
-              ?>
-                  <div class="background-gray">
-                    <input type="text" placeholder="Correo" class="textbox" name="usuario" value="<?php echo $_SESSION['corn']?>" id="txt-email" autocomplete="off">
-                  </div>
-              <?php
-                $_SESSION['corn'] = '';
-                }
-              ?>
+            <div class="field line">
+              <img src="img/name.png" alt="" class="icon">
+              <input type="text" placeholder="Correo" class="textbox" name="usuario" required>
             </div>
-            <div class="field">
-              <div class="background-black">
-                <img src="img/lock.png" alt="" class="icon">
-              </div>
-                <div class="background-gray">
-                  <input type="password" placeholder="•••••••••" class="textbox" name="clave" autocomplete="off">
-                </div>
+            <div class="field line">
+              <img src="img/lock.png" alt="" class="icon">
+              <input type="password" placeholder="•••••••••" class="textbox" name="clave" required>
             </div>
             <div class="field">
               <input type="submit" value="Iniciar" id="button-start">
             </div>
           </form>
-          <p id="msj" style="display: none;">* Datos incorrectos</p>
+        </div>
+      </div>
+      <!-- SI SE ABRE EN CELULAR CARGARA ESTE DIV -->
+      <div class="mobile" style="display: none;">
+        <div class="container">
+          <img src="img/user_cel.png" alt="" id="logo">
+          <p class="text">Bienvenido</p>
+        </div>
+        <div class="container" id="container-form">
+          <form action="check.php" method="post">
+            <div class="field line">
+              <img src="img/name.png" alt="" class="icon">
+              <input type="text" placeholder="Correo" class="textbox" name="usuario" required>
+            </div>
+            <div class="field line">
+              <img src="img/lock.png" alt="" class="icon">
+              <input type="password" placeholder="•••••••••" class="textbox" name="clave" required>
+            </div>
+            <div class="field">
+              <input type="submit" value="Iniciar" id="button-start">
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </body>
 </html>
-
-<?php
-      if($_SESSION['error'] == '1'){
-        // echo "<script>alert('Datos incorrectos.');</script>";
-        echo "
-        <script type='text/javascript'>
-
-        var msj = $('#msj');
-        msj.css('display', 'block');
-        console.log(msj);
-
-        </script>
-        ";
-      }
-      $_SESSION['error'] = '0';
-    ?>

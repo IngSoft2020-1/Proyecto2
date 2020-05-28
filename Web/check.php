@@ -3,13 +3,13 @@
 	el cual nos permite ver un mensaje dependiendo si se pudo o no iniciar secion-->
 <?php
 	session_start();
-	$_SESSION['cual'] = '';
+
 	/*Conexion de DB*/
 	$conexion=mysqli_connect("localhost","root","","derechoscopio") or
     die("Problemas con la conexión");
 
 	/*Busca que exista el usuario*/
-	$registros=mysqli_query($conexion,"select TipoUsuario, ID 
+	$registros=mysqli_query($conexion,"select TipoUsuario
 	                        from usuario where Correo='$_REQUEST[usuario]' and Clave='$_REQUEST[clave]'") or
 	  die("Problemas en el select:".mysqli_error($conexion));
 
@@ -19,7 +19,6 @@
 	if($resultado > 0) /*Si se encontro el usuario y la contrasena redirecciona*/
 	{
 		$_SESSION['error'] = '0';
-		$_SESSION['cual'] = $res['ID'];
 		if($res['TipoUsuario']=="S") /*En mi tabla tengo un campo como admin, el cual se guarda un si o un no, dependiendo si eres admin*/
 		{
 			header("location:index.php"); /*Te redirecciona a la pagina de admin*/
@@ -29,7 +28,6 @@
 		}
 	}
 	else{ /*Si no se encontro el usuario y la contrasena redirecciona*/
-		$_SESSION['corn'] = $_REQUEST['usuario'];
 		$_SESSION['error'] = '1';
 		header("location:login.php"); /*Regresa al login*/
 	}

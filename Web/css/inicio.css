@@ -4,8 +4,6 @@
 body{
   margin: 0;
   padding: 0;
-  display: flex;
-  align-items: stretch
 }
 
 *{
@@ -27,8 +25,9 @@ li{
 ************************* ESTILOS PARA LA BARRA LATERAL ************************
 *******************************************************************************/
 aside{
-  background: #1A2127;
+  background: #1D262D;
   width: 16%;
+  height: 100vh;
   float: left;
 }
 
@@ -104,18 +103,6 @@ aside{
   /* margin-top: 1000px; */
 }
 
-/**************************************** LOGO ********************************/
-.logo{
-  width: 100%;
-}
-
-.container-logo {
-    width: 6%;
-    bottom: 1%;
-    position: fixed;
-    right: 2%;
-}
-
 /*******************************************************************************
 **************************** ESTILOS PARA EL ENCABEZADO ************************
 *******************************************************************************/
@@ -134,17 +121,12 @@ header{
 .container{
   width: 50%;
   display: flex;
-      align-items: center;
 }
 
 #menu{
   width: 5%;
   height: 5%;
   padding-left: 10px;
-}
-
-#menu-mobile{
-  display: none;
 }
 
 #title{
@@ -175,114 +157,21 @@ header{
 ********************* ESTILOS PARA CONTENEDOR PRINRICPAL ***********************
 *******************************************************************************/
 section{
-  background: #1D262D;
+  background: linear-gradient(rgba(236, 109, 74, 0.5), rgba(0, 150, 255, 0.5)), url(../img/paisaje.jpg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 84%;
-  /* display: flex; */
-  justify-content: center;
-  align-items: center;
-  float: right;
-}
-
-.container-section{
+  height: 94vh;
   display: flex;
   justify-content: center;
-  height: 94vh;
+  align-items: center;
 }
 
 iframe{
-  width: 100%;
-  height: 94vh;
+  width: 85%;
+  height: 75vh;
   display: none;
   padding: 0;
   margin: 0;
   border: 0;
 }
-
-.table-mobile{
-  display: none;
-}
-
-/* PROGRMAMACION PARA CELULARES */
-/* @media (max-width: 480px){
-  aside{
-    display: none;
-  }
-
-  section{
-    width: 100%;
-    background: linear-gradient(rgba(236, 109, 74, 1), rgba(0, 150, 255, 1));
-  }
-
-  #menu{
-    width: 13%;
-    display: none;
-  }
-
-  #menu-mobile{
-    display: block;
-    width: 13%;
-    padding-left: 10px;
-  }
-
-  #title{
-    display: none;
-  }
-
-  #container-home{
-    width: 97%;
-    margin: auto;
-  }
-
-  #user{
-    width: 17%;
-  }
-
-  .text{
-    font-size: 16px;
-  }
-
-  .icon{
-    width: 11%;
-  }
-
-  .container-button{
-    justify-content: center;
-  }
-
-  .div-display{
-    justify-content: center;
-  } */
-
-  /* Estilos para la tabla */
-  /* .table-mobile{
-    display: inline-table;
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 44px;
-    color: white;
-    font-size: 13px;
-  }
-
-  .table-mobile td{
-    padding: 10px;
-  }
-
-  .name{
-    font-size: 16px;
-  }
-
-  .blue, .txtBlue{
-    background: #004F92;
-  }
-
-  .black{
-    background: #1A2127;
-  }
-
-  .gray{
-    background: #27333B;
-  }
-
-} */

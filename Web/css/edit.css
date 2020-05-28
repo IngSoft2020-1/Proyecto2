@@ -25,7 +25,7 @@
 }
 
 .icon-title{
-  width: 8%;
+  width: 10%;
   margin-top: 16px;
 }
 
@@ -35,7 +35,6 @@ table{
   color: white;
   text-align: left;
   padding: 40px;
-  font-size: calc(0.5em + 0.7vw);
 }
 
 table>tbody>tr:nth-child(odd) {
@@ -48,6 +47,10 @@ table>tbody>tr:nth-child(even) {
 
 table td, table th{
   padding: 10px;
+}
+
+tbody{
+  font-size: calc(0.7em + 0.5vw);
 }
 
 .button{
@@ -77,10 +80,8 @@ a{
 /* ESTILOS PARA EL _EDIT.PHP */
 form {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  width: 80%;
-  margin: auto;
 }
 
 .container-form{
@@ -89,32 +90,31 @@ form {
 
 .field{
   width: 37%;
-      padding-top: 19px;
 }
 
 .icon{
-  width: 6%;
+  width: 8%;
 }
 
 label{
   display: flex;
   color: white;
-  font-size: calc(0.6em + 1vw);
+  font-size: calc(0.6em + 1.5vw);
   padding: 10px 0;
 }
 
 .textbox{
   border: 0;
   background: transparent;
-  width: 84%;
+  width: 70%;
   color: white;
-  font-size: calc(0.5em + 0.7vw);
+  font-size: calc(0.6em + 0.8vw);
   outline: none;
   padding-left: 8px;
 }
 
 ::placeholder{
-  font-size: calc(0.5em + 0.7vw);
+  font-size: calc(0.6em + 0.8vw);
   color: #B8B8B8;
 }
 
@@ -122,16 +122,12 @@ label{
   border-bottom: 2px solid white;
 }
 
-.info {
-  display: flex;
-  align-items: center;
-}
-
 /* BOTONES */
 #field-button{
   width: 100%;
   text-align: right;
   margin-top: 29px;
+  margin-right: 30px;
 }
 
 .button-save{
@@ -153,7 +149,7 @@ label{
 }
 
 /* ESTILOS PARA EL BOTON DE BUSCAR */
-#search-edit, #search-migrants{
+#search-edit{
   box-sizing: border-box;
   border: none;
   border-bottom: 2px solid #27333B;
@@ -176,139 +172,4 @@ label{
 #search-edit:focus{
   width: 98%;
   border-radius: 20px 20px 0 0;
-}
-
-#search-migrants:focus{
-  width: 98%;
-  border-radius: 20px 20px 0 0;
-}
-
-/* ESTILOS PARA EL BOTON DE CAMBIAR CONTRASEÑA */
-#btn-change {
-    background: #ec6d4a;
-    border: 2px solid #ec6d4a;
-    color: white;
-    width: 100%;
-    cursor: pointer;
-    height: 26px;
-}
-
-.lbl-pass{
-  color: white;
-  font-size: 18px;
-}
-
-.ui-dialog .ui-dialog-content {
-    background: #1D262D !important;
-}
-
-.ui-widget.ui-widget-content {
-    border: 1px solid #EC6D4A !important;
-}
-
-.txt {
-    border: none;
-    border-bottom: 2px solid white;
-    background: transparent;
-    outline: none;
-    color: white;
-    font-size: 18px;
-    padding-bottom: 3px;
-}
-
-#button-cancel {
-    border: 2px solid #EC6D4A;
-    color: white;
-    background: transparent;
-    padding: 7px;
-    margin-top: 13px;
-    cursor: pointer;
-}
-
-#button-cancel3 {
-    border: 2px solid #EC6D4A;
-    color: white;
-    background: transparent;
-    padding: 7px;
-    margin-top: 13px;
-    cursor: pointer;
-}
-
-#button-save-2{
-    border: 2px solid #EC6D4A;
-    color: white;
-    background: transparent;
-    padding: 7px;
-    margin-top: 13px;
-    cursor: pointer;
-    background: #EC6D4A;
-}
-
-#button-save-3{
-    border: 2px solid #EC6D4A;
-    color: white;
-    background: transparent;
-    padding: 7px;
-    margin-top: 13px;
-    cursor: pointer;
-    background: #EC6D4A;
-}
-
-.container-button-save-cancel{
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.ui-widget-header {
-    background: #EC6D4A;
-    color: white;
-    font-weight: bold;
-    border-color: #1d262d;
-}
-
-.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable {
-    background: #1d262d;
-}
-
-button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
-    display: none;
-}
-
-
-/* POPUP PERSONLIZADO */
-.popup-personalizado {
-  background: #1A2127;
-  width: 300px;
-  height: 200px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  border: 2px solid #EC6D4A;
-  border-radius: 12px;
-  display: flex;
-text-align: center;
-flex-direction: column;
-}
-
-p.popup-texto {
-    color: white;
-    font-size: 22px;
-}
-
-.textbox-popup{
-  background: #EC6D4A;
-    border: 2px solid #EC6D4A;
-    padding: 13px;
-    color: white;
-    font-size: 16px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-input.textbox-popup.cancel {
-    background: transparent !important;
 }
