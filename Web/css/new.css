@@ -26,8 +26,10 @@
 /* FORM */
 form {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
 }
 
 .container-form{
@@ -35,32 +37,37 @@ form {
 }
 
 .field{
-  width: 37%;
+  width: 40%;
+  padding-top: 19px;
 }
 
 .icon{
-  width: 8%;
+  width: 6%;
 }
 
 label{
   display: flex;
   color: white;
-  font-size: calc(0.6em + 1.5vw);
-  padding: 10px 0;
+  font-size: calc(0.6em + 1vw);
 }
 
 .textbox{
   border: 0;
   background: transparent;
-  width: 70%;
+  width: 89%;
   color: white;
-  font-size: calc(0.6em + 0.8vw);
+  font-size: calc(0.5em + 0.7vw);
   outline: none;
-  padding-left: 8px;
+  margin-left: 4px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
 }
 
 ::placeholder{
-  font-size: calc(0.6em + 0.8vw);
+  font-size: calc(0.5em + 0.7vw);
   color: #B8B8B8;
 }
 
@@ -73,7 +80,6 @@ label{
   width: 100%;
   text-align: right;
   margin-top: 29px;
-  margin-right: 30px;
 }
 
 .button-save{
