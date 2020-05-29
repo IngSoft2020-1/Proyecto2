@@ -187,4 +187,15 @@ visitante.cita_consulado as "CitaConsulado" FROM visitante INNER join nacionalid
 where fecha_llegada > curdate() - interval (dayofmonth(curdate()) - 1) day - interval 1 month order by fecha_llegada DESC 
 
 ---Insert Datos A los Visitante
-insert into visitante (Nombre,Ape_Mat,Ape_Mat,Telefono,Fecha_nac,IDNacion,fecha_llegada,hora_llegada,cita_consulado) values ()
+insert into visitante (Nombre,Telefono,Fecha_nac,IDNacion,fecha_llegada,hora_llegada,cita_consulado, fecha_registro) values ()
+
+---Editar Visitante
+update visitante set Nombre='', Telefono='', Fecha_nac='', IDNacion='',fecha_llegada='',hora_llegada='',cita_consulado='', fecha_registro='' where Nombre=''
+--Ejemplo
+update visitante set Nombre='pepe', Telefono='6645842345', Fecha_nac='2014-01-08', IDNacion='Mex',fecha_llegada='2020-03-03',hora_llegada='2020-03-03 11:23:30', 
+cita_consulado='2020-03-05 9:30:00', fecha_registro ='2020-03-01 12:32:23'WHERE Nombre='Rigoberto Balux Carrillo' 
+
+---Editar Clave usuario
+update usuario set Clave='' where ID= 
+--Ejemplo
+update usuario set Clave='nombre' where ID=3 
