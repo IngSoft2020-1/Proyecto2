@@ -2,7 +2,7 @@
   width: 350px;
   height: 200px;
   background: #1A2127;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;

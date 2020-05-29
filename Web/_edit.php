@@ -3,10 +3,14 @@
   error_reporting(0);
 
   if($_SESSION['listo'] == '1'){
-    echo "<script>alert('Cambios registrados.');</script>";
+    echo "<script>
+    localStorage.setItem('true', 1);
+    </script>";
   }
   else if($_SESSION['listo'] == '0'){
-    echo "<script>alert('Cambios no registrados.');</script>";
+    echo "<script>
+    localStorage.setItem('false', 1);
+    </script>";
   }
   $_SESSION['listo'] = '';
 ?>
@@ -33,6 +37,12 @@
     -->
     <script src="js/msg-alert.js"></script>
     <link rel="stylesheet" href="css/msg-alert.css">
+    <!-- FIN DE LA LIBRERIA -->
+
+    <!-- LIBRERIA PARA LOS POPUPS
+    -->
+    <script src="js/popup.js"></script>
+    <link rel="stylesheet" href="css/popup.css">
     <!-- FIN DE LA LIBRERIA -->
 
     <!-- MASCARA -->
@@ -254,6 +264,16 @@
         });
         </script>
       </div>
+    </div>
+
+    <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
+    <div class="box" id="true">
+      <p class="title-box">Cambio registrado</p>
+      <!-- <button class="ex" name="button">lala</button> -->
+    </div>
+    <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
+    <div class="box" id="false">
+      <p class="title-box">Cambio no registrado</p>
     </div>
   </body>
 </html>

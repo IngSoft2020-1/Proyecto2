@@ -56,6 +56,36 @@ btn_cancel3.click(function(){
 
 //Codigo para lograr el estilo del telefono
   $('#txt-tel').mask('000-000-0000', {placeholder: '000-000-0000'}); //placeholder
+
+
+  var trueX = localStorage.getItem('true');
+
+  if(trueX == '1'){
+    $('#true').css("display", "flex");
+    $('#true').show();
+  }
+
+
+  $('.btn-confirm').click(function(){
+    localStorage.setItem('true', 0);
+    $('.box').hide();
+  });
+
+  var falseX = localStorage.getItem('false');
+
+  if(falseX == '1'){
+    $('#false').css("display", "flex");
+    $('#false').show();
+  }
+
+
+  $('.btn-confirm').click(function(){
+    localStorage.setItem('false', 0);
+    $('.box').hide();
+  });
+
+
+
 });
 
 $('#btn-cancel').click(function(){
