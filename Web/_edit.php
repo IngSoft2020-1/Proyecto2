@@ -165,55 +165,41 @@
                   }
                 ?>
               </div>
-              <div class="field line">
+
+              <!-- *********************************************************** -->
+              <!-- *********************************************************** -->
+              <!-- *********************************************************** -->
+              <!-- AQUI ESTA EL POPUP QUE ME PIDIERON DE CAMBIAR CONTRASEÑA -->
+              <div class="field">
+                <label for="">Contraseña</label>
+                <button type="button" name="button" id="btn-change">Cambiar</button>
+              </div>
+
+
+
+
+
+              <!-- <div class="field line">
                 <label for="">Contraseña</label>
                 <div class="info">
                 <img src="img/lock.png" alt="" class="icon">
-                <input type="password" placeholder="••••••" class="textbox"  name="contra1" value="<?php echo $reg['Clave']?>" autocomplete="off">
-                </div>
+                <input type="password" placeholder="••••••" class="textbox"  name="contra1" value="<?php // echo $reg['Clave']?>" autocomplete="off">
+                </div> -->
                   <?php
-                    if($_SESSION['vall6'] == '1')
-                    {
+                    // if($_SESSION['vall6'] == '1')
+                    // {
                   ?>
                       <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-                      <div class="container-msg">
+                      <!-- <div class="container-msg">
                         <p class="title-msg">No se puede dejar vacio este campo</p>
                         <p class="title-content-msg">Error en la contraseña</p>
-                      </div>
+                      </div> -->
                       <!-- FIN -->
                   <?php
-                    }
+                    // }
                   ?>
-              </div>
-              <div class="field line">
-                <label for="">Confirmar</label>
-                <div class="info">
-                <img src="img/lock.png" alt="" class="icon">
-                <input type="password" placeholder="••••••" class="textbox"  name="contra2" value="<?php echo $reg['Clave']?>" autocomplete="off">
-                </div>
-                <?php
-                  if($_SESSION['vall7'] == '1' || $_SESSION['contra'] == '1')
-                  {
-                ?>
-                    <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-                    <div class="container-msg">
-                      <p class="title-msg">No se puede dejar vacio este campo</p>
-                      <p class="title-content-msg">Las contraseñas no coinciden</p>
-                    </div>
-                    <!-- FIN -->
-                <?php
-                  }
-                  $_SESSION['corre'] = '0';
-                  $_SESSION['contra'] = '0';
-                  $_SESSION['vall1'] = '0'; /*Formato nombre*/
-                  $_SESSION['vall2'] = '0'; /*Formato Apellidos*/
-                  $_SESSION['vall3'] = '0'; /*Formato correo*/
-                  $_SESSION['vall4'] = '0'; /*Formato confirmar correo*/
-                  $_SESSION['vall5'] = '0'; /*Formato telefono*/
-                  $_SESSION['vall6'] = '0'; /*Formato contrasena*/
-                  $_SESSION['vall7'] = '0'; /*Formato confirmar contrasena*/
-                ?>
-              </div>
+              <!-- </div> -->
+
               <!-- <div class="field">
                 <label for="">Contraseña</label>
                 <button type="button" name="button" id="btn-change">Cambiar</button>
@@ -229,7 +215,7 @@
           ?>
         </form>
         <!-- ESTO MANDA A LLAMAR EL POPUP PERO DESDE JS -->
-        <!-- <div class="popup" id="popup-contrasena" title="Nueva contraseña" style="display: none;">
+        <div class="popup" id="popup-contrasena" title="Nueva contraseña" style="display: none;">
           <form class="form-popup">
             <label class="lbl-pass">Nueva contraseña</label>
             <input type="text" name="contras1" value="" class="txt">
@@ -240,7 +226,7 @@
               <input type="submit" name="" value="Guardar" class="btn" id="button-save-2">
             </div>
           </form>
-        </div> -->
+        </div>
         <!-- Popup de confirmacion para guardar cambios -->
         <!-- <div class="popup" id="popup-confirmar" title="Confirmar" style="display: none;">
           <form class="form-popup">

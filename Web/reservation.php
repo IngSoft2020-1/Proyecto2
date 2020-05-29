@@ -18,40 +18,17 @@
         <table id="table-res">
             <thead>
               <tr>
-                <th style="color: #00FF80;">Fecha de inicio</th>
-                <th style="color: #EC6D4A;">Días</th>
-                <th style="color: #00FF80;">Estado</th>
+                <th style="color: #00FF80;">Fecha de reservación</th>
                 <th style="color: #EC6D4A;">Nombre</th>
-                <th style="color: #00FF80;">Teléfono</th>
-                <th style="color: #EC6D4A;">Edad</th>
-                <th style="color: #00FF80;">Nacionalidad</th>
+                <th style="color: #EC6D4A;">Días</th>
+                <th style="color: #EC6D4A;">Tipo habitación</th>
+                <th style="color: #00FF80;"># Habitación</th>
+                <th style="color: #00FF80;">Costo</th>
+                <th style="color: #EC6D4A;">Estado</th>
               </tr>
             </thead>
             <tbody>
-            <!--
-              <tr>
-                <td>10 de Julio del 2020</td>
-                <td>3</td>
-                <td>En Espera</td>
-                <td>Eduardo Morgado Jacome <br> Abner Perales <br> Jesús Ramirez </td>
-                <td>664-123-1231 <br> 664-123-1231 <br> 664-123-1231 </td>
-                <td>20 <br> 21 <br> 22 </td>
-                <td> Brasileño <br> Veracruzano <br> Ecuatoriano </td>
-                <td><a href="#" class="button edit">Editar</a></td>
-                <td><a href="#" class="button task-delete delete">Eliminar</a></td>
-              </tr>
-              <tr>
-                <td>10 de Julio del 2020</td>
-                <td>4</td>
-                <td>En Progreso</td>
-                <td>Eduardo Castro <br> Jesus Perales <br> Edy Ramirez </td>
-                <td>664-123-1231 <br> 664-123-1231 <br> 664-123-1231 </td>
-                <td>20 <br> 21 <br> 22 </td>
-                <td> Brasileño <br> Veracruzano <br> Ecuatoriano </td>
-                <td><a href="#" class="button edit">Editar</a></td>
-                <td><a href="#" class="button task-delete delete">Eliminar</a></td>
-              </tr>
-              -->
+
             </tbody>
             <tbody id="tasksReservacion"></tbody> <!--Donde se hace la magia con json-->
           </table>

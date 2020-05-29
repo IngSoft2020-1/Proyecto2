@@ -49,6 +49,8 @@
                 <th style="color: #EC6D4A;">Cita consulado</th>
                 <th style="color: #EC6D4A;">Nacionalidad</th>
                 <th style="color: #EC6D4A;">Teléfono</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
                 <th></th>
               </tr>
             </thead>

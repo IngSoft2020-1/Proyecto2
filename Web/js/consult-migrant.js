@@ -19,7 +19,7 @@ $(document).ready(function() {
                 console.error('Undefined sort field ' + field);
             break;
       }
-      
+
       for (var i = 0; i < rows.length; i++) {
           $('table-migrants tbody').append(rows[i]);
       }
@@ -56,15 +56,11 @@ $(document).ready(function() {
                         <td class="cita">${task.CitaConsulado}</td>
                         <td>${task.Pais}</td>
                         <td>${task.Telefono}</td>
-                        <td class="container-menu menu">
-                            <div class="options menu-${$row}">
-                                <div class="option">
-                                    <p class="text-menu edit-1">Editar</p>
-                                </div>
-                                <div class="option">
-                                    <p class="text-menu">Eliminar</p>
-                                </div>
-                            </div>
+                        <td>
+                          <a href="" class="button edit">Editar</a>
+                        </td>
+                        <td>
+                          <a href="" class="button task-delete delete">Eliminar</a>
                         </td>
                     </tr>
                     `
