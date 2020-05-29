@@ -44,6 +44,12 @@
     <script src="js/msg-alert.js"></script>
     <link rel="stylesheet" href="css/msg-alert.css">
     <!-- FIN DE LA LIBRERIA -->
+
+    <!-- LIBRERIA PARA LOS POPUPS
+    -->
+    <script src="js/popup.js"></script>
+    <link rel="stylesheet" href="css/popup.css">
+    <!-- FIN DE LA LIBRERIA -->
     <title></title>
   </head>
   <body>
@@ -105,7 +111,7 @@
                 }
               ?>
             </div>
-        
+
             <?php
               if($_SESSION['val2'] == '1')
               {
@@ -287,6 +293,14 @@
           </div>
         </form>
       </div>
+    </div>
+    <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
+    <div class="box">
+      <p class="title-box" id="confirmacion">Se han guardado los datos</p>
+    </div>
+    <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
+    <div class="box">
+      <p class="title-box" id="erro">Hubo un error</p>
     </div>
   </body>
 </html>
