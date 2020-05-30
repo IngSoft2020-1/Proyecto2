@@ -23,13 +23,13 @@
     {
         $_SESSION['validContra'] = '1';
     }
-    else if(!$contra1==$contra2)//IGUALES
+    else if($contra1 != $contra2)//IGUALES
     {
         $_SESSION['validContra'] = '1';
     }
 
     /* UPDATE DE LA CONTRASEÑA */
-    if ($_SESSION['validContra'])
+    if ($_SESSION['validContra'] == '0')
     {
         $conexion=mysqli_connect("localhost","root","","derechoscopio") or
         die("Problemas con la conexión");

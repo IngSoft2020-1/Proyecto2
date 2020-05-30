@@ -22,7 +22,7 @@
     {
         $_SESSION['validContra'] = '1';
     }
-    else if(!$contra1==$contra2)//IGUALES
+    else if($contra1 != $contra2)//IGUALES
     {
         $_SESSION['validContra'] = '1';
     }
