@@ -18,22 +18,24 @@
       <div class="container-select">
         <div class="select">
           <label for="order">Ordenar por:</label>
-          <select class="" name="order">
-            <option >Fecha de llegada asc</option>
-            <option >Fecha de llegada desc</option>
-            <option >Nombre asc</option>
-            <option selected>Nombre desc</option>
-            <option >Cita consulado asc</option>
-            <option >Cita consulado desc</option>
+          <select class="" name="order" id="wea">
+            <option value= "0" selected>Seleccionar</option>
+            <option value= "1">Fecha de llegada asc</option>
+            <option value= "2">Fecha de llegada desc</option>
+            <option value= "3">Nombre asc</option>
+            <option value= "4">Nombre desc</option>
+            <option value= "5">Cita consulado asc</option>
+            <option value= "6">Cita consulado desc</option>
           </select>
         </div>
         <div class="select">
           <label for="show">Mostrar:</label>
           <select class="" name="show">
-            <option value="mes">Último mes</option>
-            <option value="meses3">Últimos 3 meses</option>
-            <option value="meses6">Últimos 6 meses</option>
-            <option value="Todos" selected>Todos</option>
+            <option value= "0" selected>Seleccionar</option>
+            <option value="1">Último mes</option>
+            <option value="2">Últimos 3 meses</option>
+            <option value="3">Últimos 6 meses</option>
+            <option value="4" selected>Todos</option>
           </select>
         </div>
       </div>

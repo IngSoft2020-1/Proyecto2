@@ -1,29 +1,7 @@
 $(document).ready(function() {
-    console.log('jQuery esta funcionando');
+    var var1 = document.getElementById("wea").value;
+    console.log('jQuery esta funcionando' + var1);
     obtener();
-
-    $('select').on('change', function() {
-        sortAllBy(this.value);
-    });
-
-    function sortAllBy(field) {
-        var rows = $('table tbody tr').toArray();
-        switch (field) {
-            case 'Fecha de llegada asc':
-                rows = llegadaASC(rows, 'td.fecha-llegada', true);
-                break;
-            case 'Nombre asc':
-                rows = nombreASC(rows, 'td.nombre', true);
-                break;
-            default:
-                console.error('Undefined sort field ' + field);
-            break;
-      }
-      
-      for (var i = 0; i < rows.length; i++) {
-          $('table-migrants tbody').append(rows[i]);
-      }
-    }
 
     // METODO DE BUSQUEDA PARA MIGRANTES
   $("#search-migrants").on("keyup", function() {
