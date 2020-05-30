@@ -26,6 +26,9 @@
 		}
 		else{
 			/* header("location:index.php"); Te redirecciona a la pagina de Admin*/
+			$_SESSION['corn'] = $_REQUEST['usuario'];
+			$_SESSION['error'] = '1';
+			header("location:login.php"); /*Regresa al login*/
 		}
 	}
 	else{ /*Si no se encontro el usuario y la contrasena redirecciona*/
