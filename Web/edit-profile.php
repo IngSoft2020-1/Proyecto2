@@ -164,7 +164,7 @@
               <label for="">Confirmar Correo</label>
               <div class="info">
                 <img src="img/mail.png" alt="" class="icon">
-                <input type="text" placeholder="Confirmar" class="textbox" name="correo2" value="" autocomplete="off">
+                <input type="text" placeholder="Confirmar" class="textbox" name="correo2" value="<?php echo $reg['Correo']?>" autocomplete="off">
               </div>
               <!-- IMPRESION DE ERRORES -->
               <?php
@@ -194,6 +194,11 @@
                     <p class="title-content-msg">El telefono debe tener un formato de 000-000-0000.</p>
                   </div>';
                 }
+
+                $_SESSION['validNombres'] = '0';
+                $_SESSION['validApelllidos'] = '0';
+                $_SESSION['validCorreo'] = '0';
+                $_SESSION['validTelefono'] = '0';
               ?>
             </div>
 
@@ -206,9 +211,7 @@
               <div id="container">
             </div>
                 <input type="button" id="btn-cancel" value="Cancelar">
-                <form>
-                  <input type="submit" name=""  class="button-save" value="Guardar" id="btn-save"> <!-- disabled -->
-                </form>
+                <input type="button" name=""  class="button-save" value="Guardar" id="btn-save"> <!-- disabled -->
               </div>
               <?php
             }
@@ -230,16 +233,23 @@
             </div>
           </form>
         </div>
+
+
+
+
         <!-- Popup de confirmacion para guardar cambios -->
         <div class="popup" id="popup-confirmar" title="Confirmar" style="display: none;">
-          <form class="form-popup">
-            <label class="lbl-pass">¿Está seguro que desea guardar los cambios?</label>
-            <div class="container-button-save-cancel">
-              <input type="button" name="" value="Cancelar" id="button-cancel3" class="btn">
-              <input type="button" name="" value="Aceptar" class="btn" id="button-save-3">
-            </div>
-          </form>
-        </div>
+              <label class="lbl-pass">¿Está seguro que desea guardar los cambios?</label>
+              <div class="container-button-save-cancel">
+                <input type="button" name="" value="Cancelar" id="button-cancel3" class="btn">
+                <input type="submit" name="" value="Aceptar" class="btn" id="button-save-3">
+              </div>
+          </div>
+
+
+
+
+
         <script>
         var txt = $('.textbox');
         var msg = $('.container-msg');

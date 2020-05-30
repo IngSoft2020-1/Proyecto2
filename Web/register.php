@@ -54,12 +54,12 @@
         $_SESSION['corr'] = '1';
     }
     
-    if(strlen($contrasena1) < 4)
+    if(strlen($contrasena1) < 4 || !preg_match('`[a-zA-Z]`',$contrasena1) || !preg_match('`[0-9]`',$contrasena1))
     {
         $_SESSION['val5'] = '1'; /*Formato contrasena*/
     }
     
-    if(strlen($contrasena2) < 4)
+    if(strlen($contrasena2) < 4 || !preg_match('`[a-zA-Z]`',$contrasena2) || !preg_match('`[0-9]`',$contrasena2))
     {
         $_SESSION['val6'] = '1'; /*Formato confirmar contrasena*/
     }
@@ -68,6 +68,7 @@
     {
         $_SESSION['contra'] = '1';
     }
+    
     
     
     if(preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $telefono))
