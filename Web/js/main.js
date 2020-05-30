@@ -80,11 +80,11 @@ $(document).ready(function(){
 
   btn_edit_profile.click(function(){
     // VARIABLES
-    let newHTML = "edit-profile.php";
+    let newHTML = "edit-profile.php?id="+user;
     // OCULTAR ELEMENTOS
     $(container_home).hide();
     // SI YA ESTA ABIERTO ESE SUBMENU SOLO SE MUESTRA PARA QUE NO SE CREE UNO NUEVO
-    if($(iframe).attr("src") == "edit-profile.php"){
+    if($(iframe).attr("src") == "edit-profile.php?id="+user){
       $(iframe).show(); // SE MUESTRA ESE SUBMENU
     }
     else{

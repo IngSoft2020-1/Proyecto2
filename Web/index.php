@@ -1,3 +1,7 @@
+<?php 
+$idUser =4;
+?>
+
 <!--Menu de la pagina-->
 <!--Llamado de Login-->
 <!DOCTYPE html>
@@ -8,6 +12,7 @@
     <!-- JQUERY -->
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <!-- MIS SCRIPT -->
+    <script type="text/javascript">var user = "<?= $idUser ?>";</script>
     <script type="text/javascript" src="js/main.js"></script>
     <!-- METADATOS PARA APP MOVIL -->
     <meta name="viewport" content="width=device-width, user-scalable=no">
