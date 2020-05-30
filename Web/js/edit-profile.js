@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-  $(document).ready(function(){
-
    //Botón para cambiar contraseña *******************
     var btn_change = $("#btn-change");
     btn_change.click(function(){
@@ -57,18 +55,59 @@ $(document).ready(function(){
   });
 
   //Codigo para lograr el estilo del telefono
-    $('#txt-tel').mask('000-000-0000', {placeholder: '000-000-0000'}); //placeholder
-  });
+  $('#txt-tel').mask('000-000-0000', {placeholder: '000-000-0000'}); //placeholder
 
   $('#btn-cancel').click(function(){
       // ACTUALIZAR VENTANA PADRE DENTRO DE UN IFRAME
       parent.location.reload();
   });
 
-
   //$("#popup-confirmar").hasClass("popup")
   //console.log($("#popup-confirmar").hasClass("popup"));
 
+  
+  //Mensaje datos generales cambiados
+  var datosbien = localStorage.getItem('datosBien');
+  if(datosbien == '1'){
+    $('#datosBien').css("display", "flex");
+    $('#datosBien').show();
+  }
+  $('.btn-confirm').click(function(){
+    localStorage.setItem('datosBien', 0);
+    $('.box').hide();
+  });
+  
+  //Mensaje error datos generales
+  var datosmal = localStorage.getItem('datosMal');
+  if(datosmal == '1'){
+    $('#datosMal').css("display", "flex");
+    $('#datosMal').show();
+  }
+  $('.btn-confirm').click(function(){
+    localStorage.setItem('datosMal', 0);
+    $('.box').hide();
+  });
+  
+  //Mensaje contraseña cambiada
+  var contrabien = localStorage.getItem('contraBien');
+  if(contrabien == '1'){
+    $('#contraBien').css("display", "flex");
+    $('#contraBien').show();
+  }
+  $('.btn-confirm').click(function(){
+    localStorage.setItem('contraBien', 0);
+    $('.box').hide();
+  });
 
+  //Mensaje de error contraseña
+  var contramal = localStorage.getItem('contraMal');
+  if(contramal == '1'){
+    $('#contraMal').css("display", "flex");
+    $('#contraMal').show();
+  }
+  $('.btn-confirm').click(function(){
+    localStorage.setItem('contraMal', 0);
+    $('.box').hide();
+  });
 
 });

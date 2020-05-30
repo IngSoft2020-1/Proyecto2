@@ -87,14 +87,14 @@
             Correo= '$correo1',
             Telefono= '$telefono'
             where ID=$ID")
-        or die(header("location:edit-profile.php?id=$ID"));
+        or die(header("location:_edit.php?var=$ID"));
 
         $_SESSION['datos'] = '1';
-        header("location:edit-profile.php?id=$ID");
+        header("location:_edit.php?var=$ID");
     }else
     {
         $_SESSION['datos'] = '0';
-        header("location:edit-profile.php?id=$ID");
+        header("location:_edit.php?var=$ID");
     }
     
 ?>
