@@ -10,6 +10,7 @@
     $_SESSION['validContra'] = '0';
 
     /* VALIDACIONES CAMPO CONTRAÑESA */
+
     if(strlen($contra1) < 4)//LARGO MINIMO
     {
         $_SESSION['validContra'] = '1';

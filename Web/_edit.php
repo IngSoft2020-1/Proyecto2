@@ -6,6 +6,7 @@
 
   session_start();
   error_reporting(0);
+
   if($_SESSION['datos'] == '1'){
     echo "<script>
     localStorage.setItem('datosBien', 1);
@@ -16,7 +17,6 @@
     localStorage.setItem('datosMal', 1);
     </script>";
   }
-
   if($_SESSION['contra'] == '1'){
     echo "<script>
     localStorage.setItem('contraBien', 1);
@@ -61,7 +61,7 @@
     <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
     
     <!-- SCRIPTS -->
-    <script type="text/javascript" src="js/edit-profile.js"></script>
+    <script type="text/javascript" src="js/edit.js"></script>
     <link rel="stylesheet" href="css/edit.css">
 
     <title>Editar</title>
@@ -73,6 +73,7 @@
       </div>
       <div class="container-form">
       <form action="update-user-general?id=<?php echo $usu?>" method="post">
+
           <?php
             /*CONSULTA PARA CARGAR DATOS A TEXTBOX*/
             $query= "SELECT Nombre, Apellidos, Correo, Telefono FROM usuario WHERE ID='$usu'";
