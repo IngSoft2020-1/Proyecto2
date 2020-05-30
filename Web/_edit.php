@@ -1,7 +1,8 @@
 <?php
   session_start();
   error_reporting(0);
-
+  $usu = $_GET['var'];
+  
   if($_SESSION['listo'] == '1'){
     echo "<script>
     localStorage.setItem('true', 1);
@@ -21,32 +22,29 @@
     <meta charset="utf-8">
     <!-- JQUERY -->
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    
     <!-- MIS SCRIPT -->
     <script type="text/javascript" src="js/main.js"></script>
-    <!-- NO MOVER,  ES PARA EL POPUP -->
+  
+    <!-- LIBRERIA POPUP -->
     <link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css"/>
     <link rel="stylesheet" href="js/jquery-ui/jquery-ui.structure.min.css"/>
     <link rel="stylesheet" href="js/jquery-ui/jquery-ui.theme.min.css"/>
     <link rel="stylesheet" type="text/css" href="js/tooltipster-master/dist/css/tooltipster.bundle.min.css" />
     <script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
-    <!-- NO MOVER,  ES PARA EL POPUP -->
-
-    <!-- ESTA LIBRERIA LA CREO: EDUARDO BLANCO
-        PARA PODER MANDAR A LLAMAR UN MENSAJE
-        DE VALIDACION
-    -->
+    
+    <!-- LIBRERIA POPUPS MENSAJE DE VALIDACION -->
     <script src="js/msg-alert.js"></script>
     <link rel="stylesheet" href="css/msg-alert.css">
     <!-- FIN DE LA LIBRERIA -->
 
-    <!-- LIBRERIA PARA LOS POPUPS
-    -->
+    <!-- LIBRERIA POPUPS MENSAJE -->
     <script src="js/popup.js"></script>
     <link rel="stylesheet" href="css/popup.css">
-    <!-- FIN DE LA LIBRERIA -->
 
     <!-- MASCARA -->
     <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
+
     <!-- MIS SCRIPTS -->
     <script type="text/javascript" src="js/edit.js"></script>
     <link rel="stylesheet" href="css/edit.css">
@@ -58,11 +56,6 @@
         <img src="img/editar.png" alt="" class="icon-title">
       </div>
       <div class="container-form">
-        <?php
-          session_start();
-          error_reporting(0);
-          $usu = $_GET['var'];
-        ?>
         <form action="edit_usuario.php?var2=<?php echo $usu?>" method="post">
           <?php
             /*Consulta para cargar datos actuales a los textbox*/
