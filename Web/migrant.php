@@ -19,8 +19,8 @@
         <div class="select">
           <label for="order">Ordenar por:</label>
           <select class="" name="order" id="mySelect">
-            <option value="1">Fecha de llegada asc</option>
-            <option value="2">Fecha de llegada desc</option>
+          <!-- <option value="1">Fecha de llegada asc</option>
+            <option value="2">Fecha de llegada desc</option> -->
             <option value="3">Nombre asc</option>
             <option value="4">Nombre desc</option>
        <!-- <option value="5">Cita consulado asc</option>
@@ -28,13 +28,13 @@
           </select>
         </div>
         <div class="select">
-          <label for="show">Mostrar:</label>
+          <!-- <label for="show">Mostrar:</label>
           <select class="" name="show" id="mySelect2">
             <option value="mes">Último mes</option>
             <option value="meses3">Últimos 3 meses</option>
             <option value="meses6">Últimos 6 meses</option>
             <option value="Todos">Todos</option>
-          </select>
+          </select> -->
         </div>
       </div>
       <div class="container-table" style="overflow-x:auto;">
