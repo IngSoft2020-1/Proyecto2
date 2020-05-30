@@ -1,5 +1,13 @@
 <?php 
-$idUser =4;
+  session_start();
+  $varsesion = $_SESSION['cual'];
+	if($varsesion == null || $varsesion == '')
+	{
+    header("location:logout.php"); /*Te redirecciona a la pagina de admin*/
+    die();
+  }
+
+  $idUser = $_SESSION['cual'];
 ?>
 
 <!--Menu de la pagina-->
@@ -104,7 +112,7 @@ $idUser =4;
             <p id="title"></p>
           </div>
           <div class="container" id="header-2">
-            <a id="title" href="#">Cerrar sesión</a>
+            <a id="title" href="logout.php">Cerrar sesión</a>
             <img src="img/user.png" id="menu-header" alt="">
           </div>
         </div>

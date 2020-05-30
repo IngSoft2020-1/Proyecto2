@@ -1,3 +1,14 @@
+<?php
+  session_start();
+  error_reporting(0);
+  $varsesion = $_SESSION['cual'];
+  if($varsesion != null || $varsesion != '')
+	{
+    header("location:index.php"); /*Te redirecciona a la pagina de admin*/
+    die();
+  }
+?>
+
 <!-- Login -->
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
