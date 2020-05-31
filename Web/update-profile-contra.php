@@ -1,8 +1,10 @@
 <?php
 /*Llamado de edit-profile.php*/
 /*Hace update de los datos que se modificaron*/
+    require 'conexion.php';
     session_start();
     $ID = $_GET['id'];
+
 
     $contra1 = $_REQUEST['contra1'];
     $contra2 = $_REQUEST['contra2'];
@@ -31,9 +33,6 @@
     /* UPDATE DE LA CONTRASEÑA */
     if ($_SESSION['validContra'] == '0')
     {
-        $conexion=mysqli_connect("localhost","root","","derechoscopio") or
-        die("Problemas con la conexión");
-    
         mysqli_query($conexion,"UPDATE usuario SET 
             Clave='$contra1'
             WHERE ID=$ID")

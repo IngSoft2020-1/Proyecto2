@@ -1,6 +1,5 @@
 <?php
-    $conexion=mysqli_connect("localhost","root","","derechoscopio") or
-    die("Problemas con la conexión");
+    require 'conexion.php';
 
     $query="SELECT visitante.IDVisi AS 'IDVisi',
     visitante.Nombre AS 'Nombre',

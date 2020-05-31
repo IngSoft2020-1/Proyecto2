@@ -1,6 +1,5 @@
 <?php
-    $conexion=mysqli_connect("localhost","root","","derechoscopio") or
-    die("Problemas con la conexión");
+    require 'conexion.php';
 
     $query = "select reservacion.IDReser, 
     reservacion.FechaInicio,

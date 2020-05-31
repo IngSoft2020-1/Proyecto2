@@ -1,6 +1,5 @@
 <?php
-    $conexion=mysqli_connect("localhost","root","","derechoscopio") or
-    die("Problemas con la conexión");
+    require 'conexion.php';
 
     $query = "select usuario.ID, usuario.Nombre, Apellidos, Correo, Telefono, tipousuario.Nombre as 'TipoUsuario' from usuario inner join 
     tipousuario on usuario.TipoUsuario = tipousuario.ID where TipoUsuario in ('A','R') order by ID asc";

@@ -1,7 +1,6 @@
 <!--Elimina el usuario seleccionado-->
 <?php
-    $conexion=mysqli_connect("localhost","root","","derechoscopio") or
-    die("Problemas con la conexión");
+    require 'conexion.php';
 
     if(isset($_POST['ID'])) {
         $ID = $_POST['ID'];

@@ -1,6 +1,5 @@
 <?php
-  $conexion=mysqli_connect("localhost","root","","derechoscopio")
-  or die("Problemas con la conexión");
+  require 'conexion.php';
   $ID = $_GET['id'];
   session_start();
   error_reporting(0);
