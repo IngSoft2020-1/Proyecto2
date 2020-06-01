@@ -6,9 +6,7 @@
   }
   else if($_SESSION['creado'] == '1'){
     echo "<script>
-
     localStorage.setItem('success', 1);
-
     </script>";
   }
   else if($_SESSION['creado'] == '2'){
