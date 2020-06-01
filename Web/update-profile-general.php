@@ -1,9 +1,10 @@
 <?php
 /*Llamado de edit-profile.php*/
 /*Hace update de los datos que se modificaron*/
-    require 'conexion.php';
     session_start();
     $patronNombre = '/^[A-Za-z\x{00C0}-\x{00FF}][A-Za-z\x{00C0}-\x{00FF}\'\-]+([\ A-Za-z\x{00C0}-\x{00FF}][A-Za-z\x{00C0}-\x{00FF}\'\-]+)*/u';
+    $conexion=mysqli_connect("localhost","root","","derechoscopio") 
+    or die("Problemas con la conexión");
 
     $ID = $_GET['id'];
     $nombres = $_REQUEST['nombres'];

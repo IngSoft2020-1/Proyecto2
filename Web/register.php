@@ -1,7 +1,6 @@
 <?php
 /*Llamado de register.php*/
 /*Inserta un nuevo usuario en la base de datos*/
-    require 'conexion.php';
     session_start();
     $_SESSION['creado'] = '0';
     $_SESSION['contra'] = '0';
@@ -83,6 +82,9 @@
     if ($_SESSION['val1'] == '0' && $_SESSION['val2'] == '0' && $_SESSION['val3'] == '0' && $_SESSION['val4'] == '0' && $_SESSION['val5'] == '0'
     && $_SESSION['val6'] == '0' && $_SESSION['val7'] == '0' && $_SESSION['corr'] == '0' && $_SESSION['contra'] == '0')
     {
+        $conexion=mysqli_connect("localhost","root","","derechoscopio") or
+        die("Problemas con la conexión");
+
         $registros=mysqli_query($conexion,"select ID
                                 from usuario where Correo='$correo1'") or
         die("Problemas en el select:".mysqli_error($conexion));

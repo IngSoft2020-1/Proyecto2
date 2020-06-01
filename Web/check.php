@@ -2,10 +2,11 @@
     donde solo valida que en verdad exista el usuario y nos regresa un valor SESSION
 	el cual nos permite ver un mensaje dependiendo si se pudo o no iniciar secion-->
 <?php
-	require 'conexion.php';
 	session_start();
 	$_SESSION['cual'] = '';
 	/*Conexion de DB*/
+	$conexion=mysqli_connect("localhost","root","","derechoscopio") or
+    die("Problemas con la conexión");
 
 	/*Busca que exista el usuario*/
 	$registros=mysqli_query($conexion,"select TipoUsuario, ID 

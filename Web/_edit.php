@@ -1,5 +1,6 @@
 <?php
-  require 'conexion.php';
+  $conexion=mysqli_connect("localhost","root","","derechoscopio")
+  or die("Problemas con la conexión");
   
   $usu = $_GET['var'];
 
@@ -60,7 +61,7 @@
     <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
     
     <!-- SCRIPTS -->
-    <script type="text/javascript" src="js/edit-profile.js"></script>
+    <script type="text/javascript" src="js/edit.js"></script>
     <link rel="stylesheet" href="css/edit.css">
 
     <title>Editar</title>

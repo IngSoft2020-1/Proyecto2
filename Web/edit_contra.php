@@ -1,7 +1,6 @@
 <?php
 /*Llamado de _edit.php*/
 /*Hace update de los datos que se modificaron*/
-    require 'conexion.php';
     session_start();
     $_SESSION['listo'] = '0';
     $_SESSION['contras'] = '0';
@@ -28,6 +27,8 @@
 
     if ($_SESSION['valll1'] == '0' && $_SESSION['valll2'] == '0' && $_SESSION['contras'] == '0')
     {
+        $conexion=mysqli_connect("localhost","root","","derechoscopio") or
+        die("Problemas con la conexión");
     
         mysqli_query($conexion,"update usuario set 
             Clave='$contras1'  
