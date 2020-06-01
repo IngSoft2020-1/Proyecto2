@@ -72,7 +72,7 @@
         <img src="img/editar.png" alt="" class="icon-title">
       </div>
       <div class="container-form">
-      <form action="update-user-general?id=<?php echo $usu?>" method="post">
+      <form action="update-user-general.php?id=<?php echo $usu?>" method="post">
 
           <?php
             /*CONSULTA PARA CARGAR DATOS A TEXTBOX*/
