@@ -23,6 +23,33 @@ $(document).ready(function(){
     parent.location.reload();
   });
 
+  var success = localStorage.getItem('success');
+
+  if(success == '1'){
+    $('#success').css("display", "flex");
+    $('#success').show();
+  }
+
+
+  $('.btn-confirm').click(function(){
+    localStorage.setItem('success', 0);
+    $('.box').hide();
+  });
+
+
+  var UserExist = localStorage.getItem('UserExist');
+
+  if(UserExist == '1'){
+    $('#UserExist').css("display", "flex");
+    $('#UserExist').show();
+  }
+
+
+  $('.btn-confirm').click(function(){
+    localStorage.setItem('UserExist', 0);
+    $('.box').hide();
+  });
+
 
 
 });

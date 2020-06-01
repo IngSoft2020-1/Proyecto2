@@ -19,13 +19,16 @@
 	if($resultado > 0) /*Si se encontro el usuario y la contrasena redirecciona*/
 	{
 		$_SESSION['error'] = '0';
-		$_SESSION['cual'] = $res['ID'];
 		if($res['TipoUsuario']=="S") /*En mi tabla tengo un campo como admin, el cual se guarda un si o un no, dependiendo si eres admin*/
 		{
+			$_SESSION['cual'] = $res['ID'];
 			header("location:index.php"); /*Te redirecciona a la pagina de admin*/
 		}
 		else{
-			header("location:index.php"); /*Te redirecciona a la pagina de Admin*/
+			/* header("location:index.php"); Te redirecciona a la pagina de Admin*/
+			$_SESSION['corn'] = $_REQUEST['usuario'];
+			$_SESSION['error'] = '1';
+			header("location:login.php"); /*Regresa al login*/
 		}
 	}
 	else{ /*Si no se encontro el usuario y la contrasena redirecciona*/

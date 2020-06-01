@@ -3,13 +3,18 @@
   error_reporting(0);
 
   if($_SESSION['creado'] == '0'){
-    // echo "<script>alert('Ah ocurrido un error.');</script>";
   }
   else if($_SESSION['creado'] == '1'){
-    echo "<script>alert('Usuario registrado.');</script>";
+    echo "<script>
+
+    localStorage.setItem('success', 1);
+
+    </script>";
   }
   else if($_SESSION['creado'] == '2'){
-    echo "<script>alert('Usuario ya existente.');</script>";
+    echo "<script>
+    localStorage.setItem('UserExist', 1);
+    </script>";
   }
 
   if($_SESSION['corr'] == '1'){
@@ -34,8 +39,7 @@
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <!-- MASCARA -->
     <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
-    <!-- MIS SCRIPT -->
-    <script src="js/new-user.js"></script>
+
     <link rel="stylesheet" href="css/new.css">
     <!-- ESTA LIBRERIA LA CREO: EDUARDO BLANCO
         PARA PODER MANDAR A LLAMAR UN MENSAJE
@@ -44,6 +48,14 @@
     <script src="js/msg-alert.js"></script>
     <link rel="stylesheet" href="css/msg-alert.css">
     <!-- FIN DE LA LIBRERIA -->
+
+    <!-- LIBRERIA PARA LOS POPUPS
+    -->
+    <script src="js/popup.js"></script>
+    <link rel="stylesheet" href="css/popup.css">
+    <!-- FIN DE LA LIBRERIA -->
+    <!-- MIS SCRIPT -->
+    <script src="js/new-user.js"></script>
     <title></title>
   </head>
   <body>
@@ -105,7 +117,7 @@
                 }
               ?>
             </div>
-        
+
             <?php
               if($_SESSION['val2'] == '1')
               {
@@ -287,6 +299,15 @@
           </div>
         </form>
       </div>
+    </div>
+    <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
+    <div class="box" id="success">
+      <p class="title-box">Usuario creado</p>
+      <!-- <button class="ex" name="button">lala</button> -->
+    </div>
+    <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
+    <div class="box" id="UserExist">
+      <p class="title-box">Usuario ya existente</p>
     </div>
   </body>
 </html>
