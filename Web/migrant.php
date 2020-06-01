@@ -29,13 +29,13 @@
           </select>
         </div>
         <div class="select">
-          <!-- <label for="show">Mostrar:</label>
+          <label for="show">Mostrar:</label>
           <select class="" name="show" id="mySelect2">
             <option value="mes">Último mes</option>
             <option value="meses3">Últimos 3 meses</option>
             <option value="meses6">Últimos 6 meses</option>
             <option value="Todos">Todos</option>
-          </select> -->
+          </select>
         </div>
       </div>
       <div class="container-table" style="overflow-x:auto;">
