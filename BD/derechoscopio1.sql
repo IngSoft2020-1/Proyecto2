@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 21-05-2020 a las 21:06:41
+-- Tiempo de generación: 02-06-2020 a las 04:19:09
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `derechoscopio`
 --
+CREATE DATABASE IF NOT EXISTS `derechoscopio` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `derechoscopio`;
 
 -- --------------------------------------------------------
 
@@ -132,7 +134,6 @@ INSERT INTO `nacionalidad` (`IDPais`, `Pais`) VALUES
 DROP TABLE IF EXISTS `reservacion`;
 CREATE TABLE IF NOT EXISTS `reservacion` (
   `IDReser` int(11) NOT NULL AUTO_INCREMENT,
-  `Creador` int(11) NOT NULL,
   `FechaInicio` date NOT NULL,
   `FechaFin` date NOT NULL,
   `DiasEstima` int(11) NOT NULL,
@@ -141,7 +142,6 @@ CREATE TABLE IF NOT EXISTS `reservacion` (
   `TipoHabita` char(1) NOT NULL,
   `Estado` char(1) NOT NULL DEFAULT 'E',
   PRIMARY KEY (`IDReser`),
-  KEY `Creador` (`Creador`),
   KEY `TipoHabita` (`TipoHabita`),
   KEY `Estado` (`Estado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
@@ -150,14 +150,14 @@ CREATE TABLE IF NOT EXISTS `reservacion` (
 -- Volcado de datos para la tabla `reservacion`
 --
 
-INSERT INTO `reservacion` (`IDReser`, `Creador`, `FechaInicio`, `FechaFin`, `DiasEstima`, `PersonasEstima`, `FechaCreacion`, `TipoHabita`, `Estado`) VALUES
-(2, 7, '2020-05-06', '2020-05-07', 1, 2, '2020-05-02', 'D', 'E'),
-(3, 4, '2020-05-05', '2020-05-08', 3, 3, '2020-05-01', 'T', 'E'),
-(4, 4, '2020-05-04', '2020-05-07', 3, 1, '2020-05-01', 'I', 'F'),
-(5, 9, '2020-05-05', '2020-05-07', 2, 2, '2020-05-04', 'D', 'F'),
-(6, 4, '2020-05-04', '2020-05-06', 2, 3, '2020-05-02', 'T', 'F'),
-(7, 4, '2020-05-13', '2020-05-14', 1, 2, '2020-05-05', 'D', 'P'),
-(8, 3, '2020-05-04', '2020-05-05', 1, 1, '2020-05-01', 'I', 'P');
+INSERT INTO `reservacion` (`IDReser`, `FechaInicio`, `FechaFin`, `DiasEstima`, `PersonasEstima`, `FechaCreacion`, `TipoHabita`, `Estado`) VALUES
+(2, '2020-05-06', '2020-05-07', 1, 2, '2020-05-02', 'D', 'E'),
+(3, '2020-05-05', '2020-05-08', 3, 3, '2020-05-01', 'T', 'E'),
+(4, '2020-05-04', '2020-05-07', 3, 1, '2020-05-01', 'I', 'F'),
+(5, '2020-05-05', '2020-05-07', 2, 2, '2020-05-04', 'D', 'F'),
+(6, '2020-05-04', '2020-05-06', 2, 3, '2020-05-02', 'T', 'F'),
+(7, '2020-05-13', '2020-05-14', 1, 2, '2020-05-05', 'D', 'P'),
+(8, '2020-05-04', '2020-05-05', 1, 1, '2020-05-01', 'I', 'P');
 
 -- --------------------------------------------------------
 
@@ -339,7 +339,6 @@ ALTER TABLE `historial_modificacion`
 -- Filtros para la tabla `reservacion`
 --
 ALTER TABLE `reservacion`
-  ADD CONSTRAINT `reservacion_ibfk_1` FOREIGN KEY (`Creador`) REFERENCES `usuario` (`ID`),
   ADD CONSTRAINT `reservacion_ibfk_2` FOREIGN KEY (`TipoHabita`) REFERENCES `tipohabitacion` (`ID`),
   ADD CONSTRAINT `reservacion_ibfk_3` FOREIGN KEY (`Estado`) REFERENCES `estado` (`ID`);
 
