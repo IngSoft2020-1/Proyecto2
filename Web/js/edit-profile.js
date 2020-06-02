@@ -65,7 +65,7 @@ $(document).ready(function(){
   //$("#popup-confirmar").hasClass("popup")
   //console.log($("#popup-confirmar").hasClass("popup"));
 
-  
+
   //Mensaje datos generales cambiados
   var datosbien = localStorage.getItem('datosBien');
   if(datosbien == '1'){
@@ -76,7 +76,7 @@ $(document).ready(function(){
     localStorage.setItem('datosBien', 0);
     $('.box').hide();
   });
-  
+
   //Mensaje error datos generales
   var datosmal = localStorage.getItem('datosMal');
   if(datosmal == '1'){
@@ -87,7 +87,7 @@ $(document).ready(function(){
     localStorage.setItem('datosMal', 0);
     $('.box').hide();
   });
-  
+
   //Mensaje contraseña cambiada
   var contrabien = localStorage.getItem('contraBien');
   if(contrabien == '1'){
@@ -108,6 +108,15 @@ $(document).ready(function(){
   $('.btn-confirm').click(function(){
     localStorage.setItem('contraMal', 0);
     $('.box').hide();
+  });
+
+  // DETECTAR EL BTN
+  var btnEdit = $('.btn-edit-2');
+
+  btnEdit.click(function(){
+    var txt = $('.textbox');
+    txt.css("background", "transparent");
+    txt.prop('disabled', false);
   });
 
 });

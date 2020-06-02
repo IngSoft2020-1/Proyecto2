@@ -105,7 +105,7 @@ label{
 
 .textbox{
   border: 0;
-  background: transparent;
+  background: gray;
   width: 84%;
   color: white;
   font-size: calc(0.5em + 0.7vw);
@@ -311,4 +311,14 @@ p.popup-texto {
 
 input.textbox-popup.cancel {
     background: transparent !important;
+}
+
+.btn-edit-2{
+  border: 2px solid #EC6D4A;
+  color: white;
+  background: transparent;
+  width: calc(5em + 0.6vw);
+  height: calc(3em + 0.4vw);
+  margin-right: 16px;
+  cursor: pointer;
 }
