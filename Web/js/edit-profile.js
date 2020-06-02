@@ -117,6 +117,7 @@ $(document).ready(function(){
     var txt = $('.textbox');
     txt.css("background", "transparent");
     txt.prop('disabled', false);
+    $('#btn-change').prop('disabled', false).css("cursor", "pointer");
   });
 
 });

@@ -7,7 +7,15 @@
 
     <link rel="stylesheet" href="css/edit.css">
     <link rel="stylesheet" href="css/migrant.css">
-    <script src="js/migrant.js"></script>
+
+    <!-- LIBRERIAS PARA DATEPICKER -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- MASCARA -->
+    <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
+
     <title>Editar</title>
   </head>
   <body>
@@ -42,7 +50,7 @@
         <table id="table-migrants" class="tablesorter">
             <thead>
               <tr>
-                <td style="display: none;">ID</td>
+                <th>ID</th>
                 <th style="color: #00FF80;">Fecha de llegada</th>
                 <th style="color: #00FF80;">Nombre</th>
                 <th style="color: #00FF80;">Fecha de nacimiento</th>
@@ -52,7 +60,6 @@
                 <th style="color: #EC6D4A;">Teléfono</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
-                <th></th>
               </tr>
             </thead>
             <tbody id="tasks-migrants"></tbody> <!--Donde se hace la magia con json-->
@@ -61,4 +68,8 @@
     </div>
   </body>
   <script src="js/consult-migrant.js"></script> <!--Manda a llamar al json-->
+  <!-- HORA -->
+  <script type="text/javascript" src="js/hora/src/wickedpicker.js"></script>
+  <link rel="stylesheet" href="js/hora/stylesheets/wickedpicker.css">
+  <!-- <script src="js/migrant.js"></script> -->
 </html>

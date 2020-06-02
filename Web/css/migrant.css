@@ -23,11 +23,6 @@ select{
       height: 28px;
 }
 
-.min-width, td{
-  min-width: 80px;
-}
-
-
 .options {
     position: absolute;
     text-align: center;

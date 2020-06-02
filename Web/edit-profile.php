@@ -224,7 +224,7 @@
             <!-- CONTRASEÑA -->
               <div class="field">
                 <label for="">Contraseña</label>
-                <button type="button" name="button" id="btn-change">Cambiar</button>
+                <button disabled="on" style="cursor: default;" type="button" name="button" id="btn-change">Cambiar</button>
               </div>
               <div class="field" id="field-button">
               <div id="container">

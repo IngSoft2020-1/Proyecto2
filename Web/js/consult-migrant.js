@@ -45,7 +45,7 @@ $(document).ready(function() {
             if(typeSelect == "3")
             {
                 //Set the sorting direction to ascending:
-                dir = "asc"; 
+                dir = "asc";
             }
             else if(typeSelect == "4")
             {
@@ -54,7 +54,7 @@ $(document).ready(function() {
 
             /*Make a loop that will continue until
             no switching has been done:*/
-            while (switching) 
+            while (switching)
             {
                 //start by saying: no switching is done:
                 switching = false;
@@ -70,15 +70,15 @@ $(document).ready(function() {
                     y = rows[i + 1].getElementsByTagName("TD")[1];
                     /*check if the two rows should switch place,
                     based on the direction, asc or desc:*/
-                    if (dir == "asc") 
+                    if (dir == "asc")
                     {
                         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                             //if so, mark as a switch and break the loop:
                             shouldSwitch= true;
                             break;
                         }
-                    } 
-                    else if (dir == "desc") 
+                    }
+                    else if (dir == "desc")
                     {
                         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
                             //if so, mark as a switch and break the loop:
@@ -93,8 +93,8 @@ $(document).ready(function() {
                     rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                     switching = true;
                     //Each time a switch is done, increase this count by 1:
-                    switchcount ++;      
-                } 
+                    switchcount ++;
+                }
                 else {
                     /*If no switching has been done AND the direction is "asc",
                     set the direction to "desc" and run the while loop again.*/
@@ -106,7 +106,7 @@ $(document).ready(function() {
             if(typeSelect == "1")
             {
                 //Set the sorting direction to ascending:
-                dir = "asc"; 
+                dir = "asc";
             }
             else if(typeSelect == "2")
             {
@@ -115,7 +115,7 @@ $(document).ready(function() {
 
             /*Make a loop that will continue until
             no switching has been done:*/
-            while (switching) 
+            while (switching)
             {
                 //start by saying: no switching is done:
                 switching = false;
@@ -127,20 +127,20 @@ $(document).ready(function() {
                     shouldSwitch = false;
                     /*Get the two elements you want to compare,
                     one from current row and one from the next:*/
-                    x = Date.parse(rows[i].getElementsByTagName("TD")[0]); 
-                    y = Date.parse(rows[i + 1].getElementsByTagName("TD")[0]); 
+                    x = Date.parse(rows[i].getElementsByTagName("TD")[0]);
+                    y = Date.parse(rows[i + 1].getElementsByTagName("TD")[0]);
 
                     /*check if the two rows should switch place,
                     based on the direction, asc or desc:*/
-                    if (dir == "asc") 
+                    if (dir == "asc")
                     {
                         if (x > y) {
                             //if so, mark as a switch and break the loop:
                             shouldSwitch= true;
                             break;
                         }
-                    } 
-                    else if (dir == "desc") 
+                    }
+                    else if (dir == "desc")
                     {
                         if (x < y) {
                             //if so, mark as a switch and break the loop:
@@ -155,8 +155,8 @@ $(document).ready(function() {
                     rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                     switching = true;
                     //Each time a switch is done, increase this count by 1:
-                    switchcount ++;      
-                } 
+                    switchcount ++;
+                }
                 else {
                     /*If no switching has been done AND the direction is "asc",
                     set the direction to "desc" and run the while loop again.*/
@@ -180,26 +180,65 @@ $(document).ready(function() {
                 tasks.forEach(task => {
                     $row++;
                     templado += `
-                    <tr class="tr" task-id="${task.IDVisi}>
-                        <td style="display: none;">${$row}</td>
-                        <td class='fecha-llegada'>${task.FechaLlegada}</td>
-                        <td class='nombre'>${task.Nombre}</td>
-                        <td class="min-width">${task.FechaNacimiento}</td>
-                        <td class="min-width">${task.HoraLlegada}</td>
-                        <td class="cita">${task.CitaConsulado}</td>
-                        <td>${task.Pais}</td>
-                        <td>${task.Telefono}</td>
+                    <tr class="tr" task-id="${task.IDVisi}">
+                        <td>${$row}</td>
+                        <td class='fecha-llegada'><input disabled="on" type="text" value="${task.FechaLlegada}" class="datepicker habilitar"></td>
+                        <td class='nombre'><input type="text" value="${task.Nombre}" disabled="on" class="habilitar"></td>
+                        <td class="min-width"><input disabled="on" type="text" value="${task.FechaNacimiento}" class="datepicker habilitar"></td>
+                        <td class="min-width"><input disabled="on" type="text" class="timepicker habilitar" value="${task.HoraLlegada}"></td>
+                        <td class="cita"><input disabled="on" type="text" class="timepicker habilitar" value="${task.CitaConsulado}"></td>
                         <td>
-                          <a href="" class="button edit">Editar</a>
+                          <select disabled="on" class="habilitar">
+                            <option value="" selected>${task.Pais}</option>
+                            <option value="">Argentina</option>
+                            <option value="">San Bartolome</option>
+                            <option value="">Bolivia</option>
+                            <option value="">Brasil</option>
+                            <option value="">Chile</option>
+                            <option value="">Colombia</option>
+                            <option value="">Cota Rica</option>
+                            <option value="">Cuba</option>
+                            <option value="">Ecuador></option>
+                            <option value="">Guadalupe</option>
+                            <option value="">Guatemala</option>
+                            <option value="">Guyana Francesa</option>
+                            <option value="">Mexico</option>
+                            <option value="">Martinica</option>
+                            <option value="">Nicaragua</option>
+                            <option value="">Panama</option>
+                            <option value="">Peru</option>
+                            <option value="">Puerto Rico</option>
+                            <option value="">Paraguay</option>
+                            <option value="">Republica Dominicana</option>
+                            <option value="">El Salvador</option>
+                            <option value="">San Martin</option>
+                            <option value="">Uruguay</option>
+                            <option value="">Venezuela</option>
+                          </select>
+                        </td>
+                        <td><input disabled="on" type="text" value="${task.Telefono}" class="txt-tel habilitar"></td>
+                        <td>
+                          <button class="button edit">Editar</button>
                         </td>
                         <td>
-                          <a href="" class="button task-delete delete">Eliminar</a>
+                          <button class="button task-delete delete">Eliminar</button>
                         </td>
                     </tr>
-                    `
+                    `;
                 });
                 $('#tasks-migrants').html(templado);
+                // METODO PARA QUE EL INPUT DE TIPO DATAPICKER SEA UN CALENDARIO AL DAR CLICK
+                $( ".datepicker" ).datepicker();
+                // METODO DE MASCARA DE ENTRADA PARA QUE EL INPUT TEL SEA SOLO NUMERICO Y AUTOSERAPACION
+                $('.txt-tel').mask('000-000-0000', {placeholder: '000-000-0000'}); //placeholder
+                $('.timepicker').wickedpicker();
             }
         });
     }
+
+    // EVENTO CLICK DEL BOTON EDITAR
+    $('.edit').click(function(){
+      alert("2");
+    });
+
 });

@@ -5,11 +5,7 @@
 
     <!-- JQUERY -->
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-    <!-- LIBRERIA PARA LOS POPUPS
-    -->
-    <script src="js/popup.js"></script>
-    <link rel="stylesheet" href="css/popup.css">
-    <!-- FIN DE LA LIBRERIA -->
+    <script type="text/javascript" src="js/edit.js"></script>
     <link rel="stylesheet" href="css/edit.css">
     <title>Editar</title>
   </head>
@@ -34,10 +30,10 @@
       </div>
     </div>
   </body>
-  <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
   <div class="box" id="success">
-    <p class="title-box">Are you sure?</p>
-    <button class="btn-confirm" name="button">Cancelar</button>
+    <p class="title-box">¿Estas seguro?</p>
+    <button id="btn-cancel-2" name="button">Cancelar</button>
+    <button class="btn-confirm" name="button">Aceptar</button>
   </div>
 <script src="js/app.js"></script> <!--Manda a llamar al json-->
 
