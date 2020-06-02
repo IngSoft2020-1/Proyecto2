@@ -93,12 +93,19 @@ $(document).ready(function() {
     }
 
     /*Elimina el usuario seleccionado*/
+    var ID;
     $(document).on('click','.task-delete', function() {
-        let element = $(this)[0].parentElement.parentElement;
-        let ID = $(element).attr('task-id');
-        $.post('task-delete.php', {ID}, function(response) {
-            console.log(response);
-            obtener();
-        })
+        var element = $(this)[0].parentElement.parentElement;
+        ID = $(element).attr('task-id');
+        $('.box').css("display", "flex");
+        $('.box').show();
     })
+
+    $('.btn-confirm').click(function(){
+      $.post('task-delete.php', {ID}, function(response) {
+          console.log(response);
+          obtener();
+      })
+      $('.box').hide();
+    });
 });
