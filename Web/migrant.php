@@ -58,11 +58,13 @@
                 <th style="color: #EC6D4A;">Cita consulado</th>
                 <th style="color: #EC6D4A;">Nacionalidad</th>
                 <th style="color: #EC6D4A;">Teléfono</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
-            <tbody id="tasks-migrants"></tbody> <!--Donde se hace la magia con json-->
+            <tbody id="tasks-migrants">
+
+            </tbody> <!--Donde se hace la magia con json-->
           </table>
       </div>
     </div>
@@ -71,5 +73,6 @@
   <!-- HORA -->
   <script type="text/javascript" src="js/hora/src/wickedpicker.js"></script>
   <link rel="stylesheet" href="js/hora/stylesheets/wickedpicker.css">
-  <!-- <script src="js/migrant.js"></script> -->
+  <script src="js/migrant.js"></script>
+
 </html>
