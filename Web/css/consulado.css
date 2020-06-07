@@ -1,0 +1,48 @@
+*{
+  font-family: poppins, 'arial';
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  text-align: left;
+  padding: 40px;
+  font-size: calc(0.5em + 0.7vw);
+}
+
+table>tbody>tr:nth-child(odd) {
+    background-color:#27333B;
+}
+
+table>tbody>tr:nth-child(even) {
+    background-color: #1D262D;
+}
+
+table td, table th{
+  padding: 10px;
+}
+
+.habitacion{
+  text-align: center;
+}
+
+.container-table{
+  width: 90%;
+  margin: auto;
+  box-shadow: 4px 4px 20px #141a1f;
+  margin-top: 15px;
+  border-radius: 18px;
+  padding: 10px;
+}
+
+.text{
+  text-align: center;
+  color: white;
+  font-size: 20px;
+}

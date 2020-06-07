@@ -1,4 +1,4 @@
-<?php 
+<?php
   session_start();
   $varsesion = $_SESSION['cual'];
 	if($varsesion == null || $varsesion == '')
@@ -22,8 +22,8 @@
     <!-- MIS SCRIPT -->
     <script type="text/javascript">var user = "<?= $idUser ?>";</script>
     <script type="text/javascript" src="js/main.js"></script>
-    <!-- METADATOS PARA APP MOVIL -->
-    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <script src="js/time.js"></script>
+    <link rel="stylesheet" href="css/time.css">
     <title>Inicio</title>
   </head>
   <body>
@@ -81,8 +81,8 @@
           </div>
           <ul class="ul-submenu" id="ul-profile">
             <li class="container-button submenu" id="btn-profile">
-              <img src="img/edit.png" alt="" class="icon">
-              <a class="text">Editar</a>
+              <img src="img/read.png" alt="" class="icon">
+              <a class="text">Consultar</a>
             </li>
           </ul>
         </li>
@@ -100,7 +100,6 @@
         </li>
       </ul>
     </aside>
-
     <!-- CONTENEDOR PRINCIPAL DE LA PANTALLA -->
     <section>
       <!-- ENCABEZADO -->
@@ -110,6 +109,11 @@
             <img src="img/menu.png" id="menu" alt="">
             <img src="img/menu.png" id="menu-mobile" alt="">
             <p id="title"></p>
+            <div class="date">
+              <p id="date" class="time"></p>
+              <span>&nbsp;&nbsp;</span>
+              <p id="hour" class="time"></p>
+            </div>
           </div>
           <div class="container" id="header-2">
             <a id="title" href="logout.php">Cerrar sesión</a>
@@ -118,67 +122,7 @@
         </div>
       </header>
       <div class="container-section">
-        <div id="container-home">
-          <table class="table-mobile">
-            <tbody>
-              <tr class="blue">
-                <td colspan="2" class="name">Jose Vazquez</td>
-              </tr>
-              <tr class="black">
-                <td class="txtBlue">Telefono</td>
-                <td>664646</td>
-              </tr>
-              <tr class="gray">
-                <td class="txtBlue">Fecha</td>
-                <td>02-12-2020</td>
-              </tr>
-              <tr class="black">
-                <td class="txtBlue">Fecha 2</td>
-                <td>02-12-2020</td>
-              </tr>
-              <tr>
-                <td class="space">&nbsp;</td>
-              </tr>
-              <tr class="blue">
-                <td colspan="2" class="name">Jose Vazquez</td>
-              </tr>
-              <tr class="black">
-                <td class="txtBlue">Telefono</td>
-                <td>664646</td>
-              </tr>
-              <tr class="gray">
-                <td class="txtBlue">Fecha</td>
-                <td>02-12-2020</td>
-              </tr>
-              <tr class="black">
-                <td class="txtBlue">Fecha 2</td>
-                <td>02-12-2020</td>
-              </tr>
-              <tr>
-                <td class="space">&nbsp;</td>
-              </tr>
-              <tr class="blue">
-                <td colspan="2" class="name">Jose Vazquez</td>
-              </tr>
-              <tr class="black">
-                <td class="txtBlue">Telefono</td>
-                <td>664646</td>
-              </tr>
-              <tr class="gray">
-                <td class="txtBlue">Fecha</td>
-                <td>02-12-2020</td>
-              </tr>
-              <tr class="black">
-                <td class="txtBlue">Fecha 2</td>
-                <td>02-12-2020</td>
-              </tr>
-              <tr>
-                <td class="space">&nbsp;</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <iframe scrolling="yes"></iframe>
+        <iframe scrolling="yes" src="consulado.php"></iframe>
       </div>
     </section>
   </body>
