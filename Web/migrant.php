@@ -43,6 +43,7 @@
         <div class="select">
           <label for="show">Mostrar:</label>
           <select class="" name="show" id="mySelect2">
+            <option value="">Proximos 7 días</option>
             <option value="mes">Último mes</option>
             <option value="meses3">Últimos 3 meses</option>
             <option value="meses6">Últimos 6 meses</option>
@@ -66,9 +67,7 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody id="tasks-migrants">
-
-            </tbody> <!--Donde se hace la magia con json-->
+            <tbody id="tasks-migrants"></tbody> <!--Donde se hace la magia con json-->
           </table>
       </div>
     </div>
