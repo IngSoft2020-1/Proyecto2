@@ -84,7 +84,7 @@ a{
 
 /* ESTILOS PARA AGREGAR MANUALMENTE */
 .container-msg{
-  display: none !important;
+  /* display: none !important; */
 }
 
 .txt-tel{

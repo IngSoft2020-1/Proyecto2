@@ -38,12 +38,12 @@
           <label for="">Nombre</label>
           <div class="info">
             <img src="img/name.png" alt="" class="icon">
-            <input type="text" placeholder="Nombre" class="textbox" name="nombre" autocomplete="off">
+            <input type="text" placeholder="Nombre" class="textbox ocultar" name="nombre" autocomplete="off">
           </div>
           <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
           <div class="container-msg">
             <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten espacios en blanco</p>
+            <p class="title-content-msg">No se permiten campos vacios</p>
           </div>
           <!-- FIN -->
         </div>
@@ -51,12 +51,12 @@
           <label for="">Apellidos</label>
           <div class="info">
             <img src="img/name.png" alt="" class="icon">
-            <input type="text" placeholder="Apellidos" class="textbox" name="apellidos" autocomplete="off">
+            <input type="text" placeholder="Apellidos" class="textbox ocultar" name="apellidos" autocomplete="off">
           </div>
           <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
           <div class="container-msg">
             <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten espacios en blanco</p>
+            <p class="title-content-msg">No se permiten campos vacios</p>
           </div>
           <!-- FIN -->
         </div>
@@ -66,12 +66,12 @@
           <label for="">Telefono</label>
           <div class="info">
             <img src="img/phone.png" alt="" class="icon">
-            <input type="text" value="" class="txt-tel habilitar">
+            <input type="text" value="" class="txt-tel habilitar ocultar">
           </div>
           <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
           <div class="container-msg">
             <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten espacios en blanco</p>
+            <p class="title-content-msg">No se permiten campos vacios</p>
           </div>
           <!-- FIN -->
         </div>
@@ -81,7 +81,7 @@
           <label for="">Nacionalidad</label>
           <div class="info">
             <img src="img/global.png" alt="" class="icon">
-            <select class="habilitar ignorar pais ">
+            <select class="habilitar ignorar pais ocultar ">
               <option selected></option>
               <option>Argentina</option>
               <option>San Bartolome</option>
@@ -112,7 +112,7 @@
           <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
           <div class="container-msg">
             <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten espacios en blanco</p>
+            <p class="title-content-msg">No se permiten campos vacios</p>
           </div>
           <!-- FIN -->
         </div>
@@ -121,7 +121,7 @@
           <label for="">Hora cita consulado</label>
           <div class="info">
             <img src="img/date.png" alt="" class="icon">
-            <select id="busqueda_hora" class="habilitar hora">
+            <select id="busqueda_hora" class="habilitar hora ocultar">
               <option value="" selected></option>
               <option value="12:00 AM">12:00 AM</option>
               <option value="12:15 AM">12:15 AM</option>
@@ -224,7 +224,7 @@
           <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
           <div class="container-msg">
             <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten espacios en blanco</p>
+            <p class="title-content-msg">No se permiten campos vacios</p>
           </div>
           <!-- FIN -->
         </div>
@@ -233,7 +233,7 @@
           <label for="">Hora de llegada</label>
           <div class="info">
             <img src="img/date.png" alt="" class="icon">
-            <select id="busqueda_hora" class="habilitar hora">
+            <select id="busqueda_hora" class="habilitar hora ocultar">
               <option value="" selected></option>
               <option value="12:00 AM">12:00 AM</option>
               <option value="12:15 AM">12:15 AM</option>
@@ -336,7 +336,7 @@
           <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
           <div class="container-msg">
             <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten espacios en blanco</p>
+            <p class="title-content-msg">No se permiten campos vacios</p>
           </div>
           <!-- FIN -->
         </div>
@@ -346,12 +346,12 @@
           <label for="">Fecha llegada</label>
           <div class="info">
             <img src="img/calendar.png" alt="" class="icon">
-            <input type="text" value="Presiona aquí" class="datepicker fecha-llegada habilitar">
+            <input type="text" value="Presiona aquí" class="datepicker fecha-llegada habilitar ocultar">
           </div>
           <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
           <div class="container-msg">
             <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten espacios en blanco</p>
+            <p class="title-content-msg">No se permiten campos vacios</p>
           </div>
           <!-- FIN -->
         </div>
@@ -360,12 +360,12 @@
           <label for="">Fecha nacimiento</label>
           <div class="info">
             <img src="img/calendar.png" alt="" class="icon">
-            <input type="text" value="Presiona aquí" class="datepicker fecha-llegada habilitar">
+            <input type="text" value="Presiona aquí" class="datepicker fecha-llegada habilitar ocultar">
           </div>
           <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
           <div class="container-msg">
             <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten espacios en blanco</p>
+            <p class="title-content-msg">No se permiten campos vacios</p>
           </div>
           <!-- FIN -->
         </div>

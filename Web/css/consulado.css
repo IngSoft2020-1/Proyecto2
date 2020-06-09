@@ -59,13 +59,15 @@ table td, table th{
 
 
 .container-tools{
+  margin-top: 36px;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
 .subcontainer{
-  width: 40%;
-  height: 350px;
+  width: 48%;
+  border-radius: 18px;
+  height: 260px;
   background: #283138;
 }
