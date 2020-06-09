@@ -5,6 +5,8 @@
 .container{
   display: flex;
   flex-direction: column;
+  width: 94%;
+  margin: auto;
 }
 
 table{
@@ -17,11 +19,11 @@ table{
 }
 
 table>tbody>tr:nth-child(odd) {
-    background-color:#27333B;
+    background-color:#283138;
 }
 
 table>tbody>tr:nth-child(even) {
-    background-color: #1D262D;
+    background-color:#1a2127;
 }
 
 table td, table th{
@@ -33,16 +35,37 @@ table td, table th{
 }
 
 .container-table{
-  width: 90%;
+  width: 100%;
   margin: auto;
   box-shadow: 4px 4px 20px #141a1f;
   margin-top: 15px;
   border-radius: 18px;
   padding: 10px;
+  background: #283138;
+}
+
+#hour{
+  display: inline;
+}
+
+.title{
+  display: inline;
 }
 
 .text{
-  text-align: center;
-  color: white;
-  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.container-tools{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.subcontainer{
+  width: 40%;
+  height: 350px;
+  background: #283138;
 }

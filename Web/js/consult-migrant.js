@@ -160,18 +160,18 @@ $(document).ready(function() {
                     $row++;
                     templado += `
                     <tr class="tr" id="${task.IDVisi}">
-                        <td>${$row}</td>
+                        <td style="display: none;">${$row}</td>
                         <td class='fecha-llegada'>
-                          <input disabled="on" type="text" value="${task.FechaLlegada}" class="datepicker habilitar ${$row}">
+                          <input disabled="on" type="text" value="${task.FechaLlegada}" class="datepicker fecha-llegada habilitar ${$row}">
                         </td>
                         <td class='nombre'>
                           <input type="text" value="${task.Nombre}" disabled="on" class="habilitar ignorar ${$row}">
                         </td>
                         <td class="min-width">
-                          <input disabled="on" type="text" value="${task.FechaNacimiento}" class="datepicker habilitar ${$row}">
+                          <input disabled="on" type="text" value="${task.FechaNacimiento}" class="datepicker fecha-llegada habilitar ${$row}">
                         </td>
                         <td class="min-width">
-                          <select id="busqueda_hora" disabled="on" class="habilitar ${$row}">
+                          <select id="busqueda_hora" disabled="on" class="habilitar fecha-llegada ${$row}">
                             <option value="" selected>${task.HoraLlegada}</option>
                             <option value="12:00 AM">12:00 AM</option>
                             <option value="12:15 AM">12:15 AM</option>
@@ -373,7 +373,7 @@ $(document).ready(function() {
                             </select>
                         </td>
                         <td>
-                          <select disabled="on" class="habilitar ignorar ${$row}">
+                          <select disabled="on" class="habilitar ignorar pais ${$row}">
                             <option selected>${task.Pais}</option>
                             <option>Argentina</option>
                             <option>San Bartolome</option>
@@ -415,75 +415,80 @@ $(document).ready(function() {
                     `;
                 });
                 $('#tasks-migrants').html(templado);
-                //*************************************************************
-                // NOTA: LEER.
-                /* EN LA LINEA 232 SE AGREGO UN SPAN Y SE HACE INVISIBLE, ESTE
-                SE UTILIZA PARA OBTENER SU CLASE, EL CUAL ES UNA CLASE NUMERICA
-                ESTO SIRVE PARA DETECTAR EXACTAMENTE DONDE SE DIO CLICK EN EL
-                BOTON EDITAR.
-                */
-                //*************************************************************
-                // $('#tasks-migrants').html(templado);
                 // METODO PARA QUE EL INPUT DE TIPO DATAPICKER SEA UN CALENDARIO AL DAR CLICK
                 $( ".datepicker" ).datepicker();
-                // METODO DE MASCARA DE ENTRADA PARA QUE EL INPUT TEL SEA SOLO NUMERICO Y AUTOSERAPACION
-                $('.txt-tel').mask('000-000-0000', {placeholder: '000-000-0000'}); //placeholder
-                $('.timepicker').wickedpicker();
-                // EVENTO CLICK DE BOTON EDITAR, SOLO AQUI FUNCIONA
-                edit = $('.edit');
-                let count = 0;
-                edit.click(function(){
-                  // OBTIENE LA CLASE, OBTIENE UN NUMERO.
-                  // LOS ELEMENTOS CREADOS EN AJAX TIENEN UNA CLASE CON UN NUMERO
-                  // PARA CUANDO SE DE CLICK EN EL BOTON EDITAR SE HABLITEN SOLAMENTE ESA FILA
-                  // Y NO TODA LA TABLA
-                  var claseIdentificador = $(this).parent('td').prev().children('span').attr('class');
-                  borrar = $('.delete'+claseIdentificador); // OBTIENE EL RENGLON EXACTO DEL BOTON ELIMINAR
-                  // DETECTA EL PRIMER CLICK
-                  if($('#'+claseIdentificador).text() == "Editar"){
-                    // 1.- ELEMENTO DE LA CLASE- 2.- DISABLED. 3.- TIPO DE CURSOR
-                    Habilitar_Deshabilitar($('.'+claseIdentificador), false, "pointer");
-                    // 1.- ELEMENTO. 2.- TEXTO DEL BOTON. 3.- COLOR
-                    Modificar_Boton($('#'+claseIdentificador), "Guardar", "#EC6D4A");
-                    Modificar_Boton($('.delete'+claseIdentificador), "Cancelar", "transparent");
-                  }
-                  // DETECTA EL SEGUNDO CLICK
-                  else if($('#'+claseIdentificador).text() == "Guardar"){
-                    Habilitar_Deshabilitar($('.'+claseIdentificador), "on", "default");
-                    Modificar_Boton($('#'+claseIdentificador), "Editar", "transparent");
-                    Modificar_Boton($('.delete'+claseIdentificador), "Eliminar", "#EC6D4A");
-                  }
-                });
-
-                function Habilitar_Deshabilitar(elemento, disabled, cursor){
-                  elemento.prop("disabled", disabled).css("cursor", cursor);
-                }
-
-                function Modificar_Boton(elemento, texto, color){
-                  elemento.text(texto);
-                  elemento.css("background", color);
-                }
             }
         });
     }
+    //*************************************************************
+        // NOTA: LEER.
+        /* EN LA LINEA 232 SE AGREGO UN SPAN Y SE HACE INVISIBLE, ESTE
+        SE UTILIZA PARA OBTENER SU CLASE, EL CUAL ES UNA CLASE NUMERICA
+        ESTO SIRVE PARA DETECTAR EXACTAMENTE DONDE SE DIO CLICK EN EL
+        BOTON EDITAR.
+        */
+        //*************************************************************
 
+        // METODO DE MASCARA DE ENTRADA PARA QUE EL INPUT TEL SEA SOLO NUMERICO Y AUTOSERAPACION
+        $('.txt-tel').mask('000-000-0000', {placeholder: '000-000-0000'}); //placeholder
+        $('.timepicker').wickedpicker();
+        // EVENTO CLICK DE BOTON EDITAR, SOLO AQUI FUNCIONA
+        edit = $('.edit');
+        let count = 0;
+        $(document).on('click', '.edit', function(){
+          // OBTIENE LA CLASE, OBTIENE UN NUMERO.
+          // LOS ELEMENTOS CREADOS EN AJAX TIENEN UNA CLASE CON UN NUMERO
+          // PARA CUANDO SE DE CLICK EN EL BOTON EDITAR SE HABLITEN SOLAMENTE ESA FILA
+          // Y NO TODA LA TABLA
+          var claseIdentificador = $(this).parent('td').prev().children('span').attr('class');
+          borrar = $('.delete'+claseIdentificador); // OBTIENE EL RENGLON EXACTO DEL BOTON ELIMINAR
+          // DETECTA EL PRIMER CLICK
+          if($('#'+claseIdentificador).text() == "Editar"){
+            // 1.- ELEMENTO DE LA CLASE- 2.- DISABLED. 3.- TIPO DE CURSOR
+            Habilitar_Deshabilitar($('.'+claseIdentificador), false, "pointer");
+            // 1.- ELEMENTO. 2.- TEXTO DEL BOTON. 3.- COLOR
+            Modificar_Boton($('#'+claseIdentificador), "Guardar", "#EC6D4A");
+            Modificar_Boton($('.delete'+claseIdentificador), "Cancelar", "transparent");
+          }
+          // DETECTA EL SEGUNDO CLICK
+          else if($('#'+claseIdentificador).text() == "Guardar"){
+            Habilitar_Deshabilitar($('.'+claseIdentificador), "on", "default");
+            Modificar_Boton($('#'+claseIdentificador), "Editar", "transparent");
+            Modificar_Boton($('.delete'+claseIdentificador), "Eliminar", "#EC6D4A");
+          }
+        });
 
-    $('.task-delete').click(function(){
-      alert("2");
-      // console.log($('.delete'+claseIdentificador).text());
-      // // DETECTA EL PRIMER CLICK
-      // if($('.delete'+claseIdentificador).text() == "Eliminar"){
-      //   //*******************************************************
-      //   //*******************************************************
-      //   // AQUI VA CODIGO PARA ELIMINAR EL REGISTRO
-      //   //*******************************************************
-      //   //*******************************************************
-      // }
-      // // DETECTA EL SEGUNDO CLICK
-      // else if($('.task-delete').text() == "Cancelar"){
-      //   Habilitar_Deshabilitar($('.'+claseIdentificador), "on", "default");
-      //   Modificar_Boton($('#'+claseIdentificador), "Editar", "transparent");
-      //   Modificar_Boton($('.delete'+claseIdentificador), "Eliminar", "#EC6D4A");
-      // }
-    });
+        function Habilitar_Deshabilitar(elemento, disabled, cursor){
+          elemento.prop("disabled", disabled).css("cursor", cursor);
+        }
+
+        function Modificar_Boton(elemento, texto, color){
+          elemento.text(texto);
+          elemento.css("background", color);
+        }
+
+        // EVENTO CLICK AL BOTON ELIMINAR CANCELAR
+        $(document).on("click", ".task-delete", function(){
+          var element = $(this)[0].parentElement.parentElement;
+          var ID = $(element).attr('id');
+          var nombre = $('#'+ID + ' .nombre input').val();
+          $('.title-box').html("¿Estas seguro que quieres eliminar a <strong>"+nombre+"</strong> de la lista? Esta operación es irreversible");
+          $('.box').css("height", "auto").css("padding", "20px");
+          $('.box').show('slow');
+          $('.box').css("display", "flex");
+        });
+
+        $('.btn-cancel').click(function(){
+          $('.box').hide('slow');
+        });
+
+        $('.btn-confirm').click(function(){
+          // ***********************************************************************
+          // ***********************************************************************
+          // ***********************************************************************
+          // AQUI VA EL CODIGO PARA ELIMINAR
+          // ***********************************************************************
+          // ***********************************************************************
+          // ***********************************************************************
+        });
 });

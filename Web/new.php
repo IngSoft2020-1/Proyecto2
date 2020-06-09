@@ -243,7 +243,7 @@
           <div class="field line" style=""> <!-- Telefono -->
             <label for="">Teléfono</label>
             <div class="info">
-            <img src="img/name.png" alt="" class="icon">
+            <img src="img/phone.png" alt="" class="icon">
             <?php
               if($_SESSION['sucaritas'] == '')
               {

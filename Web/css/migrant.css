@@ -6,8 +6,8 @@
 
 .select {
     display: flex;
-    width: 30%;
     align-items: center;
+    width: 30%;
 }
 
 label{
@@ -15,7 +15,6 @@ label{
 }
 
 select{
-  width: 50%;
       margin-left: 5px;
       background: rgba(72, 87, 97);
       color: white;
@@ -53,5 +52,74 @@ input{
   background: transparent;
   border: none;
   color: white;
+}
+
+input.fecha-llegada {
+    width: 76px;
+}
+
+.txt-tel {
+    width: 110px;
+}
+
+.pais {
+    width: 152px;
+}
+
+.icon-plus{
+  width: 35px;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+  font-size: calc(0.5em + 0.7vw);
+  margin-left: 10px;
+}
+
+.container-a{
+  display: flex;
+  align-items: center;
+}
+
+/* ESTILOS PARA AGREGAR MANUALMENTE */
+.container-msg{
+  display: none !important;
+}
+
+.txt-tel{
   width: 100%;
+}
+
+.pais{
+  width: 100%;
+}
+
+.datepicker{
+  width: 100% !important;
+}
+
+.field{
+  margin-top: 30px !important;
+}
+
+.hora{
+  width: 100%;
+}
+
+.container-buttons{
+  width: 100%;
+  text-align: right !important;
+}
+
+.max{
+  width: 100% !important;
+}
+
+.save{
+  background: #EC6D4A;
+    color: white;
+    border: 2px solid #EC6D4A;
+    width: calc(5em + 0.6vw);
+    height: calc(3em + 0.4vw);
 }

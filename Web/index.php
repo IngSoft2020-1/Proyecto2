@@ -22,8 +22,6 @@
     <!-- MIS SCRIPT -->
     <script type="text/javascript">var user = "<?= $idUser ?>";</script>
     <script type="text/javascript" src="js/main.js"></script>
-    <script src="js/time.js"></script>
-    <link rel="stylesheet" href="css/time.css">
     <title>Inicio</title>
   </head>
   <body>
@@ -109,11 +107,6 @@
             <img src="img/menu.png" id="menu" alt="">
             <img src="img/menu.png" id="menu-mobile" alt="">
             <p id="title"></p>
-            <div class="date">
-              <p id="date" class="time"></p>
-              <span>&nbsp;&nbsp;</span>
-              <p id="hour" class="time"></p>
-            </div>
           </div>
           <div class="container" id="header-2">
             <a id="title" href="logout.php">Cerrar sesión</a>

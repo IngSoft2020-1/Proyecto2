@@ -21,6 +21,10 @@
   <body>
     <div class="container">
       <div class="container-img" id="aling-left">
+        <div class="container-a">
+          <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
+          <a href="addManualMigrant.php">Agregar manualmente</a>
+        </div>
         <input type="text" name="search" placeholder="Search.." id="search-migrants" autocomplete="off">
       </div>
       <div class="container-select">
@@ -50,7 +54,7 @@
         <table id="table-migrants" class="tablesorter">
             <thead>
               <tr>
-                <th>ID</th>
+                <th style="display: none;">ID</th>
                 <th style="color: #00FF80;">Fecha de llegada</th>
                 <th style="color: #00FF80;">Nombre</th>
                 <th style="color: #00FF80;">Fecha de nacimiento</th>
@@ -69,6 +73,11 @@
       </div>
     </div>
   </body>
+  <div class="box" id="success">
+    <p class="title-box"></p>
+    <button id="btn-cancel-2" class="btn-cancel" name="button">Cancelar</button>
+    <button class="btn-confirm" name="button">Aceptar</button>
+  </div>
   <script src="js/consult-migrant.js"></script> <!--Manda a llamar al json-->
   <!-- HORA -->
   <script type="text/javascript" src="js/hora/src/wickedpicker.js"></script>
