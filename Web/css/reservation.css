@@ -218,6 +218,7 @@ label{
 /* ESTILOS PARA EL INPUT DE BUSQUEDA */
 #aling-left{
   display: flex;
+  flex-direction: column;
     justify-content: end;
 }
 

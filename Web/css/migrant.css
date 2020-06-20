@@ -157,7 +157,11 @@ a{
     position: absolute;
     right: 52px;
     border-radius: 10px;
-    padding: 10px;
+    padding: 17px;
     box-shadow: 2px 2px 3px black;
     display: none;
+}
+
+.input-submenu{
+  cursor: pointer;
 }

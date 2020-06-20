@@ -7,7 +7,6 @@
     <!-- MASCARA -->
     <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
     <script type="text/javascript" src="js/reservation.js"></script>
-    <script type="text/javascript" src="js/submenu.js"></script>
     <!-- LIBRERIAS PARA DATEPICKER -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
@@ -22,7 +21,32 @@
   <body>
     <div class="container">
       <div class="container-img" id="aling-left">
+        <div class="container-a">
+          <a href=""><img src="img/plus.png" alt="" class="icon-plus"></a>
+          <a href="">Agregar manualmente</a>
+        </div>
         <input type="text" name="search" placeholder="Search.." id="search-res" autocomplete="off">
+      </div>
+      <div class="container-select">
+        <div class="select">
+          <label for="order">Ordenar por:</label>
+          <select class="" name="order">
+            <option value="1">Fecha reservacion asc</option>
+            <option value="2" selected>Fecha reservacion desc</option>
+            <option value="3">Estado asc</option>
+            <option value="4">Estado desc</option>
+          </select>
+        </div>
+        <div class="select">
+          <label for="show">Mostrar:</label>
+          <select class="" name="show" id="mySelect2">
+            <option value="">Proximos 7 días</option>
+            <option value="mes">Último mes</option>
+            <option value="meses3">Últimos 3 meses</option>
+            <option value="meses6">Últimos 6 meses</option>
+            <option value="Todos">Todos</option>
+          </select>
+        </div>
       </div>
       <div class="container-table" style="overflow-x:auto;">
         <table id="table-res">
@@ -36,15 +60,11 @@
                 <th style="color: #00FF80;"># Habitación</th>
                 <th style="color: #00FF80;">Costo</th>
                 <th style="color: #EC6D4A;">Estado</th>
-                <th>Accion</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
-
-            </tbody>
-            <tbody id="tasksReservacion">
-              <tr>
-                <td style="display: none;">1</td>
+              <tr id="1">
                 <td><input type="text" value="10/10/2020" class="datepicker fecha-llegada habilitar"></td>
                 <td class="td-name">Jose Jose Valezuela</td>
                 <td>
@@ -68,83 +88,13 @@
                 <td><input type="number" class="habilitar number" value="320"></td>
                 <td>En espera</td>
                 <td class="td-right">
-                  <div class="evento">
+                  <div class="evento  evento-1">
                     <img src="img/points.png" class="icon">
                   </div>
                   <div class="sub-menu sub-menu-1">
-                    <input type="button" name="" value="Iniciar">
-                    <input type="button" name="" value="Editar huespedes">
-                    <input type="button" name="" value="Eliminar">
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td style="display: none;">2</td>
-                <td><input type="text" value="10/10/2020" class="datepicker fecha-llegada habilitar"></td>
-                <td class="td-name">Jose Jose Valezuela</td>
-                <td>
-                  <select class="habilitar">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                  </select>
-                </td>
-                <td>
-                  <select class="habilitar">
-                    <option value="">Sencilla</option>
-                    <option value="">Doble</option>
-                    <option value="">Triple</option>
-                    <option value="">Otra</option>
-                  </select>
-                </td>
-                <td><input type="number" class="habilitar number" value="1"></td>
-                <td><input type="number" class="habilitar number" value="320"></td>
-                <td>En espera</td>
-                <td class="td-right">
-                  <div class="evento">
-                    <img src="img/points.png" class="icon">
-                  </div>
-                  <div class="sub-menu sub-menu-2">
-                    <input type="button" name="" value="Iniciar">
-                    <input type="button" name="" value="Editar huespedes">
-                    <input type="button" name="" value="Eliminar">
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td style="display: none;">3</td>
-                <td><input type="text" value="10/10/2020" class="datepicker fecha-llegada habilitar"></td>
-                <td class="td-name">Jose Jose Valezuela</td>
-                <td>
-                  <select class="habilitar">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                  </select>
-                </td>
-                <td>
-                  <select class="habilitar">
-                    <option value="">Sencilla</option>
-                    <option value="">Doble</option>
-                    <option value="">Triple</option>
-                    <option value="">Otra</option>
-                  </select>
-                </td>
-                <td><input type="number" class="habilitar number" value="1"></td>
-                <td><input type="number" class="habilitar number" value="320"></td>
-                <td>En espera</td>
-                <td class="td-right">
-                  <div class="evento">
-                    <img src="img/points.png" class="icon">
-                  </div>
-                  <div class="sub-menu sub-menu-3">
-                    <input type="button" name="" value="Iniciar">
-                    <input type="button" name="" value="Editar huespedes">
-                    <input type="button" name="" value="Eliminar">
+                    <input class="input-submenu btn-start-1" type="button" name="" value="Iniciar">
+                    <input class="input-submenu btn-edit-1" type="button" name="" value="Editar huespedes">
+                    <input class="input-submenu btn-delete-1" type="button" name="" value="Eliminar">
                   </div>
                 </td>
               </tr>
@@ -153,5 +103,5 @@
       </div>
     </div>
   </body>
-  <script src="js/app-reservation.js"></script> <!--Manda a llamar al json-->
+  <!-- <script src="js/app-reservation.js"></script>  -->
 </html>
