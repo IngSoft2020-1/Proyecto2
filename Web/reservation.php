@@ -37,16 +37,6 @@
             <option value="4">Estado desc</option>
           </select>
         </div>
-        <div class="select">
-          <label for="show">Mostrar:</label>
-          <select class="" name="show" id="mySelect2">
-            <option value="">Proximos 7 días</option>
-            <option value="mes">Último mes</option>
-            <option value="meses3">Últimos 3 meses</option>
-            <option value="meses6">Últimos 6 meses</option>
-            <option value="Todos">Todos</option>
-          </select>
-        </div>
       </div>
       <div class="container-table" style="overflow-x:auto;">
         <table id="table-res">
@@ -65,8 +55,23 @@
             </thead>
             <tbody>
               <tr id="1">
-                <td><input type="text" value="10/10/2020" class="datepicker fecha-llegada habilitar"></td>
-                <td class="td-name">Jose Jose Valezuela</td>
+                <td><input disabled="on" type="text" value="10/10/2020" class="fecha-llegada habilitar"></td>
+                <td class="td-name">
+                  <div class="container-td">
+                    <div>
+                      <select class="habilitar">
+                        <option value="">Jose Jose</option>
+                        <option value="">Ramon Ayala</option>
+                        <option value="">Chalino Sachez</option>
+                        <option value="">Jose Juanga</option>
+                      </select>
+                    </div>
+                    <div class="td-cont">
+                      <img src="img/trash.png" alt="" class="icon">
+                      <img src="img/new.png" alt="" class="icon">
+                    </div>
+                  </div>
+                </td>
                 <td>
                   <select class="habilitar">
                     <option value="">1</option>
@@ -86,15 +91,16 @@
                 </td>
                 <td><input type="number" class="habilitar number" value="1"></td>
                 <td><input type="number" class="habilitar number" value="320"></td>
-                <td>En espera</td>
+                <td><p id="estado-1" class="parrafo">En espera</p></td>
                 <td class="td-right">
                   <div class="evento  evento-1">
                     <img src="img/points.png" class="icon">
                   </div>
                   <div class="sub-menu sub-menu-1">
-                    <input class="input-submenu btn-start-1" type="button" name="" value="Iniciar">
-                    <input class="input-submenu btn-edit-1" type="button" name="" value="Editar huespedes">
-                    <input class="input-submenu btn-delete-1" type="button" name="" value="Eliminar">
+                    <input class="input-submenu btn-start" type="button" name="" value="Iniciar">
+                    <input class="input-submenu btn-edit" type="button" name="" value="Editar huespedes">
+                    <input style="display: none;" class="input-submenu btn-cancel" type="button" name="" value="Cancelar">
+                    <input class="input-submenu btn-delete" type="button" name="" value="Eliminar">
                   </div>
                 </td>
               </tr>
