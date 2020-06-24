@@ -6,6 +6,7 @@
     visitante.Nombre AS 'Nombre',
     visitante.Telefono AS 'Telefono',
     DATE_FORMAT(visitante.Fecha_nac, '%m/%d/%Y') AS 'FechaNacimiento',
+    nacionalidad.IDPais AS 'IDPais',
     nacionalidad.Pais AS 'Pais',
     DATE_FORMAT(visitante.fecha_llegada, '%m/%d/%Y') AS 'FechaLlegada',
     DATE_FORMAT(visitante.hora_llegada, '%H:%i %p') AS 'HoraLlegada',
@@ -28,6 +29,7 @@
             'Telefono' => $row['Telefono'],
             'FechaNacimiento' => $row['FechaNacimiento'],
             'Pais' => $row['Pais'],
+            'IDPais' => $row['IDPais'],
             'FechaLlegada' => $row['FechaLlegada'],
             'HoraLlegada' => $row['HoraLlegada'],
             'CitaConsulado' => $row['CitaConsulado']
