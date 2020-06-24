@@ -2,6 +2,7 @@ $(document).ready(function() {
   console.log('jQuery esta funcionando');
   obtener();
 
+<<<<<<< HEAD
   /*Usado en migrant.php*/
   /*Funcion para imprimir las filas de los migrantes existentes*/
   var edit; // BOTON CLICK, SE DECLARA AFUERA DEBIDO QUE AQUI NO GENERO ERRORES
@@ -315,6 +316,8 @@ $(document).ready(function() {
         naci = $(".pais" + shit).val();
         tele = $(".telefono" + shit).val();
         console.log(ID,fechal,nomb,fechan,horal,citac,naci,tele,shit);
+=======
+>>>>>>> 0b28904fc4b9dc5a46e3105eea9a74ea19b87fe5
 
 
 

@@ -218,7 +218,8 @@ label{
 /* ESTILOS PARA EL INPUT DE BUSQUEDA */
 #aling-left{
   display: flex;
-    justify-content: end;
+  flex-direction: column;
+  justify-content: end;
 }
 
 #search-res{
@@ -244,4 +245,35 @@ label{
 #search-res:focus{
   width: 98%;
   border-radius: 20px 20px 0 0;
+}
+
+tbody tr{
+  border-left: 10px solid yellow;
+}
+
+.parrafo{
+  margin: 0;
+}
+
+.container-td {
+    display: flex;
+    align-items: center;
+}
+
+.icon{
+  width: 23px !important;
+  margin-right: 3px;
+}
+
+.td-cont {
+    margin-left: 4px;
+    display: flex;
+}
+
+.icon{
+  cursor: pointer;
+}
+
+select{
+  cursor: pointer;
 }
