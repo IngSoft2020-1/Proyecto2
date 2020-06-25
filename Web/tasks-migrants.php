@@ -34,7 +34,9 @@
             'IDPais' => $row['IDPais'],
             'FechaLlegada' => $row['FechaLlegada'],
             'HoraLlegada' => $row['HoraLlegada'],
-            'CitaConsulado' => $row['CitaConsulado']
+            'HoraLlegada2' => $row['HoraLlegada2'],
+            'CitaConsulado' => $row['CitaConsulado'],
+            'CitaConsulado2' => $row['CitaConsulado2']
         );
     }
     $jsonstring = json_encode($json);
