@@ -2,6 +2,9 @@ $(document).ready(function() {
   console.log('jQuery esta funcionando');
   obtener();
 
+  // EL CONTROL Z LLEGA HASTA AQUI
+
+
   /*Usado en migrant.php*/
   /*Funcion para imprimir las filas de los migrantes existentes*/
   var edit; // BOTON CLICK, SE DECLARA AFUERA DEBIDO QUE AQUI NO GENERO ERRORES
@@ -22,16 +25,16 @@ $(document).ready(function() {
                   <tr class="tr" id="${task.IDVisi}" value="${$row}">
                       <td style="display: none;">${$row}</td>
                       <td class='fecha-llegada'>
-                        <input disabled="on" type="text" value="${task.FechaLlegada}" class="datepicker fecha-llegada habilitar llegada${$row} ${$row}">
+                        <input disabled="on" type="text" value="${task.FechaLlegada}" class="datepicker fecha-llegada habilitar llegada${$row} ${task.IDVisi}">
                       </td>
                       <td class='nombre'>
-                        <input type="text" value="${task.Nombre}" disabled="on" class="habilitar ignorar nom${$row} ${$row}">
+                        <input type="text" value="${task.Nombre}" disabled="on" class="habilitar ignorar nom${$row} ${task.IDVisi}">
                       </td>
                       <td class="min-width">
-                        <input disabled="on" type="text" value="${task.FechaNacimiento}" class="datepicker fecha-llegada habilitar fn${$row} ${$row}">
+                        <input disabled="on" type="text" value="${task.FechaNacimiento}" class="datepicker fecha-llegada habilitar fn${$row} ${task.IDVisi}">
                       </td>
                       <td class="min-width">
-                        <select id="busqueda_hora" disabled="on" class="habilitar fecha-llegada hl${$row} ${$row}">
+                        <select id="busqueda_hora" disabled="on" class="habilitar fecha-llegada hl${$row} ${task.IDVisi}">
                           <option value="${task.HoraLlegada2}" selected>${task.HoraLlegada}</option>
                           <option value="00:00:00">00:00 AM</option>
                           <option value="00:15:00">00:15 AM</option>
@@ -132,7 +135,7 @@ $(document).ready(function() {
                           </select>
                       </td>
                       <td class="cita">
-                        <select id="busqueda_hora" disabled="on" class="habilitar cc${$row} ${$row}">
+                        <select id="busqueda_hora" disabled="on" class="habilitar cc${$row} ${task.IDVisi}">
                           <option value="${task.CitaConsulado2}" selected>${task.CitaConsulado}</option>
                           <option value="00:00:00">00:00 AM</option>
                           <option value="00:15:00">00:15 AM</option>
@@ -233,7 +236,7 @@ $(document).ready(function() {
                           </select>
                       </td>
                       <td>
-                        <select disabled="on" class="habilitar ignorar pais${$row} ${$row}">
+                        <select disabled="on" class="habilitar ignorar pais${$row} ${task.IDVisi}">
                           <option value="${task.IDPais}" selected>${task.Pais}</option>
                           <option value="ARG">Argentina</option>
                           <option value="BLM">San Bartolome</option>
@@ -262,14 +265,14 @@ $(document).ready(function() {
                         </select>
                       </td>
                       <td>
-                        <input disabled="on" type="text" value="${task.Telefono}" class="txt-tel habilitar telefono${$row} ${$row}">
+                        <input disabled="on" type="text" value="${task.Telefono}" class="txt-tel habilitar telefono${$row} ${task.IDVisi}">
                         <span class="${$row}" style="display: none;"/>
                       </td>
                       <td>
-                        <button class="button edit" id="${$row}">Editar</button>
+                        <button class="button edit" id="e${task.IDVisi}">Editar</button>
                       </td>
                       <td>
-                        <button class="button task-delete delete delete${$row}">Eliminar</button>
+                        <button class="button task-delete delete delete${task.IDVisi}">Eliminar</button>
                       </td>
                   </tr>
                   `;
@@ -301,9 +304,6 @@ $(document).ready(function() {
         // LOS ELEMENTOS CREADOS EN AJAX TIENEN UNA CLASE CON UN NUMERO
         // PARA CUANDO SE DE CLICK EN EL BOTON EDITAR SE HABLITEN SOLAMENTE ESA FILA
         // Y NO TODA LA TABLA
-
-
-
         var element = $(this)[0].parentElement.parentElement;
         ID = $(element).attr('id');
         shit = $(element).attr('value');
@@ -315,31 +315,26 @@ $(document).ready(function() {
         naci = $(".pais" + shit).val();
         tele = $(".telefono" + shit).val();
         console.log(ID,fechal,nomb,fechan,horal,citac,naci,tele,shit);
-
-
-
-
-
         claseIdentificador = $(this).parent('td').prev().children('span').attr('class');
         borrar = $('.delete'+claseIdentificador); // OBTIENE EL RENGLON EXACTO DEL BOTON ELIMINAR
         // DETECTA EL PRIMER CLICK
-        if($('#'+claseIdentificador).text() == "Editar"){
+        if($('#e'+ID).text() == "Editar"){
           // 1.- ELEMENTO DE LA CLASE- 2.- DISABLED. 3.- TIPO DE CURSOR
-          Habilitar_Deshabilitar($('.'+claseIdentificador), false, "pointer");
+          Habilitar_Deshabilitar($('.'+ID), false, "pointer");
           // 1.- ELEMENTO. 2.- TEXTO DEL BOTON. 3.- COLOR
-          Modificar_Boton($('#'+claseIdentificador), "Guardar", "#EC6D4A");
-          Modificar_Boton($('.delete'+claseIdentificador), "Cancelar", "transparent");
+          Modificar_Boton($('#e'+ID), "Guardar", "#EC6D4A");
+          Modificar_Boton($('.delete'+ID), "Cancelar", "transparent");
         }
         // DETECTA EL SEGUNDO CLICK
-        else if($('#'+claseIdentificador).text() == "Guardar"){
+        else if($('#e'+ID).text() == "Guardar"){
           $.post('update-migrants.php', {ID,fechal,nomb,fechan,horal,citac,naci,tele}, function(response) {
             console.log("Chingadera funcionando.");
             // console.log(response);
             obtener();
           });
-          Habilitar_Deshabilitar($('.'+claseIdentificador), "on", "default");
-          Modificar_Boton($('#'+claseIdentificador), "Editar", "transparent");
-          Modificar_Boton($('.delete'+claseIdentificador), "Eliminar", "#EC6D4A");
+          Habilitar_Deshabilitar($('.'+ID), "on", "default");
+          Modificar_Boton($('#e'+ID), "Editar", "transparent");
+          Modificar_Boton($('.delete'+ID), "Eliminar", "#EC6D4A");
         }
       });
 
@@ -357,17 +352,17 @@ $(document).ready(function() {
         var element = $(this)[0].parentElement.parentElement;
         ID = $(element).attr('id');
         var nombre = $('#'+ID + ' .nombre input').val();
-        
-        if($('.delete'+claseIdentificador).text() == "Eliminar"){
+
+        if($('.delete'+ID).text() == "Eliminar"){
           $('.title-box').html("¿Estas seguro que quieres eliminar a <strong>"+nombre+"</strong> de la lista? Esta operación es irreversible");
           $('.box').css("height", "auto").css("padding", "20px");
           $('.box').show('slow');
           $('.box').css("display", "flex");
         }
-        else if($('.delete'+claseIdentificador).text() == "Cancelar"){
-          Habilitar_Deshabilitar($('.'+claseIdentificador), "false", "default");
-          Modificar_Boton($('#'+claseIdentificador), "Editar", "transparent");
-          Modificar_Boton($('.delete'+claseIdentificador), "Eliminar", "#EC6D4A");
+        else if($('.delete'+ID).text() == "Cancelar"){
+          Habilitar_Deshabilitar($('.'+ID), "false", "default");
+          Modificar_Boton($('#e'+ID), "Editar", "transparent");
+          Modificar_Boton($('.delete'+ID), "Eliminar", "#EC6D4A");
         }
       });
 
@@ -383,5 +378,6 @@ $(document).ready(function() {
           console.log("Chingadera funcionando.");
           obtener();
         });
+        $('#success').hide('slow');
       });
 });
