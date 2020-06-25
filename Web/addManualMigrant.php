@@ -1,3 +1,18 @@
+<?php
+  session_start();
+  error_reporting(0);
+  if($_SESSION['datosMigrant'] == '1'){
+    echo "<script>
+    localStorage.setItem('datosBienMigrant', 1);
+    </script>";
+  }
+  else if($_SESSION['datosMigrant'] == '0'){
+    echo "<script>
+    localStorage.setItem('datosMalMigrant', 1);
+    </script>";
+  }
+  $_SESSION['datosMigrant'] = '';
+?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
@@ -30,16 +45,43 @@
     <!-- MASCARA -->
     <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
     <title></title>
+
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="js/new-migrant.js"></script>
+    <link rel="stylesheet" href="css/edit.css">
+
   </head>
   <body>
     <div class="container">
-      <form action="register.php" method="post" autocomplete="off">
+      <form action="new-migrant.php" method="post">
         <div class="field line">
           <label for="">Nombre</label>
           <div class="info">
             <img src="img/name.png" alt="" class="icon">
-            <input type="text" placeholder="Nombre" class="textbox ocultar" name="nombre" autocomplete="off">
+            <input type="text" placeholder="Nombre" class="textbox ocultar" name="nombres" autocomplete="off">
           </div>
+          <!-- IMPRESION DE ERRORES NOMBRE -->
+          <?php
+                if($_SESSION['validNombres'] == '1')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Formato Incorrecto!</p>
+                    <p class="title-content-msg">No se permiten espacios en blanco.</p>
+                  </div>';
+                } else if($_SESSION['validNombres'] == '2')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Formato Incorrecto!</p>
+                    <p class="title-content-msg">Demasiado largo, debe ser menor a 100.</p>
+                  </div>';
+                } else if($_SESSION['validNombres'] == '3')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Formato Incorrecto!</p>
+                    <p class="title-content-msg">El formato del nombre no es correcto.</p>
+                  </div>';
+                }
+              ?>
           <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
           <div class="container-msg">
             <p class="title-msg">Dato incorrecto</p>
@@ -53,11 +95,28 @@
             <img src="img/name.png" alt="" class="icon">
             <input type="text" placeholder="Apellidos" class="textbox ocultar" name="apellidos" autocomplete="off">
           </div>
-          <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-          <div class="container-msg">
-            <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten campos vacios</p>
-          </div>
+          <!-- IMPRESION DE ERRORES -->
+          <?php
+                if($_SESSION['validApellidos'] == '1')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Formato Incorrecto!</p>
+                    <p class="title-content-msg">No se permiten espacios en blanco.</p>
+                  </div>';
+                } else if($_SESSION['validApellidos'] == '2')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Formato Incorrecto!</p>
+                    <p class="title-content-msg">Demasiado largo, debe ser menor a 60.</p>
+                  </div>';
+                } else if($_SESSION['validApellidos'] == '3')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Formato Incorrecto!</p>
+                    <p class="title-content-msg">El formato de apellidos no es correcto.</p>
+                  </div>';
+                }
+              ?>
           <!-- FIN -->
         </div>
 
@@ -66,13 +125,18 @@
           <label for="">Telefono</label>
           <div class="info">
             <img src="img/phone.png" alt="" class="icon">
-            <input type="text" value="" class="txt-tel habilitar ocultar">
+            <input type="text" value="" class="txt-tel habilitar ocultar" name="telefono">
           </div>
-          <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-          <div class="container-msg">
-            <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten campos vacios</p>
-          </div>
+          <!-- IMPRESION DE ERRORES -->
+          <?php
+                if($_SESSION['validTelefono'] == '1')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Formato Incorrecto.</p>
+                    <p class="title-content-msg">El telefono debe tener un formato de 000-000-0000.</p>
+                  </div>';
+                }
+              ?>
           <!-- FIN -->
         </div>
 
@@ -80,8 +144,8 @@
         <div class="field line">
           <label for="">Nacionalidad</label>
           <div class="info">
-            <img src="img/global.png" alt="" class="icon">
-            <select class="habilitar ignorar pais ocultar ">
+            <img src="img/global.png" alt="" class="icon" >
+            <select class="habilitar ignorar pais ocultar " name="nacionalidad">
               <option selected></option>
               <option>Argentina</option>
               <option>San Bartolome</option>
@@ -89,9 +153,9 @@
               <option>Brasil</option>
               <option>Chile</option>
               <option>Colombia</option>
-              <option>Cota Rica</option>
+              <option>Costa Rica</option>
               <option>Cuba</option>
-              <option>Ecuador></option>
+              <option>Ecuador</option>
               <option>Guadalupe</option>
               <option>Guatemala</option>
               <option>Guyana Francesa</option>
@@ -109,19 +173,23 @@
               <option>Venezuela</option>
             </select>
           </div>
-          <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-          <div class="container-msg">
-            <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten campos vacios</p>
-          </div>
-          <!-- FIN -->
+          <!-- IMPRESION DE MENSAJE DE ERROR -->
+          <?php
+                if($_SESSION['validNacion'] == '1')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Sin especificar.</p>
+                    <p class="title-content-msg">Seleccione una opción de la lista.</p>
+                  </div>';
+                }
+              ?>
         </div>
 
         <div class="field line">
           <label for="">Hora cita consulado</label>
           <div class="info">
             <img src="img/date.png" alt="" class="icon">
-            <select id="busqueda_hora" class="habilitar hora ocultar">
+            <select id="busqueda_hora" class="habilitar hora ocultar" name="citaConsulado">
               <option value="" selected></option>
               <option value="12:00 AM">12:00 AM</option>
               <option value="12:15 AM">12:15 AM</option>
@@ -221,19 +289,23 @@
               <option value="11:45 PM">11:45 PM</option>
               </select>
           </div>
-          <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-          <div class="container-msg">
-            <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten campos vacios</p>
-          </div>
-          <!-- FIN -->
+          <!-- IMPRESION DE MENSAJE DE ERROR -->
+          <?php
+                if($_SESSION['validCita'] == '1')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Sin especificar.</p>
+                    <p class="title-content-msg">Seleccione una opción de la lista.</p>
+                  </div>';
+                }
+              ?>
         </div>
 
         <div class="field line">
           <label for="">Hora de llegada</label>
           <div class="info">
             <img src="img/date.png" alt="" class="icon">
-            <select id="busqueda_hora" class="habilitar hora ocultar">
+            <select id="busqueda_hora" class="habilitar hora ocultar" name="horaLlegada">
               <option value="" selected></option>
               <option value="12:00 AM">12:00 AM</option>
               <option value="12:15 AM">12:15 AM</option>
@@ -333,12 +405,16 @@
               <option value="11:45 PM">11:45 PM</option>
               </select>
           </div>
-          <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-          <div class="container-msg">
-            <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten campos vacios</p>
-          </div>
-          <!-- FIN -->
+          <!-- IMPRESION DE MENSAJE DE ERROR -->
+          <?php
+                if($_SESSION['validHoraLlegada'] == '1')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Sin especificar.</p>
+                    <p class="title-content-msg">Seleccione una opción de la lista.</p>
+                  </div>';
+                }
+              ?>
         </div>
 
 
@@ -346,36 +422,54 @@
           <label for="">Fecha llegada</label>
           <div class="info">
             <img src="img/calendar.png" alt="" class="icon">
-            <input type="text" value="Presiona aquí" class="datepicker fecha-llegada habilitar ocultar">
+            <input type="text" value="Presiona aquí" class="datepicker fecha-llegada habilitar ocultar" name="fechaLlegada">
           </div>
-          <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-          <div class="container-msg">
-            <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten campos vacios</p>
-          </div>
-          <!-- FIN -->
+          <!-- IMPRESION DE MENSAJE DE ERROR -->
+          <?php
+                if($_SESSION['validFechaLlegada'] == '1')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Sin especificar.</p>
+                    <p class="title-content-msg">Seleccione una fecha en el calendario.</p>
+                  </div>';
+                }
+              ?>
         </div>
 
         <div class="field line">
           <label for="">Fecha nacimiento</label>
           <div class="info">
             <img src="img/calendar.png" alt="" class="icon">
-            <input type="text" value="Presiona aquí" class="datepicker fecha-llegada habilitar ocultar">
+            <input type="text" value="Presiona aquí" class="datepicker fecha-llegada habilitar ocultar" name="nacimiento">
           </div>
-          <!-- ELEMENTOS Y CLASES PARA USAR LIBREARIA CREADA POR EDUARDO BLANCO -->
-          <div class="container-msg">
-            <p class="title-msg">Dato incorrecto</p>
-            <p class="title-content-msg">No se permiten campos vacios</p>
-          </div>
-          <!-- FIN -->
+          <!-- IMPRESION DE MENSAJE DE ERROR -->
+          <?php
+                if($_SESSION['validNacimiento'] == '1')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Sin especificar.</p>
+                    <p class="title-content-msg">Seleccione una fecha en el calendario.</p>
+                  </div>';
+                }
+                $_SESSION['validNombres'] = '0';
+                $_SESSION['validApelllidos'] = '0';
+                $_SESSION['validTelefono'] = '0';
+                $_SESSION['validNacion'] = '0';
+                $_SESSION["validCita"]='0';
+                $_SESSION['validHoraLlegada']='0';
+                $_SESSION['validFechaLlegada']='0';
+                $_SESSION['validNacimiento']='0';
+              ?>
         </div>
         <div class="field max">
           <div class="container-buttons">
-            <input type="button" class="button-cancel" value="Cancel">
-            <input type="button" name=""  class="save" value="Guardar">
+            <input type="button" class="button-cancel" value="Cancel" id="btn-cancel">
+            <input type="submit" name=""  class="save" value="Guardar">
           </div>
         </div>
+
       </form>
     </div>
+
   </body>
 </html>
