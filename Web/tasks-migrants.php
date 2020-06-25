@@ -10,7 +10,9 @@
     nacionalidad.Pais AS 'Pais',
     DATE_FORMAT(visitante.fecha_llegada, '%m/%d/%Y') AS 'FechaLlegada',
     DATE_FORMAT(visitante.hora_llegada, '%H:%i %p') AS 'HoraLlegada',
-    DATE_FORMAT(visitante.cita_consulado, '%H:%i %p') AS 'CitaConsulado'
+    visitante.hora_llegada AS 'HoraLlegada2',
+    DATE_FORMAT(visitante.cita_consulado, '%H:%i %p') AS 'CitaConsulado',
+    visitante.cita_consulado AS 'CitaConsulado2'
     FROM visitante 
     INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion 
     ORDER BY fecha_llegada DESC";
