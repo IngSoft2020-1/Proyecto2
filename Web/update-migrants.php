@@ -38,13 +38,12 @@
         $fechana = date('Y-m-d', $trans);
 
         //G:i:s
-        $tiempo = substr($naci, -4, 5);
-        $cosa = $tiempo.":"."00";
-        $horall = strtotime('G:i:s', $cosa);
+        $trans = strtotime($horal);
+        $horall = date('G:i:s', $trans);
 
-        $tiempo = substr($citac, -4, 5);
-        $cosa = $tiempo.":"."00";
-        $citaco = strtotime('G:i:s', $cosa);
+        //G:i:s
+        $trans = strtotime($citac);
+        $citaco = date('G:i:s', $trans);
 
 
         // mysqli_query($conexion,"update visitante set Nombre='KKkkkkkkkkkkkkkkkkkkkkk' where IDVisi=$ID")
