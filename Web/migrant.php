@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="container-table" style="overflow-x:auto;">
-        <table id="table-migrants" class="tablesorter">
+          <table id="table-migrants" class="tablesorter">
             <thead>
               <tr>
                 <th style="display: none;">ID</th>
