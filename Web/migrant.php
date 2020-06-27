@@ -89,13 +89,4 @@
   <script type="text/javascript" src="js/hora/src/wickedpicker.js"></script>
   <link rel="stylesheet" href="js/hora/stylesheets/wickedpicker.css">
   <script src="js/migrant.js"></script>
-  <script>
-  $("#search-migrants").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#table-migrants tbody").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-    });
-  });
-  </script>
-
 </html>

@@ -517,6 +517,4 @@ $(document).ready(function() {
         });
         $('#success').hide('slow');
       });
-
-
 });
