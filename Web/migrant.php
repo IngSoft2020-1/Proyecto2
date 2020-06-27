@@ -29,9 +29,9 @@
           <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
           <a href="addManualMigrant.php">Agregar manualmente</a>
           <form action="leer.php" method="POST" enctype="multipart/form-data">
-            <p><label id="lblFile" for="txtFile">Actualizar</label></p>
+            <p><label id="lblFile" for="txtFile">Buscar archivo</label></p>
             <p><input id="txtFile" type="file" name="txtFile" accept=".xlsx"></p>
-            <!-- <p><input type="submit" name="subida" value="Actualizar"></p> -->
+            <p><input id="lblRefresh" type="submit" name="subida" value="Actualizar"></p>
           </form>
         </div>
         <input type="text" name="search" placeholder="Search.." id="search-migrants" autocomplete="off">

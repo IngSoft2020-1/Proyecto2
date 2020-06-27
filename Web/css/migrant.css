@@ -204,3 +204,12 @@ a{
   margin: 0;
   margin-bottom: 15px;
 }
+
+#lblRefresh{
+  padding: 10px;
+  background:  #EC6D4A;
+  border-radius: 10px;
+  font-size: calc(0.5em + 0.7vw) !important;
+  cursor: pointer;
+  margin-right: 50px;
+}
