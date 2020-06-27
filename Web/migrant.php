@@ -28,8 +28,9 @@
         <div class="container-a">
           <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
           <a href="addManualMigrant.php">Agregar manualmente</a>
-          <form action="/action_page.php">
-            <input type="file" accept=".xlsx"/>
+          <form action="leer.php" method="POST" enctype="multipart/form-data">
+            <p><input type="file" name="file" accept=".xlsx"/></p>
+            <p><input type="submit" name="subida" value="Actualizar"></p>
           </form>
         </div>
         <input type="text" name="search" placeholder="Search.." id="search-migrants" autocomplete="off">
