@@ -20,6 +20,7 @@
     <script src="js/popup.js"></script>
     <link rel="stylesheet" href="css/popup.css">
     <!-- FIN DE LA LIBRERIA -->
+    <!-- <script src="js/ajaxOrdenar.js"></script> -->
     <title>Editar</title>
   </head>
   <body>
@@ -82,7 +83,7 @@
     </div>
   </body>
   <div class="pop2">
-    <p class="text">Seleccione un aarchivo xlsx</p>
+    <p class="text">Seleccione un archivo excel</p>
   </div>
   <div class="box" id="success" style="position: fixed !important;">
     <p class="title-box" style="display: inline;"></p>
