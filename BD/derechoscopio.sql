@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 02-06-2020 a las 04:19:09
+-- Tiempo de generación: 27-06-2020 a las 08:17:35
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `derechoscopio`
 --
-CREATE DATABASE IF NOT EXISTS `derechoscopio` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `derechoscopio`;
 
 -- --------------------------------------------------------
 
@@ -133,31 +131,49 @@ INSERT INTO `nacionalidad` (`IDPais`, `Pais`) VALUES
 
 DROP TABLE IF EXISTS `reservacion`;
 CREATE TABLE IF NOT EXISTS `reservacion` (
-  `IDReser` int(11) NOT NULL AUTO_INCREMENT,
+  `IDReser` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `FechaInicio` date NOT NULL,
-  `FechaFin` date NOT NULL,
+  `Fechafin` date NOT NULL,
   `DiasEstima` int(11) NOT NULL,
-  `PersonasEstima` int(11) NOT NULL,
-  `FechaCreacion` date NOT NULL,
-  `TipoHabita` char(1) NOT NULL,
-  `Estado` char(1) NOT NULL DEFAULT 'E',
+  `Creacion` date NOT NULL,
+  `Habitacion` char(1) NOT NULL,
+  `Estado` char(1) NOT NULL,
   PRIMARY KEY (`IDReser`),
-  KEY `TipoHabita` (`TipoHabita`),
-  KEY `Estado` (`Estado`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `IDReser` (`IDReser`),
+  KEY `FK_EstadoReser` (`Estado`),
+  KEY `FK_ReserTHabi` (`Habitacion`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `reservacion`
 --
 
-INSERT INTO `reservacion` (`IDReser`, `FechaInicio`, `FechaFin`, `DiasEstima`, `PersonasEstima`, `FechaCreacion`, `TipoHabita`, `Estado`) VALUES
-(2, '2020-05-06', '2020-05-07', 1, 2, '2020-05-02', 'D', 'E'),
-(3, '2020-05-05', '2020-05-08', 3, 3, '2020-05-01', 'T', 'E'),
-(4, '2020-05-04', '2020-05-07', 3, 1, '2020-05-01', 'I', 'F'),
-(5, '2020-05-05', '2020-05-07', 2, 2, '2020-05-04', 'D', 'F'),
-(6, '2020-05-04', '2020-05-06', 2, 3, '2020-05-02', 'T', 'F'),
-(7, '2020-05-13', '2020-05-14', 1, 2, '2020-05-05', 'D', 'P'),
-(8, '2020-05-04', '2020-05-05', 1, 1, '2020-05-01', 'I', 'P');
+INSERT INTO `reservacion` (`IDReser`, `FechaInicio`, `Fechafin`, `DiasEstima`, `Creacion`, `Habitacion`, `Estado`) VALUES
+(1, '2020-06-22', '2020-06-23', 5, '2020-06-23', 'D', 'E');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reservacion_visitante`
+--
+
+DROP TABLE IF EXISTS `reservacion_visitante`;
+CREATE TABLE IF NOT EXISTS `reservacion_visitante` (
+  `IDReserVisi` int(11) NOT NULL AUTO_INCREMENT,
+  `IDReser` int(11) NOT NULL,
+  `IDVisi` int(11) NOT NULL,
+  PRIMARY KEY (`IDReserVisi`),
+  KEY `FK_ReserID` (`IDReser`),
+  KEY `FK_IDVisi` (`IDVisi`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `reservacion_visitante`
+--
+
+INSERT INTO `reservacion_visitante` (`IDReserVisi`, `IDReser`, `IDVisi`) VALUES
+(1, 1, 227),
+(2, 1, 228);
 
 -- --------------------------------------------------------
 
@@ -180,19 +196,21 @@ CREATE TABLE IF NOT EXISTS `tabla` (
 
 DROP TABLE IF EXISTS `tipohabitacion`;
 CREATE TABLE IF NOT EXISTS `tipohabitacion` (
-  `ID` char(1) NOT NULL,
-  `Tipo` varchar(20) NOT NULL,
+  `ID` char(5) NOT NULL,
+  `TipoHabitacion` varchar(5) NOT NULL,
+  `Costo` float NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tipohabitacion`
 --
 
-INSERT INTO `tipohabitacion` (`ID`, `Tipo`) VALUES
-('D', 'Doble'),
-('I', 'Individual'),
-('T', 'Triple');
+INSERT INTO `tipohabitacion` (`ID`, `TipoHabitacion`, `Costo`) VALUES
+('I', 'Indvi', 100),
+('D', 'Doble', 200),
+('T', 'Tripl', 300),
+('O', 'Otro', 0);
 
 -- --------------------------------------------------------
 
@@ -241,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`ID`, `Nombre`, `Apellidos`, `Clave`, `Correo`, `Telefono`, `TipoUsuario`) VALUES
-(3, 'Usuario', 'Principal', 'derechos', 'derechoscopio@gmail.com', '664-000-0000', 'S'),
+(3, 'Usuario', 'Principal', 'nombre', 'derechoscopio@gmail.com', '664-000-0000', 'S'),
 (4, 'Eduardo', 'Castro', 'prueba12', 'prueba@hotmail.com', '664-000-0000', 'A'),
 (7, 'Abner', 'Jesus', 'prueba12', 'prueba3@gmail.com', '664-000-0000', 'A'),
 (8, 'Griselda', 'Jacome', 'prueba12', 'prueba4@gmail.com', '664-000-0000', 'A'),
@@ -297,7 +315,7 @@ INSERT INTO `visitante` (`IDVisi`, `Nombre`, `Telefono`, `Fecha_nac`, `IDNacion`
 (248, 'David Ordonez Ordonez', '686-404-1808', '1993-04-16', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
 (249, 'Angel Daniel Ordonez  Taperia', '', '2013-01-20', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
 (250, 'Franklyn Alexis Ordonez Taperia', '', '2017-03-25', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
-(251, 'Rigoberto Balux Carrillo', '963-109-6025', '1992-10-06', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
+(251, 'pepe', '6645842345', '2014-01-08', 'Mex', '2020-03-03', '11:23:30', '09:30:00', '2020-03-01 12:32:23'),
 (252, 'Hellen Mileidy Balux Suhul ', '', '2016-02-11', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
 (253, 'Maria Isabel Taleon Bautista', '963-163-5272', '1991-02-13', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
 (254, 'Yesica Suceli Bautista Taleon ', '', '2009-10-05', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
@@ -334,13 +352,6 @@ ALTER TABLE `descripcion_modificacion`
 ALTER TABLE `historial_modificacion`
   ADD CONSTRAINT `historial_modificacion_ibfk_1` FOREIGN KEY (`IDTabla`) REFERENCES `tabla` (`IDTabla`),
   ADD CONSTRAINT `historial_modificacion_ibfk_2` FOREIGN KEY (`IDUsuario`) REFERENCES `usuario` (`ID`);
-
---
--- Filtros para la tabla `reservacion`
---
-ALTER TABLE `reservacion`
-  ADD CONSTRAINT `reservacion_ibfk_2` FOREIGN KEY (`TipoHabita`) REFERENCES `tipohabitacion` (`ID`),
-  ADD CONSTRAINT `reservacion_ibfk_3` FOREIGN KEY (`Estado`) REFERENCES `estado` (`ID`);
 
 --
 -- Filtros para la tabla `usuario`

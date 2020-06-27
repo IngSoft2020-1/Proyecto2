@@ -39,14 +39,17 @@ Tipousuario: S
 >>>>>SENTENCIAS SQL PARA LA INSERCION DE DATOS AL CREAR RESERVACION<<<<<< (Sprint Administrador)
 Las siguientes sentencias se ejecutaran cuando el usuario da clic al boton "Crear reservacion"
 
--> insert into reservacion (Creador, FechaInicio, DiasEstima, PersonasEstima, FechaCreacion, TipoHabita, Estado) values (,,,,,,);
-[Creador = Se refiere al usuario que esta creando la reservacion, su valor seria el ID del usuario tipo INT.]
+-> insert into reservacion (FechaInicio, Fechafin, DiasEstima,Creacion, Habitacion, Estado) values (,,,,,,);
 [FechaInicio = Es la fecha de la reservacion de inicio, el tipo es DATE.]
 [DiasEstimados = Noches del hotel, tipo INT]
-[PersonasEstimadas = El conteo de cuantas personas se registraron en esta reservacion, tipo INT.]
-[FechaCreacion = Es la fecha de creacion de la reservacion, tipo DATE.]
+[Creacion = Es la fecha de creacion de la reservacion, tipo DATE.]
 [TipoHabita = Tipo de habitacion, tipo CHAR.]
 [Estado = Se refiere al estado de la habitacion, tipo CHAR, al crear la reservacion este campo es "E".]
+
+-->Ejemplo
+
+
+insert into reservacion (FechaInicio, Fechafin, DiasEstima,Creacion, Habitacion, Estado) values ('2020-06-22','2020-06-23','5','2020-06-23','D','E') 
 
 -> insert into visitante (Nombre, Ape_Mat, Ape_Pat, Telefono, Fecha_nac, Edad, IDNacion) values (,,,,,,);
 {ESTA SENTENCIA SE EJECUTA TANTAS VECES VISITANTES ESTEN SIENDO REGISTRADOS EN LA RESERVACION}
@@ -67,12 +70,11 @@ Las siguientes sentencias se ejecutaran cuando el usuario da clic al boton "Crea
 >>>>>SENTENCIAS SQL PARA LA CONSULTA DE DATOS AL CREAR RESERVACION<<<<<< (Sprint Administrador)
 La primer sentencia es la principal que se ejecutara al entrar a la pantalla de "Reservaciones/Consultar". Ordenada por fecha de creacion de la mas reciente a la mas vieja.
 --Reservaciones--
-SELECT reservacion.FechaInicio AS 'FechadeInicio', reservacion.DiasEstima as 'Diasestimados',estado.Estado AS 'Estadoreservacion', tipohabitacion.Tipo as 'Tipodehabitacion' 
-FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.TipoHabita INNER JOIN estado ON estado.ID= reservacion.Estado
+SELECT reservacion.FechaInicio AS 'FechadeInicio', reservacion.DiasEstima 'Diasestimados',estado.Estado AS 'Estadoreservacion', tipohabitacion.TipoHabitacion as 'Tipodehabitacion' 
+FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.Habitacion INNER JOIN estado ON estado.ID= reservacion.Estado 
 
 --Personas reservacion--
-SELECT visitante.Nombre as 'Nombre', visitante.Ape_Pat AS 'Apellidopaterno', visitante.Ape_Mat as 'Apellidomaterno', visitante.Telefono as 'Telefono' , 
-visitante.Edad as 'edad' FROM reservacion_visitante INNER JOIN reservacion ON reservacion.IDReser = reservacion_visitante.IDReser INNER join 
+SELECT visitante.Nombre as 'Nombres' FROM reservacion_visitante INNER JOIN reservacion ON reservacion.IDReser = reservacion_visitante.IDReser INNER join 
 visitante on reservacion_visitante.IDVisi= visitante.IDVisi WHERE reservacion.IDReser= [Valor de la reservacion de la busqueda anterior]
 
 
