@@ -29,8 +29,9 @@
           <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
           <a href="addManualMigrant.php">Agregar manualmente</a>
           <form action="leer.php" method="POST" enctype="multipart/form-data">
-            <p><input type="file" name="file" accept=".xlsx"/></p>
-            <p><input type="submit" name="subida" value="Actualizar"></p>
+            <p><label id="lblFile" for="txtFile">Actualizar</label></p>
+            <p><input id="txtFile" type="file" name="txtFile" accept=".xlsx"></p>
+            <!-- <p><input type="submit" name="subida" value="Actualizar"></p> -->
           </form>
         </div>
         <input type="text" name="search" placeholder="Search.." id="search-migrants" autocomplete="off">
@@ -80,6 +81,9 @@
       </div>
     </div>
   </body>
+  <div class="pop2">
+    <p class="text">Seleccione un aarchivo xlsx</p>
+  </div>
   <div class="box" id="success" style="position: fixed !important;">
     <p class="title-box" style="display: inline;"></p>
     <button id="btn-cancel-2" class="btn-cancel" name="button">Cancelar</button>

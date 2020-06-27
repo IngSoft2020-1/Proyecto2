@@ -62,7 +62,7 @@
             <a class="text">Reservación</a>
           </div>
           <ul class="ul-submenu" id="ul-res">
-            <li class="container-button submenu" id="btn-new-res">
+            <li class="container-button submenu" id="btn-new-res" style="display: none;">
               <img src="img/new.png" alt="" class="icon">
               <a class="text">Crear</a>
             </li>
