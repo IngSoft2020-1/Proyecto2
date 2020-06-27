@@ -79,10 +79,10 @@
       </div>
     </div>
   </body>
-  <div class="box" id="success">
-    <p class="title-box"></p>
+  <div class="box" id="success" style="position: fixed !important;">
+    <p class="title-box" style="display: inline;"></p>
     <button id="btn-cancel-2" class="btn-cancel" name="button">Cancelar</button>
-    <button class="btn-confirm" name="button">Aceptar</button>
+    <!-- <button class="btn-confirm" name="button">Aceptar</button> -->
   </div>
   <script src="js/consult-migrant.js"></script> <!--Manda a llamar al json-->
   <!-- HORA -->
