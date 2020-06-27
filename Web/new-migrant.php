@@ -20,6 +20,7 @@
     $_SESSION['validHoraLlegada']='0';
     $_SESSION['validFechaLlegada']='0';
     $_SESSION['validNacimiento']='0';
+    $_SESSION['sePudo'] = '0';
 
     /* VALIDACIONES CAMPO NOMBRE */
     if($nombres == '')//ESTA VACIO
@@ -93,6 +94,7 @@
     if ($_SESSION['validNombres'] == '0' && $_SESSION['validApelllidos'] == '0' && $_SESSION['validTelefono'] == '0' && $_SESSION['validNacion'] == '0'
     && $_SESSION['validCita'] == '0' && $_SESSION['validHoraLlegada'] == '0' && $_SESSION['validFechaLlegada'] == '0' && $_SESSION['validNacimiento'] == '0')
     {
+
         $ano = substr($fechaLlegada, 6, 4); 
         $mes = substr($fechaLlegada, 0, 2); 
         $dia = substr($fechaLlegada, 3, 2); 
@@ -118,14 +120,31 @@
         $nombres = $nombres." ".$apellidos;
         $fecha_registro = date("Y-m-d G:i:s");
 
+
         $conexion=mysqli_connect("localhost","root","","derechoscopio") or
         die("Problemas con la conexión");
 
-        mysqli_query($conexion,"insert into visitante(Nombre,Telefono,Fecha_nac,IDNacion,fecha_llegada,hora_llegada,cita_consulado,fecha_registro) values
-        ('$nombres','$telefono','$fechana','$nacionalidad','$fechall','$horall','$citaco','$fecha_registro')")
-        or die("Problemas en el select".mysqli_error($conexion));
+        $registros=mysqli_query($conexion,"select Nombre
+                                from visitante where Nombre='$nombres' and Telefono='$telefono' and Fecha_nac='$fechana' and IDNacion='$nacionalidad' and fecha_llegada='$fechall' and hora_llegada='$horall' and cita_consulado='$citaco'") or
+        die("Problemas en el select:".mysqli_error($conexion));
+        $resultado = mysqli_num_rows($registros);
 
-        header("location:addManualMigrant.php");
+
+        if($resultado > 0)
+        {
+            $_SESSION['sePudo'] = '1';
+        }
+        else
+        {
+            mysqli_query($conexion,"insert into visitante(Nombre,Telefono,Fecha_nac,IDNacion,fecha_llegada,hora_llegada,cita_consulado,fecha_registro) values
+            ('$nombres','$telefono','$fechana','$nacionalidad','$fechall','$horall','$citaco','$fecha_registro')")
+            or die("Problemas en el select".mysqli_error($conexion));
+            
+            mysqli_free_result($registros);
+            mysqli_close($conexion);
+
+            $_SESSION['sePudo'] = '2';
+        }
     }   
     header("location:addManualMigrant.php");
 ?>

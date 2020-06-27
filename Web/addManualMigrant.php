@@ -454,10 +454,39 @@
         </div>
       </form>
     </div>
-    <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
-    <div class="box" style="display: flex;">
-      <p class="title-box">Inserte texto aqui. migrant línea 460. Copia y pega linea 460 a 462 para insertar otro popup</p>
-    </div>
+    <?php
+      if($_SESSION['sePudo'] == '0')
+      {
+    ?>
+        <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
+        <div class="box" style="display: flex;">
+          <p class="title-box">Ocurrio un error.</p>
+        </div>
+    <?php
+      }
+    ?>
+    <?php
+      if($_SESSION['sePudo'] == '1')
+      {
+    ?>
+        <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
+        <div class="box" style="display: flex;">
+          <p class="title-box">Persona ya existente.</p>
+        </div>
+    <?php
+      }
+    ?>
+    <?php
+      if($_SESSION['sePudo'] == '2')
+      {
+    ?>
+        <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
+        <div class="box" style="display: flex;">
+          <p class="title-box">Persona registrada exitosamente.</p>
+        </div>
+    <?php
+      }
+      $_SESSION['sePudo'] = '';
+    ?>
   </body>
-
 </html>
