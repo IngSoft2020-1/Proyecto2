@@ -28,12 +28,9 @@
         <div class="container-a">
           <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
           <a href="addManualMigrant.php">Agregar manualmente</a>
-          <button type="button" name="button">Actualizar lista</button>
-          <select class="" name="">
-            <option value="">Seleccion personalizada</option>
-            <option value="">Todos los de la pantalla</option>
-          </select>
-          <button type="button" name="button">Exportar</button>
+          <form action="/action_page.php">
+            <input type="file" accept=".xlsx"/>
+          </form>
         </div>
         <input type="text" name="search" placeholder="Search.." id="search-migrants" autocomplete="off">
       </div>

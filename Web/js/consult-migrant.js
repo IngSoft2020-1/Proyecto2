@@ -3,28 +3,6 @@ $(document).ready(function() {
   console.log('jQuery esta funcionando');
   obtener();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   $("#mySelect").change(function() {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     var typeSelect = document.getElementById("mySelect").value;
@@ -163,48 +141,6 @@ $(document).ready(function() {
       }
     }
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   /*Usado en migrant.php*/
   /*Funcion para imprimir las filas de los migrantes existentes*/
