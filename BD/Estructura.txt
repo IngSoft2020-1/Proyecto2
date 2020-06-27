@@ -70,7 +70,7 @@ insert into reservacion (FechaInicio, Fechafin, DiasEstima,Creacion, Habitacion,
 >>>>>SENTENCIAS SQL PARA LA CONSULTA DE DATOS AL CREAR RESERVACION<<<<<< (Sprint Administrador)
 La primer sentencia es la principal que se ejecutara al entrar a la pantalla de "Reservaciones/Consultar". Ordenada por fecha de creacion de la mas reciente a la mas vieja.
 --Reservaciones--
-SELECT reservacion.FechaInicio AS 'FechadeInicio', reservacion.DiasEstima 'Diasestimados',estado.Estado AS 'Estadoreservacion', tipohabitacion.TipoHabitacion as 'Tipodehabitacion' 
+SELECT reservacion.IDReser AS 'ID', reservacion.FechaInicio AS 'FechadeInicio', reservacion.DiasEstima 'Diasestimados',estado.Estado AS 'Estadoreservacion', tipohabitacion.TipoHabitacion as 'Tipodehabitacion' 
 FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.Habitacion INNER JOIN estado ON estado.ID= reservacion.Estado 
 
 --Personas reservacion--
