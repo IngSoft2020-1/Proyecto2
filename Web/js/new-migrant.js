@@ -10,21 +10,26 @@ $(document).ready(function(){
   var datosbien = localStorage.getItem('datosBienMigrant');
   if(datosbien == '1'){
     $('#datosBienMigrant').css("display", "flex");
-    $('#datosBienMigrant').show();
+    $('#datosBienMigrant').show('slow');
   }
-  $('.btn-confirm').click(function(){
-    localStorage.setItem('datosBienMigrant', 0);
-    $('.box').hide();
-  });
+  // $('.btn-confirm').click(function(){
+  //   localStorage.setItem('datosBienMigrant', 0);
+  //   $('.box').hide('slow');
+  // });
 
   /* MENSAJE ERROR DE DATOS */
   var datosmal = localStorage.getItem('datosMalMigrant');
   if(datosmal == '1'){
     $('#datosMalMigrant').css("display", "flex");
-    $('#datosMalMigrant').show();
+    $('#datosMalMigrant').show('slow');
   }
-  $('.btn-confirm').click(function(){
-    localStorage.setItem('datosMalMigrant', 0);
-    $('.box').hide();
+  // $('.btn-confirm').click(function(){
+  //   localStorage.setItem('datosMalMigrant', 0);
+  //   $('.box').hide('slow');
+  // });
+
+  var btnConfirm = $('.btn-confirm');
+  $(document).on("click", btnConfirm, function(){
+    $('.box').hide('slow');
   });
 });

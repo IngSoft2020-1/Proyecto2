@@ -1,16 +1,10 @@
 $(document).ready(function() {
+
   console.log('jQuery esta funcionando');
   obtener();
 
-  // EL CONTROL Z LLEGA HASTA AQUI
-  // METODO DE BUSQUEDA PARA MIGRANTES
-  $("#search-migrants").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#table-migrants tbody tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-    });
-  });
-  
+
+
 
 
 
@@ -57,7 +51,7 @@ $(document).ready(function() {
         rows = table.rows;
         /*Loop through all table rows (except the
         first, which contains table headers):*/
-        for (i = 1; i < (rows.length - 1); i++) 
+        for (i = 1; i < (rows.length - 1); i++)
         {
           //start by saying there should be no switching:
           shouldSwitch = false;
@@ -84,7 +78,7 @@ $(document).ready(function() {
               }
           }
         }
-        
+
         if (shouldSwitch) {
           /*If a switch has been marked, make the switch
           and mark that a switch has been done:*/
@@ -120,7 +114,7 @@ $(document).ready(function() {
         rows = table.rows;
         /*Loop through all table rows (except the
         first, which contains table headers):*/
-        for (i = 1; i < (rows.length - 1); i++) 
+        for (i = 1; i < (rows.length - 1); i++)
         {
           //start by saying there should be no switching:
           shouldSwitch = false;
@@ -152,8 +146,8 @@ $(document).ready(function() {
             }
           }
         }
-        
-        if (shouldSwitch) 
+
+        if (shouldSwitch)
         {
           /*If a switch has been marked, make the switch
           and mark that a switch has been done:*/
@@ -587,4 +581,6 @@ $(document).ready(function() {
         });
         $('#success').hide('slow');
       });
+
+
 });

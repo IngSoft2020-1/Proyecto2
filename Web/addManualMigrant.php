@@ -37,7 +37,6 @@
     <!-- SCRIPTS -->
     <script type="text/javascript" src="js/new-migrant.js"></script>
     <link rel="stylesheet" href="css/edit.css">
-
   </head>
   <body>
     <div class="container">
@@ -455,5 +454,10 @@
         </div>
       </form>
     </div>
+    <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
+    <div class="box" style="display: flex;">
+      <p class="title-box">Inserte texto aqui. migrant línea 460. Copia y pega linea 460 a 462 para insertar otro popup</p>
+    </div>
   </body>
+
 </html>

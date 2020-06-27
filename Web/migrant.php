@@ -15,7 +15,11 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- MASCARA -->
     <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
-
+    <!-- LIBRERIA PARA LOS POPUPS
+    -->
+    <script src="js/popup.js"></script>
+    <link rel="stylesheet" href="css/popup.css">
+    <!-- FIN DE LA LIBRERIA -->
     <title>Editar</title>
   </head>
   <body>
@@ -82,5 +86,13 @@
   <script type="text/javascript" src="js/hora/src/wickedpicker.js"></script>
   <link rel="stylesheet" href="js/hora/stylesheets/wickedpicker.css">
   <script src="js/migrant.js"></script>
+  <script>
+  $("#search-migrants").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#table-migrants tbody").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+  </script>
 
 </html>

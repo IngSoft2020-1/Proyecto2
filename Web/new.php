@@ -301,7 +301,6 @@
     <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
     <div class="box" id="success">
       <p class="title-box">Usuario creado</p>
-      <!-- <button class="ex" name="button">lala</button> -->
     </div>
     <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
     <div class="box" id="UserExist">

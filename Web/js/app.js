@@ -98,7 +98,7 @@ $(document).ready(function() {
         var element = $(this)[0].parentElement.parentElement;
         ID = $(element).attr('task-id');
         $('.box').css("display", "flex");
-        $('.box').show();
+        $('.box').show('slow');
     })
 
     $('.btn-confirm').click(function(){
@@ -106,6 +106,6 @@ $(document).ready(function() {
           console.log(response);
           obtener();
       })
-      $('.box').hide();
+      $('.box').hide('slow');
     });
 });
