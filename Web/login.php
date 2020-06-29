@@ -13,6 +13,7 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
+    <link rel="icon" href="img/favicon32.png" type="image/png"/>
     <meta charset="utf-8">
     <!-- VIEWPORT ES LA PANTALLA DEL CELULAR-->
     <!-- EN CONTENT LOS ESTILOS SE ADAPTAN AL ANCHO DEL DISPOSITVO -->
@@ -31,7 +32,7 @@
     <!-- FIN DE LA LIBRERIA -->
     <!-- MY STYLES -->
     <link rel="stylesheet" href="css/login.css">
-    <title>Titulo</title>
+    <title>Inicio de sesión</title>
   </head>
   <body>
     <div id="container-login">

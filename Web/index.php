@@ -15,6 +15,7 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
+  <link rel="icon" href="img/favicon32.png" type="image/png"/>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/inicio.css">
     <!-- JQUERY -->
@@ -22,7 +23,7 @@
     <!-- MIS SCRIPT -->
     <script type="text/javascript">var user = "<?= $idUser ?>";</script>
     <script type="text/javascript" src="js/main.js"></script>
-    <title>Inicio</title>
+    <title>Derechoscopio</title>
   </head>
   <body>
     <!-- <div class="container-logo">
