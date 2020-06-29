@@ -205,3 +205,13 @@ cita_consulado='2020-03-05 9:30:00', fecha_registro ='2020-03-01 12:32:23'WHERE 
 update usuario set Clave='' where ID= 
 --Ejemplo
 update usuario set Clave='nombre' where ID=3 
+
+--Fecha Consul 3 dias
+--- OJO ESTA PRIMER SENTENCIA MUESTRA LASRESERVACIONES, YA LA SEGUNDA MUESTRA LOS DATOS QUE PIDE EL EXCEL EXCEPTUANDO EL NUMERO DE CUARTO POR QUE ESA MODIFICACION AUN NO LA HACEMOS.----
+SELECT reservacion.IDReser AS 'ID', reservacion.FechaInicio AS 'FechadeInicio',reservacion.Fechafin as 'FechaFin', reservacion.DiasEstima 'Diasestimados',estado.Estado AS 
+'Estadoreservacion', tipohabitacion.TipoHabitacion as 'Tipodehabitacion' FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.Habitacion INNER JOIN 
+estado ON estado.ID= reservacion.Estado where Fechafin BETWEEN curdate() and curdate() + interval 3 day 
+
+SELECT reservacion.IDReser AS 'NumeroReservacion',reservacion.Fechafin as 'DiaSalida',visitante.cita_consulado as 'CitaConsulado',visitante.Nombre AS 'Nombre' FROM 
+reservacion_visitante INNER JOIN reservacion ON reservacion.IDReser = reservacion_visitante.IDReser INNER join visitante on reservacion_visitante.IDVisi= visitante.IDVisi 
+where Fechafin BETWEEN curdate() and curdate() + interval 3 day 
