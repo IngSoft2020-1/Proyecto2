@@ -29,10 +29,15 @@
         <div class="container-a">
           <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
           <a href="addManualMigrant.php">Agregar manualmente</a>
+          <!-- ACTUALIZAR MIGRANTES -->
           <form action="leer.php" method="POST" enctype="multipart/form-data">
             <p><label id="lblFile" for="txtFile">Buscar archivo</label></p>
             <p><input id="txtFile" type="file" name="txtFile" accept=".xlsx"></p>
             <p><input id="lblRefresh" type="submit" name="subida" value="Actualizar"></p>
+          </form>
+          <!-- DESCARGAR PDF MIGRANTES -->
+          <form action="print_migrantes_pdf.php" method="POST">
+            <p><input type="submit" name="subida" value="Actualizar"></p>
           </form>
         </div>
         <input type="text" name="search" placeholder="Search.." id="search-migrants" autocomplete="off">
