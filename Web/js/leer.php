@@ -4,18 +4,30 @@ require 'conexion.php';
 /* LIBRERIA DE PHPEXCEL */
 require 'PHPExcel/PHPExcel/IOFactory.php';
 
+/*
+echo '<!-- LIBRERIA POPUPS MENSAJE -->
+<script src="js/popup.js"></script>
+<link rel="stylesheet" href="css/popup.css">';
+*/
 if(isset($_POST['subida'])){
-    
+
     /* IMPORTACION DEL ARCHIVO DE EXCEL */
     $guardarArchivo="Excel/migrantes.xlsx";
     $loc_temp_Archivo=$_FILES['txtFile']['tmp_name'];
-    
+
     /* MENSAJE DE ERROR EXTENSION INCORRECTA */
     $nombreArchivo=$_FILES['txtFile']['name'];
     $ext = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
     if ($ext !== 'xlsx') {
         echo "<script>console.log('El archivo no es .xlsx');</script>";
         header("location:migrant.php");
+
+        /*
+        echo '<div class="container-msg">
+          <p class="title-msg">Extensión incorrecta!</p>
+          <p class="title-content-msg">El formato del archivo no es correcto.</p>
+        </div>';
+
     }
 
     /* SE GUARDA EL ARCHIVO EN EL SERVIDOR */
@@ -48,7 +60,7 @@ if(isset($_POST['subida'])){
 
     /* CAMINO DEL ARCHIVO EXCEL EN EL SERVIDOR */
     $archivo="Excel/migrantes.xlsx";
-    
+
     /* PARA ATRAPAR ERRORES DE LECTURA DEL EXCEL
     EJPLO: CUANDO SOUBEN UN IMAGEN QUE LE CMABIARON EL .JPG CON .XLSX'*/
     $reader = PHPExcel_IOFactory::createReader('Excel2007');
@@ -60,11 +72,11 @@ if(isset($_POST['subida'])){
         $objPHPExcel=PHPExcel_IOFactory::load($archivo);
         $objPHPExcel->setActiveSheetIndex(0);
 
-        
+
 
         $numFilas=$objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
-        
-        
+
+
         /* VALIDACION DEL FORMATO DEL EXCEL */
         $validacionFecha=$objPHPExcel->getActiveSheet()->getCell('A'.'1')->getFormattedValue();
         $validacionFecha=date("d/m/Y",strtotime($validacionFecha));
@@ -90,9 +102,9 @@ if(isset($_POST['subida'])){
             for ($i=1; $i <$numFilas; $i++) {
 
                 $nombre=$objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-                
+
                 if ($nombre!='') {
-                    
+
                     $fecha=$objPHPExcel->getActiveSheet()->getCell('A'.$i)->getFormattedValue();
                     if ($fecha!='') {
                         $fecha=date("Y-m-d",strtotime($fecha));
@@ -101,10 +113,10 @@ if(isset($_POST['subida'])){
                     else {
                         $fecha=$fechaACT;
                     }
-                    
+
                     $nacimiento=$objPHPExcel->getActiveSheet()->getCell('C'.$i)->getFormattedValue();
                     $nacimiento=date("Y-m-d",strtotime(strtok($nacimiento,'(')));
-                    
+
                     $fechaLlegada=$objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
                     if ($fechaLlegada!='"' && $fechaLlegada!='') {
                         $fechaLlegada=date("H:i",strtotime($fechaLlegada));
@@ -113,7 +125,7 @@ if(isset($_POST['subida'])){
                     else {
                         $fechaLlegada=$fechaLlegadaACT;
                     }
-    
+
                     $fechaSalida=$objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
                     if ($fechaSalida!='"' && $fechaSalida!='') {
                         $fechaSalida=date("H:i",strtotime($fechaSalida));
@@ -122,7 +134,7 @@ if(isset($_POST['subida'])){
                     else {
                         $fechaSalida=$fechaSalidaACT;
                     }
-    
+
                     $nacionalidad=$objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
                     if ($nacionalidad!='"' && $nacionalidad!='') {
                         $nacionalidadACT=$nacionalidad;
@@ -130,12 +142,12 @@ if(isset($_POST['subida'])){
                     else {
                         $nacionalidad=$nacionalidadACT;
                     }
-                    
+
                     $telefono=$objPHPExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
                     if ($telefono=='"' || $telefono=='') {
                         $telefono="";
                     }
-    
+
                     $nose=$objPHPExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
                     if ($nose!='"' && $nose!='') {
                         $noseACT=$nose;
@@ -143,10 +155,10 @@ if(isset($_POST['subida'])){
                     else {
                         $nose=$noseACT;
                     }
-                    
+
                     $registros=mysqli_query($conexion,"SELECT IDVisi FROM visitante WHERE Nombre='$nombre' AND Fecha_nac='$nacimiento'") or
                     die("Problemas en el select:".mysqli_error($conexion));
-    
+
                     if(mysqli_num_rows($registros) > 0)
                     {
                         $exitentes++;
@@ -159,38 +171,38 @@ if(isset($_POST['subida'])){
                         if(strlen($telefono)>13){
                             $telefono= substr($telefono,0,13);
                         }
-                        
-                        $query="INSERT INTO visitante (Nombre, Telefono, Fecha_nac, IDNacion, fecha_llegada, hora_llegada, cita_consulado, fecha_registro) 
+
+                        $query="INSERT INTO visitante (Nombre, Telefono, Fecha_nac, IDNacion, fecha_llegada, hora_llegada, cita_consulado, fecha_registro)
                         values ('$nombre','$telefono','$nacimiento','Mex','$fecha','$fechaLlegada','$fechaSalida','$fecha_registro')";
                         mysqli_query($conexion,$query)
                         or die("Problemas de insercion.".mysqli_error($conexion));
                         $nuevos++;
-    
+
                         $pilaMigrantes[]=mysqli_insert_id($conexion);
                         $conjunto = 1;
                     }
                     mysqli_free_result($registros);
-    
+
                     /* PARA IMPRIMIR LA ULTIMA FILA */
                     if($i==$numFilas-1 && count($pilaMigrantes)>0)
                     {
                         /* echo "<script>console.log('".$i."');</script>"; */
                         $personas= count($pilaMigrantes);
-                        $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado) 
+                        $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado)
                             VALUES ('$fecha','strtotime($fecha . ' +1 day')','1','$fecha_Creacion','I','E')";
                         mysqli_query($conexion,$query);
                         $reservaciones++;
-    
+
                         $idReser=mysqli_insert_id($conexion);
                         /* echo "<script>console.log('".$personas."');</script>"; */
                         for($o=0; $o <$personas; $o++)
                         {
                             $IDddddddddddd= $pilaMigrantes[$o];
-                            $query="INSERT INTO reservacion_visitante (IDReser, IDVisi) 
+                            $query="INSERT INTO reservacion_visitante (IDReser, IDVisi)
                             values ('$idReser','$IDddddddddddd')";
                             mysqli_query($conexion,$query);
                         }
-    
+
                         $pilaMigrantes=array();
                         $conjunto=0;
                     }
@@ -205,22 +217,22 @@ if(isset($_POST['subida'])){
                     $cuarto="D";
                     else if($personas>3)
                     $cuarto="T";
-    
-                    $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado) 
+
+                    $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado)
                         VALUES ('$fecha','$fecha','$personas','$fecha_Creacion','$cuarto','E')";
                     mysqli_query($conexion,$query);
                     $reservaciones++;
-    
+
                     $idReser=mysqli_insert_id($conexion);
                     /* echo "<script>console.log('".$personas."');</script>"; */
                     for($o=0; $o <$personas; $o++)
                     {
                         $IDddddddddddd= $pilaMigrantes[$o];
-                        $query="INSERT INTO reservacion_visitante (IDReser, IDVisi) 
+                        $query="INSERT INTO reservacion_visitante (IDReser, IDVisi)
                         values ('$idReser','$IDddddddddddd')";
                         mysqli_query($conexion,$query);
                     }
-    
+
                     $pilaMigrantes=array();
                     $conjunto=0;
                 }
@@ -228,7 +240,7 @@ if(isset($_POST['subida'])){
         } catch (Throwable $e) {
             /* MENSAJe ERROR INESPERADO EN LA LECTURA DEL ARCHIVO */
         }
-        
+
         /* MENSAJE DE EXITO */
         echo "<script>console.log('Exportacion exitosa');</script>";
         echo "<script>console.log('Migrantes insertados: ".$nuevos."');</script>";
