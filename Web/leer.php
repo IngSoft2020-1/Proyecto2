@@ -1,6 +1,5 @@
 <?php
 /* CONEXION A LA BASE DE DATOS */
-
 require 'conexion.php';
 /* LIBRERIA DE PHPEXCEL */
 require 'PHPExcel/PHPExcel/IOFactory.php';
