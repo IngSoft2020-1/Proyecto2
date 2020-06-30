@@ -14,7 +14,7 @@
     visitante.Edad, 
     visitante.IDNacion from reservacion
     inner join reservacion_visitante on reservacion_visitante.IDReser = reservacion.IDREser 
-    inner join visitante on visitante.IDVisi = reservacion_visitante.IDVisi order by Nombre asc";
+    inner join visitante on visitante.IDVisi = reservacion_visitante.IDVisi order by reservacion.IDReser asc";
     $resultado = mysqli_query($conexion, $query);
 
     if(!$resultado) {
