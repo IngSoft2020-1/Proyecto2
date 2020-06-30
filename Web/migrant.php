@@ -36,8 +36,8 @@
             <p><input id="lblRefresh" type="submit" name="subida" value="Actualizar lista"></p>
           </form>
           <!-- DESCARGAR PDF MIGRANTES -->
-          <form style="width: 150%">
-            <p><input id="lblExportar" type="button" class="button-export" name="subida" value="Generar PDF"></p>
+          <form style="width: 150%" action="print-migrantes-pdf.php" method="POST">
+            <p><input id="lblExportar" type="submit" class="button-export" name="subida" value="Generar PDF"></p>
           </form>
         </div>
         <input type="text" name="search" placeholder="Search.." id="search-migrants" autocomplete="off">

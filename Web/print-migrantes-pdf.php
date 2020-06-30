@@ -69,7 +69,7 @@
     }
    
 
-    /* $pdf= new pdfMigrantes();
+    $pdf= new pdfMigrantes();
     $pdf->AddPage('P','A4',0);
     $pdf->SetMargins(20,20);
     $pdf->cabezera();
@@ -81,5 +81,5 @@
     header("Content-type: application/pdf");
     header("Content-disposition: attachment; filename= Esperados.pdf");
     readfile("Esperados.pdf");
-    unlink("Esperados.pdf"); */
+    unlink("Esperados.pdf");
 ?>
