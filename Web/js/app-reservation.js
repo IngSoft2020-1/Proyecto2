@@ -27,11 +27,17 @@ $(document).ready(function()
     /*Usado en _edit.php*/
     /*Funcion para imprimir las filas de los usuarios existentes*/
     function obtener() {
-        $row=0;
+        $wea = 0;
+        $row = 0;
+        $DiasEsti = 0;
+        $Estado = 0;
+        $IDHabi = 0;
+        $TipoHabi = 0;
         $.ajax({
             url: 'task-reser.php',
             type: 'GET',
             success: function (response) {
+                console.log('Wea funcionando');
                 let tasks = JSON.parse(response);
                 console.log(tasks);
                 let templado = '';
@@ -39,17 +45,31 @@ $(document).ready(function()
                     $row++;
                     if($row == 1)
                     {
+                        $wea = task.IDReservacion;
                         templado += `
-                        <tr id="${row}">
-                            <td><input disabled="on" type="text" value="10/10/2020" class="fecha-llegada habilitar"></td>
+                        <tr id="${task.IDReservacion}" value="${$row}">
+                            <td><input disabled="on" type="text" value="${task.FechadeInicio}" class="fecha-llegada habilitar"></td>
                             <td class="td-name">
                             <div class="container-td">
                                 <div>
                                 <select class="habilitar">
-                                    <option value="">Jose Jose</option>
-                                    <option value="">Ramon Ayala</option>
-                                    <option value="">Chalino Sachez</option>
-                                    <option value="">Jose Juanga</option>
+                                    <option value="${task.IDVisitante}">${task.Nombres}</option>
+                        `
+                    }
+                    else if($wea == task.IDReservacion && $row != 1)
+                    {
+                        $DiasEsti = task.Diasestimados;
+                        $Estado = task.Estadoreservacion;
+                        $IDHabi = task.IDHabitacion;
+                        $TipoHabi = task.Tipodehabitacion;
+                        templado += `
+                                    <option value="${task.IDVisitante}">${task.Nombres}</option>
+                        `
+                    }
+                    else if($wea != task.IDReservacion && $row != 1)
+                    {
+                        $wea = task.IDReservacion;
+                        templado += `
                                 </select>
                                 </div>
                                 <div class="td-cont">
@@ -60,23 +80,25 @@ $(document).ready(function()
                             </td>
                             <td>
                             <select class="habilitar">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                                <option value="">4</option>
-                                <option value="">5</option>
+                                <option value="${$DiasEsti}">${$DiasEsti}</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </select>
                             </td>
                             <td>
                             <select class="habilitar">
-                                <option value="">Sencilla</option>
-                                <option value="">Doble</option>
-                                <option value="">Triple</option>
-                                <option value="">Otra</option>
+                                <option value="${$IDHabi}">${$TipoHabi}</option>
+                                <option value="I">Sencilla</option>
+                                <option value="D">Doble</option>
+                                <option value="T">Triple</option>
+                                <option value="O">Otra</option>
                             </select>
                             </td>
-                            <td><input type="number" class="habilitar number" value="1"></td>
-                            <td><input type="number" class="habilitar number" value="320"></td>
+                            <td><input type="number" class="habilitar number" value="0"></td>
+                            <td><input type="number" class="habilitar number" value="0"></td>
                             <td><p id="estado-1" class="parrafo">En espera</p></td>
                             <td class="td-right">
                             <div class="evento  evento-1">
@@ -90,9 +112,60 @@ $(document).ready(function()
                             </div>
                             </td>
                         </tr>
+                        <tr id="${task.ID}" value="${$row}">
+                            <td><input disabled="on" type="text" value="${task.FechadeInicio}" class="fecha-llegada habilitar"></td>
+                            <td class="td-name">
+                            <div class="container-td">
+                                <div>
+                                <select class="habilitar">
+                                    <option value="${task.IDVisitante}">${task.Nombres}</option>
                         `
                     }
                 });
+                templado += `
+                        </select>
+                        </div>
+                        <div class="td-cont">
+                        <img src="img/trash.png" alt="" class="icon">
+                        <img src="img/new.png" alt="" class="icon">
+                        </div>
+                    </div>
+                    </td>
+                    <td>
+                    <select class="habilitar">
+                        <option value="${$DiasEsti}">${$DiasEsti}</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    </td>
+                    <td>
+                    <select class="habilitar">
+                        <option value="${$IDHabi}">${$TipoHabi}</option>
+                        <option value="I">Sencilla</option>
+                        <option value="D">Doble</option>
+                        <option value="T">Triple</option>
+                        <option value="O">Otra</option>
+                    </select>
+                    </td>
+                    <td><input type="number" class="habilitar number" value="0"></td>
+                    <td><input type="number" class="habilitar number" value="0"></td>
+                    <td><p id="estado-1" class="parrafo">En espera</p></td>
+                    <td class="td-right">
+                    <div class="evento  evento-1">
+                        <img src="img/points.png" class="icon">
+                    </div>
+                    <div class="sub-menu sub-menu-1">
+                        <input class="input-submenu btn-start" type="button" name="" value="Iniciar">
+                        <input class="input-submenu btn-edit" type="button" name="" value="Editar huespedes">
+                        <input style="display: none;" class="input-submenu btn-cancel" type="button" name="" value="Cancelar">
+                        <input class="input-submenu btn-delete" type="button" name="" value="Eliminar">
+                    </div>
+                    </td>
+                </tr>
+                `
                 $('#tasksReservacion').html(templado);
             }
         });
