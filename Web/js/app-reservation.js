@@ -47,7 +47,7 @@ $(document).ready(function()
                     {
                         $wea = task.IDReservacion;
                         templado += `
-                        <tr id="${task.IDReservacion}" value="${$row}">
+                        <tr id="${$row}" value="${$row}" class="${task.IDReservacion}">
                             <td><input disabled="on" type="text" value="${task.FechadeInicio}" class="fecha-llegada habilitar"></td>
                             <td class="td-name">
                             <div class="container-td">
@@ -112,7 +112,7 @@ $(document).ready(function()
                             </div>
                             </td>
                         </tr>
-                        <tr id="${task.ID}" value="${$row}">
+                        <tr id="${$row}" value="${$row}" class="${task.IDReservacion}">
                             <td><input disabled="on" type="text" value="${task.FechadeInicio}" class="fecha-llegada habilitar"></td>
                             <td class="td-name">
                             <div class="container-td">
