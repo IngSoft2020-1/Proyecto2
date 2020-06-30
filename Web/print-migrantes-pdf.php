@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once "fpdf182/fpdf.php";
 
     class pdfMigrantes extends FPDF{
@@ -51,11 +52,27 @@
             } 
         }
     }
-    $pdf= new pdfMigrantes();
+    echo "<script>console.log('Llego1');</script>";
+
+    
+    if(isset($_POST['data'])) {
+        echo "<script>console.log('Llego2');</script>";
+        $data = json_decode(stripslashes($_POST['data']));
+        var_dump(json_decode($data));
+    }
+
+    if(isset($_POST['json'])) {
+        echo "<script>console.log('Llego3');</script>";
+        $json = $_POST['json'];
+        var_dump(json_decode($json));
+        $tabla=json_decode($json);
+    }
+   
+
+    /* $pdf= new pdfMigrantes();
     $pdf->AddPage('P','A4',0);
     $pdf->SetMargins(20,20);
     $pdf->cabezera();
-    /* $pdf->piePagina(); */
     $pdf->cabezeraTabla();
     $pdf->contenidoTabla();
     
@@ -64,5 +81,5 @@
     header("Content-type: application/pdf");
     header("Content-disposition: attachment; filename= Esperados.pdf");
     readfile("Esperados.pdf");
-    unlink("Esperados.pdf");
+    unlink("Esperados.pdf"); */
 ?>
