@@ -15,7 +15,7 @@ if(isset($_POST['subida'])){
     $ext = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
     if ($ext !== 'xlsx') {
         echo "<script>console.log('El archivo no es .xlsx');</script>";
-        /* header("location:migrant.php"); */
+        header("location:migrant.php");
     }
 
     /* SE GUARDA EL ARCHIVO EN EL SERVIDOR */
@@ -83,7 +83,7 @@ if(isset($_POST['subida'])){
         if(!$validacionFecha || !$validacionNacimiento || !$validacionHora1 || !$validacionHora2)
         {
             echo "<script>console.log('El excel no tiene el formato correcto');</script>";
-            /* header("location:migrant.php"); */
+            header("location:migrant.php");
         }
 
         try {
@@ -241,7 +241,7 @@ if(isset($_POST['subida'])){
         echo "<script>console.log('No se pudo leer el archivo');</script>";
     }
     /* REGRESA A LA PAGINA DE CONSULTAR MIGRANTES */
-    /* header("location:migrant.php"); */
+    header("location:migrant.php");
 }
 
 /*function calcularEdad($fechanacimiento){
