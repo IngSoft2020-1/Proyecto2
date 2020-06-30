@@ -40,7 +40,7 @@ $(document).ready(function()
                     if($row == 1)
                     {
                         templado += `
-                        <tr id="${row}">
+                        <tr id="${row}" value= "">
                             <td><input disabled="on" type="text" value="10/10/2020" class="fecha-llegada habilitar"></td>
                             <td class="td-name">
                             <div class="container-td">
