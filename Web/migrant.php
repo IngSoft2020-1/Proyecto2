@@ -36,8 +36,8 @@
             <p><input id="lblRefresh" type="submit" name="subida" value="Actualizar"></p>
           </form>
           <!-- DESCARGAR PDF MIGRANTES -->
-          <form action="print_migrantes_pdf.php" method="POST">
-            <p><input type="submit" name="subida" value="Actualizar"></p>
+          <form>
+            <p><input type="button" class="button-export" name="subida" value="Actualizar"></p>
           </form>
         </div>
         <input type="text" name="search" placeholder="Search.." id="search-migrants" autocomplete="off">
@@ -58,11 +58,11 @@
         <div class="select">
           <label for="show">Mostrar:</label>
           <select class="" name="show" id="mySelect2">
-            <option value="">Proximos 7 días</option>
-            <option value="mes">Último mes</option>
-            <option value="meses3">Últimos 3 meses</option>
-            <option value="meses6">Últimos 6 meses</option>
-            <option value="Todos">Todos</option>
+            <option value="7">Proximos 7 días</option>
+            <option value="1">Último mes</option>
+            <option value="3">Últimos 3 meses</option>
+            <option value="3">Últimos 6 meses</option>
+            <option value="0">Todos</option>
           </select>
         </div>
       </div>

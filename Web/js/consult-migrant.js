@@ -147,8 +147,10 @@ $(document).ready(function() {
   var edit; // BOTON CLICK, SE DECLARA AFUERA DEBIDO QUE AQUI NO GENERO ERRORES
   var borrar;
   var claseIdentificador;
+  var migrantes;
   function obtener() {
       $row=0;
+      migrantes=0;
       $.ajax({
           url: 'tasks-migrants.php',
           type: 'GET',
@@ -158,6 +160,7 @@ $(document).ready(function() {
               let templado = '';
               tasks.forEach(task => {
                   $row++;
+                  migrantes++;
                   templado += `
                   <tr class="tr" id="${task.IDVisi}" value="${$row}">
                       <td style="display: none;">${$row}</td>
@@ -517,4 +520,42 @@ $(document).ready(function() {
         });
         $('#success').hide('slow');
       });
+
+      function Persona()
+      {
+        var fechall, nombre, nacimiento, horall, citaCo, nacionalidad, telefono;
+      }
+
+      var contenidoT=[];
+      $('.button-export').click( function() {
+
+        for (var per = 1; per <= migrantes; per++) {
+          var migra = new Persona();
+          migra.fechall = $(".llegada" + per).val();
+          migra.nombre = $(".nom" + per).val();
+          migra.nacimiento = $(".fn" + per).val();
+          migra.horall = $(".hl" + per).val();
+          migra.citaCo = $(".cc" + per).val();
+          migra.nacionalidad = $(".pais" + per).val();
+          migra.telefono = $(".telefono" + per).val();
+          
+          contenidoT.push(migra);
+        }
+        console.log(contenidoT);
+        var json = JSON.stringify(contenidoT);
+        $.post('print-migrantes-pdf.php', {json}, function() {
+          console.log("Enviado1");
+        });
+        
+        $.ajax({
+          type: "POST",
+          url: "print-migrantes-pdf.php",
+          data: {data : json}, 
+          cache: false,
+
+          success: function(){
+            console.log("Enviado2");
+          }
+        });
+      });  
 });
