@@ -165,3 +165,51 @@ a{
 .input-submenu{
   cursor: pointer;
 }
+
+#lblFile{
+  width: 100%;
+  padding: 10px;
+  background: #EC6D4A;
+  color: white;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#txtFile{
+  display: none;
+}
+
+.pop2{
+  width: 350px;
+  height: 60px;
+  background: #1A2127;
+  display: flex;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  left: 30%;
+  top: 13%;
+  border-radius: 5px;
+  border: 2px solid #EC6D4A;
+}
+
+.text{
+  color: white;
+  font-size: 22px;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+#lblRefresh{
+  padding: 10px;
+  background:  #EC6D4A;
+  border-radius: 10px;
+  font-size: calc(0.5em + 0.7vw) !important;
+  cursor: pointer;
+  margin-right: 50px;
+}

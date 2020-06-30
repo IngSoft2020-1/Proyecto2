@@ -6,4 +6,14 @@ $(document).ready(function(){
   $('.ocultar').click(function(){
     $('.container-msg').hide('slow');
   });
+
+  var lblActualizar = $('#lblFile');
+  lblActualizar.hover(function(){
+    $('.pop2').show();
+    $('.pop2').css("display", "flex");
+  });
+
+  lblActualizar.mouseout(function(){
+    $('.pop2').hide();
+  })
 });

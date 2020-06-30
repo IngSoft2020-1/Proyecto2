@@ -20,6 +20,7 @@
     <script src="js/popup.js"></script>
     <link rel="stylesheet" href="css/popup.css">
     <!-- FIN DE LA LIBRERIA -->
+    <!-- <script src="js/ajaxOrdenar.js"></script> -->
     <title>Editar</title>
   </head>
   <body>
@@ -28,8 +29,14 @@
         <div class="container-a">
           <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
           <a href="addManualMigrant.php">Agregar manualmente</a>
+          <!-- ACTUALIZAR MIGRANTES -->
           <form action="leer.php" method="POST" enctype="multipart/form-data">
-            <p><input type="file" name="file" accept=".xlsx"/></p>
+            <p><label id="lblFile" for="txtFile">Buscar archivo</label></p>
+            <p><input id="txtFile" type="file" name="txtFile" accept=".xlsx"></p>
+            <p><input id="lblRefresh" type="submit" name="subida" value="Actualizar"></p>
+          </form>
+          <!-- DESCARGAR PDF MIGRANTES -->
+          <form action="print_migrantes_pdf.php" method="POST">
             <p><input type="submit" name="subida" value="Actualizar"></p>
           </form>
         </div>
@@ -80,6 +87,9 @@
       </div>
     </div>
   </body>
+  <div class="pop2">
+    <p class="text">Seleccione un archivo excel</p>
+  </div>
   <div class="box" id="success" style="position: fixed !important;">
     <p class="title-box" style="display: inline;"></p>
     <button id="btn-cancel-2" class="btn-cancel" name="button">Cancelar</button>
