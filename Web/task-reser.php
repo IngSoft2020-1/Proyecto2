@@ -2,6 +2,44 @@
     $conexion=mysqli_connect("localhost","root","","derechoscopio") or
     die("Problemas con la conexión");
 
+    $query = "";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     $query = "select reservacion.IDReser, 
     reservacion.FechaInicio,
     reservacion.DiasEstima, 
