@@ -54,7 +54,7 @@
     }
     echo "<script>console.log('Llego1');</script>";
 
-    
+    /* NO LLEGAN LOS POST  AQUI ME ATORE*/
     if(isset($_POST['data'])) {
         echo "<script>console.log('Llego2');</script>";
         $data = json_decode(stripslashes($_POST['data']));
