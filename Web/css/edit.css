@@ -78,7 +78,7 @@ a{
 form {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   width: 80%;
   margin: auto;
 }

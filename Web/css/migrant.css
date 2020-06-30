@@ -166,18 +166,6 @@ a{
   cursor: pointer;
 }
 
-#lblFile{
-  width: 100%;
-  padding: 10px;
-  background: #EC6D4A;
-  color: white;
-  font-size: 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  text-align: center;
-}
-
 #txtFile{
   display: none;
 }
@@ -205,11 +193,36 @@ a{
   margin-bottom: 15px;
 }
 
+
+#lblFile{
+  width: 80%;
+  padding: 10px;
+  background: #EC6D4A;
+  color: white;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  margin-left: 20px;
+}
+
+
 #lblRefresh{
   padding: 10px;
   background:  #EC6D4A;
   border-radius: 10px;
   font-size: calc(0.5em + 0.7vw) !important;
   cursor: pointer;
-  margin-right: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#lblExportar{
+  padding: 10px;
+  background:  #EC6D4A;
+  border-radius: 10px;
+  font-size: calc(0.5em + 0.7vw) !important;
+  cursor: pointer;
+
 }
