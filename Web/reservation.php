@@ -6,7 +6,6 @@
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <!-- MASCARA -->
     <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
-    <script type="text/javascript" src="js/reservation.js"></script>
     <!-- LIBRERIAS PARA DATEPICKER -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
@@ -59,4 +58,5 @@
     </div>
   </body>
   <script src="js/app-reservation.js"></script>
+  <script type="text/javascript" src="js/reservation.js"></script>
 </html>

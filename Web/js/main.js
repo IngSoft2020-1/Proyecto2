@@ -30,6 +30,7 @@ $(document).ready(function(){
   var btn_edit_profile = $('#btn-profile');
   var btn_consult_migrant = $('#btn-migrant');
   var btn_new_res = $('#btn-new-res');
+  var btn_about = $('#btn-about');
 
   // FUNCION PARA ABRIR EL SUBMENU DENTRO DEL IFRAME
   function ShowIframe(src){
@@ -47,6 +48,7 @@ $(document).ready(function(){
   btn_consult_reservation.click(function(){ShowIframe("reservation.php");});
   btn_new_res.click(function(){ShowIframe("_reservation.php");});
   btn_home.click(function(){ShowIframe("consulado.php");});
+  btn_about.click(function(){ShowIframe("about.php");});
   // ***************************************************************************
 
   // ***************************************************************************

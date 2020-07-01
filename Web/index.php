@@ -97,6 +97,12 @@
             </li>
           </ul>
         </li>
+        <li class="container-button display" id="btn-about">
+          <div class="div-display">
+            <img src="img/about.png" alt="" class="icon">
+            <a class="text">Acerca de</a>
+          </div>
+        </li>
       </ul>
     </aside>
     <!-- CONTENEDOR PRINCIPAL DE LA PANTALLA -->

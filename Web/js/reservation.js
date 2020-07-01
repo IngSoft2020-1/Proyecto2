@@ -2,7 +2,7 @@ $(document).ready(function() {
   $('.datepicker').datepicker();
   var submenu;
   // EVENTOS PARA CAMBIAR EL COLOR DE FONDO DEL CONTENENDOR DE LOS TRES PUNTITOS
-  $('.icon').hover(function(){
+  $('.icon').click(function(){
     var _this = this;
     $('.evento-'+GetID(_this)).css("background", "#32424c");
   });

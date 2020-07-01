@@ -2,7 +2,7 @@
   Permiten comunicar la pagina "delete.php" con otras paginas
   que solo contienen sentencias de php/mysqli, devolviendo los valores*/
 
-$(document).ready(function() 
+$(document).ready(function()
 {
     console.log('jQuery esta funcionando');
     obtener();
@@ -16,7 +16,7 @@ $(document).ready(function()
     });
 
     // METODO DE BUSQUEDA PARA RESERVACION
-    $("#search-res").on("keyup", function() 
+    $("#search-res").on("keyup", function()
     {
         var value = $(this).val().toLowerCase();
         $("#table-res tbody tr").filter(function() {
