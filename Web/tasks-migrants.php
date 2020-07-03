@@ -6,10 +6,13 @@
     visitante.Nombre AS 'Nombre',
     visitante.Telefono AS 'Telefono',
     DATE_FORMAT(visitante.Fecha_nac, '%m/%d/%Y') AS 'FechaNacimiento',
+    nacionalidad.IDPais AS 'IDPais',
     nacionalidad.Pais AS 'Pais',
     DATE_FORMAT(visitante.fecha_llegada, '%m/%d/%Y') AS 'FechaLlegada',
     DATE_FORMAT(visitante.hora_llegada, '%H:%i %p') AS 'HoraLlegada',
-    DATE_FORMAT(visitante.cita_consulado, '%H:%i %p') AS 'CitaConsulado'
+    visitante.hora_llegada AS 'HoraLlegada2',
+    DATE_FORMAT(visitante.cita_consulado, '%H:%i %p') AS 'CitaConsulado',
+    visitante.cita_consulado AS 'CitaConsulado2'
     FROM visitante 
     INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion 
     ORDER BY fecha_llegada DESC";
@@ -28,9 +31,12 @@
             'Telefono' => $row['Telefono'],
             'FechaNacimiento' => $row['FechaNacimiento'],
             'Pais' => $row['Pais'],
+            'IDPais' => $row['IDPais'],
             'FechaLlegada' => $row['FechaLlegada'],
             'HoraLlegada' => $row['HoraLlegada'],
-            'CitaConsulado' => $row['CitaConsulado']
+            'HoraLlegada2' => $row['HoraLlegada2'],
+            'CitaConsulado' => $row['CitaConsulado'],
+            'CitaConsulado2' => $row['CitaConsulado2']
         );
     }
     $jsonstring = json_encode($json);

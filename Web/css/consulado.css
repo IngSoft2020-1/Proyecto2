@@ -1,0 +1,73 @@
+*{
+  font-family: poppins, 'arial';
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 94%;
+  margin: auto;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  text-align: left;
+  padding: 40px;
+  font-size: calc(0.5em + 0.7vw);
+}
+
+table>tbody>tr:nth-child(odd) {
+    background-color:#283138;
+}
+
+table>tbody>tr:nth-child(even) {
+    background-color:#1a2127;
+}
+
+table td, table th{
+  padding: 10px;
+}
+
+.habitacion{
+  text-align: center;
+}
+
+.container-table{
+  width: 100%;
+  margin: auto;
+  box-shadow: 4px 4px 20px #141a1f;
+  margin-top: 15px;
+  border-radius: 18px;
+  padding: 10px;
+  background: #283138;
+}
+
+#hour{
+  display: inline;
+}
+
+.title{
+  display: inline;
+}
+
+.text{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.container-tools{
+  margin-top: 36px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.subcontainer{
+  width: 48%;
+  border-radius: 18px;
+  height: 260px;
+  background: #283138;
+}

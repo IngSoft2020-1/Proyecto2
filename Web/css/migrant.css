@@ -6,8 +6,8 @@
 
 .select {
     display: flex;
-    width: 30%;
     align-items: center;
+    width: 30%;
 }
 
 label{
@@ -15,18 +15,12 @@ label{
 }
 
 select{
-  width: 50%;
       margin-left: 5px;
       background: rgba(72, 87, 97);
       color: white;
       border: none;
       height: 28px;
 }
-
-.min-width, td{
-  min-width: 80px;
-}
-
 
 .options {
     position: absolute;
@@ -58,5 +52,177 @@ input{
   background: transparent;
   border: none;
   color: white;
+}
+
+input.fecha-llegada {
+    width: 76px;
+}
+
+.txt-tel {
+    width: 110px;
+}
+
+.pais {
+    width: 152px;
+}
+
+.icon-plus{
+  width: 35px;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+  font-size: calc(0.5em + 0.7vw);
+  margin-left: 10px;
+}
+
+.container-a{
+  display: flex;
+  align-items: center;
+}
+
+/* ESTILOS PARA AGREGAR MANUALMENTE */
+.container-msg{
+  /* display: none !important; */
+}
+
+.txt-tel{
   width: 100%;
+}
+
+.pais{
+  width: 100%;
+}
+
+.datepicker{
+  /* width: 100% !important; */
+}
+
+.field{
+  margin-top: 30px !important;
+}
+
+.hora{
+  width: 100%;
+}
+
+.container-buttons{
+  width: 100%;
+  text-align: right !important;
+}
+
+.max{
+  width: 100% !important;
+}
+
+.save{
+  background: #EC6D4A;
+    color: white;
+    border: 2px solid #EC6D4A;
+    width: calc(5em + 0.6vw);
+    height: calc(3em + 0.4vw);
+}
+
+.number{
+  width: 100px;
+}
+
+.td-name{
+  width: 220px;
+}
+
+.icon{
+  width: 30px !important;
+}
+
+.td-right{
+  text-align: center;
+}
+
+.evento {
+  border-radius: 99px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sub-menu {
+    background: #27333b;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 52px;
+    border-radius: 10px;
+    padding: 17px;
+    box-shadow: 2px 2px 3px black;
+    display: none;
+}
+
+.input-submenu{
+  cursor: pointer;
+}
+
+#txtFile{
+  display: none;
+}
+
+.pop2{
+  width: 350px;
+  height: 60px;
+  background: #1A2127;
+  display: flex;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  left: 30%;
+  top: 13%;
+  border-radius: 5px;
+  border: 2px solid #EC6D4A;
+}
+
+.text{
+  color: white;
+  font-size: 22px;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+
+#lblFile{
+  width: 80%;
+  padding: 10px;
+  background: #EC6D4A;
+  color: white;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  margin-left: 20px;
+}
+
+
+#lblRefresh{
+  padding: 10px;
+  background:  #EC6D4A;
+  border-radius: 10px;
+  font-size: calc(0.5em + 0.7vw) !important;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#lblExportar{
+  padding: 10px;
+  background:  #EC6D4A;
+  border-radius: 10px;
+  font-size: calc(0.5em + 0.7vw) !important;
+  cursor: pointer;
+
 }

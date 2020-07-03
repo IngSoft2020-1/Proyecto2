@@ -1,7 +1,7 @@
 <?php
   $conexion=mysqli_connect("localhost","root","","derechoscopio")
   or die("Problemas con la conexión");
-  
+
   $usu = $_GET['var'];
 
   session_start();
@@ -40,14 +40,14 @@
 
     <!-- MIS SCRIPT -->
     <script type="text/javascript" src="js/main.js"></script>
-  
+
     <!-- LIBRERIA POPUP -->
     <link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css"/>
     <link rel="stylesheet" href="js/jquery-ui/jquery-ui.structure.min.css"/>
     <link rel="stylesheet" href="js/jquery-ui/jquery-ui.theme.min.css"/>
     <link rel="stylesheet" type="text/css" href="js/tooltipster-master/dist/css/tooltipster.bundle.min.css" />
     <script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
-    
+
     <!-- LIBRERIA POPUPS MENSAJE DE VALIDACION -->
     <script src="js/msg-alert.js"></script>
     <link rel="stylesheet" href="css/msg-alert.css">
@@ -59,7 +59,7 @@
 
     <!-- MASCARA -->
     <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
-    
+
     <!-- SCRIPTS -->
     <script type="text/javascript" src="js/edit.js"></script>
     <link rel="stylesheet" href="css/edit.css">
@@ -72,12 +72,12 @@
         <img src="img/editar.png" alt="" class="icon-title">
       </div>
       <div class="container-form">
-      <form action="update-user-general?id=<?php echo $usu?>" method="post">
+      <form action="update-user-general.php?id=<?php echo $usu?>" method="post">
 
           <?php
             /*CONSULTA PARA CARGAR DATOS A TEXTBOX*/
             $query= "SELECT Nombre, Apellidos, Correo, Telefono FROM usuario WHERE ID='$usu'";
-            
+
             $registros = mysqli_query($conexion, $query) or
             die("Problemas en el select:" . mysqli_error($conexion));
           if ($reg = mysqli_fetch_array($registros))
@@ -88,7 +88,8 @@
               <label for="">Nombres</label>
               <div class="info">
                 <img src="img/name.png" alt="" class="icon">
-                <input type="text" placeholder="Nombre" class="textbox" name="nombres" value="<?php echo $reg['Nombre']?>" autocomplete="off">
+                <!-- SE APLICA UN STYLE CSS DIRECTO DEL HTML Y SE USA LA PROPIEDAD IMPORTANT PARA QUE APLIQUE ESE ESTILO SI O SI-->
+                <input style="background: transparent !important;" type="text" placeholder="Nombre" class="textbox" name="nombres" value="<?php echo $reg['Nombre']?>" autocomplete="off">
               </div>
               <!-- IMPRESION DE ERRORES -->
               <?php
@@ -113,13 +114,13 @@
                 }
               ?>
             </div>
-            
+
             <!-- APELLIDOS -->
             <div class="field line">
               <label for="">Apellidos</label>
               <div class="info">
                 <img src="img/name.png" alt="" class="icon">
-                <input type="text" placeholder="Apellidos" class="textbox" name="apellidos" value="<?php echo $reg['Apellidos']?>" autocomplete="off">
+                <input style="background: transparent !important;" type="text" placeholder="Apellidos" class="textbox" name="apellidos" value="<?php echo $reg['Apellidos']?>" autocomplete="off">
               </div>
               <!-- IMPRESION DE ERRORES -->
               <?php
@@ -150,7 +151,7 @@
               <label for="">Correo</label>
               <div class="info">
                 <img src="img/mail.png" alt="" class="icon">
-                <input type="text" placeholder="Correo" class="textbox" name="correo1" value="<?php echo $reg['Correo']?>" autocomplete="off">
+                <input style="background: transparent !important;" type="text" placeholder="Correo" class="textbox" name="correo1" value="<?php echo $reg['Correo']?>" autocomplete="off">
               </div>
               <!-- IMPRESION DE ERRORES -->
               <?php
@@ -187,7 +188,7 @@
               <label for="">Confirmar Correo</label>
               <div class="info">
                 <img src="img/mail.png" alt="" class="icon">
-                <input type="text" placeholder="Confirmar" class="textbox" name="correo2" value="<?php echo $reg['Correo']?>" autocomplete="off">
+                <input style="background: transparent !important;" type="text" placeholder="Confirmar" class="textbox" name="correo2" value="<?php echo $reg['Correo']?>" autocomplete="off">
               </div>
               <!-- IMPRESION DE ERRORES -->
               <?php
@@ -206,7 +207,7 @@
               <label for="">Telefono</label>
               <div class="info">
                 <img src="img/name.png" alt="" class="icon">
-                <input type="text" placeholder="000-000-0000" class="textbox"  name="telefono" value="<?php echo $reg['Telefono']?>" autocomplete="off" id="txt-tel">
+                <input style="background: transparent !important;" type="text" placeholder="000-000-0000" class="textbox"  name="telefono" value="<?php echo $reg['Telefono']?>" autocomplete="off" id="txt-tel">
               </div>
               <!-- IMPRESION DE ERRORES -->
               <?php
@@ -238,7 +239,7 @@
               <?php
             }
           ?>
-          
+
           <!-- POPUP CONFIRMACION DE CAMBIOS DE DATOS GENERALES -->
           <div class="popup" id="popup-confirmar" title="Confirmar" style="display: none;">
               <label class="lbl-pass">¿Está seguro que desea guardar los cambios?</label>
@@ -266,7 +267,7 @@
             </div>
           </form>
         </div>
-        
+
         <script>
           var txt = $('.textbox');
           var msg = $('.container-msg');
@@ -284,7 +285,7 @@
         </script>
       </div>
     </div>
-    
+
     <!-- MENSAJE DATOS GENERALES BIEN -->
     <div class="box" id="datosBien">
       <p class="title-box">Se han modificado los datos.</p>

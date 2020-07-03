@@ -5,7 +5,7 @@
 
     <!-- JQUERY -->
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-
+    <script type="text/javascript" src="js/edit.js"></script>
     <link rel="stylesheet" href="css/edit.css">
     <title>Editar</title>
   </head>
@@ -30,15 +30,11 @@
       </div>
     </div>
   </body>
-  <!--
-  <div class="popup-personalizado">
-    <p class="popup-texto">¿Estás seguro que deseas eliminar este perfil?</p>
-    <form class="form-popup">
-      <input type="button" name="" value="Cancelar" class="textbox-popup cancel">
-      <input type="submit" name="" value="Aceptar" class="textbox-popup">
-    </form>
+  <div class="box" id="success">
+    <p class="title-box">¿Estas seguro?</p>
+    <button id="btn-cancel-2" name="button">Cancelar</button>
+    <button class="btn-confirm" name="button">Aceptar</button>
   </div>
-  -->
 <script src="js/app.js"></script> <!--Manda a llamar al json-->
 
 </html>

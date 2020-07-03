@@ -6,9 +6,7 @@
   }
   else if($_SESSION['creado'] == '1'){
     echo "<script>
-
     localStorage.setItem('success', 1);
-
     </script>";
   }
   else if($_SESSION['creado'] == '2'){
@@ -245,7 +243,7 @@
           <div class="field line" style=""> <!-- Telefono -->
             <label for="">Teléfono</label>
             <div class="info">
-            <img src="img/name.png" alt="" class="icon">
+            <img src="img/phone.png" alt="" class="icon">
             <?php
               if($_SESSION['sucaritas'] == '')
               {
@@ -303,7 +301,6 @@
     <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
     <div class="box" id="success">
       <p class="title-box">Usuario creado</p>
-      <!-- <button class="ex" name="button">lala</button> -->
     </div>
     <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
     <div class="box" id="UserExist">

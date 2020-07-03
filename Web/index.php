@@ -1,4 +1,4 @@
-<?php 
+<?php
   session_start();
   $varsesion = $_SESSION['cual'];
 	if($varsesion == null || $varsesion == '')
@@ -15,6 +15,7 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
+  <link rel="icon" href="img/favicon32.png" type="image/png"/>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/inicio.css">
     <!-- JQUERY -->
@@ -22,9 +23,7 @@
     <!-- MIS SCRIPT -->
     <script type="text/javascript">var user = "<?= $idUser ?>";</script>
     <script type="text/javascript" src="js/main.js"></script>
-    <!-- METADATOS PARA APP MOVIL -->
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <title>Inicio</title>
+    <title>Derechoscopio</title>
   </head>
   <body>
     <!-- <div class="container-logo">
@@ -64,7 +63,7 @@
             <a class="text">Reservación</a>
           </div>
           <ul class="ul-submenu" id="ul-res">
-            <li class="container-button submenu" id="btn-new-res">
+            <li class="container-button submenu" id="btn-new-res" style="display: none;">
               <img src="img/new.png" alt="" class="icon">
               <a class="text">Crear</a>
             </li>
@@ -81,8 +80,8 @@
           </div>
           <ul class="ul-submenu" id="ul-profile">
             <li class="container-button submenu" id="btn-profile">
-              <img src="img/edit.png" alt="" class="icon">
-              <a class="text">Editar</a>
+              <img src="img/read.png" alt="" class="icon">
+              <a class="text">Consultar</a>
             </li>
           </ul>
         </li>
@@ -98,9 +97,14 @@
             </li>
           </ul>
         </li>
+        <li class="container-button display" id="btn-about">
+          <div class="div-display">
+            <img src="img/about.png" alt="" class="icon">
+            <a class="text">Acerca de</a>
+          </div>
+        </li>
       </ul>
     </aside>
-
     <!-- CONTENEDOR PRINCIPAL DE LA PANTALLA -->
     <section>
       <!-- ENCABEZADO -->
@@ -118,67 +122,7 @@
         </div>
       </header>
       <div class="container-section">
-        <div id="container-home">
-          <table class="table-mobile">
-            <tbody>
-              <tr class="blue">
-                <td colspan="2" class="name">Jose Vazquez</td>
-              </tr>
-              <tr class="black">
-                <td class="txtBlue">Telefono</td>
-                <td>664646</td>
-              </tr>
-              <tr class="gray">
-                <td class="txtBlue">Fecha</td>
-                <td>02-12-2020</td>
-              </tr>
-              <tr class="black">
-                <td class="txtBlue">Fecha 2</td>
-                <td>02-12-2020</td>
-              </tr>
-              <tr>
-                <td class="space">&nbsp;</td>
-              </tr>
-              <tr class="blue">
-                <td colspan="2" class="name">Jose Vazquez</td>
-              </tr>
-              <tr class="black">
-                <td class="txtBlue">Telefono</td>
-                <td>664646</td>
-              </tr>
-              <tr class="gray">
-                <td class="txtBlue">Fecha</td>
-                <td>02-12-2020</td>
-              </tr>
-              <tr class="black">
-                <td class="txtBlue">Fecha 2</td>
-                <td>02-12-2020</td>
-              </tr>
-              <tr>
-                <td class="space">&nbsp;</td>
-              </tr>
-              <tr class="blue">
-                <td colspan="2" class="name">Jose Vazquez</td>
-              </tr>
-              <tr class="black">
-                <td class="txtBlue">Telefono</td>
-                <td>664646</td>
-              </tr>
-              <tr class="gray">
-                <td class="txtBlue">Fecha</td>
-                <td>02-12-2020</td>
-              </tr>
-              <tr class="black">
-                <td class="txtBlue">Fecha 2</td>
-                <td>02-12-2020</td>
-              </tr>
-              <tr>
-                <td class="space">&nbsp;</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <iframe scrolling="yes"></iframe>
+        <iframe scrolling="yes" src="consulado.php"></iframe>
       </div>
     </section>
   </body>

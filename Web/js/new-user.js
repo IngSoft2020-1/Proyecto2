@@ -27,13 +27,13 @@ $(document).ready(function(){
 
   if(success == '1'){
     $('#success').css("display", "flex");
-    $('#success').show();
+    $('#success').show('slow');
   }
 
 
   $('.btn-confirm').click(function(){
     localStorage.setItem('success', 0);
-    $('.box').hide();
+    $('.box').hide('slow');
   });
 
 
@@ -41,13 +41,13 @@ $(document).ready(function(){
 
   if(UserExist == '1'){
     $('#UserExist').css("display", "flex");
-    $('#UserExist').show();
+    $('#UserExist').show('slow');
   }
 
 
   $('.btn-confirm').click(function(){
     localStorage.setItem('UserExist', 0);
-    $('.box').hide();
+    $('.box').hide('slow');
   });
 
 

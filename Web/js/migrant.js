@@ -1,34 +1,19 @@
 $(document).ready(function(){
-  var count = 0;
-  $("#table-migrants tbody .tr").on("click", function(event){
-     var id= $(this).find("td:first-child").html();
-     var identificador = "";
-     var identificador2 = ""
+  $('.txt-tel').mask('000-000-0000', {placeholder: '000-000-0000'}); //placeholder
 
-     for(var i = 1; i <= id; i++){
-       identificador = ".menu" + "-" + i;
-       identificador2 = ".menu" + "-" + (i+1);
+  $( ".datepicker" ).datepicker();
 
-       if(id == i){
-         if (count == 0) {
-           $(identificador).show();
-           count++;
-         }
-         else if(count == 1){
-           $(identificador).hide();
-           count--;
-         }
+  $('.ocultar').click(function(){
+    $('.container-msg').hide('slow');
+  });
 
-          $(identificador2).hide();
-       }
-       else{
-         $(identificador).hide();
-       }
-     }
+  var lblActualizar = $('#lblFile');
+  lblActualizar.hover(function(){
+    $('.pop2').show();
+    $('.pop2').css("display", "flex");
+  });
 
-
- });
-
-
-
+  lblActualizar.mouseout(function(){
+    $('.pop2').hide();
+  })
 });

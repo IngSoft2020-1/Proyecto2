@@ -141,6 +141,7 @@ header{
   width: 5%;
   height: 5%;
   padding-left: 10px;
+  cursor: pointer;
 }
 
 #menu-mobile{
@@ -194,7 +195,7 @@ section{
 iframe{
   width: 100%;
   height: 94vh;
-  display: none;
+  /* display: none; */
   padding: 0;
   margin: 0;
   border: 0;

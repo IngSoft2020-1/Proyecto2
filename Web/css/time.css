@@ -1,0 +1,11 @@
+
+.time{
+  color: white;
+  font-size: calc(1em + 1.2vw);
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.date{
+  text-align: right;
+}

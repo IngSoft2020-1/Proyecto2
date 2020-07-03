@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 21-05-2020 a las 21:06:41
+-- Tiempo de generación: 27-06-2020 a las 11:54:37
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `derechoscopio`
 --
+CREATE DATABASE IF NOT EXISTS `derechoscopio` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `derechoscopio`;
 
 -- --------------------------------------------------------
 
@@ -131,33 +133,109 @@ INSERT INTO `nacionalidad` (`IDPais`, `Pais`) VALUES
 
 DROP TABLE IF EXISTS `reservacion`;
 CREATE TABLE IF NOT EXISTS `reservacion` (
-  `IDReser` int(11) NOT NULL AUTO_INCREMENT,
-  `Creador` int(11) NOT NULL,
+  `IDReser` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `FechaInicio` date NOT NULL,
-  `FechaFin` date NOT NULL,
+  `Fechafin` date NOT NULL,
   `DiasEstima` int(11) NOT NULL,
-  `PersonasEstima` int(11) NOT NULL,
-  `FechaCreacion` date NOT NULL,
-  `TipoHabita` char(1) NOT NULL,
-  `Estado` char(1) NOT NULL DEFAULT 'E',
+  `Creacion` date NOT NULL,
+  `Habitacion` char(1) NOT NULL,
+  `Estado` char(1) NOT NULL,
   PRIMARY KEY (`IDReser`),
-  KEY `Creador` (`Creador`),
-  KEY `TipoHabita` (`TipoHabita`),
-  KEY `Estado` (`Estado`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `IDReser` (`IDReser`),
+  KEY `FK_EstadoReser` (`Estado`),
+  KEY `FK_ReserTHabi` (`Habitacion`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `reservacion`
 --
 
-INSERT INTO `reservacion` (`IDReser`, `Creador`, `FechaInicio`, `FechaFin`, `DiasEstima`, `PersonasEstima`, `FechaCreacion`, `TipoHabita`, `Estado`) VALUES
-(2, 7, '2020-05-06', '2020-05-07', 1, 2, '2020-05-02', 'D', 'E'),
-(3, 4, '2020-05-05', '2020-05-08', 3, 3, '2020-05-01', 'T', 'E'),
-(4, 4, '2020-05-04', '2020-05-07', 3, 1, '2020-05-01', 'I', 'F'),
-(5, 9, '2020-05-05', '2020-05-07', 2, 2, '2020-05-04', 'D', 'F'),
-(6, 4, '2020-05-04', '2020-05-06', 2, 3, '2020-05-02', 'T', 'F'),
-(7, 4, '2020-05-13', '2020-05-14', 1, 2, '2020-05-05', 'D', 'P'),
-(8, 3, '2020-05-04', '2020-05-05', 1, 1, '2020-05-01', 'I', 'P');
+INSERT INTO `reservacion` (`IDReser`, `FechaInicio`, `Fechafin`, `DiasEstima`, `Creacion`, `Habitacion`, `Estado`) VALUES
+(2, '2020-03-02', '2020-03-02', 1, '2020-06-27', 'I', 'E'),
+(3, '2020-03-04', '2020-03-04', 1, '2020-06-27', 'I', 'E'),
+(4, '2020-03-04', '2020-03-04', 1, '2020-06-27', 'I', 'E'),
+(5, '2020-03-05', '2020-03-05', 1, '2020-06-27', 'I', 'E'),
+(6, '2020-03-05', '2020-03-05', 1, '2020-06-27', 'I', 'E'),
+(7, '2020-03-05', '2020-03-05', 1, '2020-06-27', 'I', 'E'),
+(8, '2020-03-05', '2020-03-05', 1, '2020-06-27', 'I', 'E'),
+(9, '2020-03-06', '2020-03-06', 1, '2020-06-27', 'I', 'E'),
+(10, '2020-03-09', '2020-03-09', 1, '2020-06-27', 'I', 'E'),
+(11, '2020-03-12', '2020-03-12', 1, '2020-06-27', 'I', 'E'),
+(12, '2020-03-12', '2020-03-12', 1, '2020-06-27', 'I', 'E'),
+(13, '2020-03-12', '2020-03-12', 1, '2020-06-27', 'I', 'E'),
+(14, '2020-03-16', '2020-03-16', 1, '2020-06-27', 'I', 'E'),
+(15, '2020-03-19', '2020-03-19', 1, '2020-06-27', 'I', 'E'),
+(16, '2020-03-20', '2020-03-20', 1, '2020-06-27', 'I', 'E'),
+(17, '2020-03-26', '2020-03-26', 1, '2020-06-27', 'I', 'E'),
+(18, '2020-03-26', '2020-03-26', 1, '2020-06-27', 'I', 'E'),
+(19, '2020-03-26', '2020-03-26', 1, '2020-06-27', 'I', 'E'),
+(20, '2020-03-26', '2020-03-26', 1, '2020-06-27', 'I', 'E');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reservacion_visitante`
+--
+
+DROP TABLE IF EXISTS `reservacion_visitante`;
+CREATE TABLE IF NOT EXISTS `reservacion_visitante` (
+  `IDReserVisi` int(11) NOT NULL AUTO_INCREMENT,
+  `IDReser` int(11) NOT NULL,
+  `IDVisi` int(11) NOT NULL,
+  PRIMARY KEY (`IDReserVisi`),
+  KEY `FK_ReserID` (`IDReser`),
+  KEY `FK_IDVisi` (`IDVisi`)
+) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `reservacion_visitante`
+--
+
+INSERT INTO `reservacion_visitante` (`IDReserVisi`, `IDReser`, `IDVisi`) VALUES
+(4, 2, 272),
+(3, 2, 271),
+(5, 3, 273),
+(6, 3, 274),
+(7, 3, 275),
+(8, 3, 276),
+(9, 4, 277),
+(10, 4, 278),
+(11, 5, 279),
+(12, 6, 280),
+(13, 6, 281),
+(14, 7, 282),
+(15, 7, 283),
+(16, 7, 284),
+(17, 8, 285),
+(18, 8, 286),
+(19, 9, 287),
+(20, 9, 288),
+(21, 9, 289),
+(22, 10, 290),
+(23, 10, 291),
+(24, 11, 292),
+(25, 11, 293),
+(26, 11, 294),
+(27, 12, 295),
+(28, 12, 296),
+(29, 13, 297),
+(30, 13, 298),
+(31, 14, 299),
+(32, 14, 300),
+(33, 15, 301),
+(34, 15, 302),
+(35, 15, 303),
+(36, 15, 304),
+(37, 16, 305),
+(38, 16, 306),
+(39, 17, 307),
+(40, 17, 308),
+(41, 18, 309),
+(42, 18, 310),
+(43, 19, 311),
+(44, 19, 312),
+(45, 20, 313),
+(46, 20, 314);
 
 -- --------------------------------------------------------
 
@@ -180,19 +258,21 @@ CREATE TABLE IF NOT EXISTS `tabla` (
 
 DROP TABLE IF EXISTS `tipohabitacion`;
 CREATE TABLE IF NOT EXISTS `tipohabitacion` (
-  `ID` char(1) NOT NULL,
-  `Tipo` varchar(20) NOT NULL,
+  `ID` char(5) NOT NULL,
+  `TipoHabitacion` varchar(5) NOT NULL,
+  `Costo` float NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tipohabitacion`
 --
 
-INSERT INTO `tipohabitacion` (`ID`, `Tipo`) VALUES
-('D', 'Doble'),
-('I', 'Individual'),
-('T', 'Triple');
+INSERT INTO `tipohabitacion` (`ID`, `TipoHabitacion`, `Costo`) VALUES
+('I', 'Indvi', 100),
+('D', 'Doble', 200),
+('T', 'Tripl', 300),
+('O', 'Otro', 0);
 
 -- --------------------------------------------------------
 
@@ -241,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`ID`, `Nombre`, `Apellidos`, `Clave`, `Correo`, `Telefono`, `TipoUsuario`) VALUES
-(3, 'Usuario', 'Principal', 'derechos', 'derechoscopio@gmail.com', '664-000-0000', 'S'),
+(3, 'Usuario', 'Principal', 'nombre', 'derechoscopio@gmail.com', '664-000-0000', 'S'),
 (4, 'Eduardo', 'Castro', 'prueba12', 'prueba@hotmail.com', '664-000-0000', 'A'),
 (7, 'Abner', 'Jesus', 'prueba12', 'prueba3@gmail.com', '664-000-0000', 'A'),
 (8, 'Griselda', 'Jacome', 'prueba12', 'prueba4@gmail.com', '664-000-0000', 'A'),
@@ -266,57 +346,57 @@ CREATE TABLE IF NOT EXISTS `visitante` (
   `fecha_registro` datetime NOT NULL,
   PRIMARY KEY (`IDVisi`),
   KEY `IDNacion` (`IDNacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=271 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `visitante`
 --
 
 INSERT INTO `visitante` (`IDVisi`, `Nombre`, `Telefono`, `Fecha_nac`, `IDNacion`, `fecha_llegada`, `hora_llegada`, `cita_consulado`, `fecha_registro`) VALUES
-(227, 'Jose Maria Calixto Acosta', '686-115-7546', '1954-08-05', 'Mex', '2020-03-02', '08:30:00', '04:30:00', '2020-05-17 21:40:00'),
-(228, 'Elenis Margarita Reyes de Calixto', '', '1959-10-05', 'Mex', '2020-03-02', '08:30:00', '04:30:00', '2020-05-17 21:40:00'),
-(229, 'Gustavo Adolfo Pino Amador', '934-114-4278', '1979-01-29', 'Mex', '2020-03-04', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(230, 'Sonia Maribel Alvarez Barahona', '', '1979-09-29', 'Mex', '2020-03-04', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(231, 'Ashly Issayana Pino Alvarez', '', '2010-09-17', 'Mex', '2020-03-04', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(232, 'Britany Yulieth Pino Alvarez', '', '2014-03-19', 'Mex', '2020-03-04', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(233, 'Marvin de Jesus Ruiz Gadea', '686-107-8695', '1989-02-07', 'Mex', '2020-03-04', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(234, 'Ariel Antonio Ruiz Garcia', '', '2010-05-10', 'Mex', '2020-03-04', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(235, 'Eduardo Valdemar Ramirez', '993-372-2073', '1988-10-30', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(236, 'Karen Yaneth Guevara Maldonado', '686-143-5333', '1984-05-29', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(237, 'Angel David Guevara Maldonado', '', '2009-05-29', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(238, 'Breny Alcira Alvarado Rodriguez', '686-352-7274', '1993-01-13', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(239, 'Enis Antonio Isaula Alvarado', '', '2012-07-12', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(240, 'Katherine Abigail Isaula Alvarado', '', '2018-04-02', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(241, 'Maria Cristina Mendez Mendez', '963-231-6127', '1982-10-18', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(242, 'Mayra Yolanda Lopez Mendez', '', '2002-04-18', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(243, 'Juana Arreaga Bravo', '963-144-6916', '1982-02-02', 'Mex', '2020-03-06', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(244, 'Jimy Ortiz Arreaga', '', '2005-01-25', 'Mex', '2020-03-06', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(245, 'Angel Arreaga Bravo ', '', '2018-11-11', 'Mex', '2020-03-06', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(246, 'Maria Eusebia Monge Serrano ', '686-244-8930', '1959-08-14', 'Mex', '2020-03-09', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(247, 'Asli Ariany Matute Gonzalez', '', '2009-11-19', 'Mex', '2020-03-09', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(248, 'David Ordonez Ordonez', '686-404-1808', '1993-04-16', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
-(249, 'Angel Daniel Ordonez  Taperia', '', '2013-01-20', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
-(250, 'Franklyn Alexis Ordonez Taperia', '', '2017-03-25', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
-(251, 'Rigoberto Balux Carrillo', '963-109-6025', '1992-10-06', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
-(252, 'Hellen Mileidy Balux Suhul ', '', '2016-02-11', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
-(253, 'Maria Isabel Taleon Bautista', '963-163-5272', '1991-02-13', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
-(254, 'Yesica Suceli Bautista Taleon ', '', '2009-10-05', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-05-17 21:40:00'),
-(255, 'Nancy Dotorea Cruz Marroquin De Ortega', '899-542-3574', '1981-02-06', 'Mex', '2020-03-16', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(256, 'Deivy Junior Irael Ortega Cruz', '', '2012-11-02', 'Mex', '2020-03-16', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(257, 'Linian Elizabeth Navarro de Leon', '686-236-1941', '1979-10-17', 'Mex', '2020-03-19', '16:00:00', '04:30:00', '2020-05-17 21:40:00'),
-(258, 'Estiben Ezequiel Herrera Navarro', '686-236-4119', '2006-09-10', 'Mex', '2020-03-19', '16:00:00', '04:30:00', '2020-05-17 21:40:00'),
-(259, 'Antony David Herrera Navarro', '', '2010-02-21', 'Mex', '2020-03-19', '16:00:00', '04:30:00', '2020-05-17 21:40:00'),
-(260, 'Cristian Osniel Herrera Navarro', '', '2015-06-22', 'Mex', '2020-03-19', '16:00:00', '04:30:00', '2020-05-17 21:40:00'),
-(261, 'Fernando Guzman Lopez', '962-288-9961', '1987-05-27', 'Mex', '2020-03-20', '08:30:00', '04:30:00', '2020-05-17 21:40:00'),
-(262, 'Dayana Alejandra Guzaman Lopez', '', '2014-09-18', 'Mex', '2020-03-20', '08:30:00', '04:30:00', '2020-05-17 21:40:00'),
-(263, 'Petrona Pedro Pedro', '686-472-2355', '1980-03-25', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(264, 'Emily Rodriguez Pedro', '', '2018-05-01', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(265, 'Jose MarÃ­a Sunun Velasquez', '686-336-5349', '1966-09-28', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(266, 'Aura Marina Sunun Larios ', '', '2008-05-09', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(267, 'Maria Navichoc Ejcalon', '686-259-3122', '1979-11-15', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(268, 'Yaquelin Ejcalon Navichoc', '', '2005-12-05', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(269, 'Rutilla Esperanza Cho Tzib de Botzoc ', '686-369-9221', '1982-01-10', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-05-17 21:40:00'),
-(270, 'Vilma Angelica Cho Tzib', '', '2004-05-06', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-05-17 21:40:00');
+(271, 'Jose Maria Calixto Acosta', '686-115-7546', '1954-08-05', 'Mex', '2020-03-02', '08:30:00', '04:30:00', '2020-06-27 04:52:00'),
+(272, 'Elenis Margarita Reyes de Calixto', '', '1959-10-05', 'Mex', '2020-03-02', '08:30:00', '04:30:00', '2020-06-27 04:52:00'),
+(273, 'Gustavo Adolfo Pino Amador', '934-114-4278', '1979-01-29', 'Mex', '2020-03-04', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(274, 'Sonia Maribel Alvarez Barahona', '', '1979-09-29', 'Mex', '2020-03-04', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(275, 'Ashly Issayana Pino Alvarez', '', '2010-09-17', 'Mex', '2020-03-04', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(276, 'Britany Yulieth Pino Alvarez', '', '2014-03-19', 'Mex', '2020-03-04', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(277, 'Marvin de Jesus Ruiz Gadea', '686-107-8695', '1989-02-07', 'Mex', '2020-03-04', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(278, 'Ariel Antonio Ruiz Garcia', '', '2010-05-10', 'Mex', '2020-03-04', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(279, 'Eduardo Valdemar Ramirez', '993-372-2073', '1988-10-30', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(280, 'Karen Yaneth Guevara Maldonado', '686-143-5333', '1984-05-29', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(281, 'Angel David Guevara Maldonado', '', '2009-05-29', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(282, 'Breny Alcira Alvarado Rodriguez', '686-352-7274', '1993-01-13', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(283, 'Enis Antonio Isaula Alvarado', '', '2012-07-12', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(284, 'Katherine Abigail Isaula Alvarado', '', '2018-04-02', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(285, 'Maria Cristina Mendez Mendez', '963-231-6127', '1982-10-18', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(286, 'Mayra Yolanda Lopez Mendez', '', '2002-04-18', 'Mex', '2020-03-05', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(287, 'Juana Arreaga Bravo', '963-144-6916', '1982-02-02', 'Mex', '2020-03-06', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(288, 'Jimy Ortiz Arreaga', '', '2005-01-25', 'Mex', '2020-03-06', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(289, 'Angel Arreaga Bravo ', '', '2018-11-11', 'Mex', '2020-03-06', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(290, 'Maria Eusebia Monge Serrano ', '686-244-8930', '1959-08-14', 'Mex', '2020-03-09', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(291, 'Asli Ariany Matute Gonzalez', '', '2009-11-19', 'Mex', '2020-03-09', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(292, 'David Ordonez Ordonez', '686-404-1808', '1993-04-16', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-06-27 04:52:00'),
+(293, 'Angel Daniel Ordonez  Taperia', '', '2013-01-20', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-06-27 04:52:00'),
+(294, 'Franklyn Alexis Ordonez Taperia', '', '2017-03-25', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-06-27 04:52:00'),
+(295, 'Rigoberto Balux Carrillo', '963-109-6025', '1992-10-06', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-06-27 04:52:00'),
+(296, 'Hellen Mileidy Balux Suhul ', '', '2016-02-11', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-06-27 04:52:00'),
+(297, 'Maria Isabel Taleon Bautista', '963-163-5272', '1991-02-13', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-06-27 04:52:00'),
+(298, 'Yesica Suceli Bautista Taleon ', '', '2009-10-05', 'Mex', '2020-03-12', '07:30:00', '03:30:00', '2020-06-27 04:52:00'),
+(299, 'Nancy Dotorea Cruz Marroquin De Ortega', '899-542-3574', '1981-02-06', 'Mex', '2020-03-16', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(300, 'Deivy Junior Irael Ortega Cruz', '', '2012-11-02', 'Mex', '2020-03-16', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(301, 'Linian Elizabeth Navarro de Leon', '686-236-1941', '1979-10-17', 'Mex', '2020-03-19', '16:00:00', '04:30:00', '2020-06-27 04:52:00'),
+(302, 'Estiben Ezequiel Herrera Navarro', '686-236-4119', '2006-09-10', 'Mex', '2020-03-19', '16:00:00', '04:30:00', '2020-06-27 04:52:00'),
+(303, 'Antony David Herrera Navarro', '', '2010-02-21', 'Mex', '2020-03-19', '16:00:00', '04:30:00', '2020-06-27 04:52:00'),
+(304, 'Cristian Osniel Herrera Navarro', '', '2015-06-22', 'Mex', '2020-03-19', '16:00:00', '04:30:00', '2020-06-27 04:52:00'),
+(305, 'Fernando Guzman Lopez', '962-288-9961', '1987-05-27', 'Mex', '2020-03-20', '08:30:00', '04:30:00', '2020-06-27 04:52:00'),
+(306, 'Dayana Alejandra Guzaman Lopez', '', '2014-09-18', 'Mex', '2020-03-20', '08:30:00', '04:30:00', '2020-06-27 04:52:00'),
+(307, 'Petrona Pedro Pedro', '686-472-2355', '1980-03-25', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(308, 'Emily Rodriguez Pedro', '', '2018-05-01', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(309, 'Jose MarÃ­a Sunun Velasquez', '686-336-5349', '1966-09-28', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(310, 'Aura Marina Sunun Larios ', '', '2008-05-09', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(311, 'Maria Navichoc Ejcalon', '686-259-3122', '1979-11-15', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(312, 'Yaquelin Ejcalon Navichoc', '', '2005-12-05', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(313, 'Rutilla Esperanza Cho Tzib de Botzoc ', '686-369-9221', '1982-01-10', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-06-27 04:52:00'),
+(314, 'Vilma Angelica Cho Tzib', '', '2004-05-06', 'Mex', '2020-03-26', '13:00:00', '09:00:00', '2020-06-27 04:52:00');
 
 --
 -- Restricciones para tablas volcadas
@@ -334,14 +414,6 @@ ALTER TABLE `descripcion_modificacion`
 ALTER TABLE `historial_modificacion`
   ADD CONSTRAINT `historial_modificacion_ibfk_1` FOREIGN KEY (`IDTabla`) REFERENCES `tabla` (`IDTabla`),
   ADD CONSTRAINT `historial_modificacion_ibfk_2` FOREIGN KEY (`IDUsuario`) REFERENCES `usuario` (`ID`);
-
---
--- Filtros para la tabla `reservacion`
---
-ALTER TABLE `reservacion`
-  ADD CONSTRAINT `reservacion_ibfk_1` FOREIGN KEY (`Creador`) REFERENCES `usuario` (`ID`),
-  ADD CONSTRAINT `reservacion_ibfk_2` FOREIGN KEY (`TipoHabita`) REFERENCES `tipohabitacion` (`ID`),
-  ADD CONSTRAINT `reservacion_ibfk_3` FOREIGN KEY (`Estado`) REFERENCES `estado` (`ID`);
 
 --
 -- Filtros para la tabla `usuario`

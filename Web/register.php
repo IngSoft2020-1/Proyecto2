@@ -69,8 +69,6 @@
         $_SESSION['contra'] = '1';
     }
     
-    
-    
     if(preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $telefono))
     {}
     else
