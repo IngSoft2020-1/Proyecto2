@@ -1,6 +1,23 @@
 <?php
     session_start();
     require_once "fpdf182/fpdf.php";
+    /* echo "<script>console.log('Llego3');</script>"; */
+    $json=$_POST['json'];
+    echo $json;
+    if(isset($_POST['data'])) {
+        
+        /* echo "entro al if"; */
+        
+        $data = json_decode(stripslashes($_POST['data']));
+        var_dump(json_decode($data));
+    }
+
+    if(isset($_POST['json'])) {
+        
+        $json = $_POST['json'];
+        var_dump(json_decode($json));
+        $tabla=json_decode($json);
+    }
 
     class pdfMigrantes extends FPDF{
 
@@ -51,21 +68,6 @@
                 $this->Ln();
             } 
         }
-    }
-    echo "<script>console.log('Llego1');</script>";
-
-    
-    if(isset($_POST['data'])) {
-        echo "<script>console.log('Llego2');</script>";
-        $data = json_decode(stripslashes($_POST['data']));
-        var_dump(json_decode($data));
-    }
-
-    if(isset($_POST['json'])) {
-        echo "<script>console.log('Llego3');</script>";
-        $json = $_POST['json'];
-        var_dump(json_decode($json));
-        $tabla=json_decode($json);
     }
    
 

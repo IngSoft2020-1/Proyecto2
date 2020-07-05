@@ -145,13 +145,14 @@ $(document).ready(function() {
   time='0';
   $("#mySelect2").change(function() {
     typeSelect = document.getElementById("mySelect2").value;
-
+    time=typeSelect;
     $row=0;
     migrantes=0;
     $.ajax({
         url: 'tasks-migrants-meses.php',
         type: 'GET',
-        data: {data:time},
+        data: {'data':time},
+        dataType : 'json',
         success: function (response) {
             let tasks = JSON.parse(response);
             console.log(tasks);
@@ -822,18 +823,18 @@ $(document).ready(function() {
           contenidoT.push(migra);
         }
         console.log(contenidoT);
-        var json = JSON.stringify(contenidoT);
         
-        $.post('print-migrantes-pdf.php', {json}, function() {
+        $.post('print-migrantes-pdf.php', {contenidoT}, function() {
           console.log("Enviado1");
         });
         
         $.ajax({
           type: "POST",
           url: "print-migrantes-pdf.php",
-          data: {data : json}, 
-          success: function(){
-            console.log("Enviado2");
+          dataType: "json",
+          data: {json : contenidoT}, 
+          success: function(respuesta){
+            console.log(respuesta)
           }
         });
       });  

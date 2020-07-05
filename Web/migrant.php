@@ -37,7 +37,7 @@
           </form>
           <!-- DESCARGAR PDF MIGRANTES -->
           <form style="width: 150%" action="print-migrantes-pdf.php" method="POST">
-            <p><input id="lblExportar" type="submit" class="button-export" name="subida" value="Generar PDF"></p>
+            <p><input id="lblExportar" type="button" class="button-export" name="subida" value="Generar PDF"></p>
           </form>
         </div>
         <input type="text" name="search" placeholder="Search.." id="search-migrants" autocomplete="off">

@@ -3,10 +3,11 @@
     date_default_timezone_set('America/Los_Angeles');
     $conexion=mysqli_connect("localhost","root","","derechoscopio") or
     die("Problemas con la conexión");
-    echo "<script>console.log('Llego1');</script>";
-    $tiempo= $_GET['tiempo'];
+    $tiempo= $_GET['data'];
     $actual=date('Y-m-d');
-    if($tiempo='0')
+    $fechalim;
+    $query;
+    if($tiempo=0)
     {
         $query="SELECT visitante.IDVisi AS 'IDVisi',
         visitante.Nombre AS 'Nombre',
@@ -23,9 +24,9 @@
         INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion 
         ORDER BY fecha_llegada DESC";
     }
-    else if($tiempo='7')/* 7 DIAS */
+    else if($tiempo=7)/* 7 DIAS */
     {
-        $fechalim=$actual. ' + 7 days';/* OBTIENE FECHA ACTUAL Y LE SUMA 7 DIAS */
+        $fechalim=date ( 'Y-m-d' , strtotime ( $actual . ' + 7 days' ));/* OBTIENE FECHA ACTUAL Y LE SUMA 7 DIAS */
         $query="SELECT visitante.IDVisi AS 'IDVisi',
         visitante.Nombre AS 'Nombre',
         visitante.Telefono AS 'Telefono',
@@ -42,9 +43,9 @@
         WHERE visitante.fecha_llegada>='$actual' AND visitante.fecha_llegada<='$fechalim'
         ORDER BY `FechaLlegada`  ASC";
     }
-    else if($tiempo='1')
+    else if($tiempo=1)
     {
-        $fechalim=$actual. ' - 1 month';/* OBTIENE FECHA ACTUAL Y RESTA 1 MES */
+        $fechalim=date ( 'Y-m-d' , strtotime ( $actual . ' - 1 month' ));/* OBTIENE FECHA ACTUAL Y RESTA 1 MES */
         $query="SELECT visitante.IDVisi AS 'IDVisi',
         visitante.Nombre AS 'Nombre',
         visitante.Telefono AS 'Telefono',
@@ -58,12 +59,12 @@
         visitante.cita_consulado AS 'CitaConsulado2'
         FROM visitante 
         INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
-        WHERE visitante.fecha_llegada<='$actual' AND visitante.fecha_llegada>='$fechalim'
+        WHERE visitante.fecha_llegada<'$actual' AND visitante.fecha_llegada>='$fechalim'
         ORDER BY `FechaLlegada`  ASC";
     }
-    else if($tiempo='3')
+    else if($tiempo=3)
     {
-        $fechalim=$actual. ' - 3 month';/* OBTIENE FECHA ACTUAL Y RESTA 1 MES */
+        $fechalim=date ( 'Y-m-d' , strtotime ( $actual . ' - 3 month' ));;/* OBTIENE FECHA ACTUAL Y RESTA 1 MES */
         $query="SELECT visitante.IDVisi AS 'IDVisi',
         visitante.Nombre AS 'Nombre',
         visitante.Telefono AS 'Telefono',
@@ -77,12 +78,12 @@
         visitante.cita_consulado AS 'CitaConsulado2'
         FROM visitante 
         INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
-        WHERE visitante.fecha_llegada<='$actual' AND visitante.fecha_llegada>='$fechalim'
+        WHERE visitante.fecha_llegada<'$actual' AND visitante.fecha_llegada>='$fechalim'
         ORDER BY `FechaLlegada`  ASC";
     }
-    else if($tiempo='6')
+    else if($tiempo=6)
     {
-        $fechalim=$actual. ' - 6 month';/* OBTIENE FECHA ACTUAL Y RESTA 1 MES */
+        $fechalim=$actual. date ( 'Y-m-d' , strtotime ( $actual . ' - 6 month' ));;/* OBTIENE FECHA ACTUAL Y RESTA 1 MES */
         $query="SELECT visitante.IDVisi AS 'IDVisi',
         visitante.Nombre AS 'Nombre',
         visitante.Telefono AS 'Telefono',
@@ -96,16 +97,14 @@
         visitante.cita_consulado AS 'CitaConsulado2'
         FROM visitante 
         INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
-        WHERE visitante.fecha_llegada<='$actual' AND visitante.fecha_llegada>='$fechalim'
+        WHERE visitante.fecha_llegada<'$actual' AND visitante.fecha_llegada>='$fechalim'
         ORDER BY `FechaLlegada`  ASC";
     }
-
     $resultado = mysqli_query($conexion, $query);
-
+    echo "<script>console.log('QUERRY= $query');</script>";
     if(!$resultado) {
         die('Error'.mysqli_error($conexion));
     }
-
     $json = array();
     while($row = mysqli_fetch_array($resultado)){
         $json[] = array(
@@ -122,6 +121,8 @@
             'CitaConsulado2' => $row['CitaConsulado2']
         );
     }
+    
     $jsonstring = json_encode($json);
+    
     echo $jsonstring;
 ?>
