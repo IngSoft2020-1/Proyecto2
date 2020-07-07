@@ -58,11 +58,11 @@
         <div class="select">
           <label for="show">Mostrar:</label>
           <select class="" name="show" id="mySelect2">
+            <option value="0">Todos</option>
             <option value="7">Proximos 7 días</option>
             <option value="1">Último mes</option>
             <option value="3">Últimos 3 meses</option>
             <option value="3">Últimos 6 meses</option>
-            <option value="0">Todos</option>
           </select>
         </div>
       </div>
