@@ -1,23 +1,6 @@
 <?php
-    session_start();
     require_once "fpdf182/fpdf.php";
-    /* echo "<script>console.log('Llego3');</script>"; */
-    $json=$_POST['json'];
-    echo $json;
-    if(isset($_POST['data'])) {
-        
-        /* echo "entro al if"; */
-        
-        $data = json_decode(stripslashes($_POST['data']));
-        var_dump(json_decode($data));
-    }
-
-    if(isset($_POST['json'])) {
-        
-        $json = $_POST['json'];
-        var_dump(json_decode($json));
-        $tabla=json_decode($json);
-    }
+    
 
     class pdfMigrantes extends FPDF{
 
@@ -25,6 +8,7 @@
         {
             setlocale(LC_TIME, "spanish");
             $fecha= strftime("A %A, %d de %B de %Y");
+            $dateutf = ucfirst(iconv("ISO-8859-1","UTF-8",$dateutf));
             $this->Image("img/logocentro32.png",70,10,70);
             $this->SetY(50);
             $this->SetFont("Arial","",12);
@@ -57,16 +41,16 @@
         }
         function contenidoTabla()
         {
-            $db= new PDO('mysql:host=localhost;dbname=derechoscopio','root','');
+            /* JALAMOS LA LISTA DE PERSONAS DE LA CONSULTA */
+            $json = $_POST['lista'];
+            $tabla=json_decode($json);
             $this->SetFont("Arial","",12);
-            $stmt= $db->query('Select fecha_llegada, Nombre from visitante');
-            while ($info=$stmt->fetch(PDO::FETCH_OBJ)) 
-            {
-                $llegada=date("d/m/Y",strtotime($info->fecha_llegada));
-                $this->Cell(50,8,utf8_decode($llegada),1,0,"C");
-                $this->Cell(0,8,utf8_decode($info->Nombre),1,0,"L");
+
+            for ($i=0; $i < count($tabla); $i++) { 
+                $this->Cell(50,8,utf8_decode($tabla[$i]->fechall),1,0,"C");
+                $this->Cell(0,8,utf8_decode($tabla[$i]->nombre),1,0,"L");
                 $this->Ln();
-            } 
+            }
         }
     }
    
@@ -83,5 +67,4 @@
     header("Content-type: application/pdf");
     header("Content-disposition: attachment; filename= Esperados.pdf");
     readfile("Esperados.pdf");
-    unlink("Esperados.pdf");
 ?>

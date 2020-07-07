@@ -7,7 +7,8 @@
     $actual=date('Y-m-d');
     $fechalim;
     $query;
-    if($tiempo=0)
+    /* echo "Timepo: ".$tiempo; */
+    if($tiempo==0)
     {
         $query="SELECT visitante.IDVisi AS 'IDVisi',
         visitante.Nombre AS 'Nombre',
@@ -23,8 +24,9 @@
         FROM visitante 
         INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion 
         ORDER BY fecha_llegada DESC";
+        /* echo "Busqueda todos".$tiempo; */
     }
-    else if($tiempo=7)/* 7 DIAS */
+    else if($tiempo==7)/* 7 DIAS */
     {
         $fechalim=date ( 'Y-m-d' , strtotime ( $actual . ' + 7 days' ));/* OBTIENE FECHA ACTUAL Y LE SUMA 7 DIAS */
         $query="SELECT visitante.IDVisi AS 'IDVisi',
@@ -42,8 +44,9 @@
         INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
         WHERE visitante.fecha_llegada>='$actual' AND visitante.fecha_llegada<='$fechalim'
         ORDER BY `FechaLlegada`  ASC";
+        /* echo "Busqueda 7 dias".$tiempo; */
     }
-    else if($tiempo=1)
+    else if($tiempo==1)
     {
         $fechalim=date ( 'Y-m-d' , strtotime ( $actual . ' - 1 month' ));/* OBTIENE FECHA ACTUAL Y RESTA 1 MES */
         $query="SELECT visitante.IDVisi AS 'IDVisi',
@@ -61,8 +64,9 @@
         INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
         WHERE visitante.fecha_llegada<'$actual' AND visitante.fecha_llegada>='$fechalim'
         ORDER BY `FechaLlegada`  ASC";
+        /* echo "Busqueda 1 mes".$tiempo; */
     }
-    else if($tiempo=3)
+    else if($tiempo==3)
     {
         $fechalim=date ( 'Y-m-d' , strtotime ( $actual . ' - 3 month' ));;/* OBTIENE FECHA ACTUAL Y RESTA 1 MES */
         $query="SELECT visitante.IDVisi AS 'IDVisi',
@@ -81,7 +85,7 @@
         WHERE visitante.fecha_llegada<'$actual' AND visitante.fecha_llegada>='$fechalim'
         ORDER BY `FechaLlegada`  ASC";
     }
-    else if($tiempo=6)
+    else if($tiempo==6)
     {
         $fechalim=$actual. date ( 'Y-m-d' , strtotime ( $actual . ' - 6 month' ));;/* OBTIENE FECHA ACTUAL Y RESTA 1 MES */
         $query="SELECT visitante.IDVisi AS 'IDVisi',
@@ -101,12 +105,13 @@
         ORDER BY `FechaLlegada`  ASC";
     }
     $resultado = mysqli_query($conexion, $query);
-    echo "<script>console.log('QUERRY= $query');</script>";
+    /* echo "<script>console.log('QUERRY= $query');</script>"; */
     if(!$resultado) {
         die('Error'.mysqli_error($conexion));
     }
     $json = array();
     while($row = mysqli_fetch_array($resultado)){
+        
         $json[] = array(
             'IDVisi' => $row['IDVisi'],
             'Nombre' => $row['Nombre'],
@@ -121,8 +126,6 @@
             'CitaConsulado2' => $row['CitaConsulado2']
         );
     }
-    
     $jsonstring = json_encode($json);
-    
     echo $jsonstring;
 ?>
