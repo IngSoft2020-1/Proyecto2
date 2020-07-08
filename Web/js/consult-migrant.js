@@ -427,7 +427,7 @@ $(document).ready(function() {
 
   time='0';
   $("#mySelect2").change(function() {
-    typeSelect = document.getElementById("mySelect2").value;
+    typeSelect = document.getElementById("mySelect2").value;  
     time=typeSelect;
     $row=0;
     migrantes=0;
@@ -704,6 +704,7 @@ $(document).ready(function() {
             $( ".datepicker" ).datepicker();
         }
     });
+    $("select#mySelect").prop('selectedIndex', 0);
   });
 
   //*************************************************************
