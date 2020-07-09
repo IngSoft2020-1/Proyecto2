@@ -1,14 +1,17 @@
 <?php
     require_once "fpdf182/fpdf.php";
     
+    /* ESTABLECER HORA Y LEGUAJE */
+    date_default_timezone_set('America/Tijuana');
+    setlocale(LC_TIME, 'spanish');
+    /* ------------------------- */
 
     class pdfMigrantes extends FPDF{
 
         function cabezera()
         {
-            setlocale(LC_TIME, "spanish");
-            $fecha= strftime("A %A, %d de %B de %Y");
-            $dateutf = ucfirst(iconv("ISO-8859-1","UTF-8",$dateutf));
+
+            $fecha = utf8_encode(strftime("A %A, %d de %B de %Y"));
             $this->Image("img/logocentro32.png",70,10,70);
             $this->SetY(50);
             $this->SetFont("Arial","",12);

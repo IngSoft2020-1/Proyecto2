@@ -28,36 +28,22 @@
               <th style="color: #EC6D4A;" class="habitacion"># Habitación</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
+            <!-- <tr>
               <td>12 de Enero</td>
               <td>9:00 AM</td>
               <td>Juan Jose Benito Camelo</td>
               <td class="habitacion">7</td>
-            </tr>
-            <tr>
-              <td>12 de Enero</td>
-              <td>9:00 AM</td>
-              <td>Juan Jose Benito Camelo</td>
-              <td class="habitacion">7</td>
-            </tr>
-            <tr>
-              <td>12 de Enero</td>
-              <td>9:00 AM</td>
-              <td>Juan Jose Benito Camelo</td>
-              <td class="habitacion">7</td>
-            </tr>
-          </tbody>
+            </tr> -->
+            <tbody id="tasks-consulado"></tbody>
         </table>
       </div>
       <div class="container-tools">
         <div class="subcontainer">
-
         </div>
         <div class="subcontainer">
-
         </div>
       </div>
     </div>
   </body>
+  <script src="js/consulado.js"></script>
 </html>
