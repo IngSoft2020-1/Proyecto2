@@ -1,0 +1,16 @@
+*{
+  font-family: poppins, 'arial';
+}
+
+.centrado1 {
+        margin-left: 20px;
+        margin-right: 30px;
+    }
+
+.img1{
+      width: 600px; height: 300px;
+}
+
+.img2{
+    width: 300px; height: 300px;
+}
