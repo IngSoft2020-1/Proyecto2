@@ -61,7 +61,7 @@
             <option value="7">Proximos 7 días</option>
             <option value="1">Último mes</option>
             <option value="3">Últimos 3 meses</option>
-            <option value="3">Últimos 6 meses</option>
+            <option value="6">Últimos 6 meses</option>
           </select>
         </div>
       </div>
