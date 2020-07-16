@@ -380,18 +380,29 @@ $(document).ready(function() {
                       <select disabled="on" class="habilitar ignorar pais${$row} ${task.IDVisi}">
                         <option value="${task.IDPais}" selected>${task.Pais}</option>
                         <option value="ARG">Argentina</option>
+                        <option value="ATG">Antigua y Barbuda</option>
+                        <option value="BHS">Bahamas</option>
                         <option value="BLM">San Bartolome</option>
+                        <option value="BLZ">Belice</option>
                         <option value="BOL">Bolivia</option>
                         <option value="BRA">Brasil</option>
+                        <option value="BRB">Barbados</option>
                         <option value="CHL">Chile</option>
                         <option value="COL">Colombia</option>
-                        <option value="CRI">Cota Rica</option>
+                        <option value="CRI">Costa Rica</option>
                         <option value="CUB">Cuba</option>
+                        <option value="DMA">Dominica</option>
                         <option value="ECU">Ecuador</option>
                         <option value="GLP">Guadalupe</option>
+                        <option value="GRD">Granada</option>
                         <option value="GTM">Guatemala</option>
                         <option value="GUF">Guyana Francesa</option>
-                        <option value="Mex">Mexico</option>
+                        <option value="HND">Honduras</option>
+                        <option value="HTI">Haití</option>
+                        <option value="JAM">Jamaica</option>
+                        <option value="KNA">San Cristobal y Nieves</option>
+                        <option value="LCA">Santa Lucia</option>
+                        <option value="MEX">Mexico</option>
                         <option value="MTQ">Martinica</option>
                         <option value="NIC">Nicaragua</option>
                         <option value="PAN">Panama</option>
@@ -400,8 +411,11 @@ $(document).ready(function() {
                         <option value="PRY">Paraguay</option>
                         <option value="RDO">Republica Dominicana</option>
                         <option value="SLV">El Salvador</option>
+                        <option value="SUR">Surinam</option>
                         <option value="SXM">San Martin</option>
+                        <option value="TTO">Trinidad y Tobago</option>
                         <option value="URY">Uruguay</option>
+                        <option value="VCT">San Vicente y las Granadinas</option>
                         <option value="VEN">Venezuela</option>
                       </select>
                     </td>
@@ -661,18 +675,29 @@ $(document).ready(function() {
                       <select disabled="on" class="habilitar ignorar pais${$row} ${task.IDVisi}">
                         <option value="${task.IDPais}" selected>${task.Pais}</option>
                         <option value="ARG">Argentina</option>
+                        <option value="ATG">Antigua y Barbuda</option>
+                        <option value="BHS">Bahamas</option>
                         <option value="BLM">San Bartolome</option>
+                        <option value="BLZ">Belice</option>
                         <option value="BOL">Bolivia</option>
                         <option value="BRA">Brasil</option>
+                        <option value="BRB">Barbados</option>
                         <option value="CHL">Chile</option>
                         <option value="COL">Colombia</option>
-                        <option value="CRI">Cota Rica</option>
+                        <option value="CRI">Costa Rica</option>
                         <option value="CUB">Cuba</option>
+                        <option value="DMA">Dominica</option>
                         <option value="ECU">Ecuador</option>
                         <option value="GLP">Guadalupe</option>
+                        <option value="GRD">Granada</option>
                         <option value="GTM">Guatemala</option>
                         <option value="GUF">Guyana Francesa</option>
-                        <option value="Mex">Mexico</option>
+                        <option value="HND">Honduras</option>
+                        <option value="HTI">Haití</option>
+                        <option value="JAM">Jamaica</option>
+                        <option value="KNA">San Cristobal y Nieves</option>
+                        <option value="LCA">Santa Lucia</option>
+                        <option value="MEX">Mexico</option>
                         <option value="MTQ">Martinica</option>
                         <option value="NIC">Nicaragua</option>
                         <option value="PAN">Panama</option>
@@ -681,8 +706,11 @@ $(document).ready(function() {
                         <option value="PRY">Paraguay</option>
                         <option value="RDO">Republica Dominicana</option>
                         <option value="SLV">El Salvador</option>
+                        <option value="SUR">Surinam</option>
                         <option value="SXM">San Martin</option>
+                        <option value="TTO">Trinidad y Tobago</option>
                         <option value="URY">Uruguay</option>
+                        <option value="VCT">San Vicente y las Granadinas</option>
                         <option value="VEN">Venezuela</option>
                       </select>
                     </td>

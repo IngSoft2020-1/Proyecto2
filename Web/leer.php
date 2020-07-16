@@ -1,4 +1,5 @@
 <?php
+header("location:migrant.php");
 echo "<script>console.log('Hola');</script>";
 /* CONEXION A LA BASE DE DATOS */
 require 'conexion.php';
@@ -21,7 +22,6 @@ if(isset($_POST['subida'])){
     $ext = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
     if ($ext !== 'xlsx') {
         echo "<script>console.log('El archivo no es .xlsx');</script>";
-        header("location:migrant.php");
         exit();
         /*
         echo '<div class="container-msg">
@@ -87,8 +87,8 @@ if(isset($_POST['subida'])){
         $validacionHora2= preg_match("/((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/", $objPHPExcel->getActiveSheet()->getCell('E'.'1')->getCalculatedValue());
         if(!$validacionFecha || !$validacionNacimiento || !$validacionHora1 || !$validacionHora2)
         {
+            /* MENSAJE ERROR CUANDO EL EXCEL NO TIENE EL FORMATO CORRECTO */
             echo "<script>console.log('El excel no tiene el formato correcto');</script>";
-            header("location:migrant.php");
             exit();
         }
 
@@ -100,7 +100,7 @@ if(isset($_POST['subida'])){
                 if ($nombre!='') {
 
                     $fecha=$objPHPExcel->getActiveSheet()->getCell('A'.$i)->getFormattedValue();
-                    echo "<script>console.log('$fecha\n');</script>";
+                    /* echo "<script>console.log('$fecha\n');</script>"; */
                     if ($fecha!='') {
                         $fecha=date("Y-m-d",strtotime($fecha));
                         $fechaACT=$fecha;
@@ -234,7 +234,7 @@ if(isset($_POST['subida'])){
                     $conjunto=0;
                 }
             }
-        } catch (Throwable $e) {
+        } catch (mysqli_sql_exception $e) {
             /* MENSAJe ERROR INESPERADO EN LA LECTURA DEL ARCHIVO */
         }
 
@@ -250,7 +250,6 @@ if(isset($_POST['subida'])){
         echo "<script>console.log('No se pudo leer el archivo');</script>";
     }
     /* REGRESA A LA PAGINA DE CONSULTAR MIGRANTES */
-    header("location:migrant.php");
 }
 
 /*function calcularEdad($fechanacimiento){
