@@ -27,11 +27,11 @@
         <input type="text" name="search" placeholder="Search.." id="search-res" autocomplete="off">
       </div>
       <div class="container-select">
-        <div class="select" >
+        <div class="select">
           <label for="order">Ordenar por:</label>
-          <select class="" name="order" id="mySelect">
-            <option value="1" selected>Fecha reservacion asc</option>
-            <option value="2">Fecha reservacion desc</option>
+          <select class="" name="order">
+            <option value="1">Fecha reservacion asc</option>
+            <option value="2" selected>Fecha reservacion desc</option>
             <option value="3">Estado asc</option>
             <option value="4">Estado desc</option>
           </select>
