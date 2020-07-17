@@ -214,9 +214,9 @@ if(isset($_POST['subida'])){
                     $cuarto="D";
                     else if($personas>3)
                     $cuarto="T";
-
+                    $fechaFin=date('Y-m-d',strtotime($fecha. "+1 days"));
                     $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado)
-                        VALUES ('$fecha','$fecha','$personas','$fecha_Creacion','$cuarto','E')";
+                        VALUES ('$fecha','$fechaFin','1','$fecha_Creacion','$cuarto','E')";
                     mysqli_query($conexion,$query);
                     $reservaciones++;
 
