@@ -18,6 +18,7 @@
   <link rel="icon" href="img/favicon32.png" type="image/png"/>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/inicio.css">
+    <link rel="stylesheet" href="css/index-responsive.css">
     <!-- JQUERY -->
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <!-- MIS SCRIPT -->

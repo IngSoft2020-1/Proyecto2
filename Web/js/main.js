@@ -53,12 +53,23 @@ $(document).ready(function(){
 
   // ***************************************************************************
   // PROGRAMACION PARA HACER EL MENU RETRAIBLE
-  var contador = 0;
   var btn_menu = $("#menu");
-  btn_menu.click(function(){
-      if(contador == 0){
+  var aside = $('aside');
+  var parent = $('body');
+
+  // FUNCION PARA CALCULAR EL ANCHO DEL ASIDE EN PORCENTAJE
+  function GetPercent(aside, parent){
+    let widthAside = aside.width(); // CAPTURA EL ANCHO DEL ASIDE EN PX
+    let widthParent = parent.offsetParent().width(); // CAPTURA EL ANCHO DEL CONTENEDOR PADRE EN PX
+    let percent = Math.round(100*widthAside/widthParent); // CONVIERTE A PORCENTAJE 
+    return widthAside;
+  }
+
+  // CLICK AL MENU HAMBURGUER EN COMPUTADORA
+  btn_menu.click(function(){  
+      if(GetPercent(aside, parent) >= 81){
         $('aside').animate({
-          width: '5%'
+          width: '80px'
         }, 'slow');
         $('section').animate({
           width: '95%'
@@ -78,14 +89,11 @@ $(document).ready(function(){
         $("#user").animate({
           width: '45%'
         }, 'slow');
-        contador = 1;
       }
-      else if(contador == 1){
-        $('section').animate({
-          width: '84%'
-        }, 'slow');
+      else if(GetPercent(aside, parent) <= 80){
+        $('section').css("width", "calc(100% - 80px)");
         $('aside').animate({
-          width: '16%'
+          width: '165px'
         }, 'slow');
         $('.text').show();
         $('.icon').animate({
@@ -102,7 +110,23 @@ $(document).ready(function(){
         $("#user").animate({
           width: '39%'
         }, 'slow');
-        contador = 0;
       }
   });
+
+  // CLICK AL MENU HAMBURGUER PARA CELULARES
+  var btnMenuMobile = $("#menu-mobile");
+  btnMenuMobile.click(function(){
+    aside.toggle('slow');
+  });
+
+//   // CLICK FUERA DEL ASIDE EN CELULARES
+//   $('section').on("click", function(e){
+//     if(!aside.is(e.target) && aside.has(e.target).length === 0){
+//       // alert("click fuera");
+//     }
+//   });
+
+//   $('#menu-mobile').click(function (e) {
+//     e.stopPropagation();
+// });
 });
