@@ -2,9 +2,15 @@
     $conexion=mysqli_connect("localhost","root","","derechoscopio") or
     die("Problemas con la conexión");
 
-    $query = "SELECT reservacion.IDReser AS 'IDReservacion', reservacion.FechaInicio AS 'FechadeInicio', reservacion.DiasEstima AS 'Diasestimados', 
-    estado.Estado AS 'Estadoreservacion', tipohabitacion.ID AS 'IDHabitacion', tipohabitacion.TipoHabitacion AS 'Tipodehabitacion' 
-    FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.Habitacion INNER JOIN estado ON estado.ID=reservacion.Estado";
+    $query = "SELECT reservacion.IDReser AS 'IDReservacion',
+    reservacion.FechaInicio AS 'FechadeInicio',
+    reservacion.DiasEstima AS 'Diasestimados',
+    estado.Estado AS 'Estadoreservacion',
+    tipohabitacion.ID AS 'IDHabitacion',
+    tipohabitacion.TipoHabitacion AS 'Tipodehabitacion'
+    FROM reservacion INNER JOIN tipohabitacion ON tipohabitacion.ID=reservacion.Habitacion 
+    INNER JOIN estado ON estado.ID=reservacion.Estado
+    ORDER BY reservacion.FechaInicio ASC";
     $resultado = mysqli_query($conexion, $query);
 
 
@@ -19,9 +25,13 @@
         // echo '</script>';
 
 
-        $query2 = "SELECT visitante.Nombre AS 'Nombres', visitante.IDVisi AS 'IDVisitante' FROM reservacion_visitante INNER JOIN reservacion ON 
-        reservacion.IDReser = reservacion_visitante.IDReser INNER JOIN 
-        visitante ON reservacion_visitante.IDVisi= visitante.IDVisi WHERE reservacion.IDReser=$ID";
+        $query2 = "SELECT visitante.Nombre AS 'Nombres', 
+        visitante.IDVisi AS 'IDVisitante' 
+        FROM reservacion_visitante 
+        INNER JOIN reservacion ON reservacion.IDReser = reservacion_visitante.IDReser 
+        INNER JOIN visitante ON reservacion_visitante.IDVisi= visitante.IDVisi
+        WHERE reservacion.IDReser=$ID
+        ORDER BY visitante.Nombre ASC";
         $resultado2 = mysqli_query($conexion, $query2);
         while($row2 = mysqli_fetch_array($resultado2))
         {
