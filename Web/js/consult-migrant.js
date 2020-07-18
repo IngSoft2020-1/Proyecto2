@@ -843,34 +843,45 @@ $(document).ready(function() {
 
   /* FUNCION DEL BOTON IMPRIMIR PDF */
   $('.button-export').click( function() {
-    /* LIMPIA EL ARREGLO */
-    while (contenidoT.length) {
-      contenidoT.pop();
+    if(migrantes == 0)
+    {
+      localStorage.setItem('exportarmsg', 1);
+      $('#exportarmsg').css("display", "flex");
+      $('#exportarmsg').show();
+      $("select#mySelect").prop('selectedIndex', 0);
+      $("select#mySelect2").prop('selectedIndex', 0);
     }
-    /* TOMA LOS DATOS ACTUALES DE LA TABLA */
-    for (var per = 1; per <= migrantes; per++) {
-      var migra = new Persona();
-      migra.fechall = $(".llegada" + per).val();
-      migra.nombre = $(".nom" + per).val();
-      migra.nacimiento = $(".fn" + per).val();
-      migra.horall = $(".hl" + per).val();
-      migra.citaCo = $(".cc" + per).val();
-      migra.nacionalidad = $(".pais" + per).val();
-      migra.telefono = $(".telefono" + per).val();
-      /* LOS EMPUJA AL ARREGLO */
-      contenidoT.push(migra);
-    }
-    console.log(contenidoT);
-    json=JSON.stringify(contenidoT);
-    /* LOS ENVIA A EL PHP DONDE SE GENERA EL PHP */
-    $.ajax({
-      type: "POST",
-      url: "print-migrantes-pdf.php",
-      data: {lista : json},
-      success: function(){
-        window.location ='Esperados.pdf';
+    else
+    {
+      /* LIMPIA EL ARREGLO */
+      while (contenidoT.length) {
+        contenidoT.pop();
       }
-    });
+      /* TOMA LOS DATOS ACTUALES DE LA TABLA */
+      for (var per = 1; per <= migrantes; per++) {
+        var migra = new Persona();
+        migra.fechall = $(".llegada" + per).val();
+        migra.nombre = $(".nom" + per).val();
+        migra.nacimiento = $(".fn" + per).val();
+        migra.horall = $(".hl" + per).val();
+        migra.citaCo = $(".cc" + per).val();
+        migra.nacionalidad = $(".pais" + per).val();
+        migra.telefono = $(".telefono" + per).val();
+        /* LOS EMPUJA AL ARREGLO */
+        contenidoT.push(migra);
+      }
+      console.log(contenidoT);
+      json=JSON.stringify(contenidoT);
+      /* LOS ENVIA A EL PHP DONDE SE GENERA EL PHP */
+      $.ajax({
+        type: "POST",
+        url: "print-migrantes-pdf.php",
+        data: {lista : json},
+        success: function(){
+          window.location ='Esperados.pdf';
+        }
+      });
+    }
   });
 
 /*  */
@@ -923,4 +934,15 @@ $(document).ready(function() {
     localStorage.setItem('exitoLec', 0);
     $('.box').hide();
   });
+/* exportarmsg */
+  var exportarmsg = localStorage.getItem('exportarmsg');
+  if(exportarmsg == '1'){
+    $('#exportarmsg').css("display", "flex");
+    $('#exportarmsg').show();
+  }
+  $('.btn-confirm').click(function(){
+    localStorage.setItem('exportarmsg', 0);
+    $('.box').hide();
+  });
+  
 });

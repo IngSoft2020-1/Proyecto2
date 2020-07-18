@@ -152,4 +152,8 @@
     <p class="title-box">La importación de los datos se ha realizado satisfactoriamente.</p>
   </div>
   <!-- FIN -->
+  <div class="box" id="exportarmsg">
+    <p class="title-box">No hay ningun registro por exportar.</p>
+  </div>
+
 </html>
