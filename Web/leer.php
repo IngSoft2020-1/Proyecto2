@@ -1,11 +1,12 @@
 <?php
+session_start();
+error_reporting(0);
 header("location:migrant.php");
-echo "<script>console.log('Hola');</script>";
+
 /* CONEXION A LA BASE DE DATOS */
 require 'conexion.php';
 /* LIBRERIA DE PHPEXCEL */
 require 'PHPExcel/PHPExcel/IOFactory.php';
-
 /*
 echo '<!-- LIBRERIA POPUPS MENSAJE -->
 <script src="js/popup.js"></script>
@@ -22,6 +23,7 @@ if(isset($_POST['subida'])){
     $ext = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
     if ($ext !== 'xlsx') {
         echo "<script>console.log('El archivo no es .xlsx');</script>";
+        $_SESSION['archivo'] = '0';
         exit();
         /*
         echo '<div class="container-msg">
@@ -89,6 +91,7 @@ if(isset($_POST['subida'])){
         {
             /* MENSAJE ERROR CUANDO EL EXCEL NO TIENE EL FORMATO CORRECTO */
             echo "<script>console.log('El excel no tiene el formato correcto');</script>";
+            $_SESSION['archivo'] = '1';
             exit();
         }
 
@@ -235,17 +238,21 @@ if(isset($_POST['subida'])){
                 }
             }
         } catch (mysqli_sql_exception $e) {
+            $_SESSION['archivo'] = '3';
             /* MENSAJe ERROR INESPERADO EN LA LECTURA DEL ARCHIVO */
         }
 
         /* MENSAJE DE EXITO */
+        $_SESSION['archivo'] = '1';
         echo "<script>console.log('Exportacion exitosa');</script>";
         echo "<script>console.log('Migrantes insertados: ".$nuevos."');</script>";
         echo "<script>console.log('Migrantes repetidos: ".$exitentes."');</script>";
         echo "<script>console.log('Reservaciones Creadas: ".$reservaciones."');</script>";
+        $_SESSION['archivo'] = '4';
     }
     else
     {
+        $_SESSION['archivo'] = '2';
         /* MENSAJE DE ERROR DE LECTURA DEL ARCHIVO */
         echo "<script>console.log('No se pudo leer el archivo');</script>";
     }
