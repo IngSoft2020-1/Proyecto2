@@ -5,6 +5,7 @@ header("location:migrant.php");
 
 /* CONEXION A LA BASE DE DATOS */
 require 'conexion.php';
+mysqli_autocommit($conexion,FALSE);
 /* LIBRERIA DE PHPEXCEL */
 require 'PHPExcel/PHPExcel/IOFactory.php';
 /*
@@ -24,6 +25,7 @@ if(isset($_POST['subida'])){
     if ($ext !== 'xlsx') {
         echo "<script>console.log('El archivo no es .xlsx');</script>";
         $_SESSION['archivo'] = '0';
+        mysqli_autocommit($conexion,TRUE);
         exit();
         /*
         echo '<div class="container-msg">
@@ -92,6 +94,7 @@ if(isset($_POST['subida'])){
             /* MENSAJE ERROR CUANDO EL EXCEL NO TIENE EL FORMATO CORRECTO */
             echo "<script>console.log('El excel no tiene el formato correcto');</script>";
             $_SESSION['archivo'] = '1';
+            mysqli_autocommit($conexion,TRUE);
             exit();
         }
 
@@ -237,18 +240,19 @@ if(isset($_POST['subida'])){
                     $conjunto=0;
                 }
             }
+            mysqli_commit($conexion);
+            
+            /* echo "<script>console.log('Exportacion exitosa');</script>";
+            echo "<script>console.log('Migrantes insertados: ".$nuevos."');</script>";
+            echo "<script>console.log('Migrantes repetidos: ".$exitentes."');</script>";
+            echo "<script>console.log('Reservaciones Creadas: ".$reservaciones."');</script>"; */
+            /* MENSAJE DE EXITO */
+            $_SESSION['archivo'] = '4';/* EXITO */
         } catch (mysqli_sql_exception $e) {
-            $_SESSION['archivo'] = '3';
-            /* MENSAJe ERROR INESPERADO EN LA LECTURA DEL ARCHIVO */
+            mysqli_rollback($conexion);
+            /* MENSAJE ERROR INESPERADO EN LA LECTURA DEL ARCHIVO */
+            $_SESSION['archivo'] = '3';/* ERROR SQL */
         }
-
-        /* MENSAJE DE EXITO */
-        $_SESSION['archivo'] = '1';
-        echo "<script>console.log('Exportacion exitosa');</script>";
-        echo "<script>console.log('Migrantes insertados: ".$nuevos."');</script>";
-        echo "<script>console.log('Migrantes repetidos: ".$exitentes."');</script>";
-        echo "<script>console.log('Reservaciones Creadas: ".$reservaciones."');</script>";
-        $_SESSION['archivo'] = '4';
     }
     else
     {
@@ -256,7 +260,7 @@ if(isset($_POST['subida'])){
         /* MENSAJE DE ERROR DE LECTURA DEL ARCHIVO */
         echo "<script>console.log('No se pudo leer el archivo');</script>";
     }
-    /* REGRESA A LA PAGINA DE CONSULTAR MIGRANTES */
+    mysqli_autocommit($conexion,TRUE);
 }
 
 /*function calcularEdad($fechanacimiento){
