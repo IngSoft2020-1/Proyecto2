@@ -5,7 +5,6 @@ header("location:migrant.php");
 
 /* CONEXION A LA BASE DE DATOS */
 require 'conexion.php';
-mysqli_autocommit($conexion,FALSE);
 /* LIBRERIA DE PHPEXCEL */
 require 'PHPExcel/PHPExcel/IOFactory.php';
 /*
@@ -25,7 +24,6 @@ if(isset($_POST['subida'])){
     if ($ext !== 'xlsx') {
         echo "<script>console.log('El archivo no es .xlsx');</script>";
         $_SESSION['archivo'] = '0';
-        mysqli_autocommit($conexion,TRUE);
         exit();
         /*
         echo '<div class="container-msg">
@@ -61,7 +59,6 @@ if(isset($_POST['subida'])){
     $nacionalidad='';
     $telefono='';
     $nose='';
-
     /* CAMINO DEL ARCHIVO EXCEL EN EL SERVIDOR */
     $archivo="Excel/migrantes.xlsx";
 
@@ -94,11 +91,13 @@ if(isset($_POST['subida'])){
             /* MENSAJE ERROR CUANDO EL EXCEL NO TIENE EL FORMATO CORRECTO */
             echo "<script>console.log('El excel no tiene el formato correcto');</script>";
             $_SESSION['archivo'] = '1';
-            mysqli_autocommit($conexion,TRUE);
             exit();
         }
-
+        
+        mysqli_begin_transaction($conexion, MYSQLI_TRANS_START_READ_WRITE);
         try {
+            
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
             for ($i=1; $i <$numFilas; $i++) {
 
                 $nombre=$objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
@@ -177,8 +176,8 @@ if(isset($_POST['subida'])){
 
                         $query="INSERT INTO visitante (Nombre, Telefono, Fecha_nac, IDNacion, fecha_llegada, hora_llegada, cita_consulado, fecha_registro)
                         VALUES ('$nombre','$telefono','$nacimiento','$nacionalidad','$fecha','$fechaLlegada','$fechaSalida','$fecha_registro')";
-                        mysqli_query($conexion,$query)
-                        or die("Problemas de insercion.".mysqli_error($conexion));
+                        echo "<script>console.log('".$query."');</script>";
+                        mysqli_query($conexion,$query);
                         $nuevos++;
 
                         $pilaMigrantes[]=mysqli_insert_id($conexion);
@@ -189,10 +188,20 @@ if(isset($_POST['subida'])){
                     /* PARA IMPRIMIR LA ULTIMA FILA */
                     if($i==$numFilas-1 && count($pilaMigrantes)>0)
                     {
-                        /* echo "<script>console.log('".$i."');</script>"; */
                         $personas= count($pilaMigrantes);
+                        echo "<script>console.log('personas:".$personas."');</script>";
+                        $cuarto="";
+                        if($personas < 3)
+                        {$cuarto="I";}
+                        else if($personas == 3)
+                        {$cuarto="D";}
+                        else if($personas > 3)
+                        {$cuarto="T";}
+                        $fechaFin=date('Y-m-d',strtotime($fecha. "+1 days"));
                         $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado)
-                            VALUES ('$fecha','strtotime($fecha . ' +1 day')','1','$fecha_Creacion','I','E')";
+                        VALUES ('$fecha','$fechaFin','1','$fecha_Creacion','$cuarto','E')";
+                        echo "<script>console.log('" . json_encode($pilaMigrantes) . "');</script>";
+                        echo "<script>console.log('personas:".$personas."');</script>";
                         mysqli_query($conexion,$query);
                         $reservaciones++;
 
@@ -213,16 +222,19 @@ if(isset($_POST['subida'])){
                 else if($conjunto==1)
                 {
                     $personas= count($pilaMigrantes);
+                    echo "<script>console.log('personas:".$personas."');</script>";
                     $cuarto="";
-                    if($personas<3)
-                    $cuarto="I";
-                    else if($personas=3)
-                    $cuarto="D";
-                    else if($personas>3)
-                    $cuarto="T";
+                    if($personas < 3)
+                    {$cuarto="I";}
+                    else if($personas == 3)
+                    {$cuarto="D";}
+                    else if($personas > 3)
+                    {$cuarto="T";}
                     $fechaFin=date('Y-m-d',strtotime($fecha. "+1 days"));
                     $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado)
                         VALUES ('$fecha','$fechaFin','1','$fecha_Creacion','$cuarto','E')";
+                    echo "<script>console.log('" . json_encode($pilaMigrantes) . "');</script>";
+                    echo "<script>console.log('personas:".$personas."');</script>";
                     mysqli_query($conexion,$query);
                     $reservaciones++;
 
@@ -240,7 +252,6 @@ if(isset($_POST['subida'])){
                     $conjunto=0;
                 }
             }
-            mysqli_commit($conexion);
             
             /* echo "<script>console.log('Exportacion exitosa');</script>";
             echo "<script>console.log('Migrantes insertados: ".$nuevos."');</script>";
@@ -249,10 +260,12 @@ if(isset($_POST['subida'])){
             /* MENSAJE DE EXITO */
             $_SESSION['archivo'] = '4';/* EXITO */
         } catch (mysqli_sql_exception $e) {
+            echo "<script>console.log('ERORO EN ESQLSD');</script>";
             mysqli_rollback($conexion);
             /* MENSAJE ERROR INESPERADO EN LA LECTURA DEL ARCHIVO */
             $_SESSION['archivo'] = '3';/* ERROR SQL */
         }
+        mysqli_commit($conexion);
     }
     else
     {
@@ -260,7 +273,7 @@ if(isset($_POST['subida'])){
         /* MENSAJE DE ERROR DE LECTURA DEL ARCHIVO */
         echo "<script>console.log('No se pudo leer el archivo');</script>";
     }
-    mysqli_autocommit($conexion,TRUE);
+    
 }
 
 /*function calcularEdad($fechanacimiento){
