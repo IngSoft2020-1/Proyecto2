@@ -437,6 +437,8 @@ $(document).ready(function() {
             $( ".datepicker" ).datepicker();
         }
     });
+    $("select#mySelect").prop('selectedIndex', 0);
+    $("select#mySelect2").prop('selectedIndex', 0);
   }
 
   time='0';
@@ -878,11 +880,36 @@ $(document).ready(function() {
         url: "print-migrantes-pdf.php",
         data: {lista : json},
         success: function(){
-          window.location ='Esperados.pdf';
+          window.open('Esperados.pdf');
         }
       });
     }
   });
+  
+  /* EVENTO PARA CARGAR MIGRANTES */
+  $('#txtFile').change(function(){  
+    $('#enviarExcel').submit();
+    $(this).val('');
+  }); 
+  
+  $('#enviarExcel').on('submit', function(event){  
+    if($("#txtFile").val() == ''){
+      /* Si no selecciona nada mensaje */
+    } 
+    else
+    {
+      event.preventDefault()
+      $.ajax({  
+        url:"leer.php",  
+        method:"POST",  
+        data:new FormData(this),  
+        contentType:false,  
+        processData:false
+      });
+    }
+    obtener();
+  });
+  /* FIN EVENTO PARA CARGAR MIGRANTES */
 
 /*  */
   var extIncorrecta = localStorage.getItem('extIncorrecta');

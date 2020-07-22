@@ -1,10 +1,11 @@
 <?php
 session_start();
 error_reporting(0);
-header("location:migrant.php");
+/* header("location:migrant.php"); */
 
 /* CONEXION A LA BASE DE DATOS */
 require 'conexion.php';
+
 /* LIBRERIA DE PHPEXCEL */
 require 'PHPExcel/PHPExcel/IOFactory.php';
 /*
@@ -12,8 +13,7 @@ echo '<!-- LIBRERIA POPUPS MENSAJE -->
 <script src="js/popup.js"></script>
 <link rel="stylesheet" href="css/popup.css">';
 */
-if(isset($_POST['subida'])){
-
+if(!empty($_FILES['txtFile'])){
     /* IMPORTACION DEL ARCHIVO DE EXCEL */
     $guardarArchivo="Excel/migrantes.xlsx";
     $loc_temp_Archivo=$_FILES['txtFile']['tmp_name'];
