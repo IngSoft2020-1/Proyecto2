@@ -62,6 +62,7 @@
 
     <!-- SCRIPTS -->
     <script type="text/javascript" src="js/edit.js"></script>
+    <script type="text/javascript" src="js/editUser.js"></script>
     <link rel="stylesheet" href="css/edit.css">
 
     <title>Editar</title>
@@ -267,7 +268,6 @@
             </div>
           </form>
         </div>
-        
 
         <script>
           var txt = $('.textbox');
@@ -302,6 +302,10 @@
     <!-- MENSAJE CONTRASEÑA MAL -->
     <div class="box" id="contraMal">
       <p class="title-box">La cotraseña tiene que tener minimo cuatro caracteres, una letra y un número.</p>
+    </div>
+    <div class="box" id="sure">
+        <p class="title-box" style="display: inline;"></p>
+        <button id="btn-cancel-2" class="btn-cancel" name="button">Cancelar</button>
     </div>
   </body>
 </html>

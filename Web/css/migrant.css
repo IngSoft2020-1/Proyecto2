@@ -80,6 +80,7 @@ a{
 .container-a{
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 /* ESTILOS PARA AGREGAR MANUALMENTE */
@@ -224,5 +225,15 @@ a{
   border-radius: 10px;
   font-size: calc(0.5em + 0.7vw) !important;
   cursor: pointer;
+  margin-left: 10px;
+}
 
+.frm-style{
+  flex-wrap: nowrap !important;
+  margin: unset;
+  align-items: center;
+}
+
+.container-header{
+  display: flex;
 }

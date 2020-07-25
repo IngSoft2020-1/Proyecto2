@@ -54,6 +54,7 @@
     <!-- FIN DE LA LIBRERIA -->
     <!-- MIS SCRIPT -->
     <script src="js/new-user.js"></script>
+    <script src="js/addUser.js"></script>
     <title></title>
   </head>
   <body>
@@ -305,6 +306,10 @@
     <!-- LIBRERIA PARA IMPRIMIR MENSAJE -->
     <div class="box" id="UserExist">
       <p class="title-box">Usuario ya existente</p>
+    </div>
+    <div class="box" id="sure">
+        <p class="title-box" style="display: inline;"></p>
+        <button id="btn-cancel-2" class="btn-cancel" name="button">Cancelar</button>
     </div>
   </body>
 </html>
