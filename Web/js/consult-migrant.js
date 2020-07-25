@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   console.log('jQuery esta funcionando');
   obtener();
+  
 
   $("#mySelect").change(function() {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
