@@ -18,13 +18,15 @@
         DE VALIDACION -->
     <script src="js/msg-alert.js"></script>
     <link rel="stylesheet" href="css/msg-alert.css">
+    <link rel="stylesheet" href="css/addMigrantManual.css">
     <!-- FIN DE LA LIBRERIA -->
 
     <!-- LIBRERIA PARA LOS POPUPS -->
     <script src="js/popup.js"></script>
     <link rel="stylesheet" href="css/popup.css">
     <!-- FIN DE LA LIBRERIA -->
-
+    
+    <script src="js/addMigrantManual.js"></script>
     <!-- LIBRERIAS PARA DATEPICKER -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
@@ -488,5 +490,9 @@
       }
       $_SESSION['sePudo'] = '';
     ?>
+    <div class="box" id="sure">
+        <p class="title-box" style="display: inline;"></p>
+        <button id="btn-cancel-2" class="btn-cancel" name="button">Cancelar</button>
+    </div>
   </body>
 </html>

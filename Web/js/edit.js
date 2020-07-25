@@ -62,7 +62,9 @@ $(document).ready(function(){
 
   $('#btn-cancel').click(function(){
       // ACTUALIZAR VENTANA PADRE DENTRO DE UN IFRAME
-      parent.location.reload();
+      // parent.location.reload();
+      $('#sure').show();
+      $('#sure').css("display", "flex");
   });
 
   //$("#popup-confirmar").hasClass("popup")

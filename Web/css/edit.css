@@ -323,8 +323,8 @@ input.textbox-popup.cancel {
 }
 
 .box{
-  width: 350px;
-  height: 200px;
+  width: 367px !important;
+  height: 250px !important;
   background: #1A2127;
   display: none;
   justify-content: center;

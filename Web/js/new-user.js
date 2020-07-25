@@ -20,7 +20,8 @@ $(document).ready(function(){
 
   $('.button-cancel').click(function(){
     // ACTUALIZAR VENTANA PADRE DENTRO DE UN IFRAME
-    parent.location.reload();
+    $('#sure').show();
+    $('#sure').css("display", "flex");
   });
 
   var success = localStorage.getItem('success');

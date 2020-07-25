@@ -34,9 +34,8 @@
           <div class="container-header">
               <!-- ACTUALIZAR MIGRANTES -->
             <form class="frm-style"action="leer.php" method="POST" enctype="multipart/form-data" style="justify-content: center !important; ">
-              <label id="lblFile" for="txtFile">Archivo</label>
+              <label id="lblFile" for="txtFile">Buscar archivo</label>
               <input id="txtFile" type="file" name="txtFile" accept=".xlsx">
-              <input id="lblRefresh" type="submit" name="subida" value="Actualizar lista">
             </form>
             <!-- DESCARGAR PDF MIGRANTES -->
             <form class="frm-style"style="width: 150%" action="print-migrantes-pdf.php" method="POST">
