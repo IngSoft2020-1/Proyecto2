@@ -27,18 +27,27 @@
     <div class="container">
       <div class="container-img" id="aling-left">
         <div class="container-a">
-          <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
-          <a href="addManualMigrant.php">Agregar manualmente</a>
-          <!-- ACTUALIZAR MIGRANTES -->
-          <form action="leer.php" method="POST" enctype="multipart/form-data" style="justify-content: center !important; ">
-            <p><label id="lblFile" for="txtFile">Buscar archivo</label></p>
-            <p><input id="txtFile" type="file" name="txtFile" accept=".xlsx"></p>
-            <p><input id="lblRefresh" type="submit" name="subida" value="Actualizar lista"></p>
-          </form>
-          <!-- DESCARGAR PDF MIGRANTES -->
-          <form style="width: 150%" action="print-migrantes-pdf.php" method="POST">
-            <p><input id="lblExportar" type="submit" class="button-export" name="subida" value="Generar PDF"></p>
-          </form>
+          <div class="container-header">
+            <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
+            <a href="addManualMigrant.php">Agregar manualmente</a>
+          </div>
+          <div class="container-header">
+              <!-- ACTUALIZAR MIGRANTES -->
+            <form class="frm-style"action="leer.php" method="POST" enctype="multipart/form-data" style="justify-content: center !important; ">
+              <label id="lblFile" for="txtFile">Archivo</label>
+              <input id="txtFile" type="file" name="txtFile" accept=".xlsx">
+              <input id="lblRefresh" type="submit" name="subida" value="Actualizar lista">
+            </form>
+            <!-- DESCARGAR PDF MIGRANTES -->
+            <form class="frm-style"style="width: 150%" action="print-migrantes-pdf.php" method="POST">
+              <select name="" id="select-export">
+                <option value="">Seleccione opcion</option>
+                <option value="">Personalizada</option>
+                <option value="">Todos los de pantalla</option>
+              </select>  
+              <input id="lblExportar" type="submit" class="button-export" name="subida" value="Generar PDF">
+            </form>
+          </div> 
         </div>
         <input type="text" name="search" placeholder="Search.." id="search-migrants" autocomplete="off">
       </div>
@@ -70,6 +79,7 @@
           <table id="table-migrants" class="tablesorter">
             <thead>
               <tr>
+                <th></th>
                 <th style="display: none;">ID</th>
                 <th style="color: #00FF80;">Fecha de llegada</th>
                 <th style="color: #00FF80;">Nombre</th>

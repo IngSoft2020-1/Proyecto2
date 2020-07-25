@@ -443,6 +443,7 @@ $(document).ready(function() {
                 migrantes++;
                 templado += `
                 <tr class="tr" id="${task.IDVisi}" value="${$row}">
+                    <td><input type="checkbox"></td>
                     <td style="display: none;">${$row}</td>
                     <td class='fecha-llegada'>
                       <input disabled="on" type="text" value="${task.FechaLlegada}" class="datepicker fecha-llegada habilitar llegada${$row} ${task.IDVisi}">
@@ -837,4 +838,10 @@ $(document).ready(function() {
           }
         });
       });  
+
+      // $(document).on("change", '#select-export', function(){
+      //   var combo = $('#select.export');
+      //   var select = $(combo).find('option:selected').text()
+      //   console.log(select);
+      // });
 });
