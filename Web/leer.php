@@ -1,17 +1,13 @@
 <?php
-header("location:migrant.php");
-echo "<script>console.log('Hola');</script>";
+//header("location:migrant.php");
+//echo "<script>console.log('Hola');</script>";
 /* CONEXION A LA BASE DE DATOS */
 require 'conexion.php';
 /* LIBRERIA DE PHPEXCEL */
 require 'PHPExcel/PHPExcel/IOFactory.php';
 
-/*
-echo '<!-- LIBRERIA POPUPS MENSAJE -->
-<script src="js/popup.js"></script>
-<link rel="stylesheet" href="css/popup.css">';
-*/
-if(isset($_POST['subida'])){
+
+if(!empty($_FILES['txtFile'])){
 
     /* IMPORTACION DEL ARCHIVO DE EXCEL */
     $guardarArchivo="Excel/migrantes.xlsx";
@@ -23,11 +19,7 @@ if(isset($_POST['subida'])){
     if ($ext !== 'xlsx') {
         echo "<script>console.log('El archivo no es .xlsx');</script>";
         exit();
-        /*
-        echo '<div class="container-msg">
-          <p class="title-msg">Extensión incorrecta!</p>
-          <p class="title-content-msg">El formato del archivo no es correcto.</p>
-        </div>';*/
+
     }
     /* SE GUARDA EL ARCHIVO EN EL SERVIDOR */
     move_uploaded_file($loc_temp_Archivo,$guardarArchivo);

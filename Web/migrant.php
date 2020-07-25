@@ -30,10 +30,10 @@
           <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
           <a href="addManualMigrant.php">Agregar manualmente</a>
           <!-- ACTUALIZAR MIGRANTES -->
-          <form action="leer.php" method="POST" enctype="multipart/form-data" style="justify-content: center !important; ">
+          <form id="enviarExcel" method="POST" enctype="multipart/form-data" style="justify-content: center !important; ">
             <p><label id="lblFile" for="txtFile">Buscar archivo</label></p>
             <p><input id="txtFile" type="file" name="txtFile" accept=".xlsx"></p>
-            <p><input id="lblRefresh" type="submit" name="subida" value="Actualizar lista"></p>
+            <!-- <p><input id="lblRefresh" type="submit" name="subida" value="Actualizar lista"></p> -->
           </form>
           <!-- DESCARGAR PDF MIGRANTES -->
           <form style="width: 150%" action="print-migrantes-pdf.php" method="POST">
