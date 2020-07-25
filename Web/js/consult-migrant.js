@@ -2,7 +2,6 @@ $(document).ready(function() {
 
   console.log('jQuery esta funcionando');
   obtener();
-  
 
   $("#mySelect").change(function() {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -438,8 +437,6 @@ $(document).ready(function() {
             $( ".datepicker" ).datepicker();
         }
     });
-    $("select#mySelect").prop('selectedIndex', 0);
-    $("select#mySelect2").prop('selectedIndex', 0);
   }
 
   time='0';
@@ -739,238 +736,140 @@ $(document).ready(function() {
   });
 
   //*************************************************************
-  // NOTA: LEER.
-  /* EN LA LINEA 232 SE AGREGO UN SPAN Y SE HACE INVISIBLE, ESTE
-  SE UTILIZA PARA OBTENER SU CLASE, EL CUAL ES UNA CLASE NUMERICA
-  ESTO SIRVE PARA DETECTAR EXACTAMENTE DONDE SE DIO CLICK EN EL
-  BOTON EDITAR.
-  */
-  //*************************************************************
+      // NOTA: LEER.
+      /* EN LA LINEA 232 SE AGREGO UN SPAN Y SE HACE INVISIBLE, ESTE
+      SE UTILIZA PARA OBTENER SU CLASE, EL CUAL ES UNA CLASE NUMERICA
+      ESTO SIRVE PARA DETECTAR EXACTAMENTE DONDE SE DIO CLICK EN EL
+      BOTON EDITAR.
+      */
+      //*************************************************************
 
-  // METODO DE MASCARA DE ENTRADA PARA QUE EL INPUT TEL SEA SOLO NUMERICO Y AUTOSERAPACION
-  $('.txt-tel').mask('000-000-0000', {placeholder: '000-000-0000'}); //placeholder
-  $('.timepicker').wickedpicker();
-  // EVENTO CLICK DE BOTON EDITAR, SOLO AQUI FUNCIONA
-  edit = $('.edit');
-  let count = 0;
-  var ID, fechal, nomb, fechan, horal, citac, naci, tele, shit;
-  $(document).on('click', '.edit', function(){
-    // OBTIENE LA CLASE, OBTIENE UN NUMERO.
-    // LOS ELEMENTOS CREADOS EN AJAX TIENEN UNA CLASE CON UN NUMERO
-    // PARA CUANDO SE DE CLICK EN EL BOTON EDITAR SE HABLITEN SOLAMENTE ESA FILA
-    // Y NO TODA LA TABLA
-    var element = $(this)[0].parentElement.parentElement;
-    ID = $(element).attr('id');
-    shit = $(element).attr('value');
-    fechal = $(".llegada" + shit).val();
-    nomb = $(".nom" + shit).val();
-    fechan = $(".fn" + shit).val();
-    horal = $(".hl" + shit).val();
-    citac = $(".cc" + shit).val();
-    naci = $(".pais" + shit).val();
-    tele = $(".telefono" + shit).val();
-    console.log(ID,fechal,nomb,fechan,horal,citac,naci,tele,shit);
-    claseIdentificador = $(this).parent('td').prev().children('span').attr('class');
-    borrar = $('.delete'+claseIdentificador); // OBTIENE EL RENGLON EXACTO DEL BOTON ELIMINAR
-    // DETECTA EL PRIMER CLICK
-    if($('#e'+ID).text() == "Editar"){
-      // 1.- ELEMENTO DE LA CLASE- 2.- DISABLED. 3.- TIPO DE CURSOR
-      Habilitar_Deshabilitar($('.'+ID), false, "pointer");
-      // 1.- ELEMENTO. 2.- TEXTO DEL BOTON. 3.- COLOR
-      Modificar_Boton($('#e'+ID), "Guardar", "#EC6D4A");
-      Modificar_Boton($('.delete'+ID), "Cancelar", "transparent");
-    }
-    // DETECTA EL SEGUNDO CLICK
-    else if($('#e'+ID).text() == "Guardar"){
-      $.post('update-migrants.php', {ID,fechal,nomb,fechan,horal,citac,naci,tele}, function(response) {
-        console.log("Chingadera funcionando.");
-        // console.log(response);
-        obtener();
-      });
-      Habilitar_Deshabilitar($('.'+ID), "on", "default");
-      Modificar_Boton($('#e'+ID), "Editar", "transparent");
-      Modificar_Boton($('.delete'+ID), "Eliminar", "#EC6D4A");
-    }
-  });
-
-  function Habilitar_Deshabilitar(elemento, disabled, cursor){
-    elemento.prop("disabled", disabled).css("cursor", cursor);
-  }
-
-  function Modificar_Boton(elemento, texto, color){
-    elemento.text(texto);
-    elemento.css("background", color);
-  }
-
-  // EVENTO CLICK AL BOTON ELIMINAR CANCELAR
-  $(document).on("click", ".task-delete", function(){
-    var element = $(this)[0].parentElement.parentElement;
-    ID = $(element).attr('id');
-    var nombre = $('#'+ID + ' .nombre input').val();
-
-    if($('.delete'+ID).text() == "Eliminar"){
-      $('.title-box').html("¿Estas seguro que quieres eliminar a <strong>"+nombre+"</strong> de la lista? Esta operación es irreversible");
-      $('.box').css("height", "auto").css("padding", "20px");
-      $('.box').show('slow');
-      $('.box').css("display", "flex");
-    }
-    else if($('.delete'+ID).text() == "Cancelar"){
-      Habilitar_Deshabilitar($('.'+ID), "false", "default");
-      Modificar_Boton($('#e'+ID), "Editar", "transparent");
-      Modificar_Boton($('.delete'+ID), "Eliminar", "#EC6D4A");
-    }
-  });
-
-  $('.btn-cancel').click(function(){
-    $('.box').hide('slow');
-  });
-
-  $('.btn-confirm').click(function(){
-    // ***********************************************************************
-    // AQUI VA EL CODIGO PARA ELIMINAR
-    // ***********************************************************************
-    $.post('delete-migrant.php', {ID}, function() {
-      console.log("Chingadera funcionando.");
-      obtener();
-    });
-    $('#success').hide('slow');
-  });
-
-  /* OBJETO PERSONA PARA LA LISTA DE MIGRANTES EN LA TABLA */
-  function Persona()
-  {
-    var fechall, nombre, nacimiento, horall, citaCo, nacionalidad, telefono;
-  }
-  /* DECLARAMOS ARREGLO */
-  var contenidoT=[];
-
-  /* FUNCION DEL BOTON IMPRIMIR PDF */
-  $('.button-export').click( function() {
-    if(migrantes == 0)
-    {
-      localStorage.setItem('exportarmsg', 1);
-      $('#exportarmsg').css("display", "flex");
-      $('#exportarmsg').show();
-      $("select#mySelect").prop('selectedIndex', 0);
-      $("select#mySelect2").prop('selectedIndex', 0);
-    }
-    else
-    {
-      /* LIMPIA EL ARREGLO */
-      while (contenidoT.length) {
-        contenidoT.pop();
-      }
-      /* TOMA LOS DATOS ACTUALES DE LA TABLA */
-      for (var per = 1; per <= migrantes; per++) {
-        var migra = new Persona();
-        migra.fechall = $(".llegada" + per).val();
-        migra.nombre = $(".nom" + per).val();
-        migra.nacimiento = $(".fn" + per).val();
-        migra.horall = $(".hl" + per).val();
-        migra.citaCo = $(".cc" + per).val();
-        migra.nacionalidad = $(".pais" + per).val();
-        migra.telefono = $(".telefono" + per).val();
-        /* LOS EMPUJA AL ARREGLO */
-        contenidoT.push(migra);
-      }
-      console.log(contenidoT);
-      json=JSON.stringify(contenidoT);
-      /* LOS ENVIA A EL PHP DONDE SE GENERA EL PHP */
-      $.ajax({
-        type: "POST",
-        url: "print-migrantes-pdf.php",
-        data: {lista : json},
-        success: function(){
-          window.open('Esperados.pdf');
+      // METODO DE MASCARA DE ENTRADA PARA QUE EL INPUT TEL SEA SOLO NUMERICO Y AUTOSERAPACION
+      $('.txt-tel').mask('000-000-0000', {placeholder: '000-000-0000'}); //placeholder
+      $('.timepicker').wickedpicker();
+      // EVENTO CLICK DE BOTON EDITAR, SOLO AQUI FUNCIONA
+      edit = $('.edit');
+      let count = 0;
+      var ID, fechal, nomb, fechan, horal, citac, naci, tele, shit;
+      $(document).on('click', '.edit', function(){
+        // OBTIENE LA CLASE, OBTIENE UN NUMERO.
+        // LOS ELEMENTOS CREADOS EN AJAX TIENEN UNA CLASE CON UN NUMERO
+        // PARA CUANDO SE DE CLICK EN EL BOTON EDITAR SE HABLITEN SOLAMENTE ESA FILA
+        // Y NO TODA LA TABLA
+        var element = $(this)[0].parentElement.parentElement;
+        ID = $(element).attr('id');
+        shit = $(element).attr('value');
+        fechal = $(".llegada" + shit).val();
+        nomb = $(".nom" + shit).val();
+        fechan = $(".fn" + shit).val();
+        horal = $(".hl" + shit).val();
+        citac = $(".cc" + shit).val();
+        naci = $(".pais" + shit).val();
+        tele = $(".telefono" + shit).val();
+        console.log(ID,fechal,nomb,fechan,horal,citac,naci,tele,shit);
+        claseIdentificador = $(this).parent('td').prev().children('span').attr('class');
+        borrar = $('.delete'+claseIdentificador); // OBTIENE EL RENGLON EXACTO DEL BOTON ELIMINAR
+        // DETECTA EL PRIMER CLICK
+        if($('#e'+ID).text() == "Editar"){
+          // 1.- ELEMENTO DE LA CLASE- 2.- DISABLED. 3.- TIPO DE CURSOR
+          Habilitar_Deshabilitar($('.'+ID), false, "pointer");
+          // 1.- ELEMENTO. 2.- TEXTO DEL BOTON. 3.- COLOR
+          Modificar_Boton($('#e'+ID), "Guardar", "#EC6D4A");
+          Modificar_Boton($('.delete'+ID), "Cancelar", "transparent");
+        }
+        // DETECTA EL SEGUNDO CLICK
+        else if($('#e'+ID).text() == "Guardar"){
+          $.post('update-migrants.php', {ID,fechal,nomb,fechan,horal,citac,naci,tele}, function(response) {
+            console.log("Chingadera funcionando.");
+            // console.log(response);
+            obtener();
+          });
+          Habilitar_Deshabilitar($('.'+ID), "on", "default");
+          Modificar_Boton($('#e'+ID), "Editar", "transparent");
+          Modificar_Boton($('.delete'+ID), "Eliminar", "#EC6D4A");
         }
       });
-    }
-  });
-  
-  /* EVENTO PARA CARGAR MIGRANTES */
-  $('#txtFile').change(function(){  
-    $('#enviarExcel').submit();
-    $(this).val('');
-  }); 
-  
-  $('#enviarExcel').on('submit', function(event){  
-    if($("#txtFile").val() == ''){
-      /* Si no selecciona nada mensaje */
-    } 
-    else
-    {
-      event.preventDefault()
-      $.ajax({  
-        url:"leer.php",  
-        method:"POST",  
-        data:new FormData(this),  
-        contentType:false,  
-        processData:false
-      });
-    }
-    obtener();
-  });
-  /* FIN EVENTO PARA CARGAR MIGRANTES */
 
-/*  */
-  var extIncorrecta = localStorage.getItem('extIncorrecta');
-  if(extIncorrecta == '1'){
-    $('#extIncorrecta').css("display", "flex");
-    $('#extIncorrecta').show();
-  }
-  $('.btn-confirm').click(function(){
-    localStorage.setItem('extIncorrecta', 0);
-    $('.box').hide();
-  });
-/*  */
-  var errorFormato = localStorage.getItem('errorFormato');
-  if(errorFormato == '1'){
-    $('#errorFormato').css("display", "flex");
-    $('#errorFormato').show();
-  }
-  $('.btn-confirm').click(function(){
-    localStorage.setItem('errorFormato', 0);
-    $('.box').hide();
-  });
-/*  */
-  var errorLec = localStorage.getItem('errorLec');
-  if(errorLec == '1'){
-    $('#errorLec').css("display", "flex");
-    $('#errorLec').show();
-  }
-  $('.btn-confirm').click(function(){
-    localStorage.setItem('errorLec', 0);
-    $('.box').hide();
-  });
-/*  */
-  var errorSQL = localStorage.getItem('errorSQL');
-  if(errorSQL == '1'){
-    $('#errorSQL').css("display", "flex");
-    $('#errorSQL').show();
-  }
-  $('.btn-confirm').click(function(){
-    localStorage.setItem('errorSQL', 0);
-    $('.box').hide();
-  });
-/*  */
-  var exitoLec = localStorage.getItem('exitoLec');
-  if(exitoLec == '1'){
-    $('#exitoLec').css("display", "flex");
-    $('#exitoLec').show();
-  }
-  $('.btn-confirm').click(function(){
-    localStorage.setItem('exitoLec', 0);
-    $('.box').hide();
-  });
-/* exportarmsg */
-  var exportarmsg = localStorage.getItem('exportarmsg');
-  if(exportarmsg == '1'){
-    $('#exportarmsg').css("display", "flex");
-    $('#exportarmsg').show();
-  }
-  $('.btn-confirm').click(function(){
-    localStorage.setItem('exportarmsg', 0);
-    $('.box').hide();
-  });
-  
+      function Habilitar_Deshabilitar(elemento, disabled, cursor){
+        elemento.prop("disabled", disabled).css("cursor", cursor);
+      }
+
+      function Modificar_Boton(elemento, texto, color){
+        elemento.text(texto);
+        elemento.css("background", color);
+      }
+
+      // EVENTO CLICK AL BOTON ELIMINAR CANCELAR
+      $(document).on("click", ".task-delete", function(){
+        var element = $(this)[0].parentElement.parentElement;
+        ID = $(element).attr('id');
+        var nombre = $('#'+ID + ' .nombre input').val();
+
+        if($('.delete'+ID).text() == "Eliminar"){
+          $('.title-box').html("¿Estas seguro que quieres eliminar a <strong>"+nombre+"</strong> de la lista? Esta operación es irreversible");
+          $('.box').css("height", "auto").css("padding", "20px");
+          $('.box').show('slow');
+          $('.box').css("display", "flex");
+        }
+        else if($('.delete'+ID).text() == "Cancelar"){
+          Habilitar_Deshabilitar($('.'+ID), "false", "default");
+          Modificar_Boton($('#e'+ID), "Editar", "transparent");
+          Modificar_Boton($('.delete'+ID), "Eliminar", "#EC6D4A");
+        }
+      });
+
+      $('.btn-cancel').click(function(){
+        $('.box').hide('slow');
+      });
+
+      $('.btn-confirm').click(function(){
+        // ***********************************************************************
+        // AQUI VA EL CODIGO PARA ELIMINAR
+        // ***********************************************************************
+        $.post('delete-migrant.php', {ID}, function() {
+          console.log("Chingadera funcionando.");
+          obtener();
+        });
+        $('#success').hide('slow');
+      });
+
+      /* OBJETO PERSONA PARA LA LISTA DE MIGRANTES EN LA TABLA */
+      function Persona()
+      {
+        var fechall, nombre, nacimiento, horall, citaCo, nacionalidad, telefono;
+      }
+      /* DECLARAMOS ARREGLO */
+      var contenidoT=[];
+
+      /* FUNCION DEL BOTON IMPRIMIR PDF */
+      $('.button-export').click( function() {
+        /* LIMPIA EL ARREGLO */
+        while (contenidoT.length) {
+          contenidoT.pop();
+        }
+        /* TOMA LOS DATOS ACTUALES DE LA TABLA */
+        for (var per = 1; per <= migrantes; per++) {
+          var migra = new Persona();
+          migra.fechall = $(".llegada" + per).val();
+          migra.nombre = $(".nom" + per).val();
+          migra.nacimiento = $(".fn" + per).val();
+          migra.horall = $(".hl" + per).val();
+          migra.citaCo = $(".cc" + per).val();
+          migra.nacionalidad = $(".pais" + per).val();
+          migra.telefono = $(".telefono" + per).val();
+          /* LOS EMPUJA AL ARREGLO */
+          contenidoT.push(migra);
+        }
+        console.log(contenidoT);
+        json=JSON.stringify(contenidoT);
+        /* LOS ENVIA A EL PHP DONDE SE GENERA EL PHP */
+        $.ajax({
+          type: "POST",
+          url: "print-migrantes-pdf.php",
+          data: {lista : json},
+          success: function(){
+            window.location ='Esperados.pdf';
+          }
+        });
+      });  
 });

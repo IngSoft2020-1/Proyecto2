@@ -1,33 +1,3 @@
-<?php
-  session_start();
-  error_reporting(0);
-  if($_SESSION['archivo'] == '0'){
-    echo "<script>
-    localStorage.setItem('extIncorrecta', 1);
-    </script>";
-  }
-  else if($_SESSION['archivo'] == '1'){
-    echo "<script>
-    localStorage.setItem('errorFormato', 1);
-    </script>";
-  }
-  else if($_SESSION['archivo'] == '2'){
-    echo "<script>
-    localStorage.setItem('errorLec', 1);
-    </script>";
-  }
-  else if($_SESSION['archivo'] == '3'){
-    echo "<script>
-    localStorage.setItem('errorSQL', 1);
-    </script>";
-  }
-  else if($_SESSION['archivo'] == '4'){
-    echo "<script>
-    localStorage.setItem('exitoLec', 1);
-    </script>";
-  }
-  $_SESSION['archivo'] = '';
-?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
@@ -37,11 +7,6 @@
 
     <link rel="stylesheet" href="css/edit.css">
     <link rel="stylesheet" href="css/migrant.css">
-
-    <!-- LIBRERIA POPUPS MENSAJE DE VALIDACION -->
-    <script src="js/msg-alert.js"></script>
-    <link rel="stylesheet" href="css/msg-alert.css">
-    <!-- FIN DE LA LIBRERIA -->
 
     <!-- LIBRERIAS PARA DATEPICKER -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -65,10 +30,10 @@
           <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
           <a href="addManualMigrant.php">Agregar manualmente</a>
           <!-- ACTUALIZAR MIGRANTES -->
-          <form id="enviarExcel" enctype="multipart/form-data" style="justify-content: center !important; ">
+          <form action="leer.php" method="POST" enctype="multipart/form-data" style="justify-content: center !important; ">
             <p><label id="lblFile" for="txtFile">Buscar archivo</label></p>
-            <p><input id="txtFile" name="txtFile" type="file"  accept=".xlsx"></p>
-            <!-- <p><input id="lblRefresh" type="submit" name="subida" value="Actualizar lista"></p> -->
+            <p><input id="txtFile" type="file" name="txtFile" accept=".xlsx"></p>
+            <p><input id="lblRefresh" type="submit" name="subida" value="Actualizar lista"></p>
           </form>
           <!-- DESCARGAR PDF MIGRANTES -->
           <form style="width: 150%" action="print-migrantes-pdf.php" method="POST">
@@ -134,26 +99,4 @@
   <script type="text/javascript" src="js/hora/src/wickedpicker.js"></script>
   <link rel="stylesheet" href="js/hora/stylesheets/wickedpicker.css">
   <script src="js/migrant.js"></script>
-
-  <!-- MENSAJES DE LA LECTURA DEL EXCEL -->
-  <div class="box" id="extIncorrecta">
-    <p class="title-box">Tipo no soportado, favor de elegir un archivo de tipo Excel (.xlsx)</p>
-  </div>
-  <div class="box" id="errorFormato">
-    <p class="title-box">Error en la estructura del formato cargado.</p>
-  </div>
-  <div class="box" id="errorLec">
-    <p class="title-box">Error lectura del Excel, asegúrese de que sea un archivo Excel legible.</p>
-  </div>
-  <div class="box" id="errorSQL">
-    <p class="title-box">Error inesperado, vuelva a intentarlo. Si el problema persiste, consulte el menú de Ayuda.</p>
-  </div>
-  <div class="box" id="exitoLec">
-    <p class="title-box">La importación de los datos se ha realizado satisfactoriamente.</p>
-  </div>
-  <!-- FIN -->
-  <div class="box" id="exportarmsg">
-    <p class="title-box">No hay ningun registro por exportar.</p>
-  </div>
-
 </html>

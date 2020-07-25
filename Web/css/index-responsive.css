@@ -1,0 +1,92 @@
+/* DE 0 A 1000 PX */
+@media (max-width: 1000px){
+    aside{
+        width: 80px;
+    }
+
+    section{
+        width: 95%;
+    }
+
+    .text{
+        display: none;
+    }
+
+    .icon{
+        padding: 0;
+        width: 45%;
+        margin: auto;
+    }
+
+    #line{
+        margin-top: 41px;
+    }
+
+    .container-button{
+        padding-top: 40%;
+    }
+
+    #user{
+        width: 45%;
+    }
+}
+
+/* PROGRMAMACION PARA CELULARES */
+@media (max-width: 480px){
+     aside{
+      display: none;
+      width: 100%;
+      position: absolute;
+      margin-top: 6vh;
+      height: 100vh;
+    }  
+
+    section{
+        width: 100%;
+    }
+
+    #menu-mobile{
+        display: flex !important;
+        width: 20px;
+        margin-left: 8px;
+    }
+
+    #menu{
+        display: none;
+    }
+
+    #user{
+        width: 10%;
+        margin-bottom: 9px;
+    }
+
+    #line{
+        margin-top: 9px;
+        width: 15%;
+    }
+
+    .container-button{
+        padding: 0% 5% 5% 5%;
+    }
+
+    .text{
+        display: unset;
+        font-size: 16px;
+        margin: 0px;
+    }
+
+    .icon{
+        width: 30px;
+        margin-right: 12px;
+    }
+
+    .menu{
+        padding-top: 3px;
+        align-items: flex-start;
+    }
+
+    #title{
+        font-size: 15px;
+    } 
+}
+
