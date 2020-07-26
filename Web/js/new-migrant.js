@@ -3,7 +3,10 @@ $(document).ready(function(){
     /* BOTON CANCELAR */
     $('#btn-cancel').click(function(){
         // ACTUALIZAR VENTANA PADRE DENTRO DE UN IFRAME
-        parent.location.reload();
+        // parent.location.reload();
+        // console.log($('.box'));
+        $('#sure').show();
+        $('#sure').css("display", "flex");
     });
 
     /* MENSAJE MIGRANTE GUARDADO */
@@ -23,13 +26,10 @@ $(document).ready(function(){
     $('#datosMalMigrant').css("display", "flex");
     $('#datosMalMigrant').show('slow');
   }
-  // $('.btn-confirm').click(function(){
-  //   localStorage.setItem('datosMalMigrant', 0);
-  //   $('.box').hide('slow');
-  // });
-
-  var btnConfirm = $('.btn-confirm');
-  $(document).on("click", btnConfirm, function(){
+  $('.btn-confirm').click(function(){
+    localStorage.setItem('datosMalMigrant', 0);
     $('.box').hide('slow');
   });
+
+  
 });
