@@ -35,4 +35,40 @@ $(document).ready(function()
         });
     }
     obtener();
+
+    var editar = $('#editar-costos');
+    var save = $('#save');
+    var cancel = $('#cancel');
+    var input = $('.hab');
+
+    editar.click(function(){
+        Show_Hide(save, "unset");
+        Show_Hide(cancel, "unset");
+        Show_Hide(editar, "none");
+        Habilitar_Desahabilitar(input, false, "pointer");
+    });
+
+    cancel.click(function(){
+        Show_Hide(editar, "unset");
+        Show_Hide(save, "none");
+        Show_Hide(cancel, "none");
+        Habilitar_Desahabilitar(input, "on", "pointer");
+    });
+
+    save.click(function(){
+        Show_Hide(editar, "unset");
+        Show_Hide(save, "none");
+        Show_Hide(cancel, "none");
+        Habilitar_Desahabilitar(input, "on", "pointer");
+        $('#sure').show();       
+        $('#sure').css("display", "flex");
+    });
+
+    function Show_Hide(elemento, display){
+        elemento.css("display", display);
+    }
+    
+    function Habilitar_Desahabilitar(elemento, disabled, cursor){
+        elemento.prop("disabled", disabled).css("cursor", cursor);
+    }
 });

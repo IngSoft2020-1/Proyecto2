@@ -40,7 +40,7 @@ table td, table th{
   box-shadow: 4px 4px 20px #141a1f;
   margin-top: 15px;
   border-radius: 18px;
-  padding: 10px;
+  /* padding: 10px; */
   background: #283138;
 }
 
@@ -61,13 +61,80 @@ table td, table th{
 .container-tools{
   margin-top: 36px;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  /* padding: 10px; */
 }
 
 .subcontainer{
-  width: 48%;
+  width: 100%;
   border-radius: 18px;
   height: 260px;
   background: #283138;
+}
+
+#editar-costos, #save, #cancel {
+  width: 82px;
+  height: 40px;
+  border-radius: 10px;
+  background: #ec6d4a;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.derecha {
+  text-align: right;
+  margin-top: 24px;
+}
+
+.hab {
+  background: none;
+  color: white;
+  border: none;
+  width: 82px;
+}
+
+.flex {
+  display: flex;
+}
+
+.p {
+  margin-right: 3px;
+}
+
+#table-price tbody, #table-price {
+  text-align: center;
+}
+
+.box{
+  width: 367px !important;
+  height: 250px !important;
+  background: #1A2127;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  left: 30%;
+  bottom: 36%;
+  border-radius: 5px;
+  border: 2px solid #EC6D4A;
+}
+
+.title-box{
+  color: white;
+  font-size: 22px;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.btn-confirm, #btn-cancel-2{
+  width: 80%;
+  background: #EC6D4A;
+  border: 2px solid #EC6D4A;
+  padding: 7px;
+  color: white;
+  border-radius: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  margin-top: 10px;
 }
