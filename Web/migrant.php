@@ -27,18 +27,29 @@
     <div class="container">
       <div class="container-img" id="aling-left">
         <div class="container-a">
-          <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
-          <a href="addManualMigrant.php">Agregar manualmente</a>
-          <!-- ACTUALIZAR MIGRANTES -->
-          <form id="enviarExcel" method="POST" enctype="multipart/form-data" style="justify-content: center !important; ">
-            <p><label id="lblFile" for="txtFile">Buscar archivo</label></p>
-            <p><input id="txtFile" type="file" name="txtFile" accept=".xlsx"></p>
-            <!-- <p><input id="lblRefresh" type="submit" name="subida" value="Actualizar lista"></p> -->
-          </form>
-          <!-- DESCARGAR PDF MIGRANTES -->
-          <form style="width: 150%" action="print-migrantes-pdf.php" method="POST">
-            <p><input id="lblExportar" type="button" class="button-export" name="subida" value="Generar PDF"></p>
-          </form>
+          <div class="container-header">
+            <a href="addManualMigrant.php"><img src="img/plus.png" alt="" class="icon-plus"></a>
+            <a href="addManualMigrant.php">Agregar manualmente</a>
+          </div>
+          <div class="container-header">
+              <!-- ACTUALIZAR MIGRANTES -->
+            <form class="frm-style"action="leer.php" method="POST" enctype="multipart/form-data">
+              <label id="lblFile" for="txtFile">Buscar archivo</label>
+              <input id="txtFile" type="file" name="txtFile" accept=".xlsx">
+            </form>
+          </div> 
+          <div class="container-header direction">
+            <div class="sub">
+            <label for="select">Exportar</label>
+            <select name="select" id="select-export">
+                <option value="per">Personalizada</option>
+                <option value="all" selected>Todos los de pantalla</option>
+              </select> 
+            </div>
+            <form class="frm-style" action="print-migrantes-pdf.php" method="POST">            
+              <input id="lblExportar" type="submit" class="button-export" name="subida" value="Exportar">
+            </form>
+          </div>
         </div>
         <input type="text" name="search" placeholder="Search.." id="search-migrants" autocomplete="off">
       </div>
@@ -46,6 +57,7 @@
         <div class="select">
           <label for="order">Ordenar por:</label>
           <select class="" name="order" id="mySelect">
+            <option value="0" selected>Seleccionar</option>
             <option value="1">Fecha de llegada asc</option>
             <option value="2">Fecha de llegada desc</option>
             <option value="3">Nombre asc</option>
@@ -57,11 +69,11 @@
         <div class="select">
           <label for="show">Mostrar:</label>
           <select class="" name="show" id="mySelect2">
-            <option value="0">Todos</option>
             <option value="7">Proximos 7 días</option>
             <option value="1">Último mes</option>
             <option value="3">Últimos 3 meses</option>
-            <option value="6">Últimos 6 meses</option>
+            <option value="3">Últimos 6 meses</option>
+            <option value="0">Todos</option>
           </select>
         </div>
       </div>
@@ -69,6 +81,7 @@
           <table id="table-migrants" class="tablesorter">
             <thead>
               <tr>
+                <th id="th-show" style="display: none;"></th>
                 <th style="display: none;">ID</th>
                 <th style="color: #00FF80;">Fecha de llegada</th>
                 <th style="color: #00FF80;">Nombre</th>

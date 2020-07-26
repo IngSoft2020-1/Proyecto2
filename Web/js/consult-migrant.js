@@ -142,19 +142,16 @@ $(document).ready(function() {
     }
   });
 
+  time='0';
+  $("#mySelect2").change(function() {
+    typeSelect = document.getElementById("mySelect2").value;
 
-  /*Usado en migrant.php*/
-  /*Funcion para imprimir las filas de los migrantes existentes*/
-  var edit; // BOTON CLICK, SE DECLARA AFUERA DEBIDO QUE AQUI NO GENERO ERRORES
-  var borrar;
-  var claseIdentificador;
-  var migrantes;
-  function obtener() {
     $row=0;
     migrantes=0;
     $.ajax({
-        url: 'tasks-migrants.php',
+        url: 'tasks-migrants-meses.php',
         type: 'GET',
+        data: {data:time},
         success: function (response) {
             let tasks = JSON.parse(response);
             console.log(tasks);
@@ -380,29 +377,18 @@ $(document).ready(function() {
                       <select disabled="on" class="habilitar ignorar pais${$row} ${task.IDVisi}">
                         <option value="${task.IDPais}" selected>${task.Pais}</option>
                         <option value="ARG">Argentina</option>
-                        <option value="ATG">Antigua y Barbuda</option>
-                        <option value="BHS">Bahamas</option>
                         <option value="BLM">San Bartolome</option>
-                        <option value="BLZ">Belice</option>
                         <option value="BOL">Bolivia</option>
                         <option value="BRA">Brasil</option>
-                        <option value="BRB">Barbados</option>
                         <option value="CHL">Chile</option>
                         <option value="COL">Colombia</option>
-                        <option value="CRI">Costa Rica</option>
+                        <option value="CRI">Cota Rica</option>
                         <option value="CUB">Cuba</option>
-                        <option value="DMA">Dominica</option>
                         <option value="ECU">Ecuador</option>
                         <option value="GLP">Guadalupe</option>
-                        <option value="GRD">Granada</option>
                         <option value="GTM">Guatemala</option>
                         <option value="GUF">Guyana Francesa</option>
-                        <option value="HND">Honduras</option>
-                        <option value="HTI">Haití</option>
-                        <option value="JAM">Jamaica</option>
-                        <option value="KNA">San Cristobal y Nieves</option>
-                        <option value="LCA">Santa Lucia</option>
-                        <option value="MEX">Mexico</option>
+                        <option value="Mex">Mexico</option>
                         <option value="MTQ">Martinica</option>
                         <option value="NIC">Nicaragua</option>
                         <option value="PAN">Panama</option>
@@ -411,11 +397,8 @@ $(document).ready(function() {
                         <option value="PRY">Paraguay</option>
                         <option value="RDO">Republica Dominicana</option>
                         <option value="SLV">El Salvador</option>
-                        <option value="SUR">Surinam</option>
                         <option value="SXM">San Martin</option>
-                        <option value="TTO">Trinidad y Tobago</option>
                         <option value="URY">Uruguay</option>
-                        <option value="VCT">San Vicente y las Granadinas</option>
                         <option value="VEN">Venezuela</option>
                       </select>
                     </td>
@@ -437,30 +420,30 @@ $(document).ready(function() {
             $( ".datepicker" ).datepicker();
         }
     });
-    $("select#mySelect").prop('selectedIndex', 0);
-    $("select#mySelect2").prop('selectedIndex', 0);
-  }
+  });
 
-  time='0';
-  $("#mySelect2").change(function() {
-    typeSelect = document.getElementById("mySelect2").value;
-    time=typeSelect;
+  /*Usado en migrant.php*/
+  /*Funcion para imprimir las filas de los migrantes existentes*/
+  var edit; // BOTON CLICK, SE DECLARA AFUERA DEBIDO QUE AQUI NO GENERO ERRORES
+  var borrar;
+  var claseIdentificador;
+  var migrantes;
+  function obtener() {
     $row=0;
     migrantes=0;
     $.ajax({
-        url: 'tasks-migrants-meses.php',
+        url: 'tasks-migrants.php',
         type: 'GET',
-        data: {'data':time},
         success: function (response) {
-            console.log(response);
             let tasks = JSON.parse(response);
-            /* console.log(tasks); */
+            console.log(tasks);
             let templado = '';
             tasks.forEach(task => {
                 $row++;
                 migrantes++;
                 templado += `
                 <tr class="tr" id="${task.IDVisi}" value="${$row}">
+                    <td class="td-show" style="display: none;"><input type="checkbox"></td>
                     <td style="display: none;">${$row}</td>
                     <td class='fecha-llegada'>
                       <input disabled="on" type="text" value="${task.FechaLlegada}" class="datepicker fecha-llegada habilitar llegada${$row} ${task.IDVisi}">
@@ -677,29 +660,18 @@ $(document).ready(function() {
                       <select disabled="on" class="habilitar ignorar pais${$row} ${task.IDVisi}">
                         <option value="${task.IDPais}" selected>${task.Pais}</option>
                         <option value="ARG">Argentina</option>
-                        <option value="ATG">Antigua y Barbuda</option>
-                        <option value="BHS">Bahamas</option>
                         <option value="BLM">San Bartolome</option>
-                        <option value="BLZ">Belice</option>
                         <option value="BOL">Bolivia</option>
                         <option value="BRA">Brasil</option>
-                        <option value="BRB">Barbados</option>
                         <option value="CHL">Chile</option>
                         <option value="COL">Colombia</option>
-                        <option value="CRI">Costa Rica</option>
+                        <option value="CRI">Cota Rica</option>
                         <option value="CUB">Cuba</option>
-                        <option value="DMA">Dominica</option>
                         <option value="ECU">Ecuador</option>
                         <option value="GLP">Guadalupe</option>
-                        <option value="GRD">Granada</option>
                         <option value="GTM">Guatemala</option>
                         <option value="GUF">Guyana Francesa</option>
-                        <option value="HND">Honduras</option>
-                        <option value="HTI">Haití</option>
-                        <option value="JAM">Jamaica</option>
-                        <option value="KNA">San Cristobal y Nieves</option>
-                        <option value="LCA">Santa Lucia</option>
-                        <option value="MEX">Mexico</option>
+                        <option value="Mex">Mexico</option>
                         <option value="MTQ">Martinica</option>
                         <option value="NIC">Nicaragua</option>
                         <option value="PAN">Panama</option>
@@ -708,11 +680,8 @@ $(document).ready(function() {
                         <option value="PRY">Paraguay</option>
                         <option value="RDO">Republica Dominicana</option>
                         <option value="SLV">El Salvador</option>
-                        <option value="SUR">Surinam</option>
                         <option value="SXM">San Martin</option>
-                        <option value="TTO">Trinidad y Tobago</option>
                         <option value="URY">Uruguay</option>
-                        <option value="VCT">San Vicente y las Granadinas</option>
                         <option value="VEN">Venezuela</option>
                       </select>
                     </td>
@@ -734,9 +703,7 @@ $(document).ready(function() {
             $( ".datepicker" ).datepicker();
         }
     });
-    $("select#mySelect").prop('selectedIndex', 0);
-  });
-
+  }
   //*************************************************************
       // NOTA: LEER.
       /* EN LA LINEA 232 SE AGREGO UN SPAN Y SE HACE INVISIBLE, ESTE
@@ -835,21 +802,14 @@ $(document).ready(function() {
         $('#success').hide('slow');
       });
 
-      /* OBJETO PERSONA PARA LA LISTA DE MIGRANTES EN LA TABLA */
       function Persona()
       {
         var fechall, nombre, nacimiento, horall, citaCo, nacionalidad, telefono;
       }
-      /* DECLARAMOS ARREGLO */
-      var contenidoT=[];
 
-      /* FUNCION DEL BOTON IMPRIMIR PDF */
+      var contenidoT=[];
       $('.button-export').click( function() {
-        /* LIMPIA EL ARREGLO */
-        while (contenidoT.length) {
-          contenidoT.pop();
-        }
-        /* TOMA LOS DATOS ACTUALES DE LA TABLA */
+
         for (var per = 1; per <= migrantes; per++) {
           var migra = new Persona();
           migra.fechall = $(".llegada" + per).val();
@@ -859,44 +819,37 @@ $(document).ready(function() {
           migra.citaCo = $(".cc" + per).val();
           migra.nacionalidad = $(".pais" + per).val();
           migra.telefono = $(".telefono" + per).val();
-          /* LOS EMPUJA AL ARREGLO */
+          
           contenidoT.push(migra);
         }
         console.log(contenidoT);
-        json=JSON.stringify(contenidoT);
-        /* LOS ENVIA A EL PHP DONDE SE GENERA EL PHP */
+        var json = JSON.stringify(contenidoT);
+        
+        $.post('print-migrantes-pdf.php', {json}, function() {
+          console.log("Enviado1");
+        });
+        
         $.ajax({
           type: "POST",
           url: "print-migrantes-pdf.php",
-          data: {lista : json},
+          data: {data : json}, 
           success: function(){
-            window.open('Esperados.pdf');
+            console.log("Enviado2");
           }
         });
+      });  
+
+      var valor = $("#select-export option:selected").text();
+      $(document).on('change', '#select-export', function(event) {
+        valor = $("#select-export option:selected").text();
+        if(valor == "Personalizada"){
+          $('#th-show').show();
+          $('.td-show').show();
+        }
+        else{
+          $('#th-show').hide();
+          $('.td-show').hide();
+        }
       });
 
-      /* EVENTO PARA CARGAR MIGRANTES */
- $('#txtFile').change(function(){
-   $('#enviarExcel').submit();
-   $(this).val('');
- });
-
- $('#enviarExcel').on('submit', function(event){
-   if($("#txtFile").val() == ''){
-     /* Si no selecciona nada mensaje */
-   }
-   else
-   {
-     event.preventDefault()
-     $.ajax({
-       url:"leer.php",
-       method:"POST",
-       data:new FormData(this),
-       contentType:false,
-       processData:false
-     });
-     obtener();
-   }
- });
- /* FIN EVENTO PARA CARGAR MIGRANTES */
 });

@@ -237,3 +237,29 @@ a{
 .container-header{
   display: flex;
 }
+
+.container-header.direction {
+  flex-direction: column;
+}
+
+.sub{
+  margin-bottom: 10px;
+}
+
+.sub label{
+  display: contents;
+}
+
+form{
+  margin: none;
+  width: 100%;
+  display: inline-block;
+}
+
+#lblExportar{
+  margin-left: 0;
+}
+
+.frm-style {
+  text-align: center;
+}
