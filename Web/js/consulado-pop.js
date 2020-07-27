@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('.title-box').html("¿Estas seguro que desea salir? Se perderan los datos");
+    $('.title-box').html("¿Estas seguro que desea guardar los nuevos cambios?");
 
     $('.btn-confirm').click(function(){
          // 
