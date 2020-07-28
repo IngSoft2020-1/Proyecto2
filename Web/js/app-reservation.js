@@ -38,145 +38,150 @@ $(document).ready(function()
             url: 'task-reser.php',
             type: 'GET',
             success: function (response) {
-                console.log('Wea funcionando');
                 let tasks = JSON.parse(response);
-                
                 console.log(tasks);
-                let templado = '';
-                tasks.forEach(task => {
-                    $row++; // ROW COMIENZA EN 1
-                    if($row == 1)
-                    {
-                        $wea = task.IDReservacion;
-                        $auxiliar = $row; // AUXILIAR = 1
-                        console.log("auxiliar "+$auxiliar);
-                        templado += `
-                        <tr id="${$row}" value="${$row}" class="${task.IDReservacion}">
-                            <td><input disabled="on" type="text" value="${task.FechadeInicio}" class="fecha-llegada habilitar"></td>
-                            <td class="td-name">
-                            <div class="container-td">
-                                <div>
+                if(tasks.length == 0){
+                    let nulo = $('#null');
+                    nulo.css("display", "unset");
+                }
+                else{
+                    let templado = '';
+                    tasks.forEach(task => {
+                        $row++; // ROW COMIENZA EN 1
+                        if($row == 1)
+                        {
+                            $wea = task.IDReservacion;
+                            $auxiliar = $row; // AUXILIAR = 1
+                            console.log("auxiliar "+$auxiliar);
+                            templado += `
+                            <tr id="${$row}" value="${$row}" class="${task.IDReservacion}">
+                                <td><input disabled="on" type="text" value="${task.FechadeInicio}" class="fecha-llegada habilitar"></td>
+                                <td class="td-name">
+                                <div class="container-td">
+                                    <div>
+                                    <select class="habilitar" disabled style="cursor: default">
+                                        <option value="${task.IDVisitante}">${task.Nombres}</option>
+                            `
+                            console.log("row "+$row);
+                        }
+                        else if($wea == task.IDReservacion && $row != 1)
+                        {
+                            $DiasEsti = task.Diasestimados;
+                            $Estado = task.Estadoreservacion;
+                            $IDHabi = task.IDHabitacion;
+                            $TipoHabi = task.Tipodehabitacion;
+                            templado += `
+                                        <option value="${task.IDVisitante}">${task.Nombres}</option>
+                            `
+                        }
+                        else if($wea != task.IDReservacion && $row != 1)
+                        {
+                            $wea = task.IDReservacion;
+                            console.log("auxiliar de nuevo "+$auxiliar);
+                            templado += `
+                                    </select>
+                                    </div>
+                                    <div class="td-cont">
+                                    <img src="img/trash.png" alt="" class="icon-tools">
+                                    <img src="img/new.png" alt="" class="icon-tools">
+                                    </div>
+                                </div>
+                                </td>
+                                <td>
                                 <select class="habilitar" disabled style="cursor: default">
-                                    <option value="${task.IDVisitante}">${task.Nombres}</option>
-                        `
-                        console.log("row "+$row);
-                    }
-                    else if($wea == task.IDReservacion && $row != 1)
-                    {
-                        $DiasEsti = task.Diasestimados;
-                        $Estado = task.Estadoreservacion;
-                        $IDHabi = task.IDHabitacion;
-                        $TipoHabi = task.Tipodehabitacion;
-                        templado += `
-                                    <option value="${task.IDVisitante}">${task.Nombres}</option>
-                        `
-                    }
-                    else if($wea != task.IDReservacion && $row != 1)
-                    {
-                        $wea = task.IDReservacion;
-                        console.log("auxiliar de nuevo "+$auxiliar);
-                        templado += `
+                                    <option value="${$DiasEsti}">${$DiasEsti}</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
                                 </select>
-                                </div>
-                                <div class="td-cont">
-                                <img src="img/trash.png" alt="" class="icon-tools">
-                                <img src="img/new.png" alt="" class="icon-tools">
-                                </div>
-                            </div>
-                            </td>
-                            <td>
-                            <select class="habilitar" disabled style="cursor: default">
-                                <option value="${$DiasEsti}">${$DiasEsti}</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            </td>
-                            <td>
-                            <select class="habilitar" disabled style="cursor: default">
-                                <option value="${$IDHabi}">${$TipoHabi}</option>
-                                <option value="I">Sencilla</option>
-                                <option value="D">Doble</option>
-                                <option value="T">Triple</option>
-                                <option value="O">Otra</option>
-                            </select>
-                            </td>
-                            <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
-                            <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
-                            <td><p id="estado-1" class="parrafo">En espera</p></td>
-                            <td class="td-right">
-                            <div class="evento  evento-${$auxiliar}">
-                                <img src="img/points.png" class="icon icon-margin">
-                            </div>
-                            <div class="sub-menu sub-menu-${$auxiliar}">
-                                <input class="input-submenu btn-start" type="button" name="" value="Iniciar">
-                                <input class="input-submenu btn-edit" type="button" name="" value="Editar huespedes">
-                                <input style="display: none;" class="input-submenu btn-cancel" type="button" name="" value="Cancelar">
-                                <input class="input-submenu btn-delete" type="button" name="" value="Eliminar">
-                            </div>
-                            </td>
-                        </tr>
-                        <tr id="${$row}" value="${$row}" class="${task.IDReservacion}">
-                            <td><input disabled="on" type="text" value="${task.FechadeInicio}" class="fecha-llegada habilitar"></td>
-                            <td class="td-name">
-                            <div class="container-td">
-                                <div>
+                                </td>
+                                <td>
                                 <select class="habilitar" disabled style="cursor: default">
-                                    <option value="${task.IDVisitante}">${task.Nombres}</option>
-                        `
-                        $auxiliar = $row;
-                    }
-                });
-                templado += `
+                                    <option value="${$IDHabi}">${$TipoHabi}</option>
+                                    <option value="I">Sencilla</option>
+                                    <option value="D">Doble</option>
+                                    <option value="T">Triple</option>
+                                    <option value="O">Otra</option>
+                                </select>
+                                </td>
+                                <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
+                                <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
+                                <td><p id="estado-1" class="parrafo">En espera</p></td>
+                                <td class="td-right">
+                                <div class="evento  evento-${$auxiliar}">
+                                    <img src="img/points.png" class="icon icon-margin">
+                                </div>
+                                <div class="sub-menu sub-menu-${$auxiliar}">
+                                    <input class="input-submenu btn-start" type="button" name="" value="Iniciar">
+                                    <input class="input-submenu btn-edit" type="button" name="" value="Editar huespedes">
+                                    <input style="display: none;" class="input-submenu btn-cancel" type="button" name="" value="Cancelar">
+                                    <input class="input-submenu btn-delete" type="button" name="" value="Eliminar">
+                                </div>
+                                </td>
+                            </tr>
+                            <tr id="${$row}" value="${$row}" class="${task.IDReservacion}">
+                                <td><input disabled="on" type="text" value="${task.FechadeInicio}" class="fecha-llegada habilitar"></td>
+                                <td class="td-name">
+                                <div class="container-td">
+                                    <div>
+                                    <select class="habilitar" disabled style="cursor: default">
+                                        <option value="${task.IDVisitante}">${task.Nombres}</option>
+                            `
+                            $auxiliar = $row;
+                        }
+                    });
+                    templado += `
+                            </select>
+                            </div>
+                            <div class="td-cont">
+                            <img src="img/trash.png" alt="" class="icon-tools">
+                            <img src="img/new.png" alt="" class="icon-tools">
+                            </div>
+                        </div>
+                        </td>
+                        <td>
+                        <select class="habilitar" disabled style="cursor: default">
+                            <option value="${$DiasEsti}">${$DiasEsti}</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
                         </select>
+                        </td>
+                        <td>
+                        <select class="habilitar" disabled style="cursor: default">
+                            <option value="${$IDHabi}">${$TipoHabi}</option>
+                            <option value="I">Sencilla</option>
+                            <option value="D">Doble</option>
+                            <option value="T">Triple</option>
+                            <option value="O">Otra</option>
+                        </select>
+                        </td>
+                        <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
+                        <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
+                        <td><p id="estado-1" class="parrafo">En espera</p></td>
+                        <td class="td-right">
+                        <div class="evento  evento-${$auxiliar}">
+                            <img src="img/points.png" class="icon icon-margin">
                         </div>
-                        <div class="td-cont">
-                        <img src="img/trash.png" alt="" class="icon-tools">
-                        <img src="img/new.png" alt="" class="icon-tools">
+                        <div class="sub-menu sub-menu-${$auxiliar}">
+                            <input class="input-submenu btn-start" type="button" name="" value="Iniciar">
+                            <input class="input-submenu btn-edit" type="button" name="" value="Editar huespedes">
+                            <input style="display: none;" class="input-submenu btn-cancel" type="button" name="" value="Cancelar">
+                            <input class="input-submenu btn-delete" type="button" name="" value="Eliminar">
                         </div>
-                    </div>
-                    </td>
-                    <td>
-                    <select class="habilitar" disabled style="cursor: default">
-                        <option value="${$DiasEsti}">${$DiasEsti}</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    </td>
-                    <td>
-                    <select class="habilitar" disabled style="cursor: default">
-                        <option value="${$IDHabi}">${$TipoHabi}</option>
-                        <option value="I">Sencilla</option>
-                        <option value="D">Doble</option>
-                        <option value="T">Triple</option>
-                        <option value="O">Otra</option>
-                    </select>
-                    </td>
-                    <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
-                    <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
-                    <td><p id="estado-1" class="parrafo">En espera</p></td>
-                    <td class="td-right">
-                    <div class="evento  evento-${$auxiliar}">
-                        <img src="img/points.png" class="icon icon-margin">
-                    </div>
-                    <div class="sub-menu sub-menu-${$auxiliar}">
-                        <input class="input-submenu btn-start" type="button" name="" value="Iniciar">
-                        <input class="input-submenu btn-edit" type="button" name="" value="Editar huespedes">
-                        <input style="display: none;" class="input-submenu btn-cancel" type="button" name="" value="Cancelar">
-                        <input class="input-submenu btn-delete" type="button" name="" value="Eliminar">
-                    </div>
-                    </td>
-                </tr>
-                `
-                $('#tasksReservacion').html(templado);
-
+                        </td>
+                    </tr>
+                    `
+                    $('#tasksReservacion').html(templado);
+    
+                    
+                    Clases();
+                }
                 
-                Clases();
             }
         });                
     }

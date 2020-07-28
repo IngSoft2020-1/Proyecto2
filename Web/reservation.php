@@ -54,6 +54,7 @@
             </thead>
             <tbody id="tasksReservacion"></tbody> <!--Donde se hace la magia con json-->
           </table>
+          <p id="null" style="display: none;">No hay reservaciones disponibles</p>
       </div>
     </div>
   </body>

@@ -285,3 +285,8 @@ select{
 .icon-margin{
   margin: 0px;
 }
+
+#null{
+  color: #d0c9bb;
+font-size: 20px;
+}
