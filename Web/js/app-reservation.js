@@ -27,6 +27,7 @@ $(document).ready(function()
     /*Usado en _edit.php*/
     /*Funcion para imprimir las filas de los usuarios existentes*/
     function obtener() {
+        $auxiliar = 0;
         $wea = 0;
         $row = 0;
         $DiasEsti = 0;
@@ -39,13 +40,16 @@ $(document).ready(function()
             success: function (response) {
                 console.log('Wea funcionando');
                 let tasks = JSON.parse(response);
+                
                 console.log(tasks);
                 let templado = '';
                 tasks.forEach(task => {
-                    $row++;
+                    $row++; // ROW COMIENZA EN 1
                     if($row == 1)
                     {
                         $wea = task.IDReservacion;
+                        $auxiliar = $row; // AUXILIAR = 1
+                        console.log("auxiliar "+$auxiliar);
                         templado += `
                         <tr id="${$row}" value="${$row}" class="${task.IDReservacion}">
                             <td><input disabled="on" type="text" value="${task.FechadeInicio}" class="fecha-llegada habilitar"></td>
@@ -55,6 +59,7 @@ $(document).ready(function()
                                 <select class="habilitar" disabled style="cursor: default">
                                     <option value="${task.IDVisitante}">${task.Nombres}</option>
                         `
+                        console.log("row "+$row);
                     }
                     else if($wea == task.IDReservacion && $row != 1)
                     {
@@ -101,10 +106,10 @@ $(document).ready(function()
                             <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
                             <td><p id="estado-1" class="parrafo">En espera</p></td>
                             <td class="td-right">
-                            <div class="evento  evento-${$row}">
+                            <div class="evento  evento-${$auxiliar}">
                                 <img src="img/points.png" class="icon icon-margin">
                             </div>
-                            <div class="sub-menu sub-menu-${$row}">
+                            <div class="sub-menu sub-menu-${$auxiliar}">
                                 <input class="input-submenu btn-start" type="button" name="" value="Iniciar">
                                 <input class="input-submenu btn-edit" type="button" name="" value="Editar huespedes">
                                 <input style="display: none;" class="input-submenu btn-cancel" type="button" name="" value="Cancelar">
@@ -120,7 +125,9 @@ $(document).ready(function()
                                 <select class="habilitar" disabled style="cursor: default">
                                     <option value="${task.IDVisitante}">${task.Nombres}</option>
                         `
+
                     }
+                    $auxiliar = $row;
                 });
                 templado += `
                         </select>
@@ -154,10 +161,10 @@ $(document).ready(function()
                     <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
                     <td><p id="estado-1" class="parrafo">En espera</p></td>
                     <td class="td-right">
-                    <div class="evento  evento-${$row}">
+                    <div class="evento  evento-${$auxiliar}">
                         <img src="img/points.png" class="icon icon-margin">
                     </div>
-                    <div class="sub-menu sub-menu-${$row}">
+                    <div class="sub-menu sub-menu-${$auxiliar}">
                         <input class="input-submenu btn-start" type="button" name="" value="Iniciar">
                         <input class="input-submenu btn-edit" type="button" name="" value="Editar huespedes">
                         <input style="display: none;" class="input-submenu btn-cancel" type="button" name="" value="Cancelar">
@@ -189,7 +196,7 @@ $(document).ready(function()
           $('.icon').click(function(){
             var _this = this;
             var bool = true;
-            console.log(GetID(_this));
+            console.log("Tr click "+GetID(_this));
             submenu = $('.sub-menu-'+GetID(_this));
             console.log(submenu);
             for(var i = 0; i <= 10000; i++){
@@ -215,6 +222,13 @@ $(document).ready(function()
                 var _this = this;
                 Estado(GetID(_this), 'En espera');
                 Habilitar_Deshabilitar(GetID(_this), false, "pointer");
+            });
+
+            var btnEdit = $('.btn-edit');
+            btnEdit.click(function(){
+                var _this = this;
+                Habilitar_Deshabilitar(GetID(_this), false, "pointer");
+                console.log("TR edit"+GetID(_this));
             });
     }
 
