@@ -196,7 +196,6 @@ $(document).ready(function()
           $('.icon').click(function(){
             var _this = this;
             var bool = true;
-            console.log("Tr click "+GetID(_this));
             submenu = $('.sub-menu-'+GetID(_this));
             console.log(submenu);
             for(var i = 0; i <= 10000; i++){
@@ -228,7 +227,7 @@ $(document).ready(function()
             btnEdit.click(function(){
                 var _this = this;
                 Habilitar_Deshabilitar(GetID(_this), false, "pointer");
-                console.log("TR edit"+GetID(_this));
+                $('.sub-menu').hide();
             });
     }
 
@@ -251,9 +250,10 @@ $(document).ready(function()
         $('.sub-menu').hide();
         if(status ==  "En curso"){
           $('#'+id).css("border-left", "10px solid green");
-          $('.btn-cancel').show();
-          $('.btn-start').hide();
-          $('.btn-edit').hide();
+          $('.sub-menu-'+id+' .btn-cancel').show();
+          $('.sub-menu-'+id+' .btn-start').hide();
+          $('.sub-menu-'+id+' .btn-edit').hide();
+
         }
         else if(status ==  "En espera"){
           // AQUI SE VA A MANDAR A LLAMAR CUANDO ESTE FINALIZADA
@@ -262,6 +262,7 @@ $(document).ready(function()
           $('.btn-cancel').hide();
           $('.btn-start').show();
           $('.btn-edit').show();
+         
         }
       }
       // FIN FUNCIONES ***********************************************
