@@ -74,6 +74,7 @@ $(document).ready(function()
                     else if($wea != task.IDReservacion && $row != 1)
                     {
                         $wea = task.IDReservacion;
+                        console.log("auxiliar de nuevo "+$auxiliar);
                         templado += `
                                 </select>
                                 </div>
@@ -125,9 +126,8 @@ $(document).ready(function()
                                 <select class="habilitar" disabled style="cursor: default">
                                     <option value="${task.IDVisitante}">${task.Nombres}</option>
                         `
-
+                        $auxiliar = $row;
                     }
-                    $auxiliar = $row;
                 });
                 templado += `
                         </select>
