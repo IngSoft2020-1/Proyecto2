@@ -52,7 +52,7 @@ $(document).ready(function()
                             <td class="td-name">
                             <div class="container-td">
                                 <div>
-                                <select class="habilitar">
+                                <select class="habilitar" disabled style="cursor: default">
                                     <option value="${task.IDVisitante}">${task.Nombres}</option>
                         `
                     }
@@ -73,13 +73,13 @@ $(document).ready(function()
                                 </select>
                                 </div>
                                 <div class="td-cont">
-                                <img src="img/trash.png" alt="" class="icon">
-                                <img src="img/new.png" alt="" class="icon">
+                                <img src="img/trash.png" alt="" class="icon-tools">
+                                <img src="img/new.png" alt="" class="icon-tools">
                                 </div>
                             </div>
                             </td>
                             <td>
-                            <select class="habilitar">
+                            <select class="habilitar" disabled style="cursor: default">
                                 <option value="${$DiasEsti}">${$DiasEsti}</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -89,7 +89,7 @@ $(document).ready(function()
                             </select>
                             </td>
                             <td>
-                            <select class="habilitar">
+                            <select class="habilitar" disabled style="cursor: default">
                                 <option value="${$IDHabi}">${$TipoHabi}</option>
                                 <option value="I">Sencilla</option>
                                 <option value="D">Doble</option>
@@ -97,14 +97,14 @@ $(document).ready(function()
                                 <option value="O">Otra</option>
                             </select>
                             </td>
-                            <td><input type="number" class="habilitar number" value="0"></td>
-                            <td><input type="number" class="habilitar number" value="0"></td>
+                            <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
+                            <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
                             <td><p id="estado-1" class="parrafo">En espera</p></td>
                             <td class="td-right">
-                            <div class="evento  evento-1">
-                                <img src="img/points.png" class="icon">
+                            <div class="evento  evento-${$row}">
+                                <img src="img/points.png" class="icon icon-margin">
                             </div>
-                            <div class="sub-menu sub-menu-1">
+                            <div class="sub-menu sub-menu-${$row}">
                                 <input class="input-submenu btn-start" type="button" name="" value="Iniciar">
                                 <input class="input-submenu btn-edit" type="button" name="" value="Editar huespedes">
                                 <input style="display: none;" class="input-submenu btn-cancel" type="button" name="" value="Cancelar">
@@ -117,7 +117,7 @@ $(document).ready(function()
                             <td class="td-name">
                             <div class="container-td">
                                 <div>
-                                <select class="habilitar">
+                                <select class="habilitar" disabled style="cursor: default">
                                     <option value="${task.IDVisitante}">${task.Nombres}</option>
                         `
                     }
@@ -126,13 +126,13 @@ $(document).ready(function()
                         </select>
                         </div>
                         <div class="td-cont">
-                        <img src="img/trash.png" alt="" class="icon">
-                        <img src="img/new.png" alt="" class="icon">
+                        <img src="img/trash.png" alt="" class="icon-tools">
+                        <img src="img/new.png" alt="" class="icon-tools">
                         </div>
                     </div>
                     </td>
                     <td>
-                    <select class="habilitar">
+                    <select class="habilitar" disabled style="cursor: default">
                         <option value="${$DiasEsti}">${$DiasEsti}</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -142,7 +142,7 @@ $(document).ready(function()
                     </select>
                     </td>
                     <td>
-                    <select class="habilitar">
+                    <select class="habilitar" disabled style="cursor: default">
                         <option value="${$IDHabi}">${$TipoHabi}</option>
                         <option value="I">Sencilla</option>
                         <option value="D">Doble</option>
@@ -150,14 +150,14 @@ $(document).ready(function()
                         <option value="O">Otra</option>
                     </select>
                     </td>
-                    <td><input type="number" class="habilitar number" value="0"></td>
-                    <td><input type="number" class="habilitar number" value="0"></td>
+                    <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
+                    <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
                     <td><p id="estado-1" class="parrafo">En espera</p></td>
                     <td class="td-right">
-                    <div class="evento  evento-1">
-                        <img src="img/points.png" class="icon">
+                    <div class="evento  evento-${$row}">
+                        <img src="img/points.png" class="icon icon-margin">
                     </div>
-                    <div class="sub-menu sub-menu-1">
+                    <div class="sub-menu sub-menu-${$row}">
                         <input class="input-submenu btn-start" type="button" name="" value="Iniciar">
                         <input class="input-submenu btn-edit" type="button" name="" value="Editar huespedes">
                         <input style="display: none;" class="input-submenu btn-cancel" type="button" name="" value="Cancelar">
@@ -167,9 +167,90 @@ $(document).ready(function()
                 </tr>
                 `
                 $('#tasksReservacion').html(templado);
+
+                
+                Clases();
             }
-        });
+        });                
     }
+
+    function Clases(){
+        // EVENTOS PARA CAMBIAR EL COLOR DE FONDO DEL CONTENENDOR DE LOS TRES PUNTITOS
+        $('.icon').hover(function(){
+            var _this = this;
+            $('#'+GetID(_this)+' .evento').css("background", "#32424c");
+        });
+
+        $('.icon').mouseout(function(){
+            var _this = this;
+            $('#'+GetID(_this)+' .evento').css("background", "none");
+          });
+
+          $('.icon').click(function(){
+            var _this = this;
+            var bool = true;
+            console.log(GetID(_this));
+            submenu = $('.sub-menu-'+GetID(_this));
+            console.log(submenu);
+            for(var i = 0; i <= 10000; i++){
+              if(GetID(_this) == i){}
+              else{
+                $('.sub-menu-'+i).hide();
+              }
+            }
+            submenu.toggle();
+            
+          });
+
+          // FUNCION PARA AL DAR CLICK EN INICIAR SE INICIE LA RESERVACION
+            var btnStart = $('.btn-start');
+            btnStart.click(function(){
+                var _this = this;
+                Estado(GetID(_this), 'En curso');
+                Habilitar_Deshabilitar(GetID(_this), "on", "default");
+            });
+
+            var btnCancel = $('.btn-cancel');
+            btnCancel.click(function(){
+                var _this = this;
+                Estado(GetID(_this), 'En espera');
+                Habilitar_Deshabilitar(GetID(_this), false, "pointer");
+            });
+    }
+
+        // FUNCIONES ***********************************************
+    function GetID(_this){
+        // OBTIENE EL TR
+        var element = $(_this)[0].parentElement.parentElement.parentElement;
+        // OBTIENE EL VALOR DEL ID, ES UN VALOR NUMERICO
+        var ID = $(element).attr('id');
+        return ID;
+    }
+
+    function Habilitar_Deshabilitar(id, disabled, cursor){
+        $('tbody #' + id + ' .habilitar').prop("disabled", disabled).css("cursor", cursor);
+      }
+    
+      function Estado(id, status){
+        var element = $('#estado-'+id);
+        element.text(status);
+        $('.sub-menu').hide();
+        if(status ==  "En curso"){
+          $('#'+id).css("border-left", "10px solid green");
+          $('.btn-cancel').show();
+          $('.btn-start').hide();
+          $('.btn-edit').hide();
+        }
+        else if(status ==  "En espera"){
+          // AQUI SE VA A MANDAR A LLAMAR CUANDO ESTE FINALIZADA
+          // ESPERANDO RESPUESTA DE BACK
+          $('#'+id).css("border-left", "10px solid yellow");
+          $('.btn-cancel').hide();
+          $('.btn-start').show();
+          $('.btn-edit').show();
+        }
+      }
+      // FIN FUNCIONES ***********************************************
 
     /*Elimina el usuario seleccionado*/
     $(document).on('click','.task-delete', function() {
@@ -177,9 +258,11 @@ $(document).ready(function()
         let ID = $(element).attr('task-id');
         $.post('task-delete-reser.php', {IDReser}, function(response) {
             console.log(response);
-            obtener();
+            obtener();           
         })
     });
+
+    
 
     $("#mySelect").change(function() {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -319,4 +402,7 @@ $(document).ready(function()
           }
         }
       });
+
 });
+
+

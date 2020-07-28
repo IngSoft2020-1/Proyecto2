@@ -73,4 +73,13 @@ $(document).ready(function() {
     Estado(GetID(_this), 'En espera');
     Habilitar_Deshabilitar(GetID(_this), false, "pointer");
   });
+
+  var btnEdit = $('.btn-edit');
+  
+});
+
+document.addEventListener("DOMContentLoaded", function(event){
+  var icon = $('.icon');
+  icon.css("background","blue");
+  // se tendra que clonar un tr para que se puedan aplicar los eventos y estilos
 });

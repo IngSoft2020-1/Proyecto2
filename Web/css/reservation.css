@@ -260,7 +260,7 @@ tbody tr{
     align-items: center;
 }
 
-.icon{
+.icon,.icon-tools{
   width: 23px !important;
   margin-right: 3px;
 }
@@ -276,4 +276,12 @@ tbody tr{
 
 select{
   cursor: pointer;
+}
+
+.container-a{
+  justify-content: start !important;
+}
+
+.icon-margin{
+  margin: 0px;
 }

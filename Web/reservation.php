@@ -58,5 +58,5 @@
     </div>
   </body>
   <script src="js/app-reservation.js"></script>
-  <script type="text/javascript" src="js/reservation.js"></script>
+  <!-- <script src="js/reservation.js"> </script> -->
 </html>
