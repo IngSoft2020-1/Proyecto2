@@ -1,25 +1,24 @@
 <?php
-//header("location:migrant.php");
-//echo "<script>console.log('Hola');</script>";
+session_start();
+error_reporting(0);
 /* CONEXION A LA BASE DE DATOS */
 require 'conexion.php';
+
 /* LIBRERIA DE PHPEXCEL */
 require 'PHPExcel/PHPExcel/IOFactory.php';
 
-
 if(!empty($_FILES['txtFile'])){
-
     /* IMPORTACION DEL ARCHIVO DE EXCEL */
     $guardarArchivo="Excel/migrantes.xlsx";
     $loc_temp_Archivo=$_FILES['txtFile']['tmp_name'];
 
-    /* MENSAJE DE ERROR EXTENSION INCORRECTA */
+    
     $nombreArchivo=$_FILES['txtFile']['name'];
     $ext = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
     if ($ext !== 'xlsx') {
-        echo "<script>console.log('El archivo no es .xlsx');</script>";
+        /* MENSAJE DE ERROR EXTENSION INCORRECTA */
+        $_SESSION['archivo'] = '0';
         exit();
-
     }
     /* SE GUARDA EL ARCHIVO EN EL SERVIDOR */
     move_uploaded_file($loc_temp_Archivo,$guardarArchivo);
@@ -54,7 +53,7 @@ if(!empty($_FILES['txtFile'])){
     $archivo="Excel/migrantes.xlsx";
 
     /* PARA ATRAPAR ERRORES DE LECTURA DEL EXCEL
-    EJPLO: CUANDO SOUBEN UN IMAGEN QUE LE CMABIARON EL .JPG CON .XLSX'*/
+    EJEMPLO: CUANDO SUBE UN IMAGEN A LA QUE LE CAMBIARON EL .JPG CON .XLSX'*/
     $reader = PHPExcel_IOFactory::createReader('Excel2007');
     if($reader->canRead($archivo))/* Aqui checa si se puede leer */
     {
@@ -80,11 +79,14 @@ if(!empty($_FILES['txtFile'])){
         if(!$validacionFecha || !$validacionNacimiento || !$validacionHora1 || !$validacionHora2)
         {
             /* MENSAJE ERROR CUANDO EL EXCEL NO TIENE EL FORMATO CORRECTO */
-            echo "<script>console.log('El excel no tiene el formato correcto');</script>";
+            $_SESSION['archivo'] = '1';
             exit();
         }
-
+        
+        mysqli_begin_transaction($conexion, MYSQLI_TRANS_START_READ_WRITE);
         try {
+            
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
             for ($i=1; $i <$numFilas; $i++) {
 
                 $nombre=$objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
@@ -92,7 +94,6 @@ if(!empty($_FILES['txtFile'])){
                 if ($nombre!='') {
 
                     $fecha=$objPHPExcel->getActiveSheet()->getCell('A'.$i)->getFormattedValue();
-                    /* echo "<script>console.log('$fecha\n');</script>"; */
                     if ($fecha!='') {
                         $fecha=date("Y-m-d",strtotime($fecha));
                         $fechaACT=$fecha;
@@ -163,8 +164,7 @@ if(!empty($_FILES['txtFile'])){
 
                         $query="INSERT INTO visitante (Nombre, Telefono, Fecha_nac, IDNacion, fecha_llegada, hora_llegada, cita_consulado, fecha_registro)
                         VALUES ('$nombre','$telefono','$nacimiento','$nacionalidad','$fecha','$fechaLlegada','$fechaSalida','$fecha_registro')";
-                        mysqli_query($conexion,$query)
-                        or die("Problemas de insercion.".mysqli_error($conexion));
+                        mysqli_query($conexion,$query);
                         $nuevos++;
 
                         $pilaMigrantes[]=mysqli_insert_id($conexion);
@@ -175,15 +175,21 @@ if(!empty($_FILES['txtFile'])){
                     /* PARA IMPRIMIR LA ULTIMA FILA */
                     if($i==$numFilas-1 && count($pilaMigrantes)>0)
                     {
-                        /* echo "<script>console.log('".$i."');</script>"; */
                         $personas= count($pilaMigrantes);
+                        $cuarto="";
+                        if($personas < 3)
+                        {$cuarto="I";}
+                        else if($personas == 3)
+                        {$cuarto="D";}
+                        else if($personas > 3)
+                        {$cuarto="T";}
+                        $fechaFin=date('Y-m-d',strtotime($fecha. "+1 days"));
                         $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado)
-                            VALUES ('$fecha','strtotime($fecha . ' +1 day')','1','$fecha_Creacion','I','E')";
+                        VALUES ('$fecha','$fechaFin','1','$fecha_Creacion','$cuarto','E')";
                         mysqli_query($conexion,$query);
                         $reservaciones++;
 
                         $idReser=mysqli_insert_id($conexion);
-                        /* echo "<script>console.log('".$personas."');</script>"; */
                         for($o=0; $o <$personas; $o++)
                         {
                             $IDddddddddddd= $pilaMigrantes[$o];
@@ -200,12 +206,12 @@ if(!empty($_FILES['txtFile'])){
                 {
                     $personas= count($pilaMigrantes);
                     $cuarto="";
-                    if($personas<3)
-                    $cuarto="I";
-                    else if($personas=3)
-                    $cuarto="D";
-                    else if($personas>3)
-                    $cuarto="T";
+                    if($personas < 3)
+                    {$cuarto="I";}
+                    else if($personas == 3)
+                    {$cuarto="D";}
+                    else if($personas > 3)
+                    {$cuarto="T";}
                     $fechaFin=date('Y-m-d',strtotime($fecha. "+1 days"));
                     $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado)
                         VALUES ('$fecha','$fechaFin','1','$fecha_Creacion','$cuarto','E')";
@@ -213,7 +219,7 @@ if(!empty($_FILES['txtFile'])){
                     $reservaciones++;
 
                     $idReser=mysqli_insert_id($conexion);
-                    /* echo "<script>console.log('".$personas."');</script>"; */
+
                     for($o=0; $o <$personas; $o++)
                     {
                         $IDddddddddddd= $pilaMigrantes[$o];
@@ -226,22 +232,29 @@ if(!empty($_FILES['txtFile'])){
                     $conjunto=0;
                 }
             }
-        } catch (mysqli_sql_exception $e) {
-            /* MENSAJe ERROR INESPERADO EN LA LECTURA DEL ARCHIVO */
-        }
+            
+            /* echo "<script>console.log('Exportacion exitosa');</script>";
+            echo "<script>console.log('Migrantes insertados: ".$nuevos."');</script>";
+            echo "<script>console.log('Migrantes repetidos: ".$exitentes."');</script>";
+            echo "<script>console.log('Reservaciones Creadas: ".$reservaciones."');</script>"; */
+            
+            /* MENSAJE DE EXITO */
+            $_SESSION['archivo'] = '4';/* EXITO */
 
-        /* MENSAJE DE EXITO */
-        echo "<script>console.log('Exportacion exitosa');</script>";
-        echo "<script>console.log('Migrantes insertados: ".$nuevos."');</script>";
-        echo "<script>console.log('Migrantes repetidos: ".$exitentes."');</script>";
-        echo "<script>console.log('Reservaciones Creadas: ".$reservaciones."');</script>";
+        } catch (mysqli_sql_exception $e) {
+            mysqli_rollback($conexion);
+
+            /* MENSAJE ERROR INESPERADO EN LA LECTURA DEL ARCHIVO */
+            $_SESSION['archivo'] = '3';/* ERROR SQL */
+        }
+        mysqli_commit($conexion);
     }
     else
     {
+        $_SESSION['archivo'] = '2';
         /* MENSAJE DE ERROR DE LECTURA DEL ARCHIVO */
-        echo "<script>console.log('No se pudo leer el archivo');</script>";
     }
-    /* REGRESA A LA PAGINA DE CONSULTAR MIGRANTES */
+    
 }
 
 /*function calcularEdad($fechanacimiento){

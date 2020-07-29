@@ -420,6 +420,8 @@ $(document).ready(function() {
             $( ".datepicker" ).datepicker();
         }
     });
+    $("select#mySelect").prop('selectedIndex', 0);
+    $("select#mySelect2").prop('selectedIndex', 0);
   });
 
   /*Usado en migrant.php*/
@@ -837,7 +839,32 @@ $(document).ready(function() {
             console.log("Enviado2");
           }
         });
-      });  
+      });
+
+    /* EVENTO PARA CARGAR MIGRANTES */
+    $('#txtFile').change(function(){
+      $('#enviarExcel').submit();
+      $(this).val('');
+    }); 
+    
+    $('#enviarExcel').on('submit', function(event){
+      if($("#txtFile").val() == ''){
+        /* Si no selecciona nada mensaje? */
+      } 
+      else
+      {
+        event.preventDefault()
+        $.ajax({  
+          url:"leer.php",  
+          method:"POST",  
+          data:new FormData(this),  
+          contentType:false,  
+          processData:false
+        });
+      }
+      obtener();
+    });
+    /* FIN EVENTO PARA CARGAR MIGRANTES */
 
       var valor = $("#select-export option:selected").text();
       $(document).on('change', '#select-export', function(event) {

@@ -33,7 +33,7 @@
           </div>
           <div class="container-header">
               <!-- ACTUALIZAR MIGRANTES -->
-            <form class="frm-style"action="leer.php" method="POST" enctype="multipart/form-data">
+            <form id="enviarExcel" class="frm-style"action="leer.php" method="POST" enctype="multipart/form-data">
               <label id="lblFile" for="txtFile">Buscar archivo</label>
               <input id="txtFile" type="file" name="txtFile" accept=".xlsx">
             </form>
