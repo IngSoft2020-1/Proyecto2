@@ -54,11 +54,12 @@
               <th style="color: #00FF80;"># Personas</th>
               <th style="color: #00FF80;">Tipo habitación</th>
               <th style="color: #00FF80;">Cobro</th>
-              <th style="color: #00FF80;" class="habitacion">Precio</th>
+              <th style="color: #00FF80;">Precio</th>
               <th style="color: #00FF80;">% descuento</th>
+              <th style="color: #EC6D4A;">Descuento</th>
               <th style="color: #EC6D4A;">Subtotal</th>
-              <th style="color: #EC6D4A;" class="habitacion">Impuesto 13%</th>
-              <th style="color: #EC6D4A;" class="habitacion">Total</th>
+              <th style="color: #EC6D4A;">Impuesto 13%</th>
+              <th style="color: #EC6D4A;">Total</th>
             </tr>
           </thead>
           <tbody>
@@ -70,12 +71,13 @@
                 <div class="flex">
                 <p class="p">$</p><input disabled type="number" value="1035.40" class="hab input-price">
                 </div>
-              </td>
+              </td>              
               <td>
                 <div class="flex">
                 <p class="p">$</p><input disabled type="number" value="-235.40" class="hab input-desc">
                 </div>
               </td>
+              <td>$ 200.00</td>
               <td>$740.00</td>
               <td>$96</td>
               <td>$836.65</td>

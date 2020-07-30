@@ -355,3 +355,7 @@ input.textbox-popup.cancel {
   cursor: pointer;
   margin-top: 10px;
 }
+
+input[type="text"][disabled] {
+  background: #3c3838;
+}

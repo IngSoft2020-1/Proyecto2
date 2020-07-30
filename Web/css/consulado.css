@@ -101,9 +101,9 @@ table td, table th{
   margin-right: 3px;
 }
 
-#table-price tbody, #table-price {
+/* #table-price tbody {
   text-align: center;
-}
+} */
 
 .box{
   width: 367px !important;

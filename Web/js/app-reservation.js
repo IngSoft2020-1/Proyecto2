@@ -4,7 +4,6 @@
 
 $(document).ready(function()
 {
-    console.log('jQuery esta funcionando');
     obtener();
 
     // METODO DE BUSQUEDA PARA EDITAR
@@ -39,7 +38,6 @@ $(document).ready(function()
             type: 'GET',
             success: function (response) {
                 let tasks = JSON.parse(response);
-                console.log(tasks);
                 if(tasks.length == 0){
                     let nulo = $('#null');
                     nulo.css("display", "unset");
@@ -59,7 +57,7 @@ $(document).ready(function()
                                 <td class="td-name">
                                 <div class="container-td">
                                     <div>
-                                    <select class="habilitar" disabled style="cursor: default">
+                                    <select class="habilitar select-name" disabled style="cursor: default">
                                         <option value="${task.IDVisitante}">${task.Nombres}</option>
                             `
                             console.log("row "+$row);
@@ -77,13 +75,12 @@ $(document).ready(function()
                         else if($wea != task.IDReservacion && $row != 1)
                         {
                             $wea = task.IDReservacion;
-                            console.log("auxiliar de nuevo "+$auxiliar);
                             templado += `
                                     </select>
                                     </div>
                                     <div class="td-cont">
-                                    <img src="img/trash.png" alt="" class="icon-tools">
-                                    <img src="img/new.png" alt="" class="icon-tools">
+                                    <img src="img/trash.png" alt="" class="icon-tools del-${$auxiliar} del" style="display: none;">
+                                    <img src="img/new.png" alt="" class="icon-tools add-${$auxiliar} add" style="display: none;">
                                     </div>
                                 </div>
                                 </td>
@@ -108,7 +105,7 @@ $(document).ready(function()
                                 </td>
                                 <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
                                 <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
-                                <td><p id="estado-1" class="parrafo">En espera</p></td>
+                                <td><p id="estado-${$auxiliar}" class="parrafo">En espera</p></td>
                                 <td class="td-right">
                                 <div class="evento  evento-${$auxiliar}">
                                     <img src="img/points.png" class="icon icon-margin">
@@ -126,7 +123,7 @@ $(document).ready(function()
                                 <td class="td-name">
                                 <div class="container-td">
                                     <div>
-                                    <select class="habilitar" disabled style="cursor: default">
+                                    <select class="habilitar select-name" disabled style="cursor: default">
                                         <option value="${task.IDVisitante}">${task.Nombres}</option>
                             `
                             $auxiliar = $row;
@@ -136,8 +133,8 @@ $(document).ready(function()
                             </select>
                             </div>
                             <div class="td-cont">
-                            <img src="img/trash.png" alt="" class="icon-tools">
-                            <img src="img/new.png" alt="" class="icon-tools">
+                            <img src="img/trash.png" alt="" class="icon-tools del-${$auxiliar} del" style="display: none;">
+                            <img src="img/new.png" alt="" class="icon-tools add-${$auxiliar} add" style="display: none;">
                             </div>
                         </div>
                         </td>
@@ -162,7 +159,7 @@ $(document).ready(function()
                         </td>
                         <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
                         <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
-                        <td><p id="estado-1" class="parrafo">En espera</p></td>
+                        <td><p id="estado-${$auxiliar}" class="parrafo">En espera</p></td>
                         <td class="td-right">
                         <div class="evento  evento-${$auxiliar}">
                             <img src="img/points.png" class="icon icon-margin">
@@ -202,11 +199,10 @@ $(document).ready(function()
             var _this = this;
             var bool = true;
             submenu = $('.sub-menu-'+GetID(_this));
-            console.log(submenu);
             for(var i = 0; i <= 10000; i++){
               if(GetID(_this) == i){}
               else{
-                $('.sub-menu-'+i).hide();
+                $('.sub-menu-'+i).hide('slow');
               }
             }
             submenu.toggle();
@@ -219,22 +215,128 @@ $(document).ready(function()
                 var _this = this;
                 Estado(GetID(_this), 'En curso');
                 Habilitar_Deshabilitar(GetID(_this), "on", "default");
+                $('.del-'+GetID(_this)).hide('slow');
+                $('.add-'+GetID(_this)).hide('slow');
+
+                // IMPORTANTE: LEER
+                // 
+                // 
+                // 
+                // AQUI SE REALIZARA EL UPDATE A LA BD CON EL VALOR DE RESERVACION EN CURSO
+                // 
+                // 
+                // 
+                // 
             });
 
             var btnCancel = $('.btn-cancel');
             btnCancel.click(function(){
                 var _this = this;
                 Estado(GetID(_this), 'En espera');
-                Habilitar_Deshabilitar(GetID(_this), false, "pointer");
+                // IMPORTANTE: LEER
+                // 
+                // 
+                // 
+                // AQUI SE REALIZARA EL UPDATE A LA BD CON EL VALOR DE RESERVACION EN ESPERA
+                // 
+                // 
+                // 
+                //
             });
 
             var btnEdit = $('.btn-edit');
             btnEdit.click(function(){
                 var _this = this;
-                Habilitar_Deshabilitar(GetID(_this), false, "pointer");
-                $('.sub-menu').hide();
+                var textoEdit = $('.sub-menu-'+GetID(_this) + ' .btn-edit').val();
+                if(textoEdit == "Editar huespedes"){
+                    Habilitar_Deshabilitar(GetID(_this), false, "pointer");
+                    $('.sub-menu').hide('slow');
+                    $('.del-'+GetID(_this)).show('slow');
+                    $('.add-'+GetID(_this)).show('slow');
+                    $('.sub-menu-'+GetID(_this) + ' .btn-edit').val("Guardar edición");   
+                    $('.sub-menu-'+GetID(_this) + ' .btn-start').hide('slow');               
+                }
+                else{
+                    $('.del-'+GetID(_this)).hide('slow');
+                    $('.add-'+GetID(_this)).hide('slow');
+                    $('.sub-menu').hide('slow');
+                    $('.sub-menu-'+GetID(_this) + ' .btn-edit').val("Editar huespedes");  
+                    Habilitar_Deshabilitar(GetID(_this), "on", "default");
+                    $('.sub-menu-'+GetID(_this) + ' .btn-start').show('slow');
+                    // IMPORTANTE: LEER
+                    // 
+                    // 
+                    // 
+                    // AQUI SE GUARDAARAN LOS DATOS EDITADOS, ES CUANDO EL USUARIO DA CLICK EN EDITAR HUESPED
+                    // 
+                    // 
+                    // 
+                    //
+                }                           
+            });
+
+            var btnDelete = $('.btn-delete');
+            btnDelete.click(function(){
+                $('#deletePop').show('slow');
+                $('#deletePop').css("display", "flex");
+                $('.title-box-delete').html("¿Estas seguro que deseas eliminar la reservación?");
+                $('.sub-menu').hide('slow');                
+            });
+
+            var confirmDelete = $('.btn-confirm-delete');
+            confirmDelete.click(function(){
+                alert("Elminado");
+                // IMPORTANTE: LEER
+                // 
+                // 
+                // 
+                // AQUI SE REALIZARA LA ELIMINACION DE LA RESERVACION
+                // 
+                // 
+                // 
+                // 
+            });
+
+            var cancelDelete = $('#btn-cancel-delete');
+            cancelDelete.click(function(){
+                $('.box-delete').hide('slow');
+            });
+
+            
+
+            var deleteMigrant = $('.del');
+            var ID_2;
+            deleteMigrant.click(function(){
+                var element = $(this)[0].parentElement.parentElement.parentElement.parentElement;
+                // OBTIENE EL VALOR DEL ID, ES UN VALOR NUMERICO
+                ID_2 = $(element).attr('id'); 
+                // SE MANDA A LLAMAR EL POPUP CON BOTON ACEPTAR CANCELAR
+                var userName = $("#"+ID_2+ " .select-name option:selected").text();
+                
+                $('#success').show('slow');
+                $('#success').css("display", "flex"); 
+                $('.title-box').text("¿Estas seguro que desea eliminar a "+ userName);
+                               
+            });
+
+            var cancelPop = $('#btn-cancel-pop');
+            cancelPop.click(function(){
+                $('.box').hide('slow');                
+            });
+
+            var confirmPop = $('.btn-confirm');
+            confirmPop.click(function(){
+                // IMPORTANTE: LEER
+                // 
+                // 
+                // AQUI SE REALIZARA LA ELIMINACION DEL USUARIO SELECCIONADO DESDE EL COMBO
+                // DESCOMENTAR LA SIGUIENTE LINEA DE CODIGO UNA VEZ ANEXADO CODIGO DE BACK PARA ELIMINAR
+                // $('.box').hide();
+                // 
+                //                 
             });
     }
+    
 
         // FUNCIONES ***********************************************
     function GetID(_this){
@@ -252,21 +354,21 @@ $(document).ready(function()
       function Estado(id, status){
         var element = $('#estado-'+id);
         element.text(status);
-        $('.sub-menu').hide();
+        $('.sub-menu').hide('slow');
         if(status ==  "En curso"){
           $('#'+id).css("border-left", "10px solid green");
-          $('.sub-menu-'+id+' .btn-cancel').show();
-          $('.sub-menu-'+id+' .btn-start').hide();
-          $('.sub-menu-'+id+' .btn-edit').hide();
+          $('.sub-menu-'+id+' .btn-cancel').show('slow');
+          $('.sub-menu-'+id+' .btn-start').hide('slow');
+          $('.sub-menu-'+id+' .btn-edit').hide('slow');
 
         }
         else if(status ==  "En espera"){
           // AQUI SE VA A MANDAR A LLAMAR CUANDO ESTE FINALIZADA
           // ESPERANDO RESPUESTA DE BACK
           $('#'+id).css("border-left", "10px solid yellow");
-          $('.btn-cancel').hide();
-          $('.btn-start').show();
-          $('.btn-edit').show();
+          $('.btn-cancel').hide('slow');
+          $('.btn-start').show('slow');
+          $('.btn-edit').show('slow');
          
         }
       }

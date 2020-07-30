@@ -59,7 +59,13 @@ $(document).ready(function(){
 
   $('#btn-cancel').click(function(){
       // ACTUALIZAR VENTANA PADRE DENTRO DE UN IFRAME
-      parent.location.reload();
+      // parent.location.reload();
+      $('#btn-cancel').hide();
+      btnEdit.show();
+      $('.textbox').prop("disabled", "on");
+      $('.disabled').prop("disabled", "on");
+      $('.textbox').css("background", "#3c3838");
+
   });
 
   //$("#popup-confirmar").hasClass("popup")
@@ -118,6 +124,8 @@ $(document).ready(function(){
     txt.css("background", "transparent");
     txt.prop('disabled', false);
     $('#btn-change').prop('disabled', false).css("cursor", "pointer");
+    $('#btn-cancel').show();
+    btnEdit.hide();
   });
 
 });

@@ -85,7 +85,7 @@
               <label for="">Nombres</label>
               <div class="info">
                 <img src="img/name.png" alt="" class="icon">
-                <input disabled="on" type="text" placeholder="Nombre" class="textbox" name="nombres" value="<?php echo $reg['Nombre']?>" autocomplete="off">
+                <input disabled="on" type="text" placeholder="Nombre" class="textbox disabled" name="nombres" value="<?php echo $reg['Nombre']?>" autocomplete="off">
               </div>
               <!-- IMPRESION DE ERRORES -->
               <?php
@@ -116,7 +116,7 @@
               <label for="">Apellidos</label>
               <div class="info">
                 <img src="img/name.png" alt="" class="icon">
-                <input disabled="on" type="text" placeholder="Apellidos" class="textbox" name="apellidos" value="<?php echo $reg['Apellidos']?>" autocomplete="off">
+                <input disabled="on" type="text" placeholder="Apellidos" class="textbox disabled" name="apellidos" value="<?php echo $reg['Apellidos']?>" autocomplete="off">
               </div>
               <!-- IMPRESION DE ERRORES -->
               <?php
@@ -147,7 +147,7 @@
               <label for="">Correo</label>
               <div class="info">
                 <img src="img/mail.png" alt="" class="icon">
-                <input disabled="on" type="text" placeholder="Correo" class="textbox" name="correo1" value="<?php echo $reg['Correo']?>" autocomplete="off">
+                <input disabled="on" type="text" placeholder="Correo" class="textbox disabled" name="correo1" value="<?php echo $reg['Correo']?>" autocomplete="off">
               </div>
               <!-- IMPRESION DE ERRORES -->
               <?php
@@ -184,7 +184,7 @@
               <label for="">Confirmar Correo</label>
               <div class="info">
                 <img src="img/mail.png" alt="" class="icon">
-                <input disabled="on" type="text" placeholder="Confirmar" class="textbox" name="correo2" value="<?php echo $reg['Correo']?>" autocomplete="off">
+                <input disabled="on" type="text" placeholder="Confirmar" class="textbox disabled" name="correo2" value="<?php echo $reg['Correo']?>" autocomplete="off">
               </div>
               <!-- IMPRESION DE ERRORES -->
               <?php
@@ -203,7 +203,7 @@
               <label for="">Telefono</label>
               <div class="info">
                 <img src="img/name.png" alt="" class="icon">
-                <input disabled="off" type="text" placeholder="000-000-0000" class="textbox"  name="telefono" value="<?php echo $reg['Telefono']?>" autocomplete="off" id="txt-tel">
+                <input disabled="off" type="text" placeholder="000-000-0000" class="textbox disabled"  name="telefono" value="<?php echo $reg['Telefono']?>" autocomplete="off" id="txt-tel">
               </div>
               <!-- IMPRESION DE ERRORES -->
               <?php
@@ -224,13 +224,13 @@
             <!-- CONTRASEÑA -->
               <div class="field">
                 <label for="">Contraseña</label>
-                <button disabled="on" style="cursor: default;" type="button" name="button" id="btn-change">Cambiar</button>
+                <button class="disabled" disabled="on" style="cursor: default;" type="button" name="button" id="btn-change">Cambiar</button>
               </div>
               <div class="field" id="field-button">
               <div id="container">
             </div>
                 <input type="button" value="Editar" class="btn-edit-2">
-                <input type="button" id="btn-cancel" value="Cancelar">
+                <input type="button" id="btn-cancel" value="Cancelar"  style="display: none;">
                 <input type="button" name=""  class="button-save" value="Guardar" id="btn-save"> <!-- disabled -->
               </div>
               <?php

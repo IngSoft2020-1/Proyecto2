@@ -13,6 +13,11 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="css/migrant.css">
     <link rel="stylesheet" href="css/reservation.css">
+    <!-- LIBRERIA PARA LOS POPUPS
+    -->
+    <script src="js/popup.js"></script>
+    <link rel="stylesheet" href="css/popup.css">
+    <!-- FIN DE LA LIBRERIA -->
     <!-- MIS SCRIPT -->
     <script type="text/javascript" src="js/main.js"></script>
     <title>Reservaciones</title>
@@ -57,7 +62,16 @@
           <p id="null" style="display: none;">No hay reservaciones disponibles</p>
       </div>
     </div>
+    <div class="box" id="success" style="position: fixed !important;">
+      <p class="title-box" style="display: inline;"></p>
+      <button id="btn-cancel-pop" class="btn-cancel-pop" name="button">Cancelar</button>
+    </div>
+    <div class="box-delete" id="deletePop" style="position: fixed !important;">
+      <p class="title-box-delete" style="display: inline;"></p>
+      <button id="btn-cancel-delete" class="btn-cancel-delete" name="button">Cancelar</button>
+      <button class="btn-confirm-delete">Aceptar</button>
+    </div>
   </body>
   <script src="js/app-reservation.js"></script>
-  <!-- <script src="js/reservation.js"> </script> -->
+  
 </html>

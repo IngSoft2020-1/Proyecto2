@@ -868,7 +868,7 @@ $(document).ready(function() {
 
       var valor = $("#select-export option:selected").text();
       $(document).on('change', '#select-export', function(event) {
-        valor = $("#select-export option:selected").text();
+          valor = $("#select-export option:selected").text();
         if(valor == "Personalizada"){
           $('#th-show').show();
           $('.td-show').show();

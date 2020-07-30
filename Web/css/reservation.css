@@ -263,6 +263,7 @@ tbody tr{
 .icon,.icon-tools{
   width: 23px !important;
   margin-right: 3px;
+  cursor: pointer;
 }
 
 .td-cont {
@@ -289,4 +290,42 @@ select{
 #null{
   color: #d0c9bb;
 font-size: 20px;
+}
+
+.box, .box-delete{
+  width: 385px !important;
+  height: 295px !important;
+  background: #1A2127;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  left: 30%;
+  bottom: 36%;
+  border-radius: 5px;
+  border: 2px solid #EC6D4A;
+}
+
+.title-box,.title-box-delete{
+  color: white;
+  font-size: 22px;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.title-box-delete{
+  padding: 20px;
+}
+
+.btn-confirm, #btn-cancel-pop, #btn-cancel-delete, .btn-confirm-delete{
+  width: 80%;
+  background: #EC6D4A;
+  border: 2px solid #EC6D4A;
+  padding: 7px;
+  color: white;
+  border-radius: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  margin-top: 10px;
 }

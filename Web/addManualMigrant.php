@@ -42,7 +42,7 @@
   </head>
   <body>
     <div class="container">
-      <form action="new-migrant.php" method="post">
+      <form action="new-migrant.php" method="post" style="width: 80% !important;">
         <div class="field line">
           <label for="">Nombre</label>
           <div class="info">

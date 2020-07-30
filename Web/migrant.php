@@ -37,18 +37,13 @@
               <label id="lblFile" for="txtFile">Buscar archivo</label>
               <input id="txtFile" type="file" name="txtFile" accept=".xlsx">
             </form>
-          </div> 
-          <div class="container-header direction">
-            <div class="sub">
-            <label for="select">Exportar</label>
-            <select name="select" id="select-export">
-                <option value="per">Personalizada</option>
-                <option value="all" selected>Todos los de pantalla</option>
-              </select> 
-            </div>
             <form class="frm-style" action="print-migrantes-pdf.php" method="POST">            
               <input id="lblExportar" type="submit" class="button-export" name="subida" value="Exportar">
             </form>
+          </div> 
+          <div class="container-header direction">
+            <div class="sub">
+            </div>
           </div>
         </div>
         <input type="text" name="search" placeholder="Search.." id="search-migrants" autocomplete="off">
