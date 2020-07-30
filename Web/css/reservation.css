@@ -1,34 +1,34 @@
 /* GENERALES   */
-*{
-  font-family: poppins, 'arial';
+* {
+  font-family: poppins, "arial";
 }
-.container{
+.container {
   width: 100%;
   height: auto;
   padding-bottom: 24px;
-  background: #1D262D;
+  background: #1d262d;
   border-radius: 20px;
 }
 
 .container-table {
-    padding: 15px;
+  padding: 15px;
 }
 
-.container-img{
+.container-img {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   padding-top: 20px;
 }
 
-.icon-title{
+.icon-title {
   width: 3%;
   height: 3%;
   padding-right: 10px;
   cursor: pointer;
 }
 
-#text{
+#text {
   font-size: calc(0.6em + 1.5vw);
   color: white;
   margin: 0;
@@ -36,7 +36,7 @@
   cursor: pointer;
 }
 
-table{
+table {
   width: 100%;
   border-collapse: collapse;
   color: white;
@@ -44,43 +44,44 @@ table{
   padding: 40px;
 }
 
-table>tbody>tr:nth-child(odd) {
-    background-color:#27333B;
+table > tbody > tr:nth-child(odd) {
+  background-color: #27333b;
 }
 
-table>tbody>tr:nth-child(even) {
-    background-color: #1D262D;
+table > tbody > tr:nth-child(even) {
+  background-color: #1d262d;
 }
 
-table td, table th{
+table td,
+table th {
   padding: 10px;
 }
 
-tbody{
+tbody {
   font-size: calc(0.7em + 0.5vw);
 }
 
-.button{
+.button {
   padding: 5px;
   color: white;
   border-radius: 10px;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.edit{
+.edit {
   background: transparent;
-  border: 2px solid #EC6D4A;
+  border: 2px solid #ec6d4a;
 }
 
-.delete{
-  background: #EC6D4A;
-  border: 2px solid #EC6D4A;
+.delete {
+  background: #ec6d4a;
+  border: 2px solid #ec6d4a;
 }
 
-.button:hover{
+.button:hover {
   background: rgba(241, 141, 113, 0.5);
 }
 
@@ -91,26 +92,26 @@ form {
   flex-wrap: wrap;
 }
 
-.container-form{
-  width: 100%
+.container-form {
+  width: 100%;
 }
 
-.field{
+.field {
   width: 37%;
 }
 
-.icon{
+.icon {
   width: 8%;
 }
 
-label{
+label {
   display: flex;
   color: white;
   font-size: calc(0.6em + 1.5vw);
   padding: 10px 0;
 }
 
-.textbox{
+.textbox {
   border: 0;
   background: transparent;
   width: 70%;
@@ -120,9 +121,9 @@ label{
   padding-left: 8px;
 }
 
-::placeholder{
+::placeholder {
   font-size: calc(0.6em + 0.8vw);
-  color: #B8B8B8;
+  color: #b8b8b8;
 }
 
 .line {
@@ -130,23 +131,23 @@ label{
 }
 
 /* BOTONES */
-#field-button{
+#field-button {
   width: 100%;
   text-align: right;
   margin-top: 29px;
   margin-right: 30px;
 }
 
-.button-save{
-  background: #EC6D4A;
+.button-save {
+  background: #ec6d4a;
   color: white;
-  border: 2px solid #EC6D4A;
+  border: 2px solid #ec6d4a;
   width: calc(5em + 0.6vw);
   height: calc(3em + 0.4vw);
 }
 
-#btn-cancel{
-  border: 2px solid #EC6D4A;
+#btn-cancel {
+  border: 2px solid #ec6d4a;
   color: white;
   background: transparent;
   width: calc(5em + 0.6vw);
@@ -156,59 +157,59 @@ label{
 }
 
 /* RESERVATION 2 */
-.icon-title-1{
+.icon-title-1 {
   width: 40%;
 }
 
-.container-img-1{
+.container-img-1 {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding-top: 20px;
 }
 
-.container-1{
+.container-1 {
   width: 45%;
   display: flex;
   align-items: center;
 }
 
-.container-2{
+.container-2 {
   width: 10%;
   text-align: center;
 }
 
-.container-img-1 p{
+.container-img-1 p {
   color: white;
   font-size: calc(0.7em + 0.9vw);
 }
 
-.text{
+.text {
   padding-right: 10px;
   padding-left: 15px;
 }
 
-#text-1{
-  margin:1px;
+#text-1 {
+  margin: 1px;
   cursor: pointer;
 }
 
-#btn-new-user{
+#btn-new-user {
   cursor: pointer;
 }
 
-.textbox-1{
+.textbox-1 {
   border: 0;
   background: transparent;
   width: 40%;
   color: white;
   font-size: calc(0.6em + 0.8vw);
   outline: none;
-  border-bottom: 2px solid #00FF80;
+  border-bottom: 2px solid #00ff80;
 }
 
-.button-cancel{
-  border: 2px solid #EC6D4A;
+.button-cancel {
+  border: 2px solid #ec6d4a;
   background: transparent;
   color: white;
   width: calc(5em + 0.6vw);
@@ -216,16 +217,16 @@ label{
 }
 
 /* ESTILOS PARA EL INPUT DE BUSQUEDA */
-#aling-left{
+#aling-left {
   display: flex;
   flex-direction: column;
   justify-content: end;
 }
 
-#search-res{
+#search-res {
   box-sizing: border-box;
   border: none;
-  border-bottom: 2px solid #27333B;
+  border-bottom: 2px solid #27333b;
   border-radius: 20px 0 0 0;
   font-size: calc(0.7em + 0.5vw);
   background-color: transparent;
@@ -242,60 +243,62 @@ label{
   margin-left: 2%;
 }
 
-#search-res:focus{
+#search-res:focus {
   width: 98%;
   border-radius: 20px 20px 0 0;
 }
 
-tbody tr{
+tbody tr {
   border-left: 10px solid yellow;
 }
 
-.parrafo{
+.parrafo {
   margin: 0;
 }
 
 .container-td {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.icon,.icon-tools{
+.icon,
+.icon-tools {
   width: 23px !important;
   margin-right: 3px;
   cursor: pointer;
 }
 
 .td-cont {
-    margin-left: 4px;
-    display: flex;
+  margin-left: 4px;
+  display: flex;
 }
 
-.icon{
+.icon {
   cursor: pointer;
 }
 
-select{
+select {
   cursor: pointer;
 }
 
-.container-a{
+.container-a {
   justify-content: start !important;
 }
 
-.icon-margin{
+.icon-margin {
   margin: 0px;
 }
 
-#null{
+#null {
   color: #d0c9bb;
-font-size: 20px;
+  font-size: 20px;
 }
 
-.box, .box-delete{
+.box,
+.box-delete {
   width: 385px !important;
   height: 295px !important;
-  background: #1A2127;
+  background: #1a2127;
   display: none;
   justify-content: center;
   align-items: center;
@@ -304,28 +307,61 @@ font-size: 20px;
   left: 30%;
   bottom: 36%;
   border-radius: 5px;
-  border: 2px solid #EC6D4A;
+  border: 2px solid #ec6d4a;
 }
 
-.title-box,.title-box-delete{
+.title-box,
+.title-box-delete {
   color: white;
   font-size: 22px;
   margin: 0;
   margin-bottom: 15px;
 }
 
-.title-box-delete{
+.title-box-delete {
   padding: 20px;
 }
 
-.btn-confirm, #btn-cancel-pop, #btn-cancel-delete, .btn-confirm-delete{
+.btn-confirm,
+#btn-cancel-pop,
+#btn-cancel-delete,
+.btn-confirm-delete,
+.btn-add-migrant,
+#btn-cancel-migrant {
   width: 80%;
-  background: #EC6D4A;
-  border: 2px solid #EC6D4A;
+  background: #ec6d4a;
+  border: 2px solid #ec6d4a;
   padding: 7px;
   color: white;
   border-radius: 10px;
   font-size: 22px;
   cursor: pointer;
   margin-top: 10px;
+}
+
+.caja-migrantes {
+  position: fixed;
+  display: flex;
+  top: 100px;
+  left: 270px;
+  background: #27333b;
+  border: 2px solid #ec6d4a;
+  padding: 10px;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.caja-migrantes table tr {
+  border: 0px;
+}
+
+.btn-add-migrant,
+#btn-cancel-migrant {
+  width: 120px;
+  font-size: 16px;
+}
+
+.sub-caja {
+  display: flex;
+  justify-content: start;
 }
