@@ -77,7 +77,7 @@ $(document).ready(function () {
                                 </div>
                                 </td>
                                 <td>
-                                <select class="habilitar" disabled style="cursor: default">
+                                <select class="habilitar habilitado" style="cursor: default">
                                     <option value="${$DiasEsti}">${$DiasEsti}</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -87,7 +87,7 @@ $(document).ready(function () {
                                 </select>
                                 </td>
                                 <td>
-                                <select class="habilitar" disabled style="cursor: default">
+                                <select class="habilitar habilitado"" style="cursor: default">
                                     <option value="${$IDHabi}">${$TipoHabi}</option>
                                     <option value="I">Sencilla</option>
                                     <option value="D">Doble</option>
@@ -95,8 +95,8 @@ $(document).ready(function () {
                                     <option value="O">Otra</option>
                                 </select>
                                 </td>
-                                <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
-                                <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
+                                <td><input type="number" class="habilitar number habilitado"" value="0" style="cursor: default"></td>
+                                <td><input type="number" class="habilitar number habilitado"" value="0" style="cursor: default"></td>
                                 <td><p id="estado-${$auxiliar}" class="parrafo">En espera</p></td>
                                 <td class="td-right">
                                 <div class="evento  evento-${$auxiliar}">
@@ -222,6 +222,7 @@ $(document).ready(function () {
     btnCancel.click(function () {
       var _this = this;
       Estado(GetID(_this), "En espera");
+      $(".habilitado").prop("disabled", false);
       // IMPORTANTE: LEER
       //
       //
@@ -239,6 +240,7 @@ $(document).ready(function () {
       var textoEdit = $(".sub-menu-" + GetID(_this) + " .btn-edit").val();
       if (textoEdit == "Editar huespedes") {
         Habilitar_Deshabilitar(GetID(_this), false, "pointer");
+        $(".habilitado").prop("disabled", false);
         $(".sub-menu").hide("slow");
         $(".del-" + GetID(_this)).show("slow");
         $(".add-" + GetID(_this)).show("slow");
@@ -250,6 +252,7 @@ $(document).ready(function () {
         $(".sub-menu").hide("slow");
         $(".sub-menu-" + GetID(_this) + " .btn-edit").val("Editar huespedes");
         Habilitar_Deshabilitar(GetID(_this), "on", "default");
+        $(".habilitado").prop("disabled", false);
         $(".sub-menu-" + GetID(_this) + " .btn-start").show("slow");
         // IMPORTANTE: LEER
         //
