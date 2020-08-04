@@ -53,7 +53,7 @@ $(document).ready(function () {
                                 <td class="td-name">
                                 <div class="container-td">
                                     <div>
-                                    <select class="habilitar select-name" disabled style="cursor: default">
+                                    <select class="habilitar select-name habilitado" style="cursor: default">
                                         <option value="${task.IDVisitante}">${task.Nombres}</option>
                             `;
               console.log("row " + $row);
@@ -95,8 +95,8 @@ $(document).ready(function () {
                                     <option value="O">Otra</option>
                                 </select>
                                 </td>
-                                <td><input type="number" class="habilitar number habilitado"" value="0" style="cursor: default"></td>
-                                <td><input type="number" class="habilitar number habilitado"" value="0" style="cursor: default"></td>
+                                <td><input type="number" class="habilitar number habilitado" value="0" style="cursor: default"></td>
+                                <td><input type="number" class="habilitar number habilitado" value="0" style="cursor: default"></td>
                                 <td><p id="estado-${$auxiliar}" class="parrafo">En espera</p></td>
                                 <td class="td-right">
                                 <div class="evento  evento-${$auxiliar}">
@@ -115,7 +115,7 @@ $(document).ready(function () {
                                 <td class="td-name">
                                 <div class="container-td">
                                     <div>
-                                    <select class="habilitar select-name" disabled style="cursor: default">
+                                    <select class="habilitar select-name habilitado" style="cursor: default">
                                         <option value="${task.IDVisitante}">${task.Nombres}</option>
                             `;
               $auxiliar = $row;
@@ -131,7 +131,7 @@ $(document).ready(function () {
                         </div>
                         </td>
                         <td>
-                        <select class="habilitar" disabled style="cursor: default">
+                        <select class="habilitar habilitado" style="cursor: default">
                             <option value="${$DiasEsti}">${$DiasEsti}</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -141,7 +141,7 @@ $(document).ready(function () {
                         </select>
                         </td>
                         <td>
-                        <select class="habilitar" disabled style="cursor: default">
+                        <select class="habilitar habilitado" style="cursor: default">
                             <option value="${$IDHabi}">${$TipoHabi}</option>
                             <option value="I">Sencilla</option>
                             <option value="D">Doble</option>
@@ -149,8 +149,8 @@ $(document).ready(function () {
                             <option value="O">Otra</option>
                         </select>
                         </td>
-                        <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
-                        <td><input type="number" class="habilitar number" value="0" disabled style="cursor: default"></td>
+                        <td><input type="number" class="habilitar number habilitado" value="0" style="cursor: default"></td>
+                        <td><input type="number" class="habilitar number habilitado" value="0" style="cursor: default"></td>
                         <td><p id="estado-${$auxiliar}" class="parrafo">En espera</p></td>
                         <td class="td-right">
                         <div class="evento  evento-${$auxiliar}">
@@ -239,7 +239,7 @@ $(document).ready(function () {
       var _this = this;
       var textoEdit = $(".sub-menu-" + GetID(_this) + " .btn-edit").val();
       if (textoEdit == "Editar huespedes") {
-        Habilitar_Deshabilitar(GetID(_this), false, "pointer");
+        // Habilitar_Deshabilitar(GetID(_this), false, "pointer");
         $(".habilitado").prop("disabled", false);
         $(".sub-menu").hide("slow");
         $(".del-" + GetID(_this)).show("slow");
@@ -251,7 +251,7 @@ $(document).ready(function () {
         $(".add-" + GetID(_this)).hide("slow");
         $(".sub-menu").hide("slow");
         $(".sub-menu-" + GetID(_this) + " .btn-edit").val("Editar huespedes");
-        Habilitar_Deshabilitar(GetID(_this), "on", "default");
+        // Habilitar_Deshabilitar(GetID(_this), "on", "default");
         $(".habilitado").prop("disabled", false);
         $(".sub-menu-" + GetID(_this) + " .btn-start").show("slow");
         // IMPORTANTE: LEER
