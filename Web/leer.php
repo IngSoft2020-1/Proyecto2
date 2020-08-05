@@ -1,24 +1,35 @@
 <?php
 session_start();
 error_reporting(0);
+/* header("location:migrant.php"); */
+
 /* CONEXION A LA BASE DE DATOS */
 require 'conexion.php';
 
 /* LIBRERIA DE PHPEXCEL */
 require 'PHPExcel/PHPExcel/IOFactory.php';
-
+/*
+echo '<!-- LIBRERIA POPUPS MENSAJE -->
+<script src="js/popup.js"></script>
+<link rel="stylesheet" href="css/popup.css">';
+*/
 if(!empty($_FILES['txtFile'])){
     /* IMPORTACION DEL ARCHIVO DE EXCEL */
     $guardarArchivo="Excel/migrantes.xlsx";
     $loc_temp_Archivo=$_FILES['txtFile']['tmp_name'];
 
-    
+    /* MENSAJE DE ERROR EXTENSION INCORRECTA */
     $nombreArchivo=$_FILES['txtFile']['name'];
     $ext = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
     if ($ext !== 'xlsx') {
-        /* MENSAJE DE ERROR EXTENSION INCORRECTA */
+        echo "<script>console.log('El archivo no es .xlsx');</script>";
         $_SESSION['archivo'] = '0';
         exit();
+        /*
+        echo '<div class="container-msg">
+          <p class="title-msg">Extensión incorrecta!</p>
+          <p class="title-content-msg">El formato del archivo no es correcto.</p>
+        </div>';*/
     }
     /* SE GUARDA EL ARCHIVO EN EL SERVIDOR */
     move_uploaded_file($loc_temp_Archivo,$guardarArchivo);
@@ -48,12 +59,11 @@ if(!empty($_FILES['txtFile'])){
     $nacionalidad='';
     $telefono='';
     $nose='';
-
     /* CAMINO DEL ARCHIVO EXCEL EN EL SERVIDOR */
     $archivo="Excel/migrantes.xlsx";
 
     /* PARA ATRAPAR ERRORES DE LECTURA DEL EXCEL
-    EJEMPLO: CUANDO SUBE UN IMAGEN A LA QUE LE CAMBIARON EL .JPG CON .XLSX'*/
+    EJPLO: CUANDO SOUBEN UN IMAGEN QUE LE CMABIARON EL .JPG CON .XLSX'*/
     $reader = PHPExcel_IOFactory::createReader('Excel2007');
     if($reader->canRead($archivo))/* Aqui checa si se puede leer */
     {
@@ -79,6 +89,7 @@ if(!empty($_FILES['txtFile'])){
         if(!$validacionFecha || !$validacionNacimiento || !$validacionHora1 || !$validacionHora2)
         {
             /* MENSAJE ERROR CUANDO EL EXCEL NO TIENE EL FORMATO CORRECTO */
+            echo "<script>console.log('El excel no tiene el formato correcto');</script>";
             $_SESSION['archivo'] = '1';
             exit();
         }
@@ -94,6 +105,7 @@ if(!empty($_FILES['txtFile'])){
                 if ($nombre!='') {
 
                     $fecha=$objPHPExcel->getActiveSheet()->getCell('A'.$i)->getFormattedValue();
+                    /* echo "<script>console.log('$fecha\n');</script>"; */
                     if ($fecha!='') {
                         $fecha=date("Y-m-d",strtotime($fecha));
                         $fechaACT=$fecha;
@@ -164,6 +176,7 @@ if(!empty($_FILES['txtFile'])){
 
                         $query="INSERT INTO visitante (Nombre, Telefono, Fecha_nac, IDNacion, fecha_llegada, hora_llegada, cita_consulado, fecha_registro)
                         VALUES ('$nombre','$telefono','$nacimiento','$nacionalidad','$fecha','$fechaLlegada','$fechaSalida','$fecha_registro')";
+                        echo "<script>console.log('".$query."');</script>";
                         mysqli_query($conexion,$query);
                         $nuevos++;
 
@@ -176,6 +189,7 @@ if(!empty($_FILES['txtFile'])){
                     if($i==$numFilas-1 && count($pilaMigrantes)>0)
                     {
                         $personas= count($pilaMigrantes);
+                        echo "<script>console.log('personas:".$personas."');</script>";
                         $cuarto="";
                         if($personas < 3)
                         {$cuarto="I";}
@@ -186,10 +200,13 @@ if(!empty($_FILES['txtFile'])){
                         $fechaFin=date('Y-m-d',strtotime($fecha. "+1 days"));
                         $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado)
                         VALUES ('$fecha','$fechaFin','1','$fecha_Creacion','$cuarto','E')";
+                        echo "<script>console.log('" . json_encode($pilaMigrantes) . "');</script>";
+                        echo "<script>console.log('personas:".$personas."');</script>";
                         mysqli_query($conexion,$query);
                         $reservaciones++;
 
                         $idReser=mysqli_insert_id($conexion);
+                        /* echo "<script>console.log('".$personas."');</script>"; */
                         for($o=0; $o <$personas; $o++)
                         {
                             $IDddddddddddd= $pilaMigrantes[$o];
@@ -205,6 +222,7 @@ if(!empty($_FILES['txtFile'])){
                 else if($conjunto==1)
                 {
                     $personas= count($pilaMigrantes);
+                    echo "<script>console.log('personas:".$personas."');</script>";
                     $cuarto="";
                     if($personas < 3)
                     {$cuarto="I";}
@@ -215,11 +233,13 @@ if(!empty($_FILES['txtFile'])){
                     $fechaFin=date('Y-m-d',strtotime($fecha. "+1 days"));
                     $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado)
                         VALUES ('$fecha','$fechaFin','1','$fecha_Creacion','$cuarto','E')";
+                    echo "<script>console.log('" . json_encode($pilaMigrantes) . "');</script>";
+                    echo "<script>console.log('personas:".$personas."');</script>";
                     mysqli_query($conexion,$query);
                     $reservaciones++;
 
                     $idReser=mysqli_insert_id($conexion);
-
+                    /* echo "<script>console.log('".$personas."');</script>"; */
                     for($o=0; $o <$personas; $o++)
                     {
                         $IDddddddddddd= $pilaMigrantes[$o];
@@ -237,13 +257,11 @@ if(!empty($_FILES['txtFile'])){
             echo "<script>console.log('Migrantes insertados: ".$nuevos."');</script>";
             echo "<script>console.log('Migrantes repetidos: ".$exitentes."');</script>";
             echo "<script>console.log('Reservaciones Creadas: ".$reservaciones."');</script>"; */
-            
             /* MENSAJE DE EXITO */
             $_SESSION['archivo'] = '4';/* EXITO */
-
         } catch (mysqli_sql_exception $e) {
+            echo "<script>console.log('ERORO EN ESQLSD');</script>";
             mysqli_rollback($conexion);
-
             /* MENSAJE ERROR INESPERADO EN LA LECTURA DEL ARCHIVO */
             $_SESSION['archivo'] = '3';/* ERROR SQL */
         }
@@ -253,6 +271,7 @@ if(!empty($_FILES['txtFile'])){
     {
         $_SESSION['archivo'] = '2';
         /* MENSAJE DE ERROR DE LECTURA DEL ARCHIVO */
+        echo "<script>console.log('No se pudo leer el archivo');</script>";
     }
     
 }
