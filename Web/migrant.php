@@ -39,8 +39,8 @@
             <label id="lblFile" for="txtFile">Buscar archivo</label>
             <input id="txtFile" type="file" name="txtFile" accept=".xlsx">
           </form>
-          <form class="frm-style" action="print-migrantes-pdf.php" method="POST">
-            <input id="lblExportar" type="submit" class="button-export" name="subida" value="Exportar">
+          <form class="frm-style">
+            <input id="lblExportar" type="button" class="button-export" name="subida" value="Exportar">
           </form>
         </div>
         <div class="container-header direction">
