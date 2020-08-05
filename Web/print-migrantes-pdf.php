@@ -1,5 +1,4 @@
 <?php
-    session_start();
     require_once "fpdf182/fpdf.php";
     
     /* ESTABLECER HORA Y LEGUAJE */
@@ -67,4 +66,8 @@
     $pdf->contenidoTabla();
     
     $pdf->Output("Esperados.pdf","F");
+
+    header("Content-type: application/pdf");
+    header("Content-disposition: attachment; filename= Esperados.pdf");
+    readfile("Esperados.pdf");
 ?>
