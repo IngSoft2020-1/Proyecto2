@@ -29,7 +29,7 @@
     <div class="container-img" id="aling-left">
       <div class="container-a">
         <a href=""><img src="img/plus.png" alt="" class="icon-plus"></a>
-        <a href="">Agregar manualmente</a>
+        <a href="addManualReservation.php">Agregar manualmente</a>
       </div>
       <input type="text" name="search" placeholder="Search.." id="search-res" autocomplete="off">
     </div>
