@@ -54,8 +54,7 @@
       <div class="select">
         <label for="order">Ordenar por:</label>
         <select class="" name="order" id="mySelect">
-          <option value="0" selected>Seleccionar</option>
-          <option value="1">Fecha de llegada asc</option>
+          <option value="1"selected>Fecha de llegada asc</option>
           <option value="2">Fecha de llegada desc</option>
           <option value="3">Nombre asc</option>
           <option value="4">Nombre desc</option>
@@ -66,11 +65,11 @@
       <div class="select">
         <label for="show">Mostrar:</label>
         <select class="" name="show" id="mySelect2">
+          <option value="0"selected>Todos</option>
           <option value="7">Proximos 7 días</option>
           <option value="1">Último mes</option>
           <option value="3">Últimos 3 meses</option>
-          <option value="3">Últimos 6 meses</option>
-          <option value="0">Todos</option>
+          <option value="6">Últimos 6 meses</option>
         </select>
       </div>
     </div>

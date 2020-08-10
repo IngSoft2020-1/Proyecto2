@@ -144,7 +144,7 @@ $(document).ready(function() {
 
   time='0';
   $("#mySelect2").change(function() {
-    typeSelect = document.getElementById("mySelect2").value;
+    time = document.getElementById("mySelect2").value;
 
     $row=0;
     migrantes=0;
@@ -421,7 +421,6 @@ $(document).ready(function() {
         }
     });
     $("select#mySelect").prop('selectedIndex', 0);
-    $("select#mySelect2").prop('selectedIndex', 0);
   });
 
   /*Usado en migrant.php*/
@@ -705,6 +704,8 @@ $(document).ready(function() {
             $( ".datepicker" ).datepicker();
         }
     });
+    $("select#mySelect").prop('selectedIndex', 0);
+    $("select#mySelect2").prop('selectedIndex', 0);
   }
   //*************************************************************
       // NOTA: LEER.
@@ -814,45 +815,34 @@ $(document).ready(function() {
 
       /* FUNCION DEL BOTON IMPRIMIR PDF */
       $('.button-export').click( function() {
-        if(migrantes == 0)
-        {
-          localStorage.setItem('exportarmsg', 1);
-          $('#exportarmsg').css("display", "flex");
-          $('#exportarmsg').show();
-          $("select#mySelect").prop('selectedIndex', 0);
-          $("select#mySelect2").prop('selectedIndex', 0);
+        while (contenidoT.length) {
+          contenidoT.pop();
         }
-        else
-        {
-          /* LIMPIA EL ARREGLO */
-          while (contenidoT.length) {
-            contenidoT.pop();
-          }
-          /* TOMA LOS DATOS ACTUALES DE LA TABLA */
-          for (var per = 1; per <= migrantes; per++) {
-            var migra = new Persona();
-            migra.fechall = $(".llegada" + per).val();
-            migra.nombre = $(".nom" + per).val();
-            migra.nacimiento = $(".fn" + per).val();
-            migra.horall = $(".hl" + per).val();
-            migra.citaCo = $(".cc" + per).val();
-            migra.nacionalidad = $(".pais" + per).val();
-            migra.telefono = $(".telefono" + per).val();
-            /* LOS EMPUJA AL ARREGLO */
-            contenidoT.push(migra);
-          }
-          console.log(contenidoT);
-          json=JSON.stringify(contenidoT);
-          /* LOS ENVIA A EL PHP DONDE SE GENERA EL PHP */
-          $.ajax({
-            type: "POST",
-            url: "print-migrantes-pdf.php",
-            data: {lista : json},
-            success: function(){
-              window.open('Esperados.pdf');
-            }
-          });
+        /* TOMA LOS DATOS ACTUALES DE LA TABLA */
+        for (var per = 1; per <= migrantes; per++) {
+          var migra = new Persona();
+          migra.fechall = $(".llegada" + per).val();
+          migra.nombre = $(".nom" + per).val();
+          migra.nacimiento = $(".fn" + per).val();
+          migra.horall = $(".hl" + per).val();
+          migra.citaCo = $(".cc" + per).val();
+          migra.nacionalidad = $(".pais" + per).val();
+          migra.telefono = $(".telefono" + per).val();
+          /* LOS EMPUJA AL ARREGLO */
+          contenidoT.push(migra);
         }
+        console.log(contenidoT);
+        json=JSON.stringify(contenidoT);
+        /* LOS ENVIA A EL PHP DONDE SE GENERA EL PHP */
+        $.ajax({
+          type: "POST",
+          url: "print-migrantes-pdf.php",
+          data: {lista : json},
+          success: function(){
+            if(migrantes != 0)
+            {window.open('Esperados.pdf');}
+          }
+        });
       });
 
     /* EVENTO PARA CARGAR MIGRANTES */
@@ -873,10 +863,12 @@ $(document).ready(function() {
           method:"POST",  
           data:new FormData(this),  
           contentType:false,  
-          processData:false
+          processData:false,
+          success: function(){
+            obtener();
+          }
         });
       }
-      obtener();
     });
     /* FIN EVENTO PARA CARGAR MIGRANTES */
 

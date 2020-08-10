@@ -6,9 +6,9 @@
     date_default_timezone_set('America/Tijuana');
     setlocale(LC_TIME, 'spanish');
     /* ------------------------- */
-
+    
     class pdfMigrantes extends FPDF{
-
+        
         function cabezera()
         {
 
@@ -46,10 +46,16 @@
         function contenidoTabla()
         {
             /* JALAMOS LA LISTA DE PERSONAS DE LA CONSULTA */
+            
+            
+            $this->SetFont("Arial","",12);
             $json = $_POST['lista'];
             $tabla=json_decode($json);
-            $this->SetFont("Arial","",12);
-
+            if(count($tabla)==0)
+            {
+                /* MENSAJE DE QUE NO HAY NADA EN LA LISTA */
+                exit();
+            }
             for ($i=0; $i < count($tabla); $i++) { 
                 $this->Cell(50,8,utf8_decode($tabla[$i]->fechall),1,0,"C");
                 $this->Cell(0,8,utf8_decode($tabla[$i]->nombre),1,0,"L");
