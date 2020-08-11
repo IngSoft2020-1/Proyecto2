@@ -36,37 +36,6 @@ Clave: derechos
 Correo: derechoscopio@gmail.com
 Tipousuario: S
 
->>>>>SENTENCIAS SQL PARA LA INSERCION DE DATOS AL CREAR RESERVACION<<<<<< (Sprint Administrador)
-Las siguientes sentencias se ejecutaran cuando el usuario da clic al boton "Crear reservacion"
-
--> insert into reservacion (FechaInicio, Fechafin, DiasEstima,Creacion, Habitacion, Estado) values (,,,,,,);
-[FechaInicio = Es la fecha de la reservacion de inicio, el tipo es DATE.]
-[DiasEstimados = Noches del hotel, tipo INT]
-[Creacion = Es la fecha de creacion de la reservacion, tipo DATE.]
-[TipoHabita = Tipo de habitacion, tipo CHAR.]
-[Estado = Se refiere al estado de la habitacion, tipo CHAR, al crear la reservacion este campo es "E".]
-
--->Ejemplo
-
-
-insert into reservacion (FechaInicio, Fechafin, DiasEstima,Creacion, Habitacion, Estado) values ('2020-06-22','2020-06-23','5','2020-06-23','D','E') 
-
--> insert into visitante (Nombre, Ape_Mat, Ape_Pat, Telefono, Fecha_nac, Edad, IDNacion) values (,,,,,,);
-{ESTA SENTENCIA SE EJECUTA TANTAS VECES VISITANTES ESTEN SIENDO REGISTRADOS EN LA RESERVACION}
-[Nombre = Nombre(s) del hospedado, tipo varchar]
-[Ape_Mat = Apellido materno, tipo varchar]
-[Ape_Pat = Apellido paterno, tipo varchar]
-[Telefono = Telefono del visitante, el formato debe ser (000)000-0000]
-[Fecha_nac = Tipo DATE]
-[Edad = Tipo INT]
-[IDNacion = Es la nacionalidad del visitante, el tipo de dato es varchar de 3 caracteres, el dato ingresado debe ser como NIC, MEX, HON...]
-
--> insert into reservacion_visitante (IDReser, IDVisi) values (,);
-{ESTA SENTENCIA SE EJECUTA TANTAS VECES COMO VISITANTES SE HAYAN ENLAZADO A LA RESERVACION QUE SE CREO, INTERCALANDO EL ID DEL VISITANTE}
-[IDReserv = Es el ID de la reservacion que acabamos de crear]
-[IDVisi = Es el ID deL visitante que se creo junto con la reservacion recien creada.]
-
-
 >>>>>SENTENCIAS SQL PARA LA CONSULTA DE DATOS AL CREAR RESERVACION<<<<<< (Sprint Administrador)
 La primer sentencia es la principal que se ejecutara al entrar a la pantalla de "Reservaciones/Consultar". Ordenada por fecha de creacion de la mas reciente a la mas vieja.
 --Reservaciones--
@@ -192,9 +161,6 @@ SELECT visitante.Nombre as 'Nombre', visitante.Telefono as 'Telefono' , visitant
 'FechaLlegada', visitante.hora_llegada as 'HoraLlegada', visitante.cita_consulado as "CitaConsulado" FROM visitante INNER join nacionalidad on nacionalidad.IDPais = 
 visitante.IDNacion where fecha_llegada > curdate() - interval (dayofmonth(curdate()) - 1) day - interval 1 week order by fecha_llegada DESC
 
----Insert Datos A los Visitante
-insert into visitante (Nombre,Telefono,Fecha_nac,IDNacion,fecha_llegada,hora_llegada,cita_consulado, fecha_registro) values ()
-
 ---Editar Visitante
 update visitante set Nombre='', Telefono='', Fecha_nac='', IDNacion='',fecha_llegada='',hora_llegada='',cita_consulado='', fecha_registro='' where Nombre=''
 --Ejemplo
@@ -215,3 +181,76 @@ estado ON estado.ID= reservacion.Estado where Fechafin BETWEEN curdate() and cur
 SELECT reservacion.IDReser AS 'NumeroReservacion',reservacion.Fechafin as 'DiaSalida',visitante.cita_consulado as 'CitaConsulado',visitante.Nombre AS 'Nombre' FROM 
 reservacion_visitante INNER JOIN reservacion ON reservacion.IDReser = reservacion_visitante.IDReser INNER join visitante on reservacion_visitante.IDVisi= visitante.IDVisi 
 where Fechafin BETWEEN curdate() and curdate() + interval 3 day 
+
+---Costo
+Sentencia para tener las columnas autogeneradas
+select NumPersonas,tipohabitacion,cobro,Precio,(PorcentajeDesc*100) as PorcentajeDesc,(PorcentajeDesc*Precio) AS Descuento,(Precio-(PorcentajeDesc*Precio)) AS Subtotal, 
+((Precio-(PorcentajeDesc*Precio))*.13) AS Impuesto, ((Precio-(PorcentajeDesc*Precio))*1.13) AS Total FROM costo 
+
+--- Editar costo
+UPDATE costo SET NumPersonas='',tipohabitacion='',cobro='',Precio='',PorcentajeDesc='' WHERE condicion
+
+[NumPersonas = Numero de personas que permite el cuarto, el tipo es int.]
+[tipohabitacion = Es el tipo de habitacion que es, el tipo es VARCHAR.]
+[cobro = Tipo de costo que tendra la habitacion, tipo VARCHAR]
+[Precio = Es el costo de la habitacion, tipo float.]
+[PorcentajeDesc = Es el porcentaje de descuento que tendra el costo, tipo float.]
+
+
+
+CREAR RESERVACION MANUALMENTE
+
+>>>>>SENTENCIAS SQL PARA LA INSERCION DE DATOS AL CREAR RESERVACION<<<<<< (Sprint Administrador)
+Las siguientes sentencias se ejecutaran cuando el usuario da clic al boton "Crear reservacion"
+
+-> INSERT INTO `reservacion` ( `FechaInicio`, `Fechafin`, `DiasEstima`, `Creacion`, `Habitacion`, `Estado`, `NumHabitacion`) values (,,,,,,);
+[FechaInicio = Es la fecha de la reservacion de inicio, el tipo es DATE.]
+[FechaInicio = Es la fecha donde termina la reservacion, el tipo es DATE.]
+[DiasEstimados = Noches del hotel, tipo INT]
+[Creacion = Es la fecha de creacion de la reservacion, tipo DATE.]
+[Habitacion = Tipo de habitacion, tipo CHAR, S ,D y T.]
+[Estado = Se refiere al estado de la habitacion, tipo CHAR, al crear la reservacion este campo es "E".]
+[NumHabitacion = Se refiere al numero de habitacion en donde se estan hospedando, es tipo de dato CHAR, por lo que se capeara en el front o back para que solo ingrese numeros.]
+
+-->Ejemplo
+
+
+INSERT INTO `reservacion` ( `FechaInicio`, `Fechafin`, `DiasEstima`, `Creacion`, `Habitacion`, `Estado`, `NumHabitacion`) VALUES ( '2020-08-26', '2020-08-29', '4', '2020-08-10', 'D', 'E', '205');
+
+
+
+-> insert into visitante (Nombre, Telefono, Fecha_nac, IDNacion,`fecha_llegada`, `hora_llegada`, `cita_consulado`, `fecha_registro`) values (,,,,,,);
+{ESTA SENTENCIA SE EJECUTA TANTAS VECES VISITANTES ESTEN SIENDO REGISTRADOS EN LA RESERVACION}
+[Nombre = Nombre con apellidos del hospedado, tipo varchar]
+[Telefono = Telefono del visitante, el formato debe ser (000)000-0000]
+[Fecha_nac = Tipo DATE]
+[IDNacion = Es la nacionalidad del visitante, el tipo de dato es varchar de 3 caracteres, el dato ingresado debe ser como NIC, MEX, HON...]
+[Fecha_llegada = Es el dia en que llegara al hotel, tipo date]
+[hora_llegada = La hora en la que debe de estar en el hotel, tipo datetime]
+[cita_consulado= Es el dia y la hora en la que tiene la cita en el consulado, tipo datetime]
+[Fecha_llegada = Es el dia y la hora en la que registraron al visitante en la asociacion, tipo datetime]
+
+-->Ejemplo
+INSERT INTO `visitante` (`Nombre`, `Telefono`, `Fecha_nac`, `IDNacion`, `fecha_llegada`, `hora_llegada`, `cita_consulado`, `fecha_registro`) VALUES 
+( 'Jaime Carrillo Ramos', '6644953708', '2020-08-02', 'BOL', '2020-08-12', '16:14:00', '11:20:00', '2020-08-10 00:00:00');
+
+
+--> insert into reservacion_visitante (IDReser, IDVisi) values (,);
+{ESTA SENTENCIA SE EJECUTA TANTAS VECES COMO VISITANTES SE HAYAN ENLAZADO A LA RESERVACION QUE SE CREO, INTERCALANDO EL ID DEL VISITANTE}
+[IDReserv = Es el ID de la reservacion que acabamos de crear]
+[IDVisi = Es el ID deL visitante que se creo junto con la reservacion recien creada.]
+
+-->Ejemplo
+INSERT INTO `reservacion_visitante` ( `IDReser`, `IDVisi`) VALUES ( '1', '1');
+
+COMBOBOX CON EL TIPO DE HABITACION
+select tipohabitacion FROM tipohabitacion 
+
+
+ELIMINAR VISITANTE DE LA RESERVACION
+
+DELETE from reservacion_visitante where IDVisi ='1' 
+Se eliminara de la reservacion el visitante por medio de su id
+
+EJEMPLO
+DELETE from reservacion_visitante where IDVisi ='1' 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 15-07-2020 a las 01:20:54
+-- Tiempo de generación: 11-08-2020 a las 06:01:14
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -21,8 +21,32 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `derechoscopio`
 --
-CREATE DATABASE IF NOT EXISTS `derechoscopio` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `derechoscopio`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `costo`
+--
+
+DROP TABLE IF EXISTS `costo`;
+CREATE TABLE IF NOT EXISTS `costo` (
+  `NumPersonas` int(11) DEFAULT NULL,
+  `tipohabitacion` varchar(10) DEFAULT NULL,
+  `cobro` varchar(10) DEFAULT NULL,
+  `Precio` float DEFAULT NULL,
+  `PorcentajeDesc` float DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `costo`
+--
+
+INSERT INTO `costo` (`NumPersonas`, `tipohabitacion`, `cobro`, `Precio`, `PorcentajeDesc`) VALUES
+(2, 'Sencillo', 'Sencillo', 1035.4, 0.285),
+(2, 'Doble', 'doble', 1035.4, 0.25),
+(3, 'Doble', 'triple', 1185.84, 0.23),
+(4, 'triple', 'cuadruple', 1336.28, 0.23),
+(5, 'triple', 'quintuple', 1486.73, 0.23);
 
 -- --------------------------------------------------------
 
@@ -154,11 +178,19 @@ CREATE TABLE IF NOT EXISTS `reservacion` (
   `Creacion` date NOT NULL,
   `Habitacion` char(1) NOT NULL,
   `Estado` char(1) NOT NULL,
+  `NumHabitacion` varchar(5) NOT NULL,
   PRIMARY KEY (`IDReser`),
   UNIQUE KEY `IDReser` (`IDReser`),
   KEY `FK_EstadoReser` (`Estado`),
   KEY `FK_ReserTHabi` (`Habitacion`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `reservacion`
+--
+
+INSERT INTO `reservacion` (`IDReser`, `FechaInicio`, `Fechafin`, `DiasEstima`, `Creacion`, `Habitacion`, `Estado`, `NumHabitacion`) VALUES
+(1, '2020-08-26', '2020-08-29', 4, '2020-08-10', 'D', 'E', '205');
 
 -- --------------------------------------------------------
 
@@ -174,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `reservacion_visitante` (
   PRIMARY KEY (`IDReserVisi`),
   KEY `FK_ReserID` (`IDReser`),
   KEY `FK_IDVisi` (`IDVisi`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -285,7 +317,14 @@ CREATE TABLE IF NOT EXISTS `visitante` (
   `fecha_registro` datetime NOT NULL,
   PRIMARY KEY (`IDVisi`),
   KEY `IDNacion` (`IDNacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `visitante`
+--
+
+INSERT INTO `visitante` (`IDVisi`, `Nombre`, `Telefono`, `Fecha_nac`, `IDNacion`, `fecha_llegada`, `hora_llegada`, `cita_consulado`, `fecha_registro`) VALUES
+(1, 'Jaime Carrillo Ramos', '6644953708', '2020-08-02', 'BOL', '2020-08-12', '16:14:00', '11:20:00', '2020-08-10 00:00:00');
 
 --
 -- Restricciones para tablas volcadas
