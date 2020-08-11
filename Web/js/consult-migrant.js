@@ -819,15 +819,21 @@ $(document).ready(function() {
           contenidoT.pop();
         }
         /* TOMA LOS DATOS ACTUALES DE LA TABLA */
+        var refTab = document.getElementById("table-migrants")
+        // Loop through all rows and columns of the table and popup alert with the value
+        // /content of each cell.
+        /* alert(document.querySelector("#table-migrants").children[0].children[1].children[0].innerText) */
+        
         for (var per = 1; per <= migrantes; per++) {
+          var x = document.getElementById("table-migrants").rows[per].cells;
           var migra = new Persona();
-          migra.fechall = $(".llegada" + per).val();
-          migra.nombre = $(".nom" + per).val();
-          migra.nacimiento = $(".fn" + per).val();
-          migra.horall = $(".hl" + per).val();
-          migra.citaCo = $(".cc" + per).val();
-          migra.nacionalidad = $(".pais" + per).val();
-          migra.telefono = $(".telefono" + per).val();
+          migra.fechall = x[2].querySelector('input').value;
+          migra.nombre = x[3].querySelector('input').value;
+          migra.nacimiento = x[4].querySelector('input').value;
+          migra.horall = x[5].querySelector('select').selectedOptions[0].text;
+          migra.citaCo = x[6].querySelector('select').selectedOptions[0].text;
+          migra.nacionalidad = x[7].querySelector('select').selectedOptions[0].text;
+          migra.telefono = x[8].querySelector('input').value;
           /* LOS EMPUJA AL ARREGLO */
           contenidoT.push(migra);
         }

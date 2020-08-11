@@ -9,7 +9,7 @@
     FROM reservacion_visitante 
     INNER JOIN reservacion ON reservacion.IDReser = reservacion_visitante.IDReser 
     INNER join visitante on reservacion_visitante.IDVisi = visitante.IDVisi 
-    WHERE Fechafin BETWEEN curdate() AND curdate() + INTERVAL 3 day 
+    WHERE Fechafin BETWEEN curdate() AND curdate() + INTERVAL 3 day AND Estado LIKE 'P'
     ORDER BY cita_consulado ASC";
     $resultado = mysqli_query($conexion, $query);
 
@@ -19,10 +19,11 @@
 
     $json = array();
     while($row = mysqli_fetch_array($resultado)){
+        $cita = date("h:i A", strtotime($row['CitaConsulado']));
         $json[] = array(
             'NumeroReservacion' => $row['NumeroReservacion'],
             'DiaSalida' => $row['DiaSalida'],
-            'CitaConsulado' => $row['CitaConsulado'],
+            'CitaConsulado' => $cita,
             'Nombre' => $row['Nombre']
         );
     }
