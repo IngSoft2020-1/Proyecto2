@@ -23,7 +23,7 @@
         visitante.cita_consulado AS 'CitaConsulado2'
         FROM visitante 
         INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion 
-        ORDER BY fecha_llegada ASC";
+        ORDER BY fecha_llegada DESC";
         /* echo "Busqueda todos".$tiempo; */
     }
     else if($tiempo==7)/* 7 DIAS */
@@ -43,7 +43,7 @@
         FROM visitante 
         INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
         WHERE visitante.fecha_llegada>='$actual' AND visitante.fecha_llegada<='$fechalim'
-        ORDER BY `fecha_llegada`  ASC";
+        ORDER BY `fecha_llegada`  DESC";
         /* echo "Busqueda 7 dias".$tiempo; */
     }
     else if($tiempo==1)
@@ -63,7 +63,7 @@
         FROM visitante 
         INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
         WHERE visitante.fecha_llegada<'$actual' AND visitante.fecha_llegada>='$fechalim'
-        ORDER BY `fecha_llegada`  ASC";
+        ORDER BY `fecha_llegada`  DESC";
         /* echo "Busqueda 1 mes".$tiempo; */
     }
     else if($tiempo==3)
@@ -83,7 +83,7 @@
         FROM visitante 
         INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
         WHERE visitante.fecha_llegada<'$actual' AND visitante.fecha_llegada>='$fechalim'
-        ORDER BY `fecha_llegada`  ASC";
+        ORDER BY `fecha_llegada`  DESC";
     }
     else if($tiempo==6)
     {
@@ -102,7 +102,7 @@
         FROM visitante 
         INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
         WHERE visitante.fecha_llegada<'$actual' AND visitante.fecha_llegada>='$fechalim'
-        ORDER BY `fecha_llegada`  ASC";
+        ORDER BY `fecha_llegada`  DESC";
     }
     $resultado = mysqli_query($conexion, $query);
     /* echo "<script>console.log('QUERRY= $query');</script>"; */

@@ -98,10 +98,10 @@ $(document).ready(function() {
           shouldSwitch = false;
           /*Get the two elements you want to compare,
           one from current row and one from the next:*/
-          x = rows[i].getElementsByTagName("input")[0].value;
+          x = rows[i].getElementsByTagName("input")[1].value;
           var datos = x.split('/');
           fecha1=new Date(datos[2],datos[0] - 1, datos[1]);
-          y = rows[i + 1].getElementsByTagName("input")[0].value;
+          y = rows[i + 1].getElementsByTagName("input")[1].value;
           var datos = y.split('/');
           fecha2=new Date(datos[2],datos[0] - 1, datos[1]);
 
@@ -420,7 +420,7 @@ $(document).ready(function() {
             $( ".datepicker" ).datepicker();
         }
     });
-    $("select#mySelect").prop('selectedIndex', 0);
+    $("select#mySelect").prop('selectedIndex', 1);
   });
 
   /*Usado en migrant.php*/
@@ -704,9 +704,10 @@ $(document).ready(function() {
             $( ".datepicker" ).datepicker();
         }
     });
-    $("select#mySelect").prop('selectedIndex', 0);
+    $("select#mySelect").prop('selectedIndex', 1);
     $("select#mySelect2").prop('selectedIndex', 0);
   }
+
   //*************************************************************
       // NOTA: LEER.
       /* EN LA LINEA 232 SE AGREGO UN SPAN Y SE HACE INVISIBLE, ESTE
@@ -819,11 +820,6 @@ $(document).ready(function() {
           contenidoT.pop();
         }
         /* TOMA LOS DATOS ACTUALES DE LA TABLA */
-        var refTab = document.getElementById("table-migrants")
-        // Loop through all rows and columns of the table and popup alert with the value
-        // /content of each cell.
-        /* alert(document.querySelector("#table-migrants").children[0].children[1].children[0].innerText) */
-        
         for (var per = 1; per <= migrantes; per++) {
           var x = document.getElementById("table-migrants").rows[per].cells;
           var migra = new Persona();
