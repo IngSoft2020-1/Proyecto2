@@ -48,7 +48,7 @@
     <div class="container">
       <form action="new-reservation.php" method="post" style="width: 80% !important;">
         <!-- aun no funciona new-reservation -->
-        <div class="field">
+        <div class="field line">
           <label for="">Fecha de reservaci&oacute;n</label>
           <div class="info">
             <img src="img/calendar.png" alt="" class="icon">
@@ -68,48 +68,18 @@
 
 
 
-                <div class="field ">
-                  <label for="">Noches</label>
-                  <div class="info">
-                    <img src="img/global.png" alt="" class="icon" >
-                    <select class="habilitar ignorar pais ocultar " name="nacionalidad">
-                    <option value="UNO" selected>1</option>
-                      <option value="DOS">2</option>
-                      <option value="TRES">3</option>
-                      <option value="CUATRO">4</option>
-                      <option value="CINCO">5</option>
-                    </select>
-                  </div>
-                  <!-- IMPRESION DE MENSAJE DE ERROR -->
-                  <?php
-                        if($_SESSION['validNacion'] == '1')
-                        {
-                          echo '<div class="container-msg">
-                            <p class="title-msg">Sin especificar.</p>
-                            <p class="title-content-msg">Seleccione una opción de la lista.</p>
-                          </div>';
-                        }
-                        else if($_SESSION['validNacion'] == '2')
-                        {
-                          echo '<div class="container-msg">
-                            <p class="title-msg">Formato Incorrecto!.</p>
-                            <p class="title-content-msg">Seleccione una opción de la lista.</p>
-                          </div>';
-                        }
-                      ?>
-                </div>
 
-        <div class="field ">
+
+        <div class="field line">
           <label for="">Personas sin reservaci&oacute;n</label>
           <div class="info">
-            <img src="img/global.png" alt="" class="icon" >
+            <img src="img/users.png" alt="" class="icon" >
             <select class="habilitar ignorar pais ocultar " name="nacionalidad">
             <option value="" selected></option>
               <option value="UNO">Persona 1</option>
             </select>
+              <input type="button" class="button-cancel" value="Agregar" id="btn-cancel7" style="margin-left: 10px !important;">
           </div>
-          <br>
-            <input type="button" class="button-cancel" value="Agregar" id="btn-cancel7">
           <!-- IMPRESION DE MENSAJE DE ERROR -->
           <?php
                 if($_SESSION['validNacion'] == '1')
@@ -130,17 +100,48 @@
         </div>
 
 
-        <div class="field ">
+        <div class="field line">
+          <label for="">Noches</label>
+          <div class="info">
+            <img src="img/bed.png" alt="" class="icon" >
+            <select class="habilitar ignorar pais ocultar " name="nacionalidad">
+            <option value="UNO" selected>1</option>
+              <option value="DOS">2</option>
+              <option value="TRES">3</option>
+              <option value="CUATRO">4</option>
+              <option value="CINCO">5</option>
+            </select>
+          </div>
+          <!-- IMPRESION DE MENSAJE DE ERROR -->
+          <?php
+                if($_SESSION['validNacion'] == '1')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Sin especificar.</p>
+                    <p class="title-content-msg">Seleccione una opción de la lista.</p>
+                  </div>';
+                }
+                else if($_SESSION['validNacion'] == '2')
+                {
+                  echo '<div class="container-msg">
+                    <p class="title-msg">Formato Incorrecto!.</p>
+                    <p class="title-content-msg">Seleccione una opción de la lista.</p>
+                  </div>';
+                }
+              ?>
+        </div>
+
+
+        <div class="field line">
           <label for="">Personas en la  reservaci&oacute;n</label>
           <div class="info">
-            <img src="img/global.png" alt="" class="icon" >
+            <img src="img/users.png" alt="" class="icon" >
             <select class="habilitar ignorar pais ocultar " name="nacionalidad">
             <option value="" selected></option>
               <option value="UNO">Persona 1</option>
             </select>
+              <input type="button" class="button-cancel" value="Eliminar" id="btn-cancel9" style="margin-left: 10px !important;">
           </div>
-          <br>
-            <input type="button" class="button-cancel" value="Eliminar" id="btn-cancel9">
           <!-- IMPRESION DE MENSAJE DE ERROR -->
           <?php
                 if($_SESSION['validNacion'] == '1')
@@ -160,10 +161,10 @@
               ?>
         </div>
 
-        <div class="field ">
+        <div class="field line">
           <label for="">Tipo de habitaci&oacute;n</label>
           <div class="info">
-            <img src="img/global.png" alt="" class="icon" >
+            <img src="img/bed.png" alt="" class="icon" >
             <select class="habilitar ignorar pais ocultar " name="nacionalidad">
             <option value="UNO" selected>Habitacion</option>
             </select>

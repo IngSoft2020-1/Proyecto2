@@ -66,21 +66,66 @@ if(!empty($_FILES['txtFile'])){
 
 
         $numFilas=$objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
+        /* Validaciones de la estructura del excel */
+        for ($i=1; $i <$numFilas; $i++) {
 
-
-        $validacionFecha=$objPHPExcel->getActiveSheet()->getCell('A'.'1')->getFormattedValue();
-        $validacionFecha=date("d/m/Y",strtotime($validacionFecha));
-        $validacionFecha=preg_match("/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/", $validacionFecha);
-        $validacionNacimiento=$objPHPExcel->getActiveSheet()->getCell('C'.'1')->getFormattedValue();
-        $validacionNacimiento=date("d/m/Y",strtotime(strtok($validacionNacimiento,'(')));
-        $validacionNacimiento=preg_match("/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/", $validacionNacimiento);
-        $validacionHora1= preg_match("/((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/", $objPHPExcel->getActiveSheet()->getCell('D'.'1')->getCalculatedValue());
-        $validacionHora2= preg_match("/((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))/", $objPHPExcel->getActiveSheet()->getCell('E'.'1')->getCalculatedValue());
-        if(!$validacionFecha || !$validacionNacimiento || !$validacionHora1 || !$validacionHora2)
-        {
-            /* MENSAJE ERROR CUANDO EL EXCEL NO TIENE EL FORMATO CORRECTO */
-            $_SESSION['archivo'] = '1';
-            exit();
+            $fecha1 = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getFormattedValue();
+            $fecha1 = strtok($fecha1,'(');
+            $nombre1 = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getFormattedValue();
+            $fecha2 = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getFormattedValue();
+            $fecha2 = strtok($fecha2,'(');
+            $hora1 = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getFormattedValue();
+            $hora2 = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getFormattedValue();
+            $nacion1 = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getFormattedValue();
+            $telefono1 = $objPHPExcel->getActiveSheet()->getCell('G'.$i)->getFormattedValue();
+            $desconocido = $objPHPExcel->getActiveSheet()->getCell('H'.$i)->getFormattedValue();
+            /* echo("FechaCita:".$fecha1." Nombre:".$nombre1." Nacimiento:".$fecha2." Hora1:".$hora1." hora2:".$hora2." nacion:".$nacion1." telefono: ".$telefono1." Desc:".$desconocido); */
+            
+            $regexHora='/\b(((1[0-2]|0?[1-9]):([0-5][0-9]):([0-5][0-9]))|((1[0-2]|0?[1-9]):([0-5][0-9]))) ?([AaPp][Mm])\b|"/';
+            $regexFecha="/\b^(1[0-2]|0?[1-9])\/(3[01]|[12][0-9]|0?[1-9])\/([0-9]{4})\b/";
+            $regexTelefono='/\b^[0-9]{3}-[0-9]{3}-[0-9]{4}$\b|"/';
+            $val= array();
+            $val[] = preg_match($regexFecha, $fecha1);
+            $val[] = !empty($nombre1);
+            $val[] = preg_match($regexFecha, $fecha2);
+            $val[] = preg_match($regexHora, $hora1);
+            $val[] = preg_match($regexHora, $hora2);
+            if(preg_match('/"/',$nacion1))
+            {
+                {$val[] = true;}
+            }
+            else
+            {
+                $query = "SELECT IDPais FROM nacionalidad WHERE IDPais IN ('$nacion1')";
+                $registros=mysqli_query($conexion,$query);
+                if(mysqli_num_rows($registros) > 0)
+                {$val[] = true;}
+                else
+                {$val[] = false;}
+            }
+            $val[] = preg_match($regexTelefono, $telefono1);
+            $val[] = !empty($desconocido);
+            
+            if($val[0] && $val[1] && $val[2] && $val[3] && $val[4] && $val[5] && $val[6] && $val[7])
+            {
+                /* Pasa la prueba */
+            }
+            else if(!$val[0] && $val[1] && $val[2] && $val[3] && $val[4] && $val[5] && $val[6] && $val[7])
+            {
+                /* Pasa la prueba */
+            }
+            else if(!$val[0] && !$val[1] && !$val[2] && !$val[3] && !$val[4] && !$val[5] && !$val[6] && !$val[7])
+            {
+                /* Pasa la prueba */
+            }
+            else
+            {
+                echo "Error de formato en la linea $i.";/* Puesdes poner la linea con el error */
+                /* MENSAJE ERROR CUANDO EL EXCEL NO TIENE EL FORMATO CORRECTO */
+                /* echo(var_dump($val)); */
+                $_SESSION['archivo'] = '1';
+                exit();
+            }
         }
         
         mysqli_begin_transaction($conexion, MYSQLI_TRANS_START_READ_WRITE);
