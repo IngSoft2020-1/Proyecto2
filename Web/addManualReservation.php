@@ -13,6 +13,7 @@
     <!-- <link rel="stylesheet" href="css/edit.css"> -->
     <link rel="stylesheet" href="css/migrant.css">
     <link rel="stylesheet" href="css/new.css">
+    <link rel="stylesheet" href="css/addReservation.css">
     <!-- ESTA LIBRERIA LA CREO: EDUARDO BLANCO
         PARA PODER MANDAR A LLAMAR UN MENSAJE
         DE VALIDACION -->
@@ -205,7 +206,7 @@
               ?>
         </div>
         <div class="field max">
-          <div class="container-buttons">
+          <div class="contenedor-centrado" >
             <input type="button" class="button-cancel" value="Cancel" id="btn-cancel">
             <input type="submit" name=""  class="save" value="Guardar">
           </div>
