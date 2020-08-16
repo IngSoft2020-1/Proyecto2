@@ -43,7 +43,8 @@
   </head>
   <body>
     <div class="container" style="color: white; text-align:center !important;">
-      <h1>Crear reservaci&oacute;n manualmente</h1>
+      <!--- <h1>Crear reservaci&oacute;n manualmente</h1> -->
+      <img src="img/guest.png" alt="" class="icon" style="width: 350px !important; height: 200px !important;">
     </div>
 
     <div class="container">
@@ -74,7 +75,7 @@
         <div class="field line">
           <label for="">Personas sin reservaci&oacute;n</label>
           <div class="info">
-            <img src="img/users.png" alt="" class="icon" >
+            <img src="img/name.png" alt="" class="icon" >
             <select class="habilitar ignorar pais ocultar " name="nacionalidad">
             <option value="" selected></option>
               <option value="UNO">Persona 1</option>
@@ -99,12 +100,13 @@
                 }
               ?>
         </div>
+        <br>
 
 
         <div class="field line">
           <label for="">Noches</label>
           <div class="info">
-            <img src="img/bed.png" alt="" class="icon" >
+            <img src="img/bed2.png" alt="" class="icon" >
             <select class="habilitar ignorar pais ocultar " name="nacionalidad">
             <option value="UNO" selected>1</option>
               <option value="DOS">2</option>
@@ -136,7 +138,7 @@
         <div class="field line">
           <label for="">Personas en la  reservaci&oacute;n</label>
           <div class="info">
-            <img src="img/users.png" alt="" class="icon" >
+            <img src="img/name.png" alt="" class="icon" >
             <select class="habilitar ignorar pais ocultar " name="nacionalidad">
             <option value="" selected></option>
               <option value="UNO">Persona 1</option>
@@ -161,11 +163,12 @@
                 }
               ?>
         </div>
+        <br>
 
         <div class="field line">
           <label for="">Tipo de habitaci&oacute;n</label>
           <div class="info">
-            <img src="img/bed.png" alt="" class="icon" >
+            <img src="img/bed2.png" alt="" class="icon" >
             <select class="habilitar ignorar pais ocultar " name="nacionalidad">
             <option value="UNO" selected>Habitacion</option>
             </select>
@@ -188,6 +191,7 @@
                 }
               ?>
         </div>
+        <br>
 
 
       <!-- MAPEO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -208,7 +212,7 @@
         <div class="field max">
           <div class="contenedor-centrado" >
             <input type="button" class="button-cancel" value="Cancel" id="btn-cancel">
-            <input type="submit" name=""  class="save" value="Guardar">
+            <input type="submit" name="" class="save" value="Guardar">
           </div>
         </div>
       </form>

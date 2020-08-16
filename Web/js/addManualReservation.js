@@ -1,10 +1,10 @@
 $(document).ready(function(){
     $( ".datepicker" ).datepicker();
-    
+
     $('.title-box').html("¿Estas seguro que desea salir? Se perderan los datos");
 
     $('.btn-confirm').click(function(){
-    location.href = "migrant.php";
+    location.href = "reservation.php";
     });
 
     $('.btn-confirm').addClass('click');

@@ -26,7 +26,7 @@
     if($nombres == '')//ESTA VACIO
     {
         $_SESSION['validNombres'] = '1';
-    } 
+    }
     else if(strlen($nombres)>100)//MUY LARGO
     {
         $_SESSION['validNombres'] = '2';
@@ -40,7 +40,7 @@
     if($apellidos == '')//ESTA VACIO
     {
         $_SESSION['validApelllidos'] = '1';
-    } 
+    }
     else if(strlen($apellidos)>60)//MUY LARGO
     {
         $_SESSION['validApelllidos'] = '2';
@@ -95,16 +95,16 @@
     && $_SESSION['validCita'] == '0' && $_SESSION['validHoraLlegada'] == '0' && $_SESSION['validFechaLlegada'] == '0' && $_SESSION['validNacimiento'] == '0')
     {
 
-        $ano = substr($fechaLlegada, 6, 4); 
-        $mes = substr($fechaLlegada, 0, 2); 
-        $dia = substr($fechaLlegada, 3, 2); 
+        $ano = substr($fechaLlegada, 6, 4);
+        $mes = substr($fechaLlegada, 0, 2);
+        $dia = substr($fechaLlegada, 3, 2);
         $cosa = $ano."-".$mes."-".$dia;
         $trans = strtotime($cosa);
         $fechall = date('Y-m-d', $trans);
 
-        $ano = substr($nacimiento, 6, 4); 
-        $mes = substr($nacimiento, 0, 2); 
-        $dia = substr($nacimiento, 3, 2); 
+        $ano = substr($nacimiento, 6, 4);
+        $mes = substr($nacimiento, 0, 2);
+        $dia = substr($nacimiento, 3, 2);
         $cosa = $ano."-".$mes."-".$dia;
         $trans = strtotime($cosa);
         $fechana = date('Y-m-d', $trans);
@@ -139,12 +139,12 @@
             mysqli_query($conexion,"insert into visitante(Nombre,Telefono,Fecha_nac,IDNacion,fecha_llegada,hora_llegada,cita_consulado,fecha_registro) values
             ('$nombres','$telefono','$fechana','$nacionalidad','$fechall','$horall','$citaco','$fecha_registro')")
             or die("Problemas en el select".mysqli_error($conexion));
-            
+
             mysqli_free_result($registros);
             mysqli_close($conexion);
 
             $_SESSION['sePudo'] = '2';
         }
-    }   
-    header("location:addManualMigrant.php");
+    }
+    header("location:addManualReservation.php");
 ?>
