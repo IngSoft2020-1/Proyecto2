@@ -1,6 +1,7 @@
 <?php
   session_start();
   error_reporting(0);
+  $_SESSION['prueba12'] = '0';
 ?>
 
 <!DOCTYPE html>
@@ -58,13 +59,10 @@
           </div>
           <!-- IMPRESION DE MENSAJE DE ERROR -->
           <?php
-                if($_SESSION['validFechaLlegada'] == '1')
-                {
                   echo '<div class="container-msg">
                     <p class="title-msg">Sin especificar.</p>
                     <p class="title-content-msg">Seleccione una fecha en el calendario.</p>
                   </div>';
-                }
               ?>
         </div>
 
@@ -77,27 +75,17 @@
           <div class="info">
             <img src="img/name.png" alt="" class="icon" >
             <select class="habilitar ignorar pais ocultar " name="nacionalidad">
-            <option value="" selected></option>
-              <option value="UNO">Persona 1</option>
+            <option value="UNO" selected>Persona 1</option>
+              <option value="DOS">Persona 2</option>
             </select>
               <input type="button" class="button-cancel" value="Agregar" id="btn-cancel7" style="margin-left: 10px !important;">
           </div>
           <!-- IMPRESION DE MENSAJE DE ERROR -->
           <?php
-                if($_SESSION['validNacion'] == '1')
-                {
-                  echo '<div class="container-msg">
-                    <p class="title-msg">Sin especificar.</p>
-                    <p class="title-content-msg">Seleccione una opción de la lista.</p>
-                  </div>';
-                }
-                else if($_SESSION['validNacion'] == '2')
-                {
-                  echo '<div class="container-msg">
-                    <p class="title-msg">Formato Incorrecto!.</p>
-                    <p class="title-content-msg">Seleccione una opción de la lista.</p>
-                  </div>';
-                }
+          echo '<div class="container-msg">
+            <p class="title-msg">Sin opción.</p>
+            <p class="title-content-msg">No hay personas para asignar a reservaciones.</p>
+          </div>';
               ?>
         </div>
         <br>
@@ -140,27 +128,17 @@
           <div class="info">
             <img src="img/name.png" alt="" class="icon" >
             <select class="habilitar ignorar pais ocultar " name="nacionalidad">
-            <option value="" selected></option>
-              <option value="UNO">Persona 1</option>
+            <option value="UNO" selected>Persona 1</option>
+              <option value="DOS">Persona 2</option>
             </select>
               <input type="button" class="button-cancel" value="Eliminar" id="btn-cancel9" style="margin-left: 10px !important;">
           </div>
           <!-- IMPRESION DE MENSAJE DE ERROR -->
           <?php
-                if($_SESSION['validNacion'] == '1')
-                {
                   echo '<div class="container-msg">
-                    <p class="title-msg">Sin especificar.</p>
-                    <p class="title-content-msg">Seleccione una opción de la lista.</p>
+                    <p class="title-msg">Reservación vacía.</p>
+                    <p class="title-content-msg">La reservación debe tener al menos una persona.</p>
                   </div>';
-                }
-                else if($_SESSION['validNacion'] == '2')
-                {
-                  echo '<div class="container-msg">
-                    <p class="title-msg">Formato Incorrecto!.</p>
-                    <p class="title-content-msg">Seleccione una opción de la lista.</p>
-                  </div>';
-                }
               ?>
         </div>
         <br>
@@ -252,8 +230,8 @@
       $_SESSION['sePudo'] = '';
     ?>
     <div class="box" id="sure">
-        <p class="title-box" style="display: inline;"></p>
-        <button id="btn-cancel-2" class="btn-cancel" name="button">Cancelar</button>
+        <p class="title-box" id="popup12" style="display: inline;"></p>
+        <button id="btn-cancel-2" class="btn-cancel" name="button">No</button>
     </div>
   </body>
 </html>

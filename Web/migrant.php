@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/css/tabla.css">
+
   <!-- MASCARA -->
   <script type="text/javascript" src="js/mask/src/jquery.mask.js"></script>
   <!-- LIBRERIA PARA LOS POPUPS
@@ -24,6 +26,16 @@
   <!-- <script src="js/ajaxOrdenar.js"></script> -->
   <title>Editar</title>
 </head>
+
+<!--
+  <script>
+    function contarFilas() {
+      var $num = document.getElementById('table-migrants').getElementsByTagName('tr').length - 1;
+      alert($num);
+    }
+    contarFilas();
+  </script>
+-->
 
 <body>
   <div class="container">

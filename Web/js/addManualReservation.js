@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $( ".datepicker" ).datepicker();
 
-    $('.title-box').html("¿Estas seguro que desea salir? Se perderan los datos");
+    $('.title-box').html("¿Estás seguro que quieres salir sin guardar los cambios?");
 
     $('.btn-confirm').click(function(){
     location.href = "reservation.php";

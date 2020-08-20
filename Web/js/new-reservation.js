@@ -5,6 +5,7 @@ $(document).ready(function(){
         // ACTUALIZAR VENTANA PADRE DENTRO DE UN IFRAME
         // parent.location.reload();
         // console.log($('.box'));
+        $('#btn-Aceptar').text('Sí');
         $('#sure').show();
         $('#sure').css("display", "flex");
     });
@@ -31,5 +32,5 @@ $(document).ready(function(){
     $('.box').hide('slow');
   });
 
-  
+
 });

@@ -10,7 +10,7 @@ $(document).ready(function(){
       function(i){
         return `
         <p class="title-box-2"></p>
-        <button class="btn-confirm">Aceptar</button>
+        <button class="btn-confirm" id="btn-Aceptar">Aceptar</button>
         `;
     });
 

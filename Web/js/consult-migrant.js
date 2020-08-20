@@ -749,6 +749,9 @@ $(document).ready(function() {
           // 1.- ELEMENTO. 2.- TEXTO DEL BOTON. 3.- COLOR
           Modificar_Boton($('#e'+ID), "Guardar", "#EC6D4A");
           Modificar_Boton($('.delete'+ID), "Cancelar", "transparent");
+
+          // ################ PRUEBA ROJO
+          Familia_Rojo(ID);
         }
         // DETECTA EL SEGUNDO CLICK
         else if($('#e'+ID).text() == "Guardar"){
@@ -760,8 +763,18 @@ $(document).ready(function() {
           Habilitar_Deshabilitar($('.'+ID), "on", "default");
           Modificar_Boton($('#e'+ID), "Editar", "transparent");
           Modificar_Boton($('.delete'+ID), "Eliminar", "#EC6D4A");
+
+          // ################ PRUEBA AZUL
+          Familia_Azul(ID);
         }
       });
+
+      function Familia_Rojo(id){
+        $("#" + id).css("border-left", "10px solid red");
+      }
+      function Familia_Azul(id){
+        $("#" + id).css("border-left", "10px solid blue");
+      }
 
       function Habilitar_Deshabilitar(elemento, disabled, cursor){
         elemento.prop("disabled", disabled).css("cursor", cursor);
@@ -851,20 +864,20 @@ $(document).ready(function() {
     $('#txtFile').change(function(){
       $('#enviarExcel').submit();
       $(this).val('');
-    }); 
-    
+    });
+
     $('#enviarExcel').on('submit', function(event){
       if($("#txtFile").val() == ''){
         /* Si no selecciona nada mensaje? */
-      } 
+      }
       else
       {
         event.preventDefault()
-        $.ajax({  
-          url:"leer.php",  
-          method:"POST",  
-          data:new FormData(this),  
-          contentType:false,  
+        $.ajax({
+          url:"leer.php",
+          method:"POST",
+          data:new FormData(this),
+          contentType:false,
           processData:false,
           success: function(){
             obtener();

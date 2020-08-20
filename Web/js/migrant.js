@@ -16,4 +16,13 @@ $(document).ready(function(){
   lblActualizar.mouseout(function(){
     $('.pop2').hide();
   })
+
+  function Familia_Rojo(id){
+    $("#" + id).css("border-left", "10px solid red");
+  }
+
+  function Familia_Azul(id){
+    $("#" + id).css("border-left", "10px solid blue");
+  }
+
 });
