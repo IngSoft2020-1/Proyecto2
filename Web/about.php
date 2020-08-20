@@ -15,34 +15,44 @@
     <link rel="stylesheet" href="css/edit.css">
   </head>
   <body>
-    <div class="centrado1">
-      <br>
-      <img src="img/TECNM_PNG.png" class="img1">
-      <img  src="img/ITT_PNG.png" class="img2">
-    </div>
-      <div >
-        <p style="color: #FFFFFF">Proyecto desarrollado en colaboración con el Tecnológico Nacional de México/Instituto Tecnológico de Tijuana. Ingeniería de Software 2020-1. </p>
+
+    <h1 style="color: #FFFFFF">¿Qui&eacute;nes somos?</h1>
+
+    <div class="container">
+        <FONT FACE="impact" SIZE=6>
+        <p style="color: #EC6D4A; text-align: justify;">Un grupo de estudiantes del Instituto Tecnológico de Tijuana del Tecnológico Nacional de México. Actualmente cursando la carrera de Ingeniería de Software en el semestre Enero-Junio (2020-1). </p>
         <br><br>
-        <p style="color: #FFFFFF">Integrantes:</p>
-        <ul style="color: #FFFFFF">
+        <p style="color: #EC6D4A">Integrantes:</p>
+        <ul style="color: #EC6D4A">
           BLANCO MELENDEZ MANUEL EDUARDO
         </ul>
-        <ul style="color: #FFFFFF">
+        <ul style="color: #EC6D4A">
           CARLOS ARMANDO CARLON GERARDO
         </ul>
-        <ul style="color: #FFFFFF">
+        <ul style="color: #EC6D4A">
           COTA VILLA EDY
         </ul>
-        <ul style="color: #FFFFFF">
+        <ul style="color: #EC6D4A">
           MORGADO JACOME EDUARDO
         </ul>
-        <ul style="color: #FFFFFF">
+        <ul style="color: #EC6D4A">
           PERALES NIEBLA ABNER JESUS
         </ul>
-        <ul style="color: #FFFFFF">
+        <ul style="color: #EC6D4A">
           RAMIREZ GARCIA JESUS
         </ul>
-      </div>
+      </FONT>
+    </div>
+
+    <br><br><br>
+    <p style="color: #00FF80;"> Proyecto desarrollado en colaboración con el Instituto Tecnológico de Tijuana del Tecnológico Nacional de México</p>
+
+    <div class="container" style="color: white; text-align:center !important;">
+      <br>
+      <img src="img/TECNM_PNG.png" class="img1" >
+      <img  src="img/ITT_PNG.png" class="img2">
+    </div>
+
 
 
   </body>
