@@ -20,8 +20,8 @@
 
     <div class="container">
         <FONT FACE="impact" SIZE=6>
-        <p style="color: #EC6D4A; text-align: justify;">Un grupo de estudiantes del Instituto Tecnológico de Tijuana del Tecnológico Nacional de México. Actualmente cursando la carrera de Ingeniería de Software en el semestre Enero-Junio (2020-1). </p>
-        <br><br>
+        <p style="color: #EC6D4A; text-align: justify;">Un grupo de estudiantes del Instituto Tecnológico de Tijuana del Tecnológico Nacional de México. Actualmente cursando la carrera de Ingeniería en Sistemas Computacionales en el semestre Enero-Junio (2020-1). </p>
+        <br>
         <p style="color: #EC6D4A">Integrantes:</p>
         <ul style="color: #EC6D4A">
           BLANCO MELENDEZ MANUEL EDUARDO
@@ -45,7 +45,7 @@
     </div>
 
     <br><br><br>
-    <p style="color: #00FF80;"> Proyecto desarrollado en colaboración con el Instituto Tecnológico de Tijuana del Tecnológico Nacional de México</p>
+    <p style="color: #00FF80;"> Proyecto desarrollado en colaboración con el Instituto Tecnológico de Tijuana del Tecnológico Nacional de México, para el curso de Ingeniería en Software.</p>
 
     <div class="container" style="color: white; text-align:center !important;">
       <br>
