@@ -12,10 +12,13 @@
     DATE_FORMAT(visitante.hora_llegada, '%H:%i %p') AS 'HoraLlegada',
     visitante.hora_llegada AS 'HoraLlegada2',
     DATE_FORMAT(visitante.cita_consulado, '%H:%i %p') AS 'CitaConsulado',
-    visitante.cita_consulado AS 'CitaConsulado2'
+    visitante.cita_consulado AS 'CitaConsulado2',
+    reservacion.IDReser
     FROM visitante 
-    INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion 
-    ORDER BY fecha_llegada DESC";
+    LEFT JOIN reservacion_visitante ON reservacion_visitante.IDVisi = visitante.IDVisi
+    LEFT JOIN reservacion ON reservacion_visitante.IDReser = reservacion.IDReser 
+    INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion
+    ORDER BY fecha_llegada DESC, reservacion.IDReser DESC";
 
     $resultado = mysqli_query($conexion, $query);
 
@@ -36,7 +39,8 @@
             'HoraLlegada' => $row['HoraLlegada'],
             'HoraLlegada2' => $row['HoraLlegada2'],
             'CitaConsulado' => $row['CitaConsulado'],
-            'CitaConsulado2' => $row['CitaConsulado2']
+            'CitaConsulado2' => $row['CitaConsulado2'],
+            'IDReser' => $row['IDReser']
         );
     }
     $jsonstring = json_encode($json);

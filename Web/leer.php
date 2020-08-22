@@ -3,7 +3,7 @@ session_start();
 error_reporting(0);
 /* CONEXION A LA BASE DE DATOS */
 require 'conexion.php';
-
+echo ("Entro a leer");
 /* LIBRERIA DE PHPEXCEL */
 require 'PHPExcel/PHPExcel/IOFactory.php';
 
@@ -229,8 +229,8 @@ if(!empty($_FILES['txtFile'])){
                         else if($personas > 3)
                         {$cuarto="T";}
                         $fechaFin=date('Y-m-d',strtotime($fecha. "+1 days"));
-                        $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado)
-                        VALUES ('$fecha','$fechaFin','1','$fecha_Creacion','$cuarto','E')";
+                        $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado,NumHabitacion)
+                        VALUES ('$fecha','$fechaFin','1','$fecha_Creacion','$cuarto','E','0')";
                         mysqli_query($conexion,$query);
                         $reservaciones++;
 
@@ -258,8 +258,8 @@ if(!empty($_FILES['txtFile'])){
                     else if($personas > 3)
                     {$cuarto="T";}
                     $fechaFin=date('Y-m-d',strtotime($fecha. "+1 days"));
-                    $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado)
-                        VALUES ('$fecha','$fechaFin','1','$fecha_Creacion','$cuarto','E')";
+                    $query="INSERT INTO reservacion (FechaInicio, Fechafin, DiasEstima, Creacion, Habitacion, Estado,NumHabitacion)
+                        VALUES ('$fecha','$fechaFin','1','$fecha_Creacion','$cuarto','E','0')";
                     mysqli_query($conexion,$query);
                     $reservaciones++;
 
@@ -283,12 +283,13 @@ if(!empty($_FILES['txtFile'])){
             echo "<script>console.log('Migrantes repetidos: ".$exitentes."');</script>";
             echo "<script>console.log('Reservaciones Creadas: ".$reservaciones."');</script>"; */
             
+            echo ("Exito");
             /* MENSAJE DE EXITO */
             $_SESSION['archivo'] = '4';/* EXITO */
 
         } catch (mysqli_sql_exception $e) {
             mysqli_rollback($conexion);
-
+            echo ($e);
             /* MENSAJE ERROR INESPERADO EN LA LECTURA DEL ARCHIVO */
             $_SESSION['archivo'] = '3';/* ERROR SQL */
         }

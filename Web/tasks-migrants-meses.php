@@ -20,10 +20,13 @@
         DATE_FORMAT(visitante.hora_llegada, '%H:%i %p') AS 'HoraLlegada',
         visitante.hora_llegada AS 'HoraLlegada2',
         DATE_FORMAT(visitante.cita_consulado, '%H:%i %p') AS 'CitaConsulado',
-        visitante.cita_consulado AS 'CitaConsulado2'
+        visitante.cita_consulado AS 'CitaConsulado2',
+        reservacion.IDReser
         FROM visitante 
-        INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion 
-        ORDER BY fecha_llegada DESC";
+        LEFT JOIN reservacion_visitante ON reservacion_visitante.IDVisi = visitante.IDVisi
+        LEFT JOIN reservacion ON reservacion_visitante.IDReser = reservacion.IDReser 
+        INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion
+        ORDER BY fecha_llegada DESC, reservacion.IDReser DESC";
         /* echo "Busqueda todos".$tiempo; */
     }
     else if($tiempo==7)/* 7 DIAS */
@@ -41,7 +44,9 @@
         DATE_FORMAT(visitante.cita_consulado, '%H:%i %p') AS 'CitaConsulado',
         visitante.cita_consulado AS 'CitaConsulado2'
         FROM visitante 
-        INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
+        LEFT JOIN reservacion_visitante ON reservacion_visitante.IDVisi = visitante.IDVisi
+        LEFT JOIN reservacion ON reservacion_visitante.IDReser = reservacion.IDReser 
+        INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion
         WHERE visitante.fecha_llegada>='$actual' AND visitante.fecha_llegada<='$fechalim'
         ORDER BY `fecha_llegada`  DESC";
         /* echo "Busqueda 7 dias".$tiempo; */
@@ -61,9 +66,11 @@
         DATE_FORMAT(visitante.cita_consulado, '%H:%i %p') AS 'CitaConsulado',
         visitante.cita_consulado AS 'CitaConsulado2'
         FROM visitante 
-        INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
+        LEFT JOIN reservacion_visitante ON reservacion_visitante.IDVisi = visitante.IDVisi
+        LEFT JOIN reservacion ON reservacion_visitante.IDReser = reservacion.IDReser 
+        INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion
         WHERE visitante.fecha_llegada<'$actual' AND visitante.fecha_llegada>='$fechalim'
-        ORDER BY `fecha_llegada`  DESC";
+        ORDER BY fecha_llegada DESC, reservacion.IDReser DESC";
         /* echo "Busqueda 1 mes".$tiempo; */
     }
     else if($tiempo==3)
@@ -81,7 +88,9 @@
         DATE_FORMAT(visitante.cita_consulado, '%H:%i %p') AS 'CitaConsulado',
         visitante.cita_consulado AS 'CitaConsulado2'
         FROM visitante 
-        INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
+        LEFT JOIN reservacion_visitante ON reservacion_visitante.IDVisi = visitante.IDVisi
+        LEFT JOIN reservacion ON reservacion_visitante.IDReser = reservacion.IDReser
+        INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion
         WHERE visitante.fecha_llegada<'$actual' AND visitante.fecha_llegada>='$fechalim'
         ORDER BY `fecha_llegada`  DESC";
     }
@@ -100,7 +109,9 @@
         DATE_FORMAT(visitante.cita_consulado, '%H:%i %p') AS 'CitaConsulado',
         visitante.cita_consulado AS 'CitaConsulado2'
         FROM visitante 
-        INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion  
+        LEFT JOIN reservacion_visitante ON reservacion_visitante.IDVisi = visitante.IDVisi
+        LEFT JOIN reservacion ON reservacion_visitante.IDReser = reservacion.IDReser
+        INNER JOIN nacionalidad ON nacionalidad.IDPais = visitante.IDNacion
         WHERE visitante.fecha_llegada<'$actual' AND visitante.fecha_llegada>='$fechalim'
         ORDER BY `fecha_llegada`  DESC";
     }
@@ -123,7 +134,8 @@
             'HoraLlegada' => $row['HoraLlegada'],
             'HoraLlegada2' => $row['HoraLlegada2'],
             'CitaConsulado' => $row['CitaConsulado'],
-            'CitaConsulado2' => $row['CitaConsulado2']
+            'CitaConsulado2' => $row['CitaConsulado2'],
+            'IDReser' => $row['IDReser']
         );
     }
     $jsonstring = json_encode($json);
