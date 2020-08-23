@@ -1,14 +1,178 @@
 $(document).ready(function() {
-
-  console.log('jQuery esta funcionando');
+  
+  /* Carga la lista de migrantes*/
   obtener();
 
+  /* FUNCION PARA DECLARAR BORDES DE MIGRANTES */
+  function Familia(color){
+    if(color)
+    {
+      return 'style="border-left: 10px solid red;"';
+    }
+    else
+    {
+      return 'style="border-left: 10px solid blue;"';
+    }
+  };
+  /* AQUI TERMINA */
+
+  /* FUNCIONES PARA COLOREAR BORDES */
+  function Familia_Color(id, color){
+    if(color)
+    {$("#" + id).css("border-left", "10px solid red");}
+    else
+    {$("#" + id).css("border-left", "10px solid blue");}
+  }
+  function Familia_None(id){
+    $("#" + id).css("border-left", "none");
+  }
+  /* AQUI TERMINAN */
+
+  function Pintar_Familias(boleano)
+  {
+    $reser=0;
+    $color=false;
+    table = document.getElementById("table-migrants");
+    rows = table.rows;
+    if(boleano)
+    {
+      for (i = 1; i < rows.length; i++)
+      {
+        var id = rows[i].getElementsByTagName("TD")[2].innerHTML;
+        var familia = rows[i].getElementsByTagName("TD")[3].innerHTML;
+        if($reser == familia)
+        {
+          /* Cuando es la misma familia */
+          Familia_Color(id,$color)
+        }
+        else if($reser == 0 && familia > 0)
+        {
+          /* Agarra la primera familia */
+          $reser=familia;
+          Familia_Color(id,$color)
+        }
+        else if($reser !=0 && familia > 0 && familia != $reser)
+        {
+          /* Para cambios de familia */
+          /* IF para alternar colores de familia */
+          $reser=familia;
+          if($color)
+          {$color = false;}
+          else
+          {$color = true;}
+          Familia_Color(id,$color)
+        }
+        else
+        {
+          Familia_None(id);
+        }
+      }
+    }
+    else
+    {
+      for (i = 1; i < rows.length; i++)
+      {
+        var id = rows[i].getElementsByTagName("TD")[2].innerHTML;
+        Familia_None(id);
+      }
+    }
+    
+  }
+  
+  /* FUNCION DE ORDENAMIENTO */
   $("#mySelect").change(function() {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     var typeSelect = document.getElementById("mySelect").value;
     table = document.getElementById("table-migrants");
     switching = true;
-    if(typeSelect == "3" || typeSelect == "4")
+    if (typeSelect == "1" || typeSelect == "2")
+    {
+      if(typeSelect == "1")
+      {
+        //Set the sorting direction to ascending:
+        dir = "asc";
+      }
+      else if(typeSelect == "2")
+      {
+        dir = "desc";
+      }
+
+      /*Make a loop that will continue until
+      no switching has been done:*/
+      while (switching)
+      {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++)
+        {
+          //start by saying there should be no switching:
+          shouldSwitch = false;
+          /*Get the two elements you want to compare,
+          one from current row and one from the next:*/
+          x = rows[i].getElementsByTagName("input")[1].value;
+          var datos = x.split('/');
+          fecha1 = new Date(datos[2],datos[0] - 1, datos[1]);
+          y = rows[i + 1].getElementsByTagName("input")[1].value;
+          var datos = y.split('/');
+          fecha2 = new Date(datos[2],datos[0] - 1, datos[1]);
+          /* Identificadores de familias */
+          xFamilia = rows[i].getElementsByTagName("td")[3].innerHTML;
+          yFamilia = rows[i + 1].getElementsByTagName("td")[3].innerHTML;
+
+          /*check if the two rows should switch place,
+          based on the direction, asc or desc:*/
+          if (dir == "asc")
+          {
+            if (fecha1 > fecha2) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch= true;
+              break;
+            }
+            /* Acomoda por familias, para luego no batallar agrupandolas */
+            if (xFamilia > yFamilia)
+            {
+              shouldSwitch= true;
+              break;
+            }
+          }
+          else if (dir == "desc")
+          {
+            if (fecha1 < fecha2) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+            /* Acomoda por familias, para luego no batallar agrupandolas */
+            if (xFamilia < yFamilia)
+            {
+              shouldSwitch= true;
+              break;
+            }
+          }
+          
+          
+        }
+        if (shouldSwitch)
+        {
+          /*If a switch has been marked, make the switch
+          and mark that a switch has been done:*/
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          //Each time a switch is done, increase this count by 1:
+          switchcount ++;
+        }
+        else {
+          /*If no switching has been done AND the direction is "asc",
+          set the direction to "desc" and run the while loop again.*/
+        }
+      }
+      /* AAAAAAAAAUIOSDASDASD */
+      Pintar_Familias(true);
+    }
+    else if(typeSelect == "3" || typeSelect == "4")
     {
       if(typeSelect == "3")
       {
@@ -19,7 +183,6 @@ $(document).ready(function() {
       {
           dir = "desc";
       }
-
       /*Make a loop that will continue until
       no switching has been done:*/
       while (switching)
@@ -41,21 +204,19 @@ $(document).ready(function() {
           based on the direction, asc or desc:*/
           if (dir == "asc")
           {
-              if (x > y) {
-                  //if so, mark as a switch and break the loop:
-                  console.log(x, ">", y)
-                  shouldSwitch= true;
-                  break;
-              }
+            if (x > y) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch= true;
+              break;
+            }
           }
           else if (dir == "desc")
           {
-              if (x < y) {
-                  //if so, mark as a switch and break the loop:
-                  console.log(x, "<", y)
-                  shouldSwitch = true;
-                  break;
-              }
+            if (x < y) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
           }
         }
 
@@ -72,82 +233,13 @@ $(document).ready(function() {
           set the direction to "desc" and run the while loop again.*/
         }
       }
-    }
-    else if(typeSelect == "1" || typeSelect == "2")
-    {
-      if(typeSelect == "1")
-      {
-          //Set the sorting direction to ascending:
-          dir = "asc";
-      }
-      else if(typeSelect == "2")
-      {
-          dir = "desc";
-      }
-
-      /*Make a loop that will continue until
-      no switching has been done:*/
-      while (switching)
-      {
-        //start by saying: no switching is done:
-        switching = false;
-        rows = table.rows;
-        /*Loop through all table rows (except the
-        first, which contains table headers):*/
-        for (i = 1; i < (rows.length - 1); i++)
-        {
-          //start by saying there should be no switching:
-          shouldSwitch = false;
-          /*Get the two elements you want to compare,
-          one from current row and one from the next:*/
-          x = rows[i].getElementsByTagName("input")[1].value;
-          var datos = x.split('/');
-          fecha1=new Date(datos[2],datos[0] - 1, datos[1]);
-          y = rows[i + 1].getElementsByTagName("input")[1].value;
-          var datos = y.split('/');
-          fecha2=new Date(datos[2],datos[0] - 1, datos[1]);
-
-          /*check if the two rows should switch place,
-          based on the direction, asc or desc:*/
-          if (dir == "asc")
-          {
-            if (fecha1 > fecha2) {
-                //if so, mark as a switch and break the loop:
-                console.log(fecha1,">", fecha2)
-                shouldSwitch= true;
-                break;
-            }
-          }
-          else if (dir == "desc")
-          {
-            if (fecha1 < fecha2) {
-              console.log(fecha1,"<", fecha2)
-                //if so, mark as a switch and break the loop:
-                shouldSwitch = true;
-                break;
-            }
-          }
-        }
-
-        if (shouldSwitch)
-        {
-          /*If a switch has been marked, make the switch
-          and mark that a switch has been done:*/
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-          //Each time a switch is done, increase this count by 1:
-          switchcount ++;
-        }
-        else {
-          /*If no switching has been done AND the direction is "asc",
-          set the direction to "desc" and run the while loop again.*/
-        }
-      }
+      Pintar_Familias(false);
     }
   });
 
   time='0';
   $("#mySelect2").change(function() {
+    $reser=0;
     time = document.getElementById("mySelect2").value;
     $color=false;
     $row=0;
@@ -188,6 +280,8 @@ $(document).ready(function() {
                   templado += `${Familia($color)}`
                 }
                 templado +=`>
+                    <td style="display: none;">${task.IDVisi}</td>
+                    <td style="display: none;">${task.IDReser}</td>
                     <td style="display: none;">${$row}</td>
                     <td class='fecha-llegada'>
                       <input disabled="on" type="text" value="${task.FechaLlegada}" class="datepicker fecha-llegada habilitar llegada${$row} ${task.IDVisi}">
@@ -453,19 +547,6 @@ $(document).ready(function() {
   /*Usado en migrant.php*/
   /*Funcion para imprimir las filas de los migrantes existentes*/
   var edit; // BOTON CLICK, SE DECLARA AFUERA DEBIDO QUE AQUI NO GENERO ERRORES
-  
-  /* FUNCION PARA DECLARAR BORDES DE MIGRANTES */
-  function Familia(color){
-    if(color)
-    {
-      return 'style="border-left: 10px solid red;"';
-    }
-    else
-    {
-      return 'style="border-left: 10px solid blue;"';
-    }
-  };
-  /* AQUI TERMINA */
 
   var borrar;
   var claseIdentificador;
@@ -512,6 +593,8 @@ $(document).ready(function() {
             templado +=`>
               <td class="td-show" style="display: none;"><input type="checkbox"></td>
               <td style="display: none;">${$row}</td>
+              <td style="display: none;">${task.IDVisi}</td>
+              <td style="display: none;">${task.IDReser}</td>
               <td class='fecha-llegada'>
                 <input disabled="on" type="text" value="${task.FechaLlegada}" class="datepicker fecha-llegada habilitar llegada${$row} ${task.IDVisi}">
               </td>
@@ -828,15 +911,6 @@ $(document).ready(function() {
           Modificar_Boton($('.delete'+ID), "Eliminar", "#EC6D4A");
         }
       });
-
-      /* FUNCIONES PARA COLOREAR BORDES */
-      /* function Familia_Rojo(id){
-        $("#" + id).css("border-left", "10px solid red");
-      }
-      function Familia_Azul(id){
-        $("#" + id).css("border-left", "10px solid blue");
-      } */
-      /* AQUI TERMINAN */
 
       function Habilitar_Deshabilitar(elemento, disabled, cursor){
         elemento.prop("disabled", disabled).css("cursor", cursor);
