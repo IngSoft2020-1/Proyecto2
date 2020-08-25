@@ -21,7 +21,7 @@
       <img  src="img/ITT_PNG.png" class="img2" style="width: 200px !important; height: 200px !important;">
     </div>
 
-    <h1 style="color: #FFFFFF">¿Qui&eacute;nes somos?</h1>
+    <h1 style="color: #EC6D4A">¿Qui&eacute;nes somos?</h1>
 
     <div class="container-table">
       <table>
@@ -55,7 +55,7 @@
       <thead>
         <tr>
           <br><br>
-          <p style="color: #00FF80;"> Proyecto desarrollado en colaboración con el Instituto Tecnológico de Tijuana del Tecnológico Nacional de México, para el curso de Ingeniería en Software.</p>
+          <p style="color: #EC6D4A;"> Proyecto desarrollado en colaboración con el Instituto Tecnológico de Tijuana del Tecnológico Nacional de México, para el curso de Ingeniería en Software.</p>
         </tr>
       </thead>
     </table>
