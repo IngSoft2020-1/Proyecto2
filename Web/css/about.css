@@ -14,3 +14,22 @@
 .img2{
     width: 300px; height: 300px;
 }
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  text-align: left;
+  padding: 40px;
+  font-size: calc(0.5em + 0.7vw);
+}
+
+.container-table{
+  width: 90%;
+  margin: auto;
+  box-shadow: 4px 4px 20px #141a1f;
+  margin-top: 15px;
+  border-radius: 15px;
+  /* padding: 10px; */
+  background: #283138;
+}
