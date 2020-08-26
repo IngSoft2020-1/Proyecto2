@@ -21,33 +21,33 @@
       <img  src="img/ITT_PNG.png" class="img2" style="width: 200px !important; height: 200px !important;">
     </div>
 
-    <h1 style="color: #EC6D4A">¿Qui&eacute;nes somos?</h1>
+    <h1 style="color: #FFFFFF">¿Qui&eacute;nes somos?</h1>
 
     <div class="container-table">
       <table>
         <thead>
           <tr>
             <FONT FACE="impact" SIZE=4>
-            <p style="color: #EC6D4A; text-align: left;"> Un grupo de estudiantes del Instituto Tecnológico de Tijuana del Tecnológico Nacional de México. Actualmente cursando la carrera de Ingeniería en Sistemas Computacionales en el semestre Enero-Junio (2020-1). </p>
+            <p style="color: #FFFFFF; text-align: left;"> Un grupo de estudiantes del Instituto Tecnológico de Tijuana del Tecnológico Nacional de México. Actualmente cursando la carrera de Ingeniería en Sistemas Computacionales en el semestre Enero-Junio (2020-1). </p>
             <br>
-            <p style="color: #EC6D4A">Integrantes:</p>
-            <ul style="color: #EC6D4A">
-              BLANCO MELENDEZ MANUEL EDUARDO
+            <p style="color: #FFFFFF">Integrantes:</p>
+            <ul style="color: #FFFFFF">
+              Blanco Melendez Manuel Eduardo
             </ul>
-            <ul style="color: #EC6D4A">
-              CARLOS ARMANDO CARLON GERARDO
+            <ul style="color: #FFFFFF">
+              Carlos Armando Carlon Gerardo
             </ul>
-            <ul style="color: #EC6D4A">
-              COTA VILLA EDY
+            <ul style="color: #FFFFFF">
+              Cota Villa Edy
             </ul>
-            <ul style="color: #EC6D4A">
-              MORGADO JACOME EDUARDO
+            <ul style="color: #FFFFFF">
+              Morgado Jacome Eduardo
             </ul>
-            <ul style="color: #EC6D4A">
-              PERALES NIEBLA ABNER JESUS
+            <ul style="color: #FFFFFF">
+              Perales Niebla Abner Jesus
             </ul>
-            <ul style="color: #EC6D4A">
-              RAMIREZ GARCIA JESUS
+            <ul style="color: #FFFFFF">
+              Ramirez Garcia Jesus
             </ul>
           </FONT>
         </tr>
@@ -55,7 +55,7 @@
       <thead>
         <tr>
           <br><br>
-          <p style="color: #EC6D4A;"> Proyecto desarrollado en colaboración con el Instituto Tecnológico de Tijuana del Tecnológico Nacional de México, para el curso de Ingeniería en Software.</p>
+          <p style="color: #FFFFFF;"> Proyecto desarrollado en colaboración con el Instituto Tecnológico de Tijuana del Tecnológico Nacional de México, para el curso de Ingeniería en Software.</p>
         </tr>
       </thead>
     </table>

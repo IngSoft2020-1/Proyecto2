@@ -1,6 +1,6 @@
 $(document).ready(function() {
   //Usado en migrant.php
-  
+
   /* Carga la lista de migrantes*/
   obtener();
 
@@ -27,9 +27,10 @@ $(document).ready(function() {
   var edit; // BOTON CLICK, SE DECLARA AFUERA DEBIDO QUE AQUI NO GENERO ERRORES
   var borrar;
   var claseIdentificador;
-  
+
   var migrantes;//Esta variable se usa para saber cuantas filas exportar al PDF
   function obtener() {
+    deshabilitar(true);
     $row = 0;
     $reser = 0;//Esta variable se utilizar para checar no. de reservacion entre migrantes
     migrantes = 0;
@@ -354,8 +355,15 @@ $(document).ready(function() {
         $( ".datepicker" ).datepicker();
       }
     });
+    deshabilitar(false);
   }
 
+  //Funcion para habilitar/deshabilitar los select
+  function deshabilitar(bol){
+
+      document.getElementById("mySelect").disabled = bol;
+      document.getElementById("mySelect2").disabled = bol;
+  }
   //*************************************************************
       // NOTA: LEER.
       /* EN LA LINEA 232 SE AGREGO UN SPAN Y SE HACE INVISIBLE, ESTE
