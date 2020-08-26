@@ -66,8 +66,8 @@
       <div class="select">
         <label for="order">Ordenar por:</label>
         <select class="" name="order" id="mySelect">
-          <option value="1"selected>Fecha de llegada asc</option>
-          <option value="2">Fecha de llegada desc</option>
+          <option value="1">Fecha de llegada asc</option>
+          <option value="2"selected>Fecha de llegada desc</option>
           <option value="3">Nombre asc</option>
           <option value="4">Nombre desc</option>
           <!-- <option value="5">Cita consulado asc</option>

@@ -1,9 +1,17 @@
 $(document).ready(function() {
+  //Usado en migrant.php
   
   /* Carga la lista de migrantes*/
   obtener();
 
-  /* FUNCION PARA DECLARAR BORDES DE MIGRANTES */
+  $("#mySelect").change(function() {
+    obtener();
+  });
+  $("#mySelect2").change(function() {
+    obtener();
+  });
+
+  //Funcion para declarar bordes de migrantes
   function Familia(color){
     if(color)
     {
@@ -14,560 +22,38 @@ $(document).ready(function() {
       return 'style="border-left: 10px solid blue;"';
     }
   };
-  /* AQUI TERMINA */
 
-  /* FUNCIONES PARA COLOREAR BORDES */
-  function Familia_Color(id, color){
-    if(color)
-    {$("#" + id).css("border-left", "10px solid red");}
-    else
-    {$("#" + id).css("border-left", "10px solid blue");}
-  }
-  function Familia_None(id){
-    $("#" + id).css("border-left", "none");
-  }
-  /* AQUI TERMINAN */
-
-  function Pintar_Familias(boleano)
-  {
-    $reser=0;
-    $color=false;
-    table = document.getElementById("table-migrants");
-    rows = table.rows;
-    if(boleano)
-    {
-      for (i = 1; i < rows.length; i++)
-      {
-        var id = rows[i].getElementsByTagName("TD")[2].innerHTML;
-        var familia = rows[i].getElementsByTagName("TD")[3].innerHTML;
-        if($reser == familia)
-        {
-          /* Cuando es la misma familia */
-          Familia_Color(id,$color)
-        }
-        else if($reser == 0 && familia > 0)
-        {
-          /* Agarra la primera familia */
-          $reser=familia;
-          Familia_Color(id,$color)
-        }
-        else if($reser !=0 && familia > 0 && familia != $reser)
-        {
-          /* Para cambios de familia */
-          /* IF para alternar colores de familia */
-          $reser=familia;
-          if($color)
-          {$color = false;}
-          else
-          {$color = true;}
-          Familia_Color(id,$color)
-        }
-        else
-        {
-          Familia_None(id);
-        }
-      }
-    }
-    else
-    {
-      for (i = 1; i < rows.length; i++)
-      {
-        var id = rows[i].getElementsByTagName("TD")[2].innerHTML;
-        Familia_None(id);
-      }
-    }
-    
-  }
-  
-  /* FUNCION DE ORDENAMIENTO */
-  $("#mySelect").change(function() {
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    var typeSelect = document.getElementById("mySelect").value;
-    table = document.getElementById("table-migrants");
-    switching = true;
-    if (typeSelect == "1" || typeSelect == "2")
-    {
-      if(typeSelect == "1")
-      {
-        //Set the sorting direction to ascending:
-        dir = "asc";
-      }
-      else if(typeSelect == "2")
-      {
-        dir = "desc";
-      }
-
-      /*Make a loop that will continue until
-      no switching has been done:*/
-      while (switching)
-      {
-        //start by saying: no switching is done:
-        switching = false;
-        rows = table.rows;
-        /*Loop through all table rows (except the
-        first, which contains table headers):*/
-        for (i = 1; i < (rows.length - 1); i++)
-        {
-          //start by saying there should be no switching:
-          shouldSwitch = false;
-          /*Get the two elements you want to compare,
-          one from current row and one from the next:*/
-          x = rows[i].getElementsByTagName("input")[1].value;
-          var datos = x.split('/');
-          fecha1 = new Date(datos[2],datos[0] - 1, datos[1]);
-          y = rows[i + 1].getElementsByTagName("input")[1].value;
-          var datos = y.split('/');
-          fecha2 = new Date(datos[2],datos[0] - 1, datos[1]);
-          /* Identificadores de familias */
-          xFamilia = rows[i].getElementsByTagName("td")[3].innerHTML;
-          yFamilia = rows[i + 1].getElementsByTagName("td")[3].innerHTML;
-
-          /*check if the two rows should switch place,
-          based on the direction, asc or desc:*/
-          if (dir == "asc")
-          {
-            if (fecha1 > fecha2) {
-              //if so, mark as a switch and break the loop:
-              shouldSwitch= true;
-              break;
-            }
-            /* Acomoda por familias, para luego no batallar agrupandolas */
-            if (xFamilia > yFamilia)
-            {
-              shouldSwitch= true;
-              break;
-            }
-          }
-          else if (dir == "desc")
-          {
-            if (fecha1 < fecha2) {
-              //if so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-            /* Acomoda por familias, para luego no batallar agrupandolas */
-            if (xFamilia < yFamilia)
-            {
-              shouldSwitch= true;
-              break;
-            }
-          }
-          
-          
-        }
-        if (shouldSwitch)
-        {
-          /*If a switch has been marked, make the switch
-          and mark that a switch has been done:*/
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-          //Each time a switch is done, increase this count by 1:
-          switchcount ++;
-        }
-        else {
-          /*If no switching has been done AND the direction is "asc",
-          set the direction to "desc" and run the while loop again.*/
-        }
-      }
-      /* AAAAAAAAAUIOSDASDASD */
-      Pintar_Familias(true);
-    }
-    else if(typeSelect == "3" || typeSelect == "4")
-    {
-      if(typeSelect == "3")
-      {
-          //Set the sorting direction to ascending:
-          dir = "asc";
-      }
-      else if(typeSelect == "4")
-      {
-          dir = "desc";
-      }
-      /*Make a loop that will continue until
-      no switching has been done:*/
-      while (switching)
-      {
-        //start by saying: no switching is done:
-        switching = false;
-        rows = table.rows;
-        /*Loop through all table rows (except the
-        first, which contains table headers):*/
-        for (i = 1; i < (rows.length - 1); i++)
-        {
-          //start by saying there should be no switching:
-          shouldSwitch = false;
-          /*Get the two elements you want to compare,
-          one from current row and one from the next:*/
-          x = rows[i].getElementsByTagName("input")[2].value.toLowerCase();
-          y = rows[i + 1].getElementsByTagName("input")[2].value.toLowerCase();
-          /*check if the two rows should switch place,
-          based on the direction, asc or desc:*/
-          if (dir == "asc")
-          {
-            if (x > y) {
-              //if so, mark as a switch and break the loop:
-              shouldSwitch= true;
-              break;
-            }
-          }
-          else if (dir == "desc")
-          {
-            if (x < y) {
-              //if so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-
-        if (shouldSwitch) {
-          /*If a switch has been marked, make the switch
-          and mark that a switch has been done:*/
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-          //Each time a switch is done, increase this count by 1:
-          switchcount ++;
-        }
-        else {
-          /*If no switching has been done AND the direction is "asc",
-          set the direction to "desc" and run the while loop again.*/
-        }
-      }
-      Pintar_Familias(false);
-    }
-  });
-
-  time='0';
-  $("#mySelect2").change(function() {
-    $reser=0;
-    time = document.getElementById("mySelect2").value;
-    $color=false;
-    $row=0;
-    migrantes=0;
-    $.ajax({
-        url: 'tasks-migrants-meses.php',
-        type: 'GET',
-        data: {data:time},
-        success: function (response) {
-            let tasks = JSON.parse(response);
-            console.log(tasks);
-            let templado = '';
-            tasks.forEach(task => {
-                $row++;
-                migrantes++;
-                templado += `
-                <tr class="tr" id="${task.IDVisi}" value="${$row}"`
-                if($reser == task.IDReser)
-                {
-                  /* Cuando es la misma familia */
-                  templado += `${Familia($color)}`
-                }
-                else if($reser == 0 && task.IDReser>0)
-                {
-                  /* Agarra la primera familia */
-                  $reser=task.IDReser;
-                  templado += `${Familia($color)}`
-                }
-                else if($reser !=0 && task.IDReser>0 && task.IDReser != $reser)
-                {
-                  /* Para cambios de familia */
-                  /* IF para alternar colores de familia */
-                  $reser=task.IDReser;
-                  if($color)
-                  {$color = false;}
-                  else
-                  {$color = true;}
-                  templado += `${Familia($color)}`
-                }
-                templado +=`>
-                    <td style="display: none;">${task.IDVisi}</td>
-                    <td style="display: none;">${task.IDReser}</td>
-                    <td style="display: none;">${$row}</td>
-                    <td class='fecha-llegada'>
-                      <input disabled="on" type="text" value="${task.FechaLlegada}" class="datepicker fecha-llegada habilitar llegada${$row} ${task.IDVisi}">
-                    </td>
-                    <td class='nombre'>
-                      <input type="text" value="${task.Nombre}" disabled="on" class="habilitar ignorar nom${$row} ${task.IDVisi}">
-                    </td>
-                    <td class="min-width">
-                      <input disabled="on" type="text" value="${task.FechaNacimiento}" class="datepicker fecha-llegada habilitar fn${$row} ${task.IDVisi}">
-                    </td>
-                    <td class="min-width">
-                      <select id="busqueda_hora" disabled="on" class="habilitar fecha-llegada hl${$row} ${task.IDVisi}">
-                        <option value="${task.HoraLlegada2}" selected>${task.HoraLlegada}</option>
-                        <option value="00:00:00">00:00 AM</option>
-                        <option value="00:15:00">00:15 AM</option>
-                        <option value="00:30:00">00:30 AM</option>
-                        <option value="00:45:00">00:45 AM</option>
-                        <option value="01:00:00">01:00 AM</option>
-                        <option value="01:15:00">01:15 AM</option>
-                        <option value="01:30:00">01:30 AM</option>
-                        <option value="01:45:00">01:45 AM</option>
-                        <option value="02:00:00">02:00 AM</option>
-                        <option value="02:15:00">02:15 AM</option>
-                        <option value="02:30:00">02:30 AM</option>
-                        <option value="02:45:00">02:45 AM</option>
-                        <option value="03:00:00">03:00 AM</option>
-                        <option value="03:15:00">03:15 AM</option>
-                        <option value="03:30:00">03:30 AM</option>
-                        <option value="03:45:00">03:45 AM</option>
-                        <option value="04:00:00">04:00 AM</option>
-                        <option value="04:15:00">04:15 AM</option>
-                        <option value="04:30:00">04:30 AM</option>
-                        <option value="04:45:00">04:45 AM</option>
-                        <option value="05:00:00">05:00 AM</option>
-                        <option value="05:15:00">05:15 AM</option>
-                        <option value="05:30:00">05:30 AM</option>
-                        <option value="05:45:00">05:45 AM</option>
-                        <option value="06:00:00">06:00 AM</option>
-                        <option value="06:15:00">06:15 AM</option>
-                        <option value="06:30:00">06:30 AM</option>
-                        <option value="06:45:00">06:45 AM</option>
-                        <option value="07:00:00">07:00 AM</option>
-                        <option value="07:15:00">07:15 AM</option>
-                        <option value="07:30:00">07:30 AM</option>
-                        <option value="07:45:00">07:45 AM</option>
-                        <option value="08:00:00">08:00 AM</option>
-                        <option value="08:15:00">08:15 AM</option>
-                        <option value="08:30:00">08:30 AM</option>
-                        <option value="08:45:00">08:45 AM</option>
-                        <option value="09:00:00">09:00 AM</option>
-                        <option value="09:15:00">09:15 AM</option>
-                        <option value="09:30:00">09:30 AM</option>
-                        <option value="09:45:00">09:45 AM</option>
-                        <option value="10:00:00">10:00 AM</option>
-                        <option value="10:15:00">10:15 AM</option>
-                        <option value="10:30:00">10:30 AM</option>
-                        <option value="10:45:00">10:45 AM</option>
-                        <option value="11:00:00">11:00 AM</option>
-                        <option value="11:15:00">11:15 AM</option>
-                        <option value="11:30:00">11:30 AM</option>
-                        <option value="11:45:00">11:45 AM</option>
-                        <option value="12:00:00">12:00 PM</option>
-                        <option value="12:15:00">12:15 PM</option>
-                        <option value="12:30:00">12:30 PM</option>
-                        <option value="12:45:00">12:45 PM</option>
-                        <option value="13:00:00">13:00 PM</option>
-                        <option value="13:15:00">13:15 PM</option>
-                        <option value="13:30:00">13:30 PM</option>
-                        <option value="13:45:00">13:45 PM</option>
-                        <option value="14:00:00">14:00 PM</option>
-                        <option value="14:15:00">14:15 PM</option>
-                        <option value="14:30:00">14:30 PM</option>
-                        <option value="14:45:00">14:45 PM</option>
-                        <option value="15:00:00">15:00 PM</option>
-                        <option value="15:15:00">15:15 PM</option>
-                        <option value="15:30:00">15:30 PM</option>
-                        <option value="15:45:00">15:45 PM</option>
-                        <option value="16:00:00">16:00 PM</option>
-                        <option value="16:15:00">16:15 PM</option>
-                        <option value="16:30:00">16:30 PM</option>
-                        <option value="16:45:00">16:45 PM</option>
-                        <option value="17:00:00">17:00 PM</option>
-                        <option value="17:15:00">17:15 PM</option>
-                        <option value="17:30:00">17:30 PM</option>
-                        <option value="17:45:00">17:45 PM</option>
-                        <option value="18:00:00">18:00 PM</option>
-                        <option value="18:15:00">18:15 PM</option>
-                        <option value="18:30:00">18:30 PM</option>
-                        <option value="18:45:00">18:45 PM</option>
-                        <option value="19:00:00">19:00 PM</option>
-                        <option value="19:15:00">19:15 PM</option>
-                        <option value="19:30:00">19:30 PM</option>
-                        <option value="19:45:00">19:45 PM</option>
-                        <option value="20:00:00">20:00 PM</option>
-                        <option value="20:15:00">20:15 PM</option>
-                        <option value="20:30:00">20:30 PM</option>
-                        <option value="20:45:00">20:45 PM</option>
-                        <option value="21:00:00">21:00 PM</option>
-                        <option value="21:15:00">21:15 PM</option>
-                        <option value="21:30:00">21:30 PM</option>
-                        <option value="21:45:00">21:45 PM</option>
-                        <option value="22:00:00">22:00 PM</option>
-                        <option value="22:15:00">22:15 PM</option>
-                        <option value="22:30:00">22:30 PM</option>
-                        <option value="22:45:00">22:45 PM</option>
-                        <option value="23:00:00">23:00 PM</option>
-                        <option value="23:15:00">23:15 PM</option>
-                        <option value="23:30:00">23:30 PM</option>
-                        <option value="23:45:00">23:45 PM</option>
-                        </select>
-                    </td>
-                    <td class="cita">
-                      <select id="busqueda_hora" disabled="on" class="habilitar cc${$row} ${task.IDVisi}">
-                        <option value="${task.CitaConsulado2}" selected>${task.CitaConsulado}</option>
-                        <option value="00:00:00">00:00 AM</option>
-                        <option value="00:15:00">00:15 AM</option>
-                        <option value="00:30:00">00:30 AM</option>
-                        <option value="00:45:00">00:45 AM</option>
-                        <option value="01:00:00">01:00 AM</option>
-                        <option value="01:15:00">01:15 AM</option>
-                        <option value="01:30:00">01:30 AM</option>
-                        <option value="01:45:00">01:45 AM</option>
-                        <option value="02:00:00">02:00 AM</option>
-                        <option value="02:15:00">02:15 AM</option>
-                        <option value="02:30:00">02:30 AM</option>
-                        <option value="02:45:00">02:45 AM</option>
-                        <option value="03:00:00">03:00 AM</option>
-                        <option value="03:15:00">03:15 AM</option>
-                        <option value="03:30:00">03:30 AM</option>
-                        <option value="03:45:00">03:45 AM</option>
-                        <option value="04:00:00">04:00 AM</option>
-                        <option value="04:15:00">04:15 AM</option>
-                        <option value="04:30:00">04:30 AM</option>
-                        <option value="04:45:00">04:45 AM</option>
-                        <option value="05:00:00">05:00 AM</option>
-                        <option value="05:15:00">05:15 AM</option>
-                        <option value="05:30:00">05:30 AM</option>
-                        <option value="05:45:00">05:45 AM</option>
-                        <option value="06:00:00">06:00 AM</option>
-                        <option value="06:15:00">06:15 AM</option>
-                        <option value="06:30:00">06:30 AM</option>
-                        <option value="06:45:00">06:45 AM</option>
-                        <option value="07:00:00">07:00 AM</option>
-                        <option value="07:15:00">07:15 AM</option>
-                        <option value="07:30:00">07:30 AM</option>
-                        <option value="07:45:00">07:45 AM</option>
-                        <option value="08:00:00">08:00 AM</option>
-                        <option value="08:15:00">08:15 AM</option>
-                        <option value="08:30:00">08:30 AM</option>
-                        <option value="08:45:00">08:45 AM</option>
-                        <option value="09:00:00">09:00 AM</option>
-                        <option value="09:15:00">09:15 AM</option>
-                        <option value="09:30:00">09:30 AM</option>
-                        <option value="09:45:00">09:45 AM</option>
-                        <option value="10:00:00">10:00 AM</option>
-                        <option value="10:15:00">10:15 AM</option>
-                        <option value="10:30:00">10:30 AM</option>
-                        <option value="10:45:00">10:45 AM</option>
-                        <option value="11:00:00">11:00 AM</option>
-                        <option value="11:15:00">11:15 AM</option>
-                        <option value="11:30:00">11:30 AM</option>
-                        <option value="11:45:00">11:45 AM</option>
-                        <option value="12:00:00">12:00 PM</option>
-                        <option value="12:15:00">12:15 PM</option>
-                        <option value="12:30:00">12:30 PM</option>
-                        <option value="12:45:00">12:45 PM</option>
-                        <option value="13:00:00">13:00 PM</option>
-                        <option value="13:15:00">13:15 PM</option>
-                        <option value="13:30:00">13:30 PM</option>
-                        <option value="13:45:00">13:45 PM</option>
-                        <option value="14:00:00">14:00 PM</option>
-                        <option value="14:15:00">14:15 PM</option>
-                        <option value="14:30:00">14:30 PM</option>
-                        <option value="14:45:00">14:45 PM</option>
-                        <option value="15:00:00">15:00 PM</option>
-                        <option value="15:15:00">15:15 PM</option>
-                        <option value="15:30:00">15:30 PM</option>
-                        <option value="15:45:00">15:45 PM</option>
-                        <option value="16:00:00">16:00 PM</option>
-                        <option value="16:15:00">16:15 PM</option>
-                        <option value="16:30:00">16:30 PM</option>
-                        <option value="16:45:00">16:45 PM</option>
-                        <option value="17:00:00">17:00 PM</option>
-                        <option value="17:15:00">17:15 PM</option>
-                        <option value="17:30:00">17:30 PM</option>
-                        <option value="17:45:00">17:45 PM</option>
-                        <option value="18:00:00">18:00 PM</option>
-                        <option value="18:15:00">18:15 PM</option>
-                        <option value="18:30:00">18:30 PM</option>
-                        <option value="18:45:00">18:45 PM</option>
-                        <option value="19:00:00">19:00 PM</option>
-                        <option value="19:15:00">19:15 PM</option>
-                        <option value="19:30:00">19:30 PM</option>
-                        <option value="19:45:00">19:45 PM</option>
-                        <option value="20:00:00">20:00 PM</option>
-                        <option value="20:15:00">20:15 PM</option>
-                        <option value="20:30:00">20:30 PM</option>
-                        <option value="20:45:00">20:45 PM</option>
-                        <option value="21:00:00">21:00 PM</option>
-                        <option value="21:15:00">21:15 PM</option>
-                        <option value="21:30:00">21:30 PM</option>
-                        <option value="21:45:00">21:45 PM</option>
-                        <option value="22:00:00">22:00 PM</option>
-                        <option value="22:15:00">22:15 PM</option>
-                        <option value="22:30:00">22:30 PM</option>
-                        <option value="22:45:00">22:45 PM</option>
-                        <option value="23:00:00">23:00 PM</option>
-                        <option value="23:15:00">23:15 PM</option>
-                        <option value="23:30:00">23:30 PM</option>
-                        <option value="23:45:00">23:45 PM</option>
-                        </select>
-                    </td>
-                    <td>
-                      <select disabled="on" class="habilitar ignorar pais${$row} ${task.IDVisi}">
-                        <option value="${task.IDPais}" selected>${task.Pais}</option>
-                        <option value="ARG">Argentina</option>
-                        <option value="BLM">San Bartolome</option>
-                        <option value="BOL">Bolivia</option>
-                        <option value="BRA">Brasil</option>
-                        <option value="CHL">Chile</option>
-                        <option value="COL">Colombia</option>
-                        <option value="CRI">Cota Rica</option>
-                        <option value="CUB">Cuba</option>
-                        <option value="ECU">Ecuador</option>
-                        <option value="GLP">Guadalupe</option>
-                        <option value="GTM">Guatemala</option>
-                        <option value="GUF">Guyana Francesa</option>
-                        <option value="Mex">Mexico</option>
-                        <option value="MTQ">Martinica</option>
-                        <option value="NIC">Nicaragua</option>
-                        <option value="PAN">Panama</option>
-                        <option value="PER">Peru</option>
-                        <option value="PRI">Puerto Rico</option>
-                        <option value="PRY">Paraguay</option>
-                        <option value="RDO">Republica Dominicana</option>
-                        <option value="SLV">El Salvador</option>
-                        <option value="SXM">San Martin</option>
-                        <option value="URY">Uruguay</option>
-                        <option value="VEN">Venezuela</option>
-                      </select>
-                    </td>
-                    <td>
-                      <input disabled="on" type="text" value="${task.Telefono}" class="txt-tel habilitar telefono${$row} ${task.IDVisi}">
-                      <span class="${$row}" style="display: none;"/>
-                    </td>
-                    <td>
-                      <button class="button edit" id="e${task.IDVisi}">Editar</button>
-                    </td>
-                    <td>
-                      <button class="button task-delete delete delete${task.IDVisi}">Eliminar</button>
-                    </td>
-                </tr>
-                `;
-            });
-            $('#tasks-migrants').html(templado);
-            // METODO PARA QUE EL INPUT DE TIPO DATAPICKER SEA UN CALENDARIO AL DAR CLICK
-            $( ".datepicker" ).datepicker();
-        }
-    });
-    $("select#mySelect").prop('selectedIndex', 1);
-  });
-
-  /*Usado en migrant.php*/
   /*Funcion para imprimir las filas de los migrantes existentes*/
   var edit; // BOTON CLICK, SE DECLARA AFUERA DEBIDO QUE AQUI NO GENERO ERRORES
-
   var borrar;
   var claseIdentificador;
-  var migrantes;
+  
+  var migrantes;//Esta variable se usa para saber cuantas filas exportar al PDF
   function obtener() {
-    $reser=0;
-    $color=false;
-    $row=0;
-    migrantes=0;
+    $row = 0;
+    $reser = 0;//Esta variable se utilizar para checar no. de reservacion entre migrantes
+    migrantes = 0;
+    $color = false;//Variable utilizada para alternar colores de familias
+
+    $order = document.getElementById("mySelect").value;
+    $time = document.getElementById("mySelect2").value;
+
     $.ajax({
-        url: 'tasks-migrants.php',
-        type: 'GET',
-        success: function (response) {
-          let tasks = JSON.parse(response);
-          console.log(tasks);
-          let templado = '';
-          tasks.forEach(task => {
-            $row++;
-            migrantes++;
-            templado += `
-            <tr class="tr" id="${task.IDVisi}" value="${$row}"`
+      url: 'tasks-migrants.php',
+      type: 'GET',
+      data: {data1:$order,data2:$time},
+      success: function (response) {
+        let tasks = JSON.parse(response);
+        console.log(tasks);
+        let templado = '';
+        tasks.forEach(task => {
+          $row++;
+          migrantes++;
+          templado += `
+          <tr class="tr" id="${task.IDVisi}" value="${$row}"`
+          //Para colocar bordes de color a las familias
+          if($order == 1 || $order == 2)//Solo funciona en ordenar por fecha
+          {
             if($reser == task.IDReser)
             {
               /* Cuando es la misma familia */
@@ -590,271 +76,284 @@ $(document).ready(function() {
               {$color = true;}
               templado += `${Familia($color)}`
             }
-            templado +=`>
-              <td class="td-show" style="display: none;"><input type="checkbox"></td>
-              <td style="display: none;">${$row}</td>
-              <td style="display: none;">${task.IDVisi}</td>
-              <td style="display: none;">${task.IDReser}</td>
-              <td class='fecha-llegada'>
-                <input disabled="on" type="text" value="${task.FechaLlegada}" class="datepicker fecha-llegada habilitar llegada${$row} ${task.IDVisi}">
-              </td>
-              <td class='nombre'>
-                <input type="text" value="${task.Nombre}" disabled="on" class="habilitar ignorar nom${$row} ${task.IDVisi}">
-              </td>
-              <td class="min-width">
-                <input disabled="on" type="text" value="${task.FechaNacimiento}" class="datepicker fecha-llegada habilitar fn${$row} ${task.IDVisi}">
-              </td>
-              <td class="min-width">
-                <select id="busqueda_hora" disabled="on" class="habilitar fecha-llegada hl${$row} ${task.IDVisi}">
-                  <option value="${task.HoraLlegada2}" selected>${task.HoraLlegada}</option>
-                  <option value="00:00:00">00:00 AM</option>
-                  <option value="00:15:00">00:15 AM</option>
-                  <option value="00:30:00">00:30 AM</option>
-                  <option value="00:45:00">00:45 AM</option>
-                  <option value="01:00:00">01:00 AM</option>
-                  <option value="01:15:00">01:15 AM</option>
-                  <option value="01:30:00">01:30 AM</option>
-                  <option value="01:45:00">01:45 AM</option>
-                  <option value="02:00:00">02:00 AM</option>
-                  <option value="02:15:00">02:15 AM</option>
-                  <option value="02:30:00">02:30 AM</option>
-                  <option value="02:45:00">02:45 AM</option>
-                  <option value="03:00:00">03:00 AM</option>
-                  <option value="03:15:00">03:15 AM</option>
-                  <option value="03:30:00">03:30 AM</option>
-                  <option value="03:45:00">03:45 AM</option>
-                  <option value="04:00:00">04:00 AM</option>
-                  <option value="04:15:00">04:15 AM</option>
-                  <option value="04:30:00">04:30 AM</option>
-                  <option value="04:45:00">04:45 AM</option>
-                  <option value="05:00:00">05:00 AM</option>
-                  <option value="05:15:00">05:15 AM</option>
-                  <option value="05:30:00">05:30 AM</option>
-                  <option value="05:45:00">05:45 AM</option>
-                  <option value="06:00:00">06:00 AM</option>
-                  <option value="06:15:00">06:15 AM</option>
-                  <option value="06:30:00">06:30 AM</option>
-                  <option value="06:45:00">06:45 AM</option>
-                  <option value="07:00:00">07:00 AM</option>
-                  <option value="07:15:00">07:15 AM</option>
-                  <option value="07:30:00">07:30 AM</option>
-                  <option value="07:45:00">07:45 AM</option>
-                  <option value="08:00:00">08:00 AM</option>
-                  <option value="08:15:00">08:15 AM</option>
-                  <option value="08:30:00">08:30 AM</option>
-                  <option value="08:45:00">08:45 AM</option>
-                  <option value="09:00:00">09:00 AM</option>
-                  <option value="09:15:00">09:15 AM</option>
-                  <option value="09:30:00">09:30 AM</option>
-                  <option value="09:45:00">09:45 AM</option>
-                  <option value="10:00:00">10:00 AM</option>
-                  <option value="10:15:00">10:15 AM</option>
-                  <option value="10:30:00">10:30 AM</option>
-                  <option value="10:45:00">10:45 AM</option>
-                  <option value="11:00:00">11:00 AM</option>
-                  <option value="11:15:00">11:15 AM</option>
-                  <option value="11:30:00">11:30 AM</option>
-                  <option value="11:45:00">11:45 AM</option>
-                  <option value="12:00:00">12:00 PM</option>
-                  <option value="12:15:00">12:15 PM</option>
-                  <option value="12:30:00">12:30 PM</option>
-                  <option value="12:45:00">12:45 PM</option>
-                  <option value="13:00:00">13:00 PM</option>
-                  <option value="13:15:00">13:15 PM</option>
-                  <option value="13:30:00">13:30 PM</option>
-                  <option value="13:45:00">13:45 PM</option>
-                  <option value="14:00:00">14:00 PM</option>
-                  <option value="14:15:00">14:15 PM</option>
-                  <option value="14:30:00">14:30 PM</option>
-                  <option value="14:45:00">14:45 PM</option>
-                  <option value="15:00:00">15:00 PM</option>
-                  <option value="15:15:00">15:15 PM</option>
-                  <option value="15:30:00">15:30 PM</option>
-                  <option value="15:45:00">15:45 PM</option>
-                  <option value="16:00:00">16:00 PM</option>
-                  <option value="16:15:00">16:15 PM</option>
-                  <option value="16:30:00">16:30 PM</option>
-                  <option value="16:45:00">16:45 PM</option>
-                  <option value="17:00:00">17:00 PM</option>
-                  <option value="17:15:00">17:15 PM</option>
-                  <option value="17:30:00">17:30 PM</option>
-                  <option value="17:45:00">17:45 PM</option>
-                  <option value="18:00:00">18:00 PM</option>
-                  <option value="18:15:00">18:15 PM</option>
-                  <option value="18:30:00">18:30 PM</option>
-                  <option value="18:45:00">18:45 PM</option>
-                  <option value="19:00:00">19:00 PM</option>
-                  <option value="19:15:00">19:15 PM</option>
-                  <option value="19:30:00">19:30 PM</option>
-                  <option value="19:45:00">19:45 PM</option>
-                  <option value="20:00:00">20:00 PM</option>
-                  <option value="20:15:00">20:15 PM</option>
-                  <option value="20:30:00">20:30 PM</option>
-                  <option value="20:45:00">20:45 PM</option>
-                  <option value="21:00:00">21:00 PM</option>
-                  <option value="21:15:00">21:15 PM</option>
-                  <option value="21:30:00">21:30 PM</option>
-                  <option value="21:45:00">21:45 PM</option>
-                  <option value="22:00:00">22:00 PM</option>
-                  <option value="22:15:00">22:15 PM</option>
-                  <option value="22:30:00">22:30 PM</option>
-                  <option value="22:45:00">22:45 PM</option>
-                  <option value="23:00:00">23:00 PM</option>
-                  <option value="23:15:00">23:15 PM</option>
-                  <option value="23:30:00">23:30 PM</option>
-                  <option value="23:45:00">23:45 PM</option>
-                </select>
-              </td>
-              <td class="cita">
-                <select id="busqueda_hora" disabled="on" class="habilitar cc${$row} ${task.IDVisi}">
-                  <option value="${task.CitaConsulado2}" selected>${task.CitaConsulado}</option>
-                  <option value="00:00:00">00:00 AM</option>
-                  <option value="00:15:00">00:15 AM</option>
-                  <option value="00:30:00">00:30 AM</option>
-                  <option value="00:45:00">00:45 AM</option>
-                  <option value="01:00:00">01:00 AM</option>
-                  <option value="01:15:00">01:15 AM</option>
-                  <option value="01:30:00">01:30 AM</option>
-                  <option value="01:45:00">01:45 AM</option>
-                  <option value="02:00:00">02:00 AM</option>
-                  <option value="02:15:00">02:15 AM</option>
-                  <option value="02:30:00">02:30 AM</option>
-                  <option value="02:45:00">02:45 AM</option>
-                  <option value="03:00:00">03:00 AM</option>
-                  <option value="03:15:00">03:15 AM</option>
-                  <option value="03:30:00">03:30 AM</option>
-                  <option value="03:45:00">03:45 AM</option>
-                  <option value="04:00:00">04:00 AM</option>
-                  <option value="04:15:00">04:15 AM</option>
-                  <option value="04:30:00">04:30 AM</option>
-                  <option value="04:45:00">04:45 AM</option>
-                  <option value="05:00:00">05:00 AM</option>
-                  <option value="05:15:00">05:15 AM</option>
-                  <option value="05:30:00">05:30 AM</option>
-                  <option value="05:45:00">05:45 AM</option>
-                  <option value="06:00:00">06:00 AM</option>
-                  <option value="06:15:00">06:15 AM</option>
-                  <option value="06:30:00">06:30 AM</option>
-                  <option value="06:45:00">06:45 AM</option>
-                  <option value="07:00:00">07:00 AM</option>
-                  <option value="07:15:00">07:15 AM</option>
-                  <option value="07:30:00">07:30 AM</option>
-                  <option value="07:45:00">07:45 AM</option>
-                  <option value="08:00:00">08:00 AM</option>
-                  <option value="08:15:00">08:15 AM</option>
-                  <option value="08:30:00">08:30 AM</option>
-                  <option value="08:45:00">08:45 AM</option>
-                  <option value="09:00:00">09:00 AM</option>
-                  <option value="09:15:00">09:15 AM</option>
-                  <option value="09:30:00">09:30 AM</option>
-                  <option value="09:45:00">09:45 AM</option>
-                  <option value="10:00:00">10:00 AM</option>
-                  <option value="10:15:00">10:15 AM</option>
-                  <option value="10:30:00">10:30 AM</option>
-                  <option value="10:45:00">10:45 AM</option>
-                  <option value="11:00:00">11:00 AM</option>
-                  <option value="11:15:00">11:15 AM</option>
-                  <option value="11:30:00">11:30 AM</option>
-                  <option value="11:45:00">11:45 AM</option>
-                  <option value="12:00:00">12:00 PM</option>
-                  <option value="12:15:00">12:15 PM</option>
-                  <option value="12:30:00">12:30 PM</option>
-                  <option value="12:45:00">12:45 PM</option>
-                  <option value="13:00:00">13:00 PM</option>
-                  <option value="13:15:00">13:15 PM</option>
-                  <option value="13:30:00">13:30 PM</option>
-                  <option value="13:45:00">13:45 PM</option>
-                  <option value="14:00:00">14:00 PM</option>
-                  <option value="14:15:00">14:15 PM</option>
-                  <option value="14:30:00">14:30 PM</option>
-                  <option value="14:45:00">14:45 PM</option>
-                  <option value="15:00:00">15:00 PM</option>
-                  <option value="15:15:00">15:15 PM</option>
-                  <option value="15:30:00">15:30 PM</option>
-                  <option value="15:45:00">15:45 PM</option>
-                  <option value="16:00:00">16:00 PM</option>
-                  <option value="16:15:00">16:15 PM</option>
-                  <option value="16:30:00">16:30 PM</option>
-                  <option value="16:45:00">16:45 PM</option>
-                  <option value="17:00:00">17:00 PM</option>
-                  <option value="17:15:00">17:15 PM</option>
-                  <option value="17:30:00">17:30 PM</option>
-                  <option value="17:45:00">17:45 PM</option>
-                  <option value="18:00:00">18:00 PM</option>
-                  <option value="18:15:00">18:15 PM</option>
-                  <option value="18:30:00">18:30 PM</option>
-                  <option value="18:45:00">18:45 PM</option>
-                  <option value="19:00:00">19:00 PM</option>
-                  <option value="19:15:00">19:15 PM</option>
-                  <option value="19:30:00">19:30 PM</option>
-                  <option value="19:45:00">19:45 PM</option>
-                  <option value="20:00:00">20:00 PM</option>
-                  <option value="20:15:00">20:15 PM</option>
-                  <option value="20:30:00">20:30 PM</option>
-                  <option value="20:45:00">20:45 PM</option>
-                  <option value="21:00:00">21:00 PM</option>
-                  <option value="21:15:00">21:15 PM</option>
-                  <option value="21:30:00">21:30 PM</option>
-                  <option value="21:45:00">21:45 PM</option>
-                  <option value="22:00:00">22:00 PM</option>
-                  <option value="22:15:00">22:15 PM</option>
-                  <option value="22:30:00">22:30 PM</option>
-                  <option value="22:45:00">22:45 PM</option>
-                  <option value="23:00:00">23:00 PM</option>
-                  <option value="23:15:00">23:15 PM</option>
-                  <option value="23:30:00">23:30 PM</option>
-                  <option value="23:45:00">23:45 PM</option>
-                </select>
-              </td>
-              <td>
-                <select disabled="on" class="habilitar ignorar pais${$row} ${task.IDVisi}">
-                  <option value="${task.IDPais}" selected>${task.Pais}</option>
-                  <option value="ARG">Argentina</option>
-                  <option value="BLM">San Bartolome</option>
-                  <option value="BOL">Bolivia</option>
-                  <option value="BRA">Brasil</option>
-                  <option value="CHL">Chile</option>
-                  <option value="COL">Colombia</option>
-                  <option value="CRI">Cota Rica</option>
-                  <option value="CUB">Cuba</option>
-                  <option value="ECU">Ecuador</option>
-                  <option value="GLP">Guadalupe</option>
-                  <option value="GTM">Guatemala</option>
-                  <option value="GUF">Guyana Francesa</option>
-                  <option value="Mex">Mexico</option>
-                  <option value="MTQ">Martinica</option>
-                  <option value="NIC">Nicaragua</option>
-                  <option value="PAN">Panama</option>
-                  <option value="PER">Peru</option>
-                  <option value="PRI">Puerto Rico</option>
-                  <option value="PRY">Paraguay</option>
-                  <option value="RDO">Republica Dominicana</option>
-                  <option value="SLV">El Salvador</option>
-                  <option value="SXM">San Martin</option>
-                  <option value="URY">Uruguay</option>
-                  <option value="VEN">Venezuela</option>
-                </select>
-              </td>
-              <td>
-                <input disabled="on" type="text" value="${task.Telefono}" class="txt-tel habilitar telefono${$row} ${task.IDVisi}">
-                <span class="${$row}" style="display: none;"/>
-              </td>
-              <td>
-                <button class="button edit" id="e${task.IDVisi}">Editar</button>
-              </td>
-              <td>
-                <button class="button task-delete delete delete${task.IDVisi}">Eliminar</button>
-              </td>
-            </tr>
-            `;
-          });
-          $('#tasks-migrants').html(templado);
-          // METODO PARA QUE EL INPUT DE TIPO DATAPICKER SEA UN CALENDARIO AL DAR CLICK
-          $( ".datepicker" ).datepicker();
-        }
+          }
+          templado +=`>
+            <td class="td-show" style="display: none;"><input type="checkbox"></td>
+            <td style="display: none;">${$row}</td>
+            <td style="display: none;">${task.IDVisi}</td>
+            <td style="display: none;">${task.IDReser}</td>
+            <td class='fecha-llegada'>
+              <input disabled="on" type="text" value="${task.FechaLlegada}" class="datepicker fecha-llegada habilitar llegada${$row} ${task.IDVisi}">
+            </td>
+            <td class='nombre'>
+              <input type="text" value="${task.Nombre}" disabled="on" class="habilitar ignorar nom${$row} ${task.IDVisi}">
+            </td>
+            <td class="min-width">
+              <input disabled="on" type="text" value="${task.FechaNacimiento}" class="datepicker fecha-llegada habilitar fn${$row} ${task.IDVisi}">
+            </td>
+            <td class="min-width">
+              <select id="busqueda_hora" disabled="on" class="habilitar fecha-llegada hl${$row} ${task.IDVisi}">
+                <option value="${task.HoraLlegada2}" selected>${task.HoraLlegada}</option>
+                <option value="00:00:00">00:00 AM</option>
+                <option value="00:15:00">00:15 AM</option>
+                <option value="00:30:00">00:30 AM</option>
+                <option value="00:45:00">00:45 AM</option>
+                <option value="01:00:00">01:00 AM</option>
+                <option value="01:15:00">01:15 AM</option>
+                <option value="01:30:00">01:30 AM</option>
+                <option value="01:45:00">01:45 AM</option>
+                <option value="02:00:00">02:00 AM</option>
+                <option value="02:15:00">02:15 AM</option>
+                <option value="02:30:00">02:30 AM</option>
+                <option value="02:45:00">02:45 AM</option>
+                <option value="03:00:00">03:00 AM</option>
+                <option value="03:15:00">03:15 AM</option>
+                <option value="03:30:00">03:30 AM</option>
+                <option value="03:45:00">03:45 AM</option>
+                <option value="04:00:00">04:00 AM</option>
+                <option value="04:15:00">04:15 AM</option>
+                <option value="04:30:00">04:30 AM</option>
+                <option value="04:45:00">04:45 AM</option>
+                <option value="05:00:00">05:00 AM</option>
+                <option value="05:15:00">05:15 AM</option>
+                <option value="05:30:00">05:30 AM</option>
+                <option value="05:45:00">05:45 AM</option>
+                <option value="06:00:00">06:00 AM</option>
+                <option value="06:15:00">06:15 AM</option>
+                <option value="06:30:00">06:30 AM</option>
+                <option value="06:45:00">06:45 AM</option>
+                <option value="07:00:00">07:00 AM</option>
+                <option value="07:15:00">07:15 AM</option>
+                <option value="07:30:00">07:30 AM</option>
+                <option value="07:45:00">07:45 AM</option>
+                <option value="08:00:00">08:00 AM</option>
+                <option value="08:15:00">08:15 AM</option>
+                <option value="08:30:00">08:30 AM</option>
+                <option value="08:45:00">08:45 AM</option>
+                <option value="09:00:00">09:00 AM</option>
+                <option value="09:15:00">09:15 AM</option>
+                <option value="09:30:00">09:30 AM</option>
+                <option value="09:45:00">09:45 AM</option>
+                <option value="10:00:00">10:00 AM</option>
+                <option value="10:15:00">10:15 AM</option>
+                <option value="10:30:00">10:30 AM</option>
+                <option value="10:45:00">10:45 AM</option>
+                <option value="11:00:00">11:00 AM</option>
+                <option value="11:15:00">11:15 AM</option>
+                <option value="11:30:00">11:30 AM</option>
+                <option value="11:45:00">11:45 AM</option>
+                <option value="12:00:00">12:00 PM</option>
+                <option value="12:15:00">12:15 PM</option>
+                <option value="12:30:00">12:30 PM</option>
+                <option value="12:45:00">12:45 PM</option>
+                <option value="13:00:00">13:00 PM</option>
+                <option value="13:15:00">13:15 PM</option>
+                <option value="13:30:00">13:30 PM</option>
+                <option value="13:45:00">13:45 PM</option>
+                <option value="14:00:00">14:00 PM</option>
+                <option value="14:15:00">14:15 PM</option>
+                <option value="14:30:00">14:30 PM</option>
+                <option value="14:45:00">14:45 PM</option>
+                <option value="15:00:00">15:00 PM</option>
+                <option value="15:15:00">15:15 PM</option>
+                <option value="15:30:00">15:30 PM</option>
+                <option value="15:45:00">15:45 PM</option>
+                <option value="16:00:00">16:00 PM</option>
+                <option value="16:15:00">16:15 PM</option>
+                <option value="16:30:00">16:30 PM</option>
+                <option value="16:45:00">16:45 PM</option>
+                <option value="17:00:00">17:00 PM</option>
+                <option value="17:15:00">17:15 PM</option>
+                <option value="17:30:00">17:30 PM</option>
+                <option value="17:45:00">17:45 PM</option>
+                <option value="18:00:00">18:00 PM</option>
+                <option value="18:15:00">18:15 PM</option>
+                <option value="18:30:00">18:30 PM</option>
+                <option value="18:45:00">18:45 PM</option>
+                <option value="19:00:00">19:00 PM</option>
+                <option value="19:15:00">19:15 PM</option>
+                <option value="19:30:00">19:30 PM</option>
+                <option value="19:45:00">19:45 PM</option>
+                <option value="20:00:00">20:00 PM</option>
+                <option value="20:15:00">20:15 PM</option>
+                <option value="20:30:00">20:30 PM</option>
+                <option value="20:45:00">20:45 PM</option>
+                <option value="21:00:00">21:00 PM</option>
+                <option value="21:15:00">21:15 PM</option>
+                <option value="21:30:00">21:30 PM</option>
+                <option value="21:45:00">21:45 PM</option>
+                <option value="22:00:00">22:00 PM</option>
+                <option value="22:15:00">22:15 PM</option>
+                <option value="22:30:00">22:30 PM</option>
+                <option value="22:45:00">22:45 PM</option>
+                <option value="23:00:00">23:00 PM</option>
+                <option value="23:15:00">23:15 PM</option>
+                <option value="23:30:00">23:30 PM</option>
+                <option value="23:45:00">23:45 PM</option>
+              </select>
+            </td>
+            <td class="cita">
+              <select id="busqueda_hora" disabled="on" class="habilitar cc${$row} ${task.IDVisi}">
+                <option value="${task.CitaConsulado2}" selected>${task.CitaConsulado}</option>
+                <option value="00:00:00">00:00 AM</option>
+                <option value="00:15:00">00:15 AM</option>
+                <option value="00:30:00">00:30 AM</option>
+                <option value="00:45:00">00:45 AM</option>
+                <option value="01:00:00">01:00 AM</option>
+                <option value="01:15:00">01:15 AM</option>
+                <option value="01:30:00">01:30 AM</option>
+                <option value="01:45:00">01:45 AM</option>
+                <option value="02:00:00">02:00 AM</option>
+                <option value="02:15:00">02:15 AM</option>
+                <option value="02:30:00">02:30 AM</option>
+                <option value="02:45:00">02:45 AM</option>
+                <option value="03:00:00">03:00 AM</option>
+                <option value="03:15:00">03:15 AM</option>
+                <option value="03:30:00">03:30 AM</option>
+                <option value="03:45:00">03:45 AM</option>
+                <option value="04:00:00">04:00 AM</option>
+                <option value="04:15:00">04:15 AM</option>
+                <option value="04:30:00">04:30 AM</option>
+                <option value="04:45:00">04:45 AM</option>
+                <option value="05:00:00">05:00 AM</option>
+                <option value="05:15:00">05:15 AM</option>
+                <option value="05:30:00">05:30 AM</option>
+                <option value="05:45:00">05:45 AM</option>
+                <option value="06:00:00">06:00 AM</option>
+                <option value="06:15:00">06:15 AM</option>
+                <option value="06:30:00">06:30 AM</option>
+                <option value="06:45:00">06:45 AM</option>
+                <option value="07:00:00">07:00 AM</option>
+                <option value="07:15:00">07:15 AM</option>
+                <option value="07:30:00">07:30 AM</option>
+                <option value="07:45:00">07:45 AM</option>
+                <option value="08:00:00">08:00 AM</option>
+                <option value="08:15:00">08:15 AM</option>
+                <option value="08:30:00">08:30 AM</option>
+                <option value="08:45:00">08:45 AM</option>
+                <option value="09:00:00">09:00 AM</option>
+                <option value="09:15:00">09:15 AM</option>
+                <option value="09:30:00">09:30 AM</option>
+                <option value="09:45:00">09:45 AM</option>
+                <option value="10:00:00">10:00 AM</option>
+                <option value="10:15:00">10:15 AM</option>
+                <option value="10:30:00">10:30 AM</option>
+                <option value="10:45:00">10:45 AM</option>
+                <option value="11:00:00">11:00 AM</option>
+                <option value="11:15:00">11:15 AM</option>
+                <option value="11:30:00">11:30 AM</option>
+                <option value="11:45:00">11:45 AM</option>
+                <option value="12:00:00">12:00 PM</option>
+                <option value="12:15:00">12:15 PM</option>
+                <option value="12:30:00">12:30 PM</option>
+                <option value="12:45:00">12:45 PM</option>
+                <option value="13:00:00">13:00 PM</option>
+                <option value="13:15:00">13:15 PM</option>
+                <option value="13:30:00">13:30 PM</option>
+                <option value="13:45:00">13:45 PM</option>
+                <option value="14:00:00">14:00 PM</option>
+                <option value="14:15:00">14:15 PM</option>
+                <option value="14:30:00">14:30 PM</option>
+                <option value="14:45:00">14:45 PM</option>
+                <option value="15:00:00">15:00 PM</option>
+                <option value="15:15:00">15:15 PM</option>
+                <option value="15:30:00">15:30 PM</option>
+                <option value="15:45:00">15:45 PM</option>
+                <option value="16:00:00">16:00 PM</option>
+                <option value="16:15:00">16:15 PM</option>
+                <option value="16:30:00">16:30 PM</option>
+                <option value="16:45:00">16:45 PM</option>
+                <option value="17:00:00">17:00 PM</option>
+                <option value="17:15:00">17:15 PM</option>
+                <option value="17:30:00">17:30 PM</option>
+                <option value="17:45:00">17:45 PM</option>
+                <option value="18:00:00">18:00 PM</option>
+                <option value="18:15:00">18:15 PM</option>
+                <option value="18:30:00">18:30 PM</option>
+                <option value="18:45:00">18:45 PM</option>
+                <option value="19:00:00">19:00 PM</option>
+                <option value="19:15:00">19:15 PM</option>
+                <option value="19:30:00">19:30 PM</option>
+                <option value="19:45:00">19:45 PM</option>
+                <option value="20:00:00">20:00 PM</option>
+                <option value="20:15:00">20:15 PM</option>
+                <option value="20:30:00">20:30 PM</option>
+                <option value="20:45:00">20:45 PM</option>
+                <option value="21:00:00">21:00 PM</option>
+                <option value="21:15:00">21:15 PM</option>
+                <option value="21:30:00">21:30 PM</option>
+                <option value="21:45:00">21:45 PM</option>
+                <option value="22:00:00">22:00 PM</option>
+                <option value="22:15:00">22:15 PM</option>
+                <option value="22:30:00">22:30 PM</option>
+                <option value="22:45:00">22:45 PM</option>
+                <option value="23:00:00">23:00 PM</option>
+                <option value="23:15:00">23:15 PM</option>
+                <option value="23:30:00">23:30 PM</option>
+                <option value="23:45:00">23:45 PM</option>
+              </select>
+            </td>
+            <td>
+              <select disabled="on" class="habilitar ignorar pais${$row} ${task.IDVisi}">
+                <option value="${task.IDPais}" selected>${task.Pais}</option>
+                <option value="ARG">Argentina</option>
+                <option value="ATG">Antigua y Barbuda</option>
+                <option value="BHS">Bahamas</option>
+                <option value="BLM">San Bartolome</option>
+                <option value="BLZ">Belice</option>
+                <option value="BOL">Bolivia</option>
+                <option value="BRA">Brasil</option>
+                <option value="BRB">Barbados</option>
+                <option value="CHL">Chile</option>
+                <option value="COL">Colombia</option>
+                <option value="CRI">Costa Rica</option>
+                <option value="CUB">Cuba</option>
+                <option value="DMA">Dominica</option>
+                <option value="ECU">Ecuador</option>
+                <option value="GLP">Guadalupe</option>
+                <option value="GRD">Granada</option>
+                <option value="GTM">Guatemala</option>
+                <option value="GUF">Guyana Francesa</option>
+                <option value="HND">Honduras</option>
+                <option value="HTI">Haití</option>
+                <option value="JAM">Jamaica</option>
+                <option value="KNA">San Cristobal y Nieves</option>
+                <option value="LCA">Santa Lucia</option>
+                <option value="MEX">Mexico</option>
+                <option value="MTQ">Martinica</option>
+                <option value="NIC">Nicaragua</option>
+                <option value="PAN">Panama</option>
+                <option value="PER">Peru</option>
+                <option value="PRI">Puerto Rico</option>
+                <option value="PRY">Paraguay</option>
+                <option value="RDO">Republica Dominicana</option>
+                <option value="SLV">El Salvador</option>
+                <option value="SUR">Surinam</option>
+                <option value="SXM">San Martin</option>
+                <option value="TTO">Trinidad y Tobago</option>
+                <option value="URY">Uruguay</option>
+                <option value="VCT">San Vicente y las Granadinas</option>
+                <option value="VEN">Venezuela</option>
+              </select>
+            </td>
+            <td>
+              <input disabled="on" type="text" value="${task.Telefono}" class="txt-tel habilitar telefono${$row} ${task.IDVisi}">
+              <span class="${$row}" style="display: none;"/>
+            </td>
+            <td>
+              <button class="button edit" id="e${task.IDVisi}">Editar</button>
+            </td>
+            <td>
+              <button class="button task-delete delete delete${task.IDVisi}">Eliminar</button>
+            </td>
+          </tr>
+          `;
+        });
+        $('#tasks-migrants').html(templado);
+        // METODO PARA QUE EL INPUT DE TIPO DATAPICKER SEA UN CALENDARIO AL DAR CLICK
+        $( ".datepicker" ).datepicker();
+      }
     });
-    $("select#mySelect").prop('selectedIndex', 1);
-    $("select#mySelect2").prop('selectedIndex', 0);
   }
 
   //*************************************************************
@@ -972,13 +471,13 @@ $(document).ready(function() {
         for (var per = 1; per <= migrantes; per++) {
           var x = document.getElementById("table-migrants").rows[per].cells;
           var migra = new Persona();
-          migra.fechall = x[2].querySelector('input').value;
-          migra.nombre = x[3].querySelector('input').value;
-          migra.nacimiento = x[4].querySelector('input').value;
-          migra.horall = x[5].querySelector('select').selectedOptions[0].text;
-          migra.citaCo = x[6].querySelector('select').selectedOptions[0].text;
-          migra.nacionalidad = x[7].querySelector('select').selectedOptions[0].text;
-          migra.telefono = x[8].querySelector('input').value;
+          migra.fechall = x[4].querySelector('input').value;
+          migra.nombre = x[5].querySelector('input').value;
+          migra.nacimiento = x[6].querySelector('input').value;
+          migra.horall = x[7].querySelector('select').selectedOptions[0].text;
+          migra.citaCo = x[8].querySelector('select').selectedOptions[0].text;
+          migra.nacionalidad = x[9].querySelector('select').selectedOptions[0].text;
+          migra.telefono = x[10].querySelector('input').value;
           /* LOS EMPUJA AL ARREGLO */
           contenidoT.push(migra);
         }
